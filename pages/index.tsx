@@ -20,7 +20,6 @@ export async function getServerSideProps() {
     },
   }
 }
-export const APP_VERSION = 'v1.0.0'
 
 function fetchDate(date: any) {
   const newDate = new Date(date)
@@ -32,7 +31,6 @@ function fetchDate(date: any) {
   return [day, month, year]
 }
 export default function Home({ nextLaunch }: any) {
-  console.log('nextLaunch', nextLaunch)
   const { mission_name, launch_date_local, launch_site } = nextLaunch
   const nextLaunchDate = fetchDate(launch_date_local).join('/')
 
