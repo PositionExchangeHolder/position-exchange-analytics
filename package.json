@@ -1,0 +1,33 @@
+{
+  "name": "exchange-project-fe",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.5.10",
+    "graphql": "^16.3.0",
+    "next": "12.1.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "17.0.21",
+    "@types/react": "17.0.40",
+    "@typescript-eslint/eslint-plugin": "^5.14.0",
+    "autoprefixer": "^10.4.2",
+    "eslint": "8.11.0",
+    "eslint-config-next": "12.1.0",
+    "eslint-config-prettier": "^8.5.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.5",
+    "postcss": "^8.4.8",
+    "prettier": "^2.5.1",
+    "tailwindcss": "^3.0.23",
+    "typescript": "4.6.2"
+  }
+}
