@@ -9,7 +9,7 @@ graph TD
     B --> F[Referral]
     B --> G[NFT]
       G --> G1[Transactions]
-    B --> H[NFT]
+    B --> H[NFT Marketplace]
     B --> I[Bond]
     B --> K[Governance]
     B --> L[Competition]
