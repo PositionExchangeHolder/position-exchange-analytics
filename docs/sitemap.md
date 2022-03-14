@@ -14,5 +14,5 @@ graph TD
     B --> K[Governance]
     B --> L[Competition]
     %% B -> M[Public Sale]
-  A[Home] --> C[Address Info]
+  A[Home] --> Z[Address Info]
 ```
