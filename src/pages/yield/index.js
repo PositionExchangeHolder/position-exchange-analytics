@@ -1,5 +1,5 @@
 import React from 'react'
 
-export default function index() {
-  return <div>index yield</div>
+export default function Index() {
+  return <div>index page yield</div>
 }

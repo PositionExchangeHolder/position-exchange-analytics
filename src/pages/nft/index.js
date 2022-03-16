@@ -1,7 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class index extends Component {
-  render() {
-    return <div>index nft</div>
-  }
+export default function Index() {
+  return <div>index page nft</div>
 }

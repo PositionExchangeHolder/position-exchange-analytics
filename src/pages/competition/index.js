@@ -1,5 +1,5 @@
 import React from 'react'
 
 export default function Index() {
-  return <div> page nft-marketplace</div>
+  return <div>index page competition</div>
 }
