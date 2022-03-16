@@ -5,10 +5,12 @@ import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ContainerLayout>
+    <div>
       <HeaderLayout />
-      <Component {...pageProps} />
-    </ContainerLayout>
+      <ContainerLayout>
+        <Component {...pageProps} />
+      </ContainerLayout>
+    </div>
   )
 }
 

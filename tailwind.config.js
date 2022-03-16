@@ -9,10 +9,18 @@ module.exports = {
     extend: {
       colors: {
         primary: '#1C1C28',
-        charade: '#2D2D3D',
+        charade: 'rgba(120, 122, 145, 0.5)',
         secondary: '#302E4C',
         'txt-primary': '#F7F7F7',
         'txt-secondary': '#87859F',
+        'gun-powder': '#3A3953',
+      },
+      maxHeight: {
+        180: '11.25rem',
+      },
+      height: {
+        180: '11.25rem',
+        150: '9.4rem',
       },
     },
   },

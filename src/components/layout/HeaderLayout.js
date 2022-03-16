@@ -3,12 +3,12 @@ import Link from 'next/link'
 import { useState } from 'react'
 
 const navigation = [
-  { name: 'Token', href: '/token', current: true },
-  { name: 'Yield', href: '/yield', current: false },
+  { name: 'TOKEN', href: '/token', current: true },
+  { name: 'YIELD', href: '/yield', current: false },
   { name: 'NFT', href: '/nft', current: false },
-  { name: 'NFT Marketplace', href: '/nft-marketplace', current: false },
-  { name: 'Competition', href: '/competition', current: false },
-  { name: 'Referral', href: '/referral', current: false },
+  { name: 'NFT MARKETPLACE', href: '/nft-marketplace', current: false },
+  { name: 'COMPETITION', href: '/competition', current: false },
+  { name: 'REFERRAL', href: '/referral', current: false },
 ]
 
 function classNames(...classes) {
@@ -19,7 +19,7 @@ export default function HeaderLayout() {
   const [currentMenu, setCurrentMenu] = useState(0)
 
   return (
-    <div className=" bg-primary flex flex-row items-center px-24 ">
+    <div className=" bg-primary flex flex-row items-center px-24 border-b border-charade py-2">
       <div className="flex-row flex items-center">
         <Image src="/logo.svg" alt="logo" width={50} height={55} />
         <p className="font-bold text-2xl text-txt-primary mx-4 mr-10">
@@ -35,9 +35,9 @@ export default function HeaderLayout() {
                 key={item.name}
                 className={classNames(
                   index === currentMenu
-                    ? 'bg-gray-900 text-white'
+                    ? 'bg-secondary text-white'
                     : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                  'px-3 py-2 rounded-md text-sm font-medium'
+                  'px-3 py-2 rounded-md  font-medium text-sm'
                 )}
                 aria-current={item.current ? 'page' : undefined}
               >
