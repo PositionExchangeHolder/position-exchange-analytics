@@ -1,7 +1,8 @@
 import React from 'react'
 import DataTable, { createTheme } from 'react-data-table-component'
 
-export default function Transaction() {
+export default function Transaction(props) {
+  console.log('props', props)
   return (
     <div>
       <DataTable
