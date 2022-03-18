@@ -5,9 +5,27 @@ export const getListTransaction = async () => {
   return (await client.query({
     query: gql`
       query transactions {
-        transactions {
+        transactions(first: 10, limit: 2, cursor: 1) {
           id
+          nft {
+            id
+            grade
+          }
+          from {
+            id
+          }
+          to {
+            id
+          }
+          gasLimit
+          gasPrice
+          createdTimestamp
           action
+          grade
+          sender {
+            id
+          }
+          createdBlockNumber
         }
       }
     `,

@@ -39,9 +39,35 @@ export type ListTranSactionResponse = {
 }
 
 export type DataTranSaction = {
-  transactions: ItemTranSaction
+  transactions: ItemTranSaction[]
 }
 
 export type ItemTranSaction = {
   id: string
+  nft: {
+    id: string
+    grade: string
+  }
+  from: {
+    id: string
+  }
+  to: {
+    id: string
+  }
+  gasLimit: string
+  gasPrice: string
+  createdTimestamp: string
+  action: ActiveTransaction
+  grade: string
+  sender: {
+    id: string
+  }
+  createdBlockNumber: string
 }
+export type ActiveTransaction =
+  | 'Mint'
+  | 'Burn'
+  | 'Transfer'
+  | 'TradeOnMarketplace'
+  | 'Stake'
+  | 'Unstake'

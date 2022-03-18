@@ -11,9 +11,8 @@ import CurrentValueLock from './components/CurrentValueLock'
 import ItemNft from './components/ItemNft'
 import Transaction from './components/Transaction'
 import ValueNftInfo from './components/ValueNftInfo'
-// const dataNft = [1, 2, 3, 4, 5, 6]
 
-type Props = { transactions: ItemTranSaction; nftStatistic: ItemNftStatistic }
+type Props = { transactions: ItemTranSaction[]; nftStatistic: ItemNftStatistic }
 export default function Index({ transactions, nftStatistic }: Props) {
   const dataNft: TypeItemNft[] = transferDataTotalNft(nftStatistic)
   const {
@@ -39,12 +38,12 @@ export default function Index({ transactions, nftStatistic }: Props) {
         />
       </div>
       <div className="grid-cols-3 gap-x-8 gap-y-8 grid mt-16">
-        {dataNft.map((itemNft, index) => (
+        {dataNft?.map((itemNft, index) => (
           <ItemNft key={index} item={itemNft} />
         ))}
       </div>
       <div className="mt-16">
-        <Transaction />
+        <Transaction transactions={transactions} />
       </div>
     </main>
   )
@@ -57,10 +56,9 @@ export async function getServerSideProps() {
     await getListNftStatistic()
   const { transactions } = transactionsResponse.data
   const { nftStatistic } = nftStatisticResponse.data
-
   return {
     props: {
-      transactions,
+      transactions: transactions,
       nftStatistic,
     },
   }
