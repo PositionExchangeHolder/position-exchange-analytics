@@ -1,5 +1,5 @@
 import { ActiveTransaction, ItemTranSaction } from 'api/nft/nft.type'
-import React from 'react'
+import React, { useState } from 'react'
 import DataTable, {
   createTheme,
   TableColumn,
@@ -29,23 +29,25 @@ type Props = {
   transactions: ItemTranSaction[]
 }
 export default function Transaction({ transactions }: Props) {
+  const [currentFilter, setCurrentFilter] = useState(0)
   return (
     <div>
       <div className="w-full pt-3 pb-3 pl-6  bg-secondary rounded-t-md ">
         <p className="font-medium text-3xl text-txt-primary ">Transaction</p>
-        {/* ?? */}
         <div className="flex flex-row gap-x-4 mt-4 ">
-          {listFilterTransaction.map((itemFilter) => {
+          {listFilterTransaction.map((itemFilter, index) => {
             return (
-              <div className="flex items-center" key={itemFilter.name}>
+              <div className="flex items-center  " key={itemFilter.name}>
                 <input
-                  disabled={true}
+                  onClick={() => setCurrentFilter(index)}
+                  checked={index === currentFilter ? true : false}
+                  name="currentFilter"
                   type="radio"
-                  className="focus:ring-rose-700 h-6 w-6 text-red-700 border-gray-300 bg-red-500"
+                  className="focus:ring-slate-50 h-6 w-6 text-red-700 border-gray-300 "
                 />
                 <label
                   htmlFor="push-everything"
-                  className="ml-3 block text-xl font-medium text-txt-primary"
+                  className="ml-3 block text-xl font-medium text-txt-primary "
                 >
                   {itemFilter.name}
                 </label>
@@ -53,8 +55,6 @@ export default function Transaction({ transactions }: Props) {
             )
           })}
         </div>
-
-        {/* ?? */}
       </div>
       <DataTable
         title="Transaction"
