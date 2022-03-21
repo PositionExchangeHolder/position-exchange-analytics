@@ -17,10 +17,17 @@ module.exports = {
       },
       maxHeight: {
         180: '11.25rem',
+        120: '7.5rem',
       },
       height: {
         180: '11.25rem',
         150: '9.4rem',
+        120: '7.5rem',
+      },
+      width: {
+        180: '11.25rem',
+        150: '9.4rem',
+        120: '7.5rem',
       },
     },
   },

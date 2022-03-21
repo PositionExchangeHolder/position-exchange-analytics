@@ -1,22 +1,27 @@
+import { ItemNftStatistic } from 'api/nft/nft.type'
 import Image from 'next/image'
 import React from 'react'
-import { commasNumberFormat, nFormatter, percentage } from 'utils/number'
+import { nFormatter, percentage } from 'utils/number'
+import ValueNftInfo from './ValueNftInfo'
 type Props = {
-  currentTokenLocked: string
-  totalTokenLocked: string
+  nftStatistic: ItemNftStatistic
 }
-export default function CurrentValueLock({
-  currentTokenLocked,
-  totalTokenLocked,
-}: Props) {
+export default function CurrentValueLock({ nftStatistic }: Props) {
+  const {
+    totalNftsMinted,
+    totalNftsBurned,
+    totalNftsStaking,
+    totalUniqueMiners,
+    currentTokenLocked,
+    totalTokenLocked,
+  } = nftStatistic
   return (
-    <div className="border-charade border  rounded-md bg-secondary  h-180  px-6 pt-4 w-full">
+    <div className="border-charade border  rounded-md bg-secondary   px-6 pt-4 w-full">
       <p className="font-medium text-base text-txt-primary   ">
         Current Value Locker
       </p>
 
       <p className="font-medium text-lg text-txt-primary mt-4">
-        {/* 1.433.896 POSI ~$4.435.545 */}
         {`${nFormatter(currentTokenLocked, 2)} POSI ~${nFormatter(
           totalTokenLocked,
           2
@@ -31,13 +36,18 @@ export default function CurrentValueLock({
           className="rounded-md"
         />
         <p className="font-medium text-base text-txt-secondary ml-3 ">
-          {/* Total 48.5% growth this month */}
           {`Total circulation ${percentage(
             currentTokenLocked,
             totalTokenLocked
           ).toFixed(1)} %`}
         </p>
       </div>
+      <ValueNftInfo
+        totalNftsMinted={totalNftsMinted}
+        totalNftsBurned={totalNftsBurned}
+        totalNftsStaking={totalNftsStaking}
+        totalUniqueMiners={totalUniqueMiners}
+      />
     </div>
   )
 }

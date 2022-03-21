@@ -39,7 +39,8 @@ export default function Transaction({ transactions }: Props) {
             return (
               <div className="flex items-center  " key={itemFilter.name}>
                 <input
-                  onClick={() => setCurrentFilter(index)}
+                  onChange={() => setCurrentFilter(index)}
+                  // onClick={() => setCurrentFilter(index)}
                   checked={index === currentFilter ? true : false}
                   name="currentFilter"
                   type="radio"

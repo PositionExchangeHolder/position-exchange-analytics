@@ -13,7 +13,7 @@ export default function ValueNftInfo({
   totalUniqueMiners,
 }: Props) {
   return (
-    <div className=" h-180  px-6 pt-4 flex-row flex items-end columns-4 gap-x-4">
+    <div className="px-2 mt-10 mb-10  flex-row flex items-end columns-4 gap-x-4">
       <div className="border-charade border  rounded-md bg-secondary h-150 w-full flex flex-col items-center justify-center gap-y-4">
         <p className=" text-base text-txt-primary   ">Minted</p>
         <p className="font-medium text-lg text-txt-primary ">
