@@ -13,12 +13,14 @@ import {
   ListTranSactionResponse,
 } from 'api/nft/nft.type'
 import { transferDataTotalNft, TypeItemNft } from 'helper/nft'
+import Link from 'next/link'
 import React from 'react'
 import { transformDataLineChartNft } from 'utils/nft/transformData'
 import CurrentValueLock from './components/CurrentValueLock'
 import ItemNft from './components/ItemNft'
 import Transaction from './components/Transaction'
 import { PropSSRNft } from './nft.type'
+
 type Props = {
   transactions: ItemTranSaction[]
   nftStatistic: ItemNftStatistic
@@ -30,10 +32,11 @@ export default function Index({
   nftDayDatas,
 }: Props) {
   const dataNft: TypeItemNft[] = transferDataTotalNft(nftStatistic)
-
   const dataNftLineChart = transformDataLineChartNft(nftDayDatas)
+  const pathRedirect = 'nft//nft-detail/[slug]'
+
   return (
-    <main className="pt-12">
+    <main className="pt-12  w-full ">
       <div className="grid-cols-2 gap-x-6 grid ">
         <CurrentValueLock nftStatistic={nftStatistic} />
         <div className="bg-secondary rounded-md   ">
@@ -42,13 +45,26 @@ export default function Index({
           </div>
         </div>
       </div>
+
       <div className="grid-cols-3 gap-x-8 gap-y-8 grid mt-16">
-        {dataNft?.map((itemNft, index) => (
-          <ItemNft key={index} item={itemNft} />
-        ))}
+        {dataNft?.map((itemNft, index) => {
+          return (
+            <Link
+              key={index}
+              href={{
+                pathname: pathRedirect,
+                query: { slug: '123' },
+              }}
+            >
+              <a>
+                <ItemNft item={itemNft} />
+              </a>
+            </Link>
+          )
+        })}
       </div>
       <div className="mt-16">
-        <Transaction transactions={transactions} />
+        <Transaction transactions={transactions} titleTable={'Transaction'} />
       </div>
     </main>
   )

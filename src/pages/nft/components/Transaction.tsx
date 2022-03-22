@@ -27,13 +27,14 @@ const listFilterTransaction: TypeFilter[] = [
 ]
 type Props = {
   transactions: ItemTranSaction[]
+  titleTable: string
 }
-export default function Transaction({ transactions }: Props) {
+export default function Transaction({ transactions, titleTable }: Props) {
   const [currentFilter, setCurrentFilter] = useState(0)
   return (
     <div>
       <div className="w-full pt-3 pb-3 pl-6  bg-secondary rounded-t-md ">
-        <p className="font-medium text-3xl text-txt-primary ">Transaction</p>
+        <p className="font-medium text-3xl text-txt-primary ">{titleTable}</p>
         <div className="flex flex-row gap-x-4 mt-4 ">
           {listFilterTransaction.map((itemFilter, index) => {
             return (

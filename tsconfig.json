@@ -19,6 +19,11 @@
       "@/components/*": ["components/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/pages/nft/nft-detail/[slug].tsx"
+  ],
   "exclude": ["node_modules"]
 }
