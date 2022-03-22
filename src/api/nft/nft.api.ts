@@ -1,11 +1,17 @@
 import { gql } from '@apollo/client'
+import { QueryNft } from 'pages/nft/nft.type'
 import client from '../apolloInstance'
-import { ListNftStatisticResponse, ListTranSactionResponse } from './nft.type'
-export const getListTransaction = async () => {
-  return (await client.query({
+import {
+  DataIntDayDate,
+  ListDataIntDayDateResponse,
+  ListNftStatisticResponse,
+  ListTranSactionResponse,
+} from './nft.type'
+export const getListTransaction = async ({ skip }: QueryNft) => {
+  const response: ListTranSactionResponse = await client.query({
     query: gql`
       query transactions {
-        transactions(first: 10, limit: 2, cursor: 1) {
+        transactions(first: 10, skip: 10) {
           id
           nft {
             id
@@ -29,11 +35,12 @@ export const getListTransaction = async () => {
         }
       }
     `,
-  })) as ListTranSactionResponse
+  })
+  return response
 }
 
 export const getListNftStatistic = async () => {
-  return (await client.query({
+  const response: ListNftStatisticResponse = await client.query({
     query: gql`
       query nftStatistic {
         nftStatistic(id: "1") {
@@ -63,5 +70,25 @@ export const getListNftStatistic = async () => {
         }
       }
     `,
-  })) as ListNftStatisticResponse
+  })
+  return response
+}
+
+export const getListNftDayData = async () => {
+  const response: ListDataIntDayDateResponse = await client.query({
+    query: gql`
+      query nftDayDatas {
+        nftDayDatas(first: 7, orderBy: date, orderDirection: desc) {
+          id
+          date
+          dailyTokenLocked
+          dailyNftMinted
+          dailyNftBurned
+          dailyTransactions
+          createdBlockNumber
+        }
+      }
+    `,
+  })
+  return response
 }

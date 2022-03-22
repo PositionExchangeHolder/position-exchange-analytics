@@ -1,8 +1,9 @@
-import Image from 'next/image'
+import { format, fromUnixTime } from 'date-fns'
 import { TypeItemNft } from 'helper/nft'
+import Image from 'next/image'
 import React from 'react'
-import { convertTimesTampToDate } from 'utils/date'
 import { commasNumberFormat } from 'utils/number'
+
 type Props = {
   item: TypeItemNft
 }
@@ -19,7 +20,7 @@ export default function ItemNft({ item }: Props) {
         )} / ${commasNumberFormat(item.totalMinted)}`}</p>
         <div className="mt-6 flex">
           <p className="font-medium text-base text-txt-secondary bg-gun-powder px-4 py-1 rounded-2xl">
-            {`Year of ${convertTimesTampToDate(item.createdTimestamp).year}`}
+            {`Year of ${format(fromUnixTime(item.createdTimestamp), 'yyyy')}`}
           </p>
         </div>
       </div>

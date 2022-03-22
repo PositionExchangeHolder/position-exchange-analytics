@@ -1,11 +1,11 @@
 import { ActiveTransaction, ItemTranSaction } from 'api/nft/nft.type'
+import { format, fromUnixTime } from 'date-fns'
 import React, { useState } from 'react'
 import DataTable, {
   createTheme,
   TableColumn,
   TableStyles,
 } from 'react-data-table-component'
-import { convertTimesTampToDate } from 'utils/date'
 import { nFormatter } from 'utils/number'
 type TypeFilter = {
   value: ActiveTransaction
@@ -147,9 +147,7 @@ export const columnsTransaction: TableColumn<ItemTranSaction>[] = [
   },
   {
     name: 'Time',
-    selector: (row) => {
-      const { date, month, year } = convertTimesTampToDate(row.createdTimestamp)
-      return `${date}-${month}-${year}`
-    },
+    selector: (row) =>
+      format(fromUnixTime(+row?.createdTimestamp), 'dd-MM-yyyy'),
   },
 ]

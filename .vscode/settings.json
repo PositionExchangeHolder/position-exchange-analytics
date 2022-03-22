@@ -4,5 +4,5 @@
   },
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "cSpell.words": ["Unstake"] // T
+  "cSpell.words": ["Datas", "Unstake"] // T
 }

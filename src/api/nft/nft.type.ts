@@ -64,6 +64,7 @@ export type ItemTranSaction = {
   }
   createdBlockNumber: string
 }
+
 export type ActiveTransaction =
   | 'Mint'
   | 'Burn'
@@ -71,3 +72,20 @@ export type ActiveTransaction =
   | 'TradeOnMarketplace'
   | 'Stake'
   | 'Unstake'
+
+export type ItemNftDayDate = {
+  id: number
+  date: number
+  dailyTokenLocked: number
+  dailyNftMinted: number
+  dailyNftBurned: number
+  dailyTransactions: number
+  createdBlockNumber: number
+}
+
+export type DataIntDayDate = {
+  nftDayDatas: ItemNftDayDate[]
+}
+export type ListDataIntDayDateResponse = {
+  data: DataIntDayDate
+}
