@@ -31,7 +31,7 @@ export default function TransactionTable({
     <div>
       <div className="w-full pt-3 pb-3 pl-6  bg-secondary rounded-t-md ">
         <p className="font-medium text-3xl text-txt-primary ">{titleTable}</p>
-        <div className="flex flex-row gap-x-4 mt-4 ">
+        <div className="flex flex-row gap-x-4 mt-4 my-2 ">
           {listFilterTransaction?.map((itemFilter) => {
             return (
               <div className="flex items-center  " key={itemFilter.name}>
@@ -44,7 +44,7 @@ export default function TransactionTable({
                 />
                 <label
                   htmlFor="push-everything"
-                  className="ml-3 block text-xl font-medium text-txt-primary "
+                  className="ml-3 block text-sm font-medium text-txt-primary "
                 >
                   {itemFilter.name}
                 </label>
