@@ -9,18 +9,28 @@ import {
   ListDataTransactionGradeResponse,
 } from 'api/nft-grade/nft-grade.type'
 import Image from 'next/image'
-import React from 'react'
-import Transaction from '../components/Transaction'
-import { PropSSRNftGrade } from './nft-gradle.type'
+import { useRouter } from 'next/router'
+import React, { useEffect, useState } from 'react'
+import TransactionTable from '../../../components/transactionTable/TransactionTable'
+import {
+  listFilterTransactionNftGrade,
+  PropSSRNftGrade,
+} from './nft-gradle.type'
 
 type Props = {
   positionNFTs: ItemNftGrade[]
   transactions: ItemTransactionNftGrade[]
 }
 export default function Index({ positionNFTs, transactions }: Props) {
-  // console.log('nftDayDatas', positionNFTs)
-  // console.log('transactions', transactions)
-
+  const [currentFilter, setCurrentFilter] = useState('All')
+  const router = useRouter()
+  const slug = router.query.slug
+  useEffect(() => {
+    router.push({
+      pathname: `/nft/nft-grade/${slug}`,
+      query: { action: currentFilter },
+    })
+  }, [currentFilter])
   return (
     <main className="pt-12  w-full">
       <div className="flex flex-row">
@@ -50,7 +60,13 @@ export default function Index({ positionNFTs, transactions }: Props) {
         </div>
       </div>
       <div className="mt-16">
-        <Transaction transactions={transactions} titleTable={'Transaction'} />
+        <TransactionTable
+          transactions={transactions}
+          titleTable={'Transaction'}
+          setCurrentFilter={setCurrentFilter}
+          currentFilter={currentFilter}
+          listFilterTransaction={listFilterTransactionNftGrade}
+        />
       </div>
     </main>
   )
@@ -58,13 +74,16 @@ export default function Index({ positionNFTs, transactions }: Props) {
 
 export async function getServerSideProps({ query }: PropSSRNftGrade) {
   const grade = query.slug
-
+  const skip = query?.skip || 100
+  const action = query?.action
   const dataGradeResponse: ListDataGradeResponse = await getListNftGrade({
     grade,
   })
   const dataTransactionResponse: ListDataTransactionGradeResponse =
     await getListTransactionNftGrade({
       grade,
+      action,
+      skip,
     })
 
   const { positionNFTs } = dataGradeResponse.data

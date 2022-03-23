@@ -1,48 +1,43 @@
-import { ActiveTransaction, ItemTranSaction } from 'api/nft/nft.type'
+import { ItemTranSaction } from 'api/nft/nft.type'
 import { format, fromUnixTime } from 'date-fns'
-import React, { useState } from 'react'
+import React from 'react'
 import DataTable, {
   createTheme,
   TableColumn,
   TableStyles,
 } from 'react-data-table-component'
 import { nFormatter } from 'utils/number'
-type TypeFilter = {
-  value: ActiveTransaction
+
+type ItemFilter = {
   name: string
+  value: string
 }
-const listFilterTransaction: TypeFilter[] = [
-  {
-    name: 'All',
-    value: 'Burn',
-  },
-  {
-    name: 'Swap',
-    value: 'Burn',
-  },
-  {
-    name: 'Stake',
-    value: 'Stake',
-  },
-]
+
 type Props = {
   transactions: any[]
   titleTable: string
+  currentFilter: string
+  setCurrentFilter: (filter: string) => void
+  listFilterTransaction: ItemFilter[]
 }
-export default function Transaction({ transactions, titleTable }: Props) {
-  const [currentFilter, setCurrentFilter] = useState(0)
+export default function TransactionTable({
+  transactions,
+  titleTable,
+  currentFilter,
+  setCurrentFilter,
+  listFilterTransaction,
+}: Props) {
   return (
     <div>
       <div className="w-full pt-3 pb-3 pl-6  bg-secondary rounded-t-md ">
         <p className="font-medium text-3xl text-txt-primary ">{titleTable}</p>
         <div className="flex flex-row gap-x-4 mt-4 ">
-          {listFilterTransaction.map((itemFilter, index) => {
+          {listFilterTransaction?.map((itemFilter) => {
             return (
               <div className="flex items-center  " key={itemFilter.name}>
                 <input
-                  onChange={() => setCurrentFilter(index)}
-                  // onClick={() => setCurrentFilter(index)}
-                  checked={index === currentFilter ? true : false}
+                  onChange={() => setCurrentFilter(itemFilter.value)}
+                  checked={itemFilter.value === currentFilter ? true : false}
                   name="currentFilter"
                   type="radio"
                   className="focus:ring-slate-50 h-6 w-6 text-red-700 border-gray-300 "

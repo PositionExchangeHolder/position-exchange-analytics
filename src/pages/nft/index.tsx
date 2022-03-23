@@ -14,18 +14,20 @@ import {
 } from 'api/nft/nft.type'
 import { transferDataTotalNft, TypeItemNft } from 'helper/nft'
 import Link from 'next/link'
-import React from 'react'
+import { useRouter } from 'next/router'
+import React, { useEffect, useState } from 'react'
 import { transformDataLineChartNft } from 'utils/nft/transformData'
+import TransactionTable from '../../components/transactionTable/TransactionTable'
 import CurrentValueLock from './components/CurrentValueLock'
 import ItemNft from './components/ItemNft'
-import Transaction from './components/Transaction'
-import { PropSSRNft } from './nft.type'
+import { listFilterTransaction, PropSSRNft } from './nft.type'
 
 type Props = {
   transactions: ItemTranSaction[]
   nftStatistic: ItemNftStatistic
   nftDayDatas: ItemNftDayDate[]
 }
+
 export default function Index({
   transactions,
   nftStatistic,
@@ -34,6 +36,15 @@ export default function Index({
   const dataNft: TypeItemNft[] = transferDataTotalNft(nftStatistic)
   const dataNftLineChart = transformDataLineChartNft(nftDayDatas)
   const pathRedirect = 'nft/nft-grade/[slug]'
+  const [currentFilter, setCurrentFilter] = useState('All')
+  const router = useRouter()
+  useEffect(() => {
+    // router.
+    router.push({
+      pathname: '/nft',
+      query: { action: currentFilter },
+    })
+  }, [currentFilter])
 
   return (
     <main className="pt-12  w-full">
@@ -64,16 +75,24 @@ export default function Index({
         })}
       </div>
       <div className="mt-16">
-        <Transaction transactions={transactions} titleTable={'Transaction'} />
+        <TransactionTable
+          setCurrentFilter={setCurrentFilter}
+          currentFilter={currentFilter}
+          transactions={transactions}
+          titleTable={'Transaction'}
+          listFilterTransaction={listFilterTransaction}
+        />
       </div>
     </main>
   )
 }
 
 export async function getServerSideProps({ query }: PropSSRNft) {
-  const skip = query?.skip || 110
+  const skip = query?.skip || 100
+  const action = query?.action
+
   const transactionsResponse: ListTranSactionResponse =
-    await getListTransaction({ skip })
+    await getListTransaction({ skip, action })
 
   const nftStatisticResponse: ListNftStatisticResponse =
     await getListNftStatistic()

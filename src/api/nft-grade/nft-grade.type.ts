@@ -1,4 +1,4 @@
-import { ActiveTransaction } from 'api/nft/nft.type'
+import { ActiveTransaction, FilterTransaction } from 'api/nft/nft.type'
 
 export type ItemNftGrade = {
   id: number
@@ -41,4 +41,6 @@ export type ListDataTransactionGradeResponse = {
 }
 export type GetTransactionNftGradeRequestParam = {
   grade: string
+  skip: string | number
+  action: FilterTransaction
 }

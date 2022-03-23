@@ -73,6 +73,15 @@ export type ActiveTransaction =
   | 'Stake'
   | 'Unstake'
 
+export type FilterTransaction =
+  | 'Mint'
+  | 'Burn'
+  | 'Transfer'
+  | 'TradeOnMarketplace'
+  | 'Stake'
+  | 'Unstake'
+  | 'All'
+
 export type ItemNftDayDate = {
   id: number
   date: number

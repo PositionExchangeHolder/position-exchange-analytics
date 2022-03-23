@@ -6,11 +6,20 @@ import {
   ListNftStatisticResponse,
   ListTranSactionResponse,
 } from './nft.type'
-export const getListTransaction = async ({ skip }: QueryNft) => {
+export const getListTransaction = async ({ skip, action }: QueryNft) => {
+  const filter: any = {
+    first: 10,
+    skip,
+  }
+  if (action !== 'All') {
+    filter.where = {
+      action,
+    }
+  }
   const response: ListTranSactionResponse = await client.query({
     query: gql`
-      query transactions {
-        transactions(first: 10, skip: 10) {
+      query transactions($skip: Int, $first: Int, $where: Transaction_filter) {
+        transactions(skip: $skip, first: $first, where: $where) {
           id
           nft {
             id
@@ -34,6 +43,7 @@ export const getListTransaction = async ({ skip }: QueryNft) => {
         }
       }
     `,
+    variables: filter,
   })
   return response
 }
