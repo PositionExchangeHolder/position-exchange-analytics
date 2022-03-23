@@ -17,7 +17,7 @@ function classNames(...classes) {
 }
 
 export default function HeaderLayout() {
-  const [currentMenu, setCurrentMenu] = useState()
+  const [currentMenu, setCurrentMenu] = useState(null)
   const router = useRouter()
   const currentPath = router.route.split('/')[1]
   useEffect(() => {
@@ -45,16 +45,16 @@ export default function HeaderLayout() {
         setCurrentMenu(5)
         break
       default:
-        setCurrentMenu(0)
+        setCurrentMenu(null)
         break
     }
-  }, [])
+  }, [currentPath])
 
   return (
-    <div className=" bg-primary flex flex-row items-center px-24 border-b border-charade py-2">
+    <div className=" bg-primary flex flex-row items-center border-b  px4 lg:px-12 xl:px-18 2xl:px-24">
       <div className="flex-row flex items-center">
         <Image src="/logo.svg" alt="logo" width={50} height={55} />
-        <p className="font-bold text-2xl text-txt-primary mx-4 mr-10">
+        <p className="font-bold  text-txt-primary mx-4 mr-10 text-base md:text-xl">
           MATERIO
         </p>
       </div>
@@ -69,7 +69,7 @@ export default function HeaderLayout() {
                   index === currentMenu
                     ? 'bg-secondary text-white'
                     : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                  'px-3 py-2 rounded-md  font-medium text-sm'
+                  'px-3 py-2 rounded-md  font-medium  text-xs xl:text-base items-center justify-center flex '
                 )}
                 aria-current={item.current ? 'page' : undefined}
               >

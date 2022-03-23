@@ -129,26 +129,32 @@ export const columnsTransaction: TableColumn<ItemTranSaction>[] = [
   {
     name: 'Action',
     selector: (row) => row?.action,
+    maxWidth: '180px',
   },
   {
     name: 'Value',
     selector: (row) => nFormatter(row?.createdBlockNumber, 2),
+    maxWidth: '100px',
   },
   {
     name: 'Transaction',
     selector: (row) => row?.id,
+    maxWidth: '300px',
   },
   {
     name: 'From',
     selector: (row) => row?.from?.id,
+    maxWidth: '300px',
   },
   {
     name: 'To',
     selector: (row) => row?.to?.id,
+    maxWidth: '300px',
   },
   {
     name: 'Time',
     selector: (row) =>
       format(fromUnixTime(+row?.createdTimestamp), 'dd-MM-yyyy'),
+    maxWidth: '180px',
   },
 ]
