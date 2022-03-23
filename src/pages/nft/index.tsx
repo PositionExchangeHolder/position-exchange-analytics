@@ -33,10 +33,10 @@ export default function Index({
 }: Props) {
   const dataNft: TypeItemNft[] = transferDataTotalNft(nftStatistic)
   const dataNftLineChart = transformDataLineChartNft(nftDayDatas)
-  const pathRedirect = 'nft//nft-detail/[slug]'
+  const pathRedirect = 'nft/nft-grade/[slug]'
 
   return (
-    <main className="pt-12  w-full ">
+    <main className="pt-12  w-full">
       <div className="grid-cols-2 gap-x-6 grid ">
         <CurrentValueLock nftStatistic={nftStatistic} />
         <div className="bg-secondary rounded-md   ">
@@ -53,7 +53,7 @@ export default function Index({
               key={index}
               href={{
                 pathname: pathRedirect,
-                query: { slug: '123' },
+                query: { slug: itemNft.grade },
               }}
             >
               <a>

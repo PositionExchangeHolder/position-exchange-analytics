@@ -54,9 +54,9 @@ export type ItemTranSaction = {
   to: {
     id: string
   }
+  createdTimestamp: string
   gasLimit: string
   gasPrice: string
-  createdTimestamp: string
   action: ActiveTransaction
   grade: string
   sender: {

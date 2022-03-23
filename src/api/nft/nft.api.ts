@@ -2,7 +2,6 @@ import { gql } from '@apollo/client'
 import { QueryNft } from 'pages/nft/nft.type'
 import client from '../apolloInstance'
 import {
-  DataIntDayDate,
   ListDataIntDayDateResponse,
   ListNftStatisticResponse,
   ListTranSactionResponse,

@@ -26,7 +26,7 @@ const listFilterTransaction: TypeFilter[] = [
   },
 ]
 type Props = {
-  transactions: ItemTranSaction[]
+  transactions: any[]
   titleTable: string
 }
 export default function Transaction({ transactions, titleTable }: Props) {
@@ -129,32 +129,32 @@ export const columnsTransaction: TableColumn<ItemTranSaction>[] = [
   {
     name: 'Action',
     selector: (row) => row?.action,
-    maxWidth: '180px',
+    width: '170px',
   },
   {
     name: 'Value',
     selector: (row) => nFormatter(row?.createdBlockNumber, 2),
-    maxWidth: '100px',
+    width: '100px',
   },
   {
     name: 'Transaction',
     selector: (row) => row?.id,
-    maxWidth: '300px',
+    width: '280px',
   },
   {
     name: 'From',
     selector: (row) => row?.from?.id,
-    maxWidth: '300px',
+    width: '280px',
   },
   {
     name: 'To',
     selector: (row) => row?.to?.id,
-    maxWidth: '300px',
+    width: '280px',
   },
   {
     name: 'Time',
     selector: (row) =>
       format(fromUnixTime(+row?.createdTimestamp), 'dd-MM-yyyy'),
-    maxWidth: '180px',
+    width: '170px',
   },
 ]
