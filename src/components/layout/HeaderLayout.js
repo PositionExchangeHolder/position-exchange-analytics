@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 
 const navigation = [
   { name: 'TOKEN', href: '/token', current: true },
@@ -16,7 +17,38 @@ function classNames(...classes) {
 }
 
 export default function HeaderLayout() {
-  const [currentMenu, setCurrentMenu] = useState(0)
+  const [currentMenu, setCurrentMenu] = useState()
+  const router = useRouter()
+  const currentPath = router.route.split('/')[1]
+  useEffect(() => {
+    switch (currentPath) {
+      case 'token':
+        setCurrentMenu(0)
+        break
+
+      case 'yield':
+        setCurrentMenu(1)
+        break
+
+      case 'nft':
+        setCurrentMenu(2)
+        break
+
+      case 'nft-marketplace':
+        setCurrentMenu(3)
+        break
+
+      case 'competition':
+        setCurrentMenu(4)
+        break
+      case 'referral':
+        setCurrentMenu(5)
+        break
+      default:
+        setCurrentMenu(0)
+        break
+    }
+  }, [])
 
   return (
     <div className=" bg-primary flex flex-row items-center px-24 border-b border-charade py-2">
