@@ -1,4 +1,7 @@
 import LineChart from '@/components/chart/LineChart'
+import CurrentValueLock from '@/components/nft/CurrentValueLock'
+import ItemNft from '@/components/nft/ItemNft'
+import TransactionTable from '@/components/transactionTable/TransactionTable'
 import {
   getListNftDayData,
   getListNftStatistic,
@@ -11,16 +14,13 @@ import {
   ListDataIntDayDateResponse,
   ListNftStatisticResponse,
   ListTranSactionResponse,
-} from 'api/nft/nft.type'
+} from 'api/nft/nft.api.type'
+import { listFilterTransaction, PropSSRNft } from 'common/nft/nft.type'
 import { transferDataTotalNft, TypeItemNft } from 'helper/nft'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { transformDataLineChartNft } from 'utils/nft/transformData'
-import TransactionTable from '../../components/transactionTable/TransactionTable'
-import CurrentValueLock from './components/CurrentValueLock'
-import ItemNft from './components/ItemNft'
-import { listFilterTransaction, PropSSRNft } from './nft.type'
 
 type Props = {
   transactions: ItemTranSaction[]

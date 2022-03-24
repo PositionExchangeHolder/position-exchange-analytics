@@ -1,4 +1,4 @@
-import { ActiveTransaction, FilterTransaction } from 'api/nft/nft.type'
+import { ActiveTransaction, FilterTransaction } from 'api/nft/nft.api.type'
 
 export type ItemNftGrade = {
   id: number

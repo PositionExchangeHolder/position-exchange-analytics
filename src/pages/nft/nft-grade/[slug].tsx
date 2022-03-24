@@ -1,3 +1,4 @@
+import TransactionTable from '@/components/transactionTable/TransactionTable'
 import {
   getListNftGrade,
   getListTransactionNftGrade,
@@ -7,15 +8,14 @@ import {
   ItemTransactionNftGrade,
   ListDataGradeResponse,
   ListDataTransactionGradeResponse,
-} from 'api/nft-grade/nft-grade.type'
+} from 'api/nft-grade/nft-grade.api.type'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-import TransactionTable from '../../../components/transactionTable/TransactionTable'
 import {
   listFilterTransactionNftGrade,
   PropSSRNftGrade,
-} from './nft-gradle.type'
+} from 'common/nft/nft-gradle.type'
 
 type Props = {
   positionNFTs: ItemNftGrade[]

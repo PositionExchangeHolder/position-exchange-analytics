@@ -1,4 +1,4 @@
-import { ItemNftStatistic } from 'api/nft/nft.type'
+import { ItemNftStatistic } from 'api/nft/nft.api.type'
 import Image from 'next/image'
 import React from 'react'
 import { nFormatter, percentage } from 'utils/number'

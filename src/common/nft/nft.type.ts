@@ -1,11 +1,10 @@
-import { FilterTransaction } from 'api/nft/nft.type'
+import { FilterTransaction } from 'api/nft/nft.api.type'
 
-export type PropSSRNftGrade = {
-  query: QueryNftGrade
+export type PropSSRNft = {
+  query: QueryNft
 }
 
-export type QueryNftGrade = {
-  slug: string
+export type QueryNft = {
   skip: string
   action: FilterTransaction
 }
@@ -14,7 +13,7 @@ export type TypeFilter = {
   value: FilterTransaction
   name: string
 }
-export const listFilterTransactionNftGrade: TypeFilter[] = [
+export const listFilterTransaction: TypeFilter[] = [
   {
     name: 'All',
     value: 'All',

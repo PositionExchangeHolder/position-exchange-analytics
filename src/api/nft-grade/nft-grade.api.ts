@@ -5,7 +5,7 @@ import {
   GetTransactionNftGradeRequestParam,
   ListDataGradeResponse,
   ListDataTransactionGradeResponse,
-} from './nft-grade.type'
+} from './nft-grade.api.type'
 export const getListNftGrade = async ({
   grade,
 }: GetListNftGradeRequestParam) => {

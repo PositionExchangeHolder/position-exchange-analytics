@@ -1,11 +1,11 @@
 import { gql } from '@apollo/client'
-import { QueryNft } from 'pages/nft/nft.type'
+import { QueryNft } from 'common/nft/nft.type'
 import client from '../apolloInstance'
 import {
   ListDataIntDayDateResponse,
   ListNftStatisticResponse,
   ListTranSactionResponse,
-} from './nft.type'
+} from './nft.api.type'
 export const getListTransaction = async ({ skip, action }: QueryNft) => {
   const filter: any = {
     first: 10,

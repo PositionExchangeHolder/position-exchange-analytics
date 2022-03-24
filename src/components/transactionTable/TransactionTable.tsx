@@ -1,4 +1,4 @@
-import { ItemTranSaction } from 'api/nft/nft.type'
+import { ItemTranSaction } from 'api/nft/nft.api.type'
 import { format, fromUnixTime } from 'date-fns'
 import React from 'react'
 import DataTable, {
