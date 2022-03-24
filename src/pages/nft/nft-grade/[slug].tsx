@@ -11,7 +11,7 @@ import {
 } from 'api/nft-grade/nft-grade.api.type'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import {
   listFilterTransactionNftGrade,
   PropSSRNftGrade,
@@ -25,7 +25,12 @@ export default function Index({ positionNFTs, transactions }: Props) {
   const [currentFilter, setCurrentFilter] = useState('All')
   const router = useRouter()
   const slug = router.query.slug
+  const flagPushQuery = useRef(false)
   useEffect(() => {
+    if (flagPushQuery.current === false) {
+      flagPushQuery.current = true
+      return
+    }
     router.push({
       pathname: `/nft/nft-grade/${slug}`,
       query: { action: currentFilter },
@@ -75,7 +80,7 @@ export default function Index({ positionNFTs, transactions }: Props) {
 export async function getServerSideProps({ query }: PropSSRNftGrade) {
   const grade = query.slug
   const skip = query?.skip || 100
-  const action = query?.action
+  const action = query?.action || 'All'
   const dataGradeResponse: ListDataGradeResponse = await getListNftGrade({
     grade,
   })
