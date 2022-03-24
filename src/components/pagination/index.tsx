@@ -18,7 +18,7 @@ export default function Pagination({ currentItem, setNextItem, skip }: Props) {
       <span className="text-xs xs:text-sm text-txt-primary">
         {renderEntries(currentItem, skip)}
       </span>
-      <div className="inline-flex mt-2 xs:mt-0">
+      <div className="inline-flex mt-2 xs:mt-0 gap-x-1">
         <button
           disabled={currentItem === 0 ? true : false}
           onClick={onPrePage}
