@@ -1,6 +1,7 @@
 import LineChart from '@/components/chart/LineChart'
 import CurrentValueLock from '@/components/nft/CurrentValueLock'
 import ItemNft from '@/components/nft/ItemNft'
+import Pagination from '@/components/pagination'
 import TransactionTable from '@/components/transactionTable/TransactionTable'
 import {
   getListNftDayData,
@@ -19,7 +20,7 @@ import { listFilterTransaction, PropSSRNft } from 'common/nft/nft.type'
 import { transferDataTotalNft, TypeItemNft } from 'helper/nft'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { transformDataLineChartNft } from 'utils/nft/transformData'
 
 type Props = {
@@ -37,14 +38,26 @@ export default function Index({
   const dataNftLineChart = transformDataLineChartNft(nftDayDatas)
   const pathRedirect = 'nft/nft-grade/[slug]'
   const [currentFilter, setCurrentFilter] = useState('All')
+  const [skipPage, setSkipPage] = useState(0)
   const router = useRouter()
+  const flagPushQuery = useRef(false)
+
   useEffect(() => {
-    // router.
+    if (flagPushQuery.current === false) {
+      flagPushQuery.current = true
+      return
+    }
     router.push({
       pathname: '/nft',
-      query: { action: currentFilter },
+      query: { action: currentFilter, skip: skipPage },
     })
-  }, [currentFilter])
+  }, [currentFilter, skipPage])
+
+  // set filter and reset entries transaction
+  const onSetCurrentFilter = useCallback((filter) => {
+    setSkipPage(0)
+    setCurrentFilter(filter)
+  }, [])
 
   return (
     <main className="pt-12  w-full">
@@ -76,11 +89,16 @@ export default function Index({
       </div>
       <div className="mt-16">
         <TransactionTable
-          setCurrentFilter={setCurrentFilter}
+          setCurrentFilter={onSetCurrentFilter}
           currentFilter={currentFilter}
           transactions={transactions}
           titleTable={'Transaction'}
           listFilterTransaction={listFilterTransaction}
+        />
+        <Pagination
+          currentItem={skipPage}
+          setNextItem={setSkipPage}
+          skip={10}
         />
       </div>
     </main>
@@ -88,7 +106,7 @@ export default function Index({
 }
 
 export async function getServerSideProps({ query }: PropSSRNft) {
-  const skip = query?.skip || 100
+  const skip = +query?.skip || 100
   const action = query?.action
 
   const transactionsResponse: ListTranSactionResponse =

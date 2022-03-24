@@ -11,11 +11,12 @@ import {
 } from 'api/nft-grade/nft-grade.api.type'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import {
   listFilterTransactionNftGrade,
   PropSSRNftGrade,
 } from 'common/nft/nft-gradle.type'
+import Pagination from '@/components/pagination'
 
 type Props = {
   positionNFTs: ItemNftGrade[]
@@ -23,9 +24,11 @@ type Props = {
 }
 export default function Index({ positionNFTs, transactions }: Props) {
   const [currentFilter, setCurrentFilter] = useState('All')
+  const [skipPage, setSkipPage] = useState(0)
   const router = useRouter()
   const slug = router.query.slug
   const flagPushQuery = useRef(false)
+
   useEffect(() => {
     if (flagPushQuery.current === false) {
       flagPushQuery.current = true
@@ -33,9 +36,16 @@ export default function Index({ positionNFTs, transactions }: Props) {
     }
     router.push({
       pathname: `/nft/nft-grade/${slug}`,
-      query: { action: currentFilter },
+      query: { action: currentFilter, skip: skipPage },
     })
-  }, [currentFilter])
+  }, [currentFilter, skipPage])
+
+  // set filter and reset entries transaction
+  const onSetCurrentFilter = useCallback((filter) => {
+    setSkipPage(0)
+    setCurrentFilter(filter)
+  }, [])
+
   return (
     <main className="pt-12  w-full">
       <div className="flex flex-row">
@@ -68,9 +78,14 @@ export default function Index({ positionNFTs, transactions }: Props) {
         <TransactionTable
           transactions={transactions}
           titleTable={'Transaction'}
-          setCurrentFilter={setCurrentFilter}
+          setCurrentFilter={onSetCurrentFilter}
           currentFilter={currentFilter}
           listFilterTransaction={listFilterTransactionNftGrade}
+        />
+        <Pagination
+          currentItem={skipPage}
+          setNextItem={setSkipPage}
+          skip={10}
         />
       </div>
     </main>

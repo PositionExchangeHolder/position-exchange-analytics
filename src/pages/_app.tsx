@@ -5,7 +5,7 @@ import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div>
+    <div className="">
       <HeaderLayout />
       <ContainerLayout>
         <Component {...pageProps} />
