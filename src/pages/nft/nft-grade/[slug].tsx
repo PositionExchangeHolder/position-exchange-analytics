@@ -1,3 +1,4 @@
+import Pagination from '@/components/pagination'
 import TransactionTable from '@/components/transactionTable/TransactionTable'
 import {
   getListNftGrade,
@@ -9,14 +10,13 @@ import {
   ListDataGradeResponse,
   ListDataTransactionGradeResponse,
 } from 'api/nft-grade/nft-grade.api.type'
-import Image from 'next/image'
-import { useRouter } from 'next/router'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
 import {
   listFilterTransactionNftGrade,
   PropSSRNftGrade,
 } from 'common/nft/nft-gradle.type'
-import Pagination from '@/components/pagination'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 type Props = {
   positionNFTs: ItemNftGrade[]
@@ -98,18 +98,25 @@ export async function getServerSideProps({ query }: PropSSRNftGrade) {
   const grade = query.slug
   const skip = query?.skip || 100
   const action = query?.action || 'All'
-  const dataGradeResponse: ListDataGradeResponse = await getListNftGrade({
+
+  const onGetListNftGrade = getListNftGrade({
     grade,
   })
-  const dataTransactionResponse: ListDataTransactionGradeResponse =
-    await getListTransactionNftGrade({
-      grade,
-      action,
-      skip,
-    })
+  const onGetListTransactionNftGrade = getListTransactionNftGrade({
+    grade,
+    action,
+    skip,
+  })
+  const gradeData: [ListDataGradeResponse, ListDataTransactionGradeResponse] =
+    await Promise.all([onGetListNftGrade, onGetListTransactionNftGrade]).then(
+      (result) => result
+    )
+  const [nftStatisticResponse, transactionsResponse] = gradeData
 
-  const { positionNFTs } = dataGradeResponse.data
-  const { transactions } = dataTransactionResponse.data
+  const { transactions } = transactionsResponse.data
+  const { positionNFTs } = nftStatisticResponse.data
+
+  //
   return {
     props: {
       positionNFTs,

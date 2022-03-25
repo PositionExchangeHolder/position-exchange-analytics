@@ -109,15 +109,19 @@ export default function Index({
 export async function getServerSideProps({ query }: PropSSRNft) {
   const skip = +query?.skip || 100
   const action = query?.action
-
-  const transactionsResponse: ListTranSactionResponse =
-    await getListTransaction({ skip, action })
-
-  const nftStatisticResponse: ListNftStatisticResponse =
-    await getListNftStatistic()
-
-  const listNftDayData: ListDataIntDayDateResponse = await getListNftDayData()
-
+  const onGetListTransaction = getListTransaction({ skip, action })
+  const onGetListNftStatistic = getListNftStatistic()
+  const onGetListNftDayData = getListNftDayData()
+  const nftData: [
+    ListTranSactionResponse,
+    ListNftStatisticResponse,
+    ListDataIntDayDateResponse
+  ] = await Promise.all([
+    onGetListTransaction,
+    onGetListNftStatistic,
+    onGetListNftDayData,
+  ]).then((result) => result)
+  const [transactionsResponse, nftStatisticResponse, listNftDayData] = nftData
   const { transactions } = transactionsResponse.data
   const { nftStatistic } = nftStatisticResponse.data
   const { nftDayDatas } = listNftDayData.data
