@@ -23,6 +23,7 @@ type Props = {
   transactions: ItemTransactionNftGrade[]
 }
 export default function Index({ positionNFTs, transactions }: Props) {
+  console.log('positionNFTs', positionNFTs)
   const [currentFilter, setCurrentFilter] = useState('All')
   const [skipPage, setSkipPage] = useState(0)
   const router = useRouter()
@@ -38,6 +39,7 @@ export default function Index({ positionNFTs, transactions }: Props) {
       pathname: `/nft/nft-grade/${slug}`,
       query: { action: currentFilter, skip: skipPage },
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentFilter, skipPage])
 
   // set filter and reset entries transaction

@@ -5,7 +5,7 @@ export type PropSSRNft = {
 }
 
 export type QueryNft = {
-  skip: string
+  skip: number
   action: FilterTransaction
 }
 

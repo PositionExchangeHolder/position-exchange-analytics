@@ -51,6 +51,7 @@ export default function Index({
       pathname: '/nft',
       query: { action: currentFilter, skip: skipPage },
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentFilter, skipPage])
 
   // set filter and reset entries transaction
