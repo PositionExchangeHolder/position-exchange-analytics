@@ -49,18 +49,19 @@ export default function Index({ positionNFTs, transactions }: Props) {
   }, [])
 
   return (
-    <main className="pt-12  w-full">
-      <div className="flex flex-row">
-        <div className="border-charade border  rounded-md bg-secondary  h-400 w-400  px-6  flex justify-center items-center">
+    <main className="relative bg-primary w-full  mt-10  md:mt-16 px-6  xl:px-0">
+      <div className="sx:grid sx:grid-rows-2 sm:flex md:flex-row ">
+        <div className=" md:w-400 block  rounded-md bg-secondary">
           <Image
             src="/fake_nft.png"
             alt="logo"
-            width={300}
-            height={300}
-            layout="fixed"
+            width="100%"
+            height="100%"
+            layout="responsive"
+            objectFit="contain"
           />
         </div>
-        <div className="ml-12 pt-10">
+        <div className="md:ml-12 md:pt-10 mt-10">
           <p className="text-txt-primary font-medium text-sm ">
             ID:100300483357
           </p>
