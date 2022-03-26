@@ -14,6 +14,8 @@ module.exports = {
         'txt-primary': '#F7F7F7',
         'txt-secondary': '#87859F',
         'gun-powder': '#3A3953',
+        mineShaft: '#2D2D3D',
+        'mineShaft-30': 'rgba(45, 45, 61, 0.3)',
       },
       maxHeight: {
         180: '11.25rem',
@@ -31,6 +33,13 @@ module.exports = {
         120: '7.5rem',
         400: '25rem',
       },
+    },
+    screens: {
+      xs: '480px',
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
     },
   },
   plugins: [],
