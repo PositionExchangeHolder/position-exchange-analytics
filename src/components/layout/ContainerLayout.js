@@ -1,8 +1,9 @@
 export default function ContainerLayout({ children }) {
   return (
-    // <div className="min-h-screen bg-primary px-44 pb-20 flex ">{children}</div>
-    <div className="min-h-screen bg-primary px-44 pb-20 flex  justify-center ">
-      <div className="max-w-screen-xl"> {children}</div>
+    <div className="relative w-full ">
+      <div className="flex justify-center">
+        <div className="max-w-screen-xl w-full">{children}</div>
+      </div>
     </div>
   )
 }

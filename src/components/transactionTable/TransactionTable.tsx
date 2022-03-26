@@ -30,8 +30,10 @@ export default function TransactionTable({
   return (
     <div>
       <div className="w-full pt-3 pb-3 pl-6  bg-secondary rounded-t-md ">
-        <p className="font-medium text-3xl text-txt-primary ">{titleTable}</p>
-        <div className="flex flex-row gap-x-4 mt-4 my-2 ">
+        <p className="font-medium md:text-2xl lg:text-3xl text-txt-primary ">
+          {titleTable}
+        </p>
+        <div className=" md:flex md:flex-row gap-x-4 mt-4 my-2 flex-wrap grid-cols-3  grid ">
           {listFilterTransaction?.map((itemFilter) => {
             return (
               <div className="flex items-center  " key={itemFilter.name}>
@@ -40,11 +42,11 @@ export default function TransactionTable({
                   checked={itemFilter.value === currentFilter ? true : false}
                   name="currentFilter"
                   type="radio"
-                  className="focus:ring-slate-50 h-6 w-6 text-red-700 border-gray-300 "
+                  className="focus:ring-slate-50 h-6   text-red-700 border-gray-300 "
                 />
                 <label
                   htmlFor="push-everything"
-                  className="ml-3 block text-sm font-medium text-txt-primary "
+                  className="ml-3 block text-tiny-xs md:text-sm font-medium text-txt-primary "
                 >
                   {itemFilter.name}
                 </label>
@@ -54,6 +56,7 @@ export default function TransactionTable({
         </div>
       </div>
       <DataTable
+        responsive={true}
         title="Transaction"
         columns={columnsTransaction}
         data={transactions}

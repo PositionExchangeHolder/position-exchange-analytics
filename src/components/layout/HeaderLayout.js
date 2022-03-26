@@ -124,7 +124,7 @@ export default function Example() {
                     leaveFrom="opacity-100 translate-y-0"
                     leaveTo="opacity-0 translate-y-1"
                   >
-                    <Popover.Panel className="absolute z-10 -ml-4 mt-3 transform px-2 w-screen max-w-md sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2 ">
+                    <Popover.Panel className="absolute z-10 -ml-4 mt-3 transform px-2 w-screen max-w-md sm:px-0 lg:ml-28 lg:left-1/2 lg:-translate-x-1/2 ">
                       <div className="rounded-lg drop-shadow-[0_1px_2px_#1B2431] shadow-md ring-1 ring-white ring-opacity-5 overflow-hidden   ">
                         <div className="relative grid gap-6 bg-primary px-5 py-6 sm:gap-8 sm:p-8">
                           {nft.map((item) => (
@@ -244,7 +244,7 @@ export default function Example() {
       >
         <Popover.Panel
           focus
-          className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
+          className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden z-10"
         >
           <div className="rounded-lg  bg-primary divide-y-2 divide-mineShaft drop-shadow-[0_1px_2px_#1B2431] shadow-md ring-1 ring-white ring-opacity-5 ">
             <div className="pt-5 pb-6 px-5">
@@ -272,7 +272,7 @@ export default function Example() {
                     <a
                       key={item.name}
                       href={item.href}
-                      className="-m-3 p-3 flex items-center rounded-md hover:bg-mineShaft-30"
+                      className="-m-3 p-3 flex items-center rounded-md hover:bg-mineShaft-30  active:bg-mineShaft-30  "
                     >
                       <item.icon
                         className="flex-shrink-0 h-6 w-6 text-indigo-600"
@@ -288,22 +288,31 @@ export default function Example() {
             </div>
             <div className="py-6 px-5 space-y-6">
               <div className="grid grid-cols-2 gap-y-4 gap-x-8">
-                <a href="#" className="text-base font-medium text-txt-primary">
+                <a
+                  href="#"
+                  className="text-base font-medium text-txt-primary rounded-md hover:bg-mineShaft-30  active:bg-mineShaft-30 px-2 py-1 "
+                >
                   Token
                 </a>
 
-                <a href="#" className="text-base font-medium text-txt-primary">
+                <a
+                  href="#"
+                  className="text-base font-medium text-txt-primary rounded-md hover:bg-mineShaft-30  active:bg-mineShaft-30 px-2 py-1 "
+                >
                   Yeild
                 </a>
 
-                <a href="#" className="text-base font-medium text-txt-primary">
+                <a
+                  href="#"
+                  className="text-base font-medium text-txt-primary rounded-md hover:bg-mineShaft-30  active:bg-mineShaft-30 px-2 py-1 "
+                >
                   Referral
                 </a>
                 {resources.map((item) => (
                   <a
                     key={item.name}
                     href={item.href}
-                    className="text-base font-medium text-txt-primary"
+                    className="text-base font-medium text-txt-primary rounded-md hover:bg-mineShaft-30  active:bg-mineShaft-30 px-2 py-1 "
                   >
                     {item.name}
                   </a>

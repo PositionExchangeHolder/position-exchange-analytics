@@ -13,28 +13,36 @@ export default function ValueNftInfo({
   totalUniqueMiners,
 }: Props) {
   return (
-    <div className="px-2 mt-10 mb-10  flex-row flex items-end columns-4 gap-x-4">
-      <div className="border-charade border  rounded-md bg-secondary h-150 w-full flex flex-col items-center justify-center gap-y-4">
-        <p className=" text-base text-txt-primary   ">Minted</p>
-        <p className="font-medium text-lg text-txt-primary ">
+    <div className="mt-6 mb-6  flex-row flex items-stretch columns-4  gap-x-1   lg:mt-10 lg:mb-10 h-20 lg:gap-x-3 lg:h-28 md:h-20 ">
+      <div className="border-charade border rounded-md bg-secondary  flex-1 items-center justify-center flex flex-col px-1 gap-y-1 lg:gap-y-2">
+        <p className=" text-tiny-xs lg:text-sm text-txt-primary  text-center  ">
+          Minted
+        </p>
+        <p className="font-medium text-xs lg:text-sm text-txt-primary  text-center">
           {commasNumberFormat(totalNftsMinted)}
         </p>
       </div>
-      <div className="border-charade border  rounded-md bg-secondary h-150 w-full flex flex-col items-center justify-center gap-y-4">
-        <p className=" text-base text-txt-primary   ">Burned</p>
-        <p className="font-medium text-lg text-txt-primary ">
+      <div className="border-charade border  rounded-md bg-secondary   flex-1 items-center justify-center flex flex-col  px-1 gap-y-1 lg:gap-y-2">
+        <p className=" text-tiny-xs lg:text-sm text-txt-primary  text-center  ">
+          Burned
+        </p>
+        <p className="font-medium text-xs lg:text-sm text-txt-primary text-center ">
           {commasNumberFormat(totalNftsBurned)}
         </p>
       </div>
-      <div className="border-charade border  rounded-md bg-secondary h-150 w-full flex flex-col items-center justify-center gap-y-4">
-        <p className=" text-base text-txt-primary   ">Staking</p>
-        <p className="font-medium text-lg text-txt-primary ">
+      <div className="border-charade border  rounded-md bg-secondary   flex-1 items-center justify-center flex flex-col px-1 gap-y-1 lg:gap-y-2">
+        <p className=" text-tiny-xs lg:text-sm text-txt-primary text-center  ">
+          Staking
+        </p>
+        <p className="font-medium text-xs lg:text-sm text-txt-primary text-center ">
           {commasNumberFormat(totalNftsStaking)}
         </p>
       </div>
-      <div className="border-charade border  rounded-md bg-secondary h-150 w-full flex flex-col items-center justify-center gap-y-4">
-        <p className=" text-base text-txt-primary   ">Unique Miners</p>
-        <p className="font-medium text-lg text-txt-primary ">
+      <div className="border-charade border  rounded-md bg-secondary   flex-1 items-center justify-center flex flex-col px-1  gap-y-1 lg:gap-y-2">
+        <p className=" text-tiny-xs lg:text-sm text-txt-primary text-center">
+          Unique Miners
+        </p>
+        <p className="font-medium text-xs lg:text-sm text-txt-primary  text-center">
           {commasNumberFormat(totalUniqueMiners)}
         </p>
       </div>

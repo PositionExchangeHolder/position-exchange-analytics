@@ -9,22 +9,29 @@ type Props = {
 }
 export default function ItemNft({ item }: Props) {
   return (
-    <div className="border-charade border  rounded-md bg-secondary  h-180  px-6  w-full flex justify-between">
-      <div className="pt-5">
-        <p className="font-medium text-base text-txt-primary   ">
+    <div className="border-charade border rounded-md bg-secondary py-3 lg:py-4  px-6  w-full flex justify-between">
+      <div className="sm:pt-2 ">
+        <p className="font-medium text-xs md:text-sm text-txt-primary  ">
           Circulating Supply
         </p>
 
-        <p className="font-medium text-lg text-txt-primary mt-5">{`${commasNumberFormat(
+        <p className="font-medium text-sm md:text-base text-txt-primary mt-5">{`${commasNumberFormat(
           item.currentValue
         )} / ${commasNumberFormat(item.totalMinted)}`}</p>
-        <div className="mt-6 flex">
-          <p className="font-medium text-base text-txt-secondary bg-gun-powder px-4 py-1 rounded-2xl">
+        <div className="mt-6 sm:mt-4 flex">
+          <p className="font-medium  text-xs md:text-sm text-txt-secondary bg-gun-powder px-4 py-1 rounded-2xl">
             {`Year of ${format(fromUnixTime(item.createdTimestamp), 'yyyy')}`}
           </p>
         </div>
       </div>
-      <Image src="/fake_nft.png" alt="logo" width={180} height={180} />
+      <Image
+        className="w-3 h-3"
+        src="/fake_nft.png"
+        alt="logo"
+        width={120}
+        height={120}
+        layout="fixed"
+      />
     </div>
   )
 }

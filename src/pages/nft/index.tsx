@@ -61,17 +61,17 @@ export default function Index({
   }, [])
 
   return (
-    <main className="pt-12  w-full">
-      <div className="grid-cols-2 gap-x-6 grid ">
+    <main className="relative bg-primary w-full  mt-10  md:mt-16   px-6  xl:px-0">
+      <div className="grid-cols-1 xs:bg-red-300  sm:bg-gray-800 gap-x-6 grid   md:grid-cols-2">
         <CurrentValueLock nftStatistic={nftStatistic} />
-        <div className="bg-secondary rounded-md   ">
+        <div className="bg-secondary rounded-md mt-8 md:mt-0 h-72 xs:h-full">
           <div className="w-full h-full rounded-md">
             <LineChart data={dataNftLineChart} />
           </div>
         </div>
       </div>
 
-      <div className="grid-cols-3 gap-x-8 gap-y-8 grid mt-16">
+      <div className="sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-8 grid mt-16 ">
         {dataNft?.map((itemNft, index) => {
           return (
             <Link
@@ -88,7 +88,7 @@ export default function Index({
           )
         })}
       </div>
-      <div className="mt-16">
+      <div className="mt-10 sm:mt-16">
         <TransactionTable
           setCurrentFilter={onSetCurrentFilter}
           currentFilter={currentFilter}
