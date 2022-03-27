@@ -10,43 +10,48 @@ import {
   ListDataGradeResponse,
   ListDataTransactionGradeResponse,
 } from 'api/nft-grade/nft-grade.api.type'
+import { FilterTransaction } from 'api/nft/nft.api.type'
 import {
   listFilterTransactionNftGrade,
   PropSSRNftGrade,
 } from 'common/nft/nft-gradle.type'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 
 type Props = {
   positionNFTs: ItemNftGrade[]
-  transactions: ItemTransactionNftGrade[]
 }
-export default function Index({ positionNFTs, transactions }: Props) {
-  console.log('positionNFTs', positionNFTs)
-  const [currentFilter, setCurrentFilter] = useState('All')
-  const [skipPage, setSkipPage] = useState(0)
-  const router = useRouter()
-  const slug = router.query.slug
-  const flagPushQuery = useRef(false)
 
-  useEffect(() => {
-    if (flagPushQuery.current === false) {
-      flagPushQuery.current = true
-      return
-    }
-    router.push({
-      pathname: `/nft/nft-grade/${slug}`,
-      query: { action: currentFilter, skip: skipPage },
-    })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentFilter, skipPage])
+export default function Index({ positionNFTs }: Props) {
+  console.log('positionNFTs', positionNFTs)
+  const [currentFilter, setCurrentFilter] = useState<FilterTransaction>('All')
+  const [skipPage, setSkipPage] = useState<number>(0)
+  const router = useRouter()
+  const grade: string = (router?.query?.slug as string) || ''
+  const [dataTransaction, setDataTransaction] = useState<
+    ItemTransactionNftGrade[]
+  >([])
 
   // set filter and reset entries transaction
   const onSetCurrentFilter = useCallback((filter) => {
     setSkipPage(0)
     setCurrentFilter(filter)
   }, [])
+
+  useEffect(() => {
+    const fetchDataTransaction = async () => {
+      const transactionsResponse: ListDataTransactionGradeResponse =
+        await getListTransactionNftGrade({
+          grade,
+          action: currentFilter,
+          skip: skipPage,
+        })
+      const { transactions } = transactionsResponse.data
+      setDataTransaction(transactions)
+    }
+    fetchDataTransaction()
+  }, [currentFilter, skipPage, grade])
 
   return (
     <main className="relative bg-primary w-full  mt-10  md:mt-16 px-6  xl:px-0">
@@ -79,7 +84,7 @@ export default function Index({ positionNFTs, transactions }: Props) {
       </div>
       <div className="mt-16">
         <TransactionTable
-          transactions={transactions}
+          transactions={dataTransaction}
           titleTable={'Transaction'}
           setCurrentFilter={onSetCurrentFilter}
           currentFilter={currentFilter}
@@ -97,31 +102,22 @@ export default function Index({ positionNFTs, transactions }: Props) {
 
 export async function getServerSideProps({ query }: PropSSRNftGrade) {
   const grade = query.slug
-  const skip = query?.skip || 100
-  const action = query?.action || 'All'
 
   const onGetListNftGrade = getListNftGrade({
     grade,
   })
-  const onGetListTransactionNftGrade = getListTransactionNftGrade({
-    grade,
-    action,
-    skip,
-  })
-  const gradeData: [ListDataGradeResponse, ListDataTransactionGradeResponse] =
-    await Promise.all([onGetListNftGrade, onGetListTransactionNftGrade]).then(
-      (result) => result
-    )
-  const [nftStatisticResponse, transactionsResponse] = gradeData
 
-  const { transactions } = transactionsResponse.data
+  const gradeData: [ListDataGradeResponse] = await Promise.all([
+    onGetListNftGrade,
+  ]).then((result) => result)
+  const [nftStatisticResponse] = gradeData
+
   const { positionNFTs } = nftStatisticResponse.data
 
   //
   return {
     props: {
       positionNFTs,
-      transactions,
     },
   }
 }

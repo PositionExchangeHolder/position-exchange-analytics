@@ -9,6 +9,7 @@ import {
   getListTransaction,
 } from 'api/nft/nft.api'
 import {
+  FilterTransaction,
   ItemNftDayDate,
   ItemNftStatistic,
   ItemTranSaction,
@@ -16,11 +17,10 @@ import {
   ListNftStatisticResponse,
   ListTranSactionResponse,
 } from 'api/nft/nft.api.type'
-import { listFilterTransaction, PropSSRNft } from 'common/nft/nft.type'
+import { listFilterTransaction } from 'common/nft/nft.type'
 import { transferDataTotalNft, TypeItemNft } from 'helper/nft'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { transformDataLineChartNft } from 'utils/nft/transformData'
 
 type Props = {
@@ -29,36 +29,32 @@ type Props = {
   nftDayDatas: ItemNftDayDate[]
 }
 
-export default function Index({
-  transactions,
-  nftStatistic,
-  nftDayDatas,
-}: Props) {
+export default function Index({ nftStatistic, nftDayDatas }: Props) {
   const dataNft: TypeItemNft[] = transferDataTotalNft(nftStatistic)
   const dataNftLineChart = transformDataLineChartNft(nftDayDatas)
-  const pathRedirect = 'nft/nft-grade/[slug]'
-  const [currentFilter, setCurrentFilter] = useState('All')
-  const [skipPage, setSkipPage] = useState(0)
-  const router = useRouter()
-  const flagPushQuery = useRef(false)
-
-  useEffect(() => {
-    if (flagPushQuery.current === false) {
-      flagPushQuery.current = true
-      return
-    }
-    router.push({
-      pathname: '/nft',
-      query: { action: currentFilter, skip: skipPage },
-    })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentFilter, skipPage])
+  const pathRedirect = '/nft/nft-grade/[slug]'
+  const [currentFilter, setCurrentFilter] = useState<FilterTransaction>('All')
+  const [skipPage, setSkipPage] = useState<number>(0)
+  const [dataTransaction, setDataTransaction] = useState<ItemTranSaction[]>([])
 
   // set filter and reset entries transaction
   const onSetCurrentFilter = useCallback((filter) => {
     setSkipPage(0)
     setCurrentFilter(filter)
   }, [])
+
+  useEffect(() => {
+    const fetchDataTransaction = async () => {
+      const transactionsResponse: ListTranSactionResponse =
+        await getListTransaction({
+          action: currentFilter,
+          skip: skipPage,
+        })
+      const { transactions } = transactionsResponse.data
+      setDataTransaction(transactions)
+    }
+    fetchDataTransaction()
+  }, [currentFilter, skipPage])
 
   return (
     <main className="relative bg-primary w-full  mt-10  md:mt-16   px-6  xl:px-0">
@@ -92,7 +88,7 @@ export default function Index({
         <TransactionTable
           setCurrentFilter={onSetCurrentFilter}
           currentFilter={currentFilter}
-          transactions={transactions}
+          transactions={dataTransaction}
           titleTable={'Transaction'}
           listFilterTransaction={listFilterTransaction}
         />
@@ -106,29 +102,19 @@ export default function Index({
   )
 }
 
-export async function getServerSideProps({ query }: PropSSRNft) {
-  const skip = +query?.skip || 100
-  const action = query?.action
-  const onGetListTransaction = getListTransaction({ skip, action })
+export async function getServerSideProps() {
   const onGetListNftStatistic = getListNftStatistic()
   const onGetListNftDayData = getListNftDayData()
-  const nftData: [
-    ListTranSactionResponse,
-    ListNftStatisticResponse,
-    ListDataIntDayDateResponse
-  ] = await Promise.all([
-    onGetListTransaction,
-    onGetListNftStatistic,
-    onGetListNftDayData,
-  ]).then((result) => result)
-  const [transactionsResponse, nftStatisticResponse, listNftDayData] = nftData
-  const { transactions } = transactionsResponse.data
+  const nftData: [ListNftStatisticResponse, ListDataIntDayDateResponse] =
+    await Promise.all([onGetListNftStatistic, onGetListNftDayData]).then(
+      (result) => result
+    )
+  const [nftStatisticResponse, listNftDayData] = nftData
   const { nftStatistic } = nftStatisticResponse.data
   const { nftDayDatas } = listNftDayData.data
 
   return {
     props: {
-      transactions,
       nftStatistic,
       nftDayDatas,
     },
