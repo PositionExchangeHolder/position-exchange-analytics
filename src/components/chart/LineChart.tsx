@@ -5,7 +5,7 @@ import { DataLineChartNftLineChart } from 'utils/nft/transformData'
 type Props = {
   data: DataLineChartNftLineChart
 }
-export default function App({ data }: Props) {
+export default function LineChart({ data }: Props) {
   return (
     <Chart
       options={{

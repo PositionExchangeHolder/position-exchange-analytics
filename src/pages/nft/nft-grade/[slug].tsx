@@ -1,3 +1,4 @@
+import { PieChart } from '@/components/chart/PieChart'
 import Pagination from '@/components/pagination'
 import TransactionTable from '@/components/transactionTable/TransactionTable'
 import {
@@ -55,34 +56,39 @@ export default function Index({ positionNFTs }: Props) {
 
   return (
     <main className="relative bg-primary w-full  mt-10  md:mt-16 px-6  xl:px-0">
-      <div className="sx:grid sx:grid-rows-2 sm:flex md:flex-row ">
-        <div className=" md:w-400 block  rounded-md bg-secondary">
-          <Image
-            src="/fake_nft.png"
-            alt="logo"
-            width="100%"
-            height="100%"
-            layout="responsive"
-            objectFit="contain"
-          />
+      <div className="sx:grid sx:grid-rows-3 sm:flex md:flex-row  justify-between">
+        <div className="lg:flex lg:flex-row lg:gap-x-8">
+          <div className=" md:w-80 sm:h-80 lg:w-96 lg:h-96   rounded-md bg-secondary ">
+            <Image
+              src="/fake_nft.png"
+              alt="logo"
+              width={100}
+              height={100}
+              loading="eager"
+              layout="responsive"
+            />
+          </div>
+          <div className="md:pt-10 mt-12 md:mt-4">
+            <p className="text-txt-primary font-medium text-sm ">
+              ID:100300483357
+            </p>
+            <p className="text-txt-primary font-medium text-sm mt-8">
+              NFT Atributes: grade, quality, owner, totalTxs NFT Atributes:
+              grade, quality, owner, totalTxs ...
+            </p>
+            <p className="text-txt-primary font-medium text-sm mt-12">
+              State: Staking, Burn,....
+            </p>
+            <p className="text-txt-primary font-medium text-sm mt-8">
+              @SoftSkillNFT
+            </p>
+          </div>
         </div>
-        <div className="md:ml-12 md:pt-10 mt-10">
-          <p className="text-txt-primary font-medium text-sm ">
-            ID:100300483357
-          </p>
-          <p className="text-txt-primary font-medium text-sm mt-8">
-            NFT Atributes: grade, quality, owner, totalTxs NFT Atributes: grade,
-            quality, owner, totalTxs ...
-          </p>
-          <p className="text-txt-primary font-medium text-sm mt-12">
-            State: Staking, Burn,....
-          </p>
-          <p className="text-txt-primary font-medium text-sm mt-10">
-            @SoftSkillNFT
-          </p>
+        <div className="mt-12 md:mt-0   md:w-80 sm:h-80 lg:w-96 lg:h-96">
+          <PieChart />
         </div>
       </div>
-      <div className="mt-16">
+      <div className="mt-16 md:mt-20">
         <TransactionTable
           transactions={dataTransaction}
           titleTable={'Transaction'}
