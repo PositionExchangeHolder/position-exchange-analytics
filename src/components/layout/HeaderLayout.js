@@ -248,7 +248,7 @@ export default function Example() {
           focus
           className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden z-10"
         >
-          {({ open, close }) => (
+          {({ close }) => (
             <div className="rounded-lg  bg-primary divide-y-2 divide-mineShaft drop-shadow-[0_1px_2px_#1B2431] shadow-md ring-1 ring-white ring-opacity-5 ">
               <div className="pt-5 pb-6 px-5">
                 <div className="flex items-center justify-between">
