@@ -97,7 +97,7 @@ export default function Example() {
           </div>
           <Popover.Group as="nav" className="hidden md:flex space-x-10 ">
             <Popover className="relative">
-              {({ open }) => (
+              {({ open, close }) => (
                 <>
                   <Popover.Button
                     className={classNames(
@@ -128,24 +128,25 @@ export default function Example() {
                       <div className="rounded-lg drop-shadow-[0_1px_2px_#1B2431] shadow-md ring-1 ring-white ring-opacity-5 overflow-hidden   ">
                         <div className="relative grid gap-6 bg-primary px-5 py-6 sm:gap-8 sm:p-8">
                           {nft.map((item) => (
-                            <a
-                              key={item.name}
-                              href={item.href}
-                              className="-m-3 p-3 flex items-start rounded-lg hover:bg-mineShaft-30"
-                            >
-                              <item.icon
-                                className="flex-shrink-0 h-6 w-6 text-indigo-600"
-                                aria-hidden="true"
-                              />
-                              <div className="ml-4">
-                                <p className="text-base font-medium text-txt-primary">
-                                  {item.name}
-                                </p>
-                                <p className="mt-1 text-sm text-txt-secondary">
-                                  {item.description}
-                                </p>
-                              </div>
-                            </a>
+                            <Link href={item.href} key={item.name}>
+                              <a
+                                onClick={close}
+                                className="-m-3 p-3 flex items-start rounded-lg hover:bg-mineShaft-30"
+                              >
+                                <item.icon
+                                  className="flex-shrink-0 h-6 w-6 text-indigo-600"
+                                  aria-hidden="true"
+                                />
+                                <div className="ml-4">
+                                  <p className="text-base font-medium text-txt-primary">
+                                    {item.name}
+                                  </p>
+                                  <p className="mt-1 text-sm text-txt-secondary">
+                                    {item.description}
+                                  </p>
+                                </div>
+                              </a>
+                            </Link>
                           ))}
                         </div>
                       </div>
@@ -172,7 +173,7 @@ export default function Example() {
               </a>
             </Link>
             <Popover className="relative">
-              {({ open }) => (
+              {({ open, close }) => (
                 <>
                   <Popover.Button
                     className={classNames(
@@ -203,24 +204,25 @@ export default function Example() {
                       <div className="rounded-lg drop-shadow-[0_1px_2px_#1B2431] shadow-md ring-1 ring-white ring-opacity-5 overflow-hidden   ">
                         <div className="relative grid gap-6 bg-primary px-5 py-6 sm:gap-8 sm:p-8">
                           {resources.map((item) => (
-                            <a
-                              key={item.name}
-                              href={item.href}
-                              className="-m-3 p-3 flex items-start rounded-lg hover:bg-mineShaft-30"
-                            >
-                              <item.icon
-                                className="flex-shrink-0 h-6 w-6 text-indigo-600"
-                                aria-hidden="true"
-                              />
-                              <div className="ml-4">
-                                <p className="text-base font-medium text-txt-primary">
-                                  {item.name}
-                                </p>
-                                <p className="mt-1 text-sm text-txt-secondary">
-                                  {item.description}
-                                </p>
-                              </div>
-                            </a>
+                            <Link href={item.href} key={item.name}>
+                              <a
+                                className="-m-3 p-3 flex items-start rounded-lg hover:bg-mineShaft-30"
+                                onClick={close}
+                              >
+                                <item.icon
+                                  className="flex-shrink-0 h-6 w-6 text-indigo-600"
+                                  aria-hidden="true"
+                                />
+                                <div className="ml-4">
+                                  <p className="text-base font-medium text-txt-primary">
+                                    {item.name}
+                                  </p>
+                                  <p className="mt-1 text-sm text-txt-secondary">
+                                    {item.description}
+                                  </p>
+                                </div>
+                              </a>
+                            </Link>
                           ))}
                         </div>
                       </div>
@@ -246,80 +248,90 @@ export default function Example() {
           focus
           className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden z-10"
         >
-          <div className="rounded-lg  bg-primary divide-y-2 divide-mineShaft drop-shadow-[0_1px_2px_#1B2431] shadow-md ring-1 ring-white ring-opacity-5 ">
-            <div className="pt-5 pb-6 px-5">
-              <div className="flex items-center justify-between">
-                <div>
-                  <Image
-                    src="/logo.svg"
-                    alt="logo"
-                    width={40}
-                    height={45}
-                    priority={true}
-                  />
-                </div>
+          {({ open, close }) => (
+            <div className="rounded-lg  bg-primary divide-y-2 divide-mineShaft drop-shadow-[0_1px_2px_#1B2431] shadow-md ring-1 ring-white ring-opacity-5 ">
+              <div className="pt-5 pb-6 px-5">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <Image
+                      src="/logo.svg"
+                      alt="logo"
+                      width={40}
+                      height={45}
+                      priority={true}
+                    />
+                  </div>
 
-                <div className="-mr-2">
-                  <Popover.Button className="bg-primary rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-txt-primary hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-                    <span className="sr-only">Close menu</span>
-                    <XIcon className="h-6 w-6" aria-hidden="true" />
-                  </Popover.Button>
+                  <div className="-mr-2">
+                    <Popover.Button className="bg-primary rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-txt-primary hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                      <span className="sr-only">Close menu</span>
+                      <XIcon className="h-6 w-6" aria-hidden="true" />
+                    </Popover.Button>
+                  </div>
+                </div>
+                <div className="mt-6">
+                  <nav className="grid gap-y-8">
+                    {nft.map((item) => (
+                      <Link href={item.href} key={item.name}>
+                        <a
+                          onClick={close}
+                          className="-m-3 p-3 flex items-center rounded-md hover:bg-mineShaft-30  active:bg-mineShaft-30  "
+                        >
+                          <item.icon
+                            className="flex-shrink-0 h-6 w-6 text-indigo-600"
+                            aria-hidden="true"
+                          />
+                          <span className="ml-3 text-base font-medium text-txt-primary">
+                            {item.name}
+                          </span>
+                        </a>
+                      </Link>
+                    ))}
+                  </nav>
                 </div>
               </div>
-              <div className="mt-6">
-                <nav className="grid gap-y-8">
-                  {nft.map((item) => (
+              <div className="py-6 px-5 space-y-6">
+                <div className="grid grid-cols-2 gap-y-4 gap-x-8">
+                  <Link href="/token">
                     <a
-                      key={item.name}
-                      href={item.href}
-                      className="-m-3 p-3 flex items-center rounded-md hover:bg-mineShaft-30  active:bg-mineShaft-30  "
+                      onClick={close}
+                      className="text-base font-medium text-txt-primary rounded-md hover:bg-mineShaft-30  active:bg-mineShaft-30 px-2 py-1 "
                     >
-                      <item.icon
-                        className="flex-shrink-0 h-6 w-6 text-indigo-600"
-                        aria-hidden="true"
-                      />
-                      <span className="ml-3 text-base font-medium text-txt-primary">
-                        {item.name}
-                      </span>
+                      Token
                     </a>
+                  </Link>
+
+                  <Link href="/yield">
+                    <a
+                      onClick={close}
+                      className="text-base font-medium text-txt-primary rounded-md hover:bg-mineShaft-30  active:bg-mineShaft-30 px-2 py-1 "
+                    >
+                      Yeild
+                    </a>
+                  </Link>
+
+                  <Link href="/referral">
+                    <a
+                      onClick={close}
+                      className="text-base font-medium text-txt-primary rounded-md hover:bg-mineShaft-30  active:bg-mineShaft-30 px-2 py-1 "
+                    >
+                      Referral
+                    </a>
+                  </Link>
+                  {resources.map((item) => (
+                    <Link key={item.name} href={item.href}>
+                      <a
+                        onClick={close}
+                        className="text-base font-medium text-txt-primary rounded-md hover:bg-mineShaft-30  active:bg-mineShaft-30 px-2 py-1 "
+                      >
+                        {item.name}
+                      </a>
+                    </Link>
                   ))}
-                </nav>
+                </div>
               </div>
             </div>
-            <div className="py-6 px-5 space-y-6">
-              <div className="grid grid-cols-2 gap-y-4 gap-x-8">
-                <a
-                  href="#"
-                  className="text-base font-medium text-txt-primary rounded-md hover:bg-mineShaft-30  active:bg-mineShaft-30 px-2 py-1 "
-                >
-                  Token
-                </a>
-
-                <a
-                  href="#"
-                  className="text-base font-medium text-txt-primary rounded-md hover:bg-mineShaft-30  active:bg-mineShaft-30 px-2 py-1 "
-                >
-                  Yeild
-                </a>
-
-                <a
-                  href="#"
-                  className="text-base font-medium text-txt-primary rounded-md hover:bg-mineShaft-30  active:bg-mineShaft-30 px-2 py-1 "
-                >
-                  Referral
-                </a>
-                {resources.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className="text-base font-medium text-txt-primary rounded-md hover:bg-mineShaft-30  active:bg-mineShaft-30 px-2 py-1 "
-                  >
-                    {item.name}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
+          )}
         </Popover.Panel>
       </Transition>
     </Popover>
