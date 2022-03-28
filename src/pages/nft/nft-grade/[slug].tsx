@@ -85,7 +85,7 @@ export default function Index({ positionNFTs }: Props) {
           </div>
         </div>
         <div className="mt-12 md:mt-0   md:w-80 sm:h-80 lg:w-96 lg:h-96">
-          <PieChart />
+          <PieChart data={data} />
         </div>
       </div>
       <div className="mt-16 md:mt-20">
@@ -104,6 +104,36 @@ export default function Index({ positionNFTs }: Props) {
       </div>
     </main>
   )
+}
+type FakeData = {
+  datasets: any[]
+  labels: string[]
+}
+export const data: FakeData = {
+  labels: ['Grade 1', 'Grade 2', 'Grade 3', 'Grade 4', 'Grade 5', ' Grade 6'],
+  datasets: [
+    {
+      label: '# of Votes',
+      data: [12, 19, 3, 5, 2, 3],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
+      ],
+      borderWidth: 1,
+    },
+  ],
 }
 
 export async function getServerSideProps({ query }: PropSSRNftGrade) {
