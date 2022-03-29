@@ -1,7 +1,7 @@
 import 'chart.js/auto'
 import React from 'react'
 import { Chart } from 'react-chartjs-2'
-import { ItemDataNftLineChart } from 'utils/nft/transformData'
+import { ItemDataNftLineChart } from 'helper/nft/transformDataLineChart'
 
 type OptionValue = ItemDataNftLineChart[]
 

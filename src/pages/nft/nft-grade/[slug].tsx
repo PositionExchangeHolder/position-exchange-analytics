@@ -1,4 +1,4 @@
-import { PieChart } from '@/components/chart/PieChart'
+import { DoughnutChart } from '@/components/chart/DoughnutChart'
 import Pagination from '@/components/pagination'
 import TransactionTable from '@/components/transactionTable/TransactionTable'
 import {
@@ -11,7 +11,12 @@ import {
   ListDataGradeResponse,
   ListDataTransactionGradeResponse,
 } from 'api/nft-grade/nft-grade.api.type'
-import { FilterTransaction } from 'api/nft/nft.api.type'
+import { getListNftStatistic } from 'api/nft/nft.api'
+import {
+  FilterTransaction,
+  ItemNftStatistic,
+  ListNftStatisticResponse,
+} from 'api/nft/nft.api.type'
 import {
   listFilterTransactionNftGrade,
   PropSSRNftGrade,
@@ -22,9 +27,11 @@ import React, { useCallback, useEffect, useState } from 'react'
 
 type Props = {
   positionNFTs: ItemNftGrade[]
+  nftStatistic: ItemNftStatistic
 }
 
-export default function Index({ positionNFTs }: Props) {
+export default function Index({ positionNFTs, nftStatistic }: Props) {
+  console.log('nftStatistic', nftStatistic)
   console.log('positionNFTs', positionNFTs)
   const [currentFilter, setCurrentFilter] = useState<FilterTransaction>('All')
   const [skipPage, setSkipPage] = useState<number>(0)
@@ -85,7 +92,7 @@ export default function Index({ positionNFTs }: Props) {
           </div>
         </div>
         <div className="mt-12 md:mt-0   md:w-80 sm:h-80 lg:w-96 lg:h-96">
-          <PieChart data={data} />
+          <DoughnutChart data={data} />
         </div>
       </div>
       <div className="mt-16 md:mt-20">
@@ -138,22 +145,25 @@ export const data: FakeData = {
 
 export async function getServerSideProps({ query }: PropSSRNftGrade) {
   const grade = query.slug
+  const onGetListNftStatistic = getListNftStatistic()
 
   const onGetListNftGrade = getListNftGrade({
     grade,
   })
 
-  const gradeData: [ListDataGradeResponse] = await Promise.all([
-    onGetListNftGrade,
-  ]).then((result) => result)
-  const [nftStatisticResponse] = gradeData
+  const gradeData: [ListDataGradeResponse, ListNftStatisticResponse] =
+    await Promise.all([onGetListNftGrade, onGetListNftStatistic]).then(
+      (result) => result
+    )
+  const [nftGradeResponse, nftStatisticResponse] = gradeData
 
-  const { positionNFTs } = nftStatisticResponse.data
-
+  const { positionNFTs } = nftGradeResponse.data
+  const { nftStatistic } = nftStatisticResponse.data
   //
   return {
     props: {
       positionNFTs,
+      nftStatistic,
     },
   }
 }

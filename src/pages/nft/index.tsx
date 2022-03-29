@@ -18,10 +18,13 @@ import {
   ListTranSactionResponse,
 } from 'api/nft/nft.api.type'
 import { listFilterTransaction } from 'common/nft/nft.type'
-import { transferDataTotalNft, TypeItemNft } from 'helper/nft'
+import {
+  transferDataTotalNft,
+  TypeItemNft,
+} from 'helper/nft/transferDataTotalNft'
 import Link from 'next/link'
 import React, { useCallback, useEffect, useState } from 'react'
-import { transformDataLineChartNft } from 'utils/nft/transformData'
+import { transformDataLineChartNft } from 'helper/nft/transformDataLineChart'
 
 type Props = {
   transactions: ItemTranSaction[]

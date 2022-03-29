@@ -1,5 +1,4 @@
-import { format, fromUnixTime } from 'date-fns'
-import { TypeItemNft } from 'helper/nft'
+import { TypeItemNft } from 'helper/nft/transferDataTotalNft'
 import Image from 'next/image'
 import React from 'react'
 import { commasNumberFormat } from 'utils/number'
@@ -20,7 +19,7 @@ export default function ItemNft({ item }: Props) {
         )} / ${commasNumberFormat(item.totalMinted)}`}</p>
         <div className="mt-6 sm:mt-4 flex">
           <p className="font-medium  text-xs md:text-sm text-txt-secondary bg-gun-powder px-4 py-1 rounded-2xl">
-            {`Year of ${format(fromUnixTime(item.createdTimestamp), 'yyyy')}`}
+            gradle {item.grade}
           </p>
         </div>
       </div>

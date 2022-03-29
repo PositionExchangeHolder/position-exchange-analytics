@@ -1,6 +1,6 @@
 import { ArcElement, Chart as ChartJS, Legend, Tooltip } from 'chart.js'
 import React from 'react'
-import { Pie } from 'react-chartjs-2'
+import { Doughnut } from 'react-chartjs-2'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
@@ -13,11 +13,11 @@ type Props<T extends OptionValue> = {
   data: Option<T>
 }
 
-export function PieChart<T extends OptionValue>(props: Props<T>) {
+export function DoughnutChart<T extends OptionValue>(props: Props<T>) {
   const { data } = props
 
   return (
-    <Pie
+    <Doughnut
       data={data}
       options={{
         plugins: {
