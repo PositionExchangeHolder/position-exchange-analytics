@@ -14,7 +14,7 @@ export default function ItemNft({ item }: Props) {
           Circulating Supply
         </p>
 
-        <p className="font-medium text-sm md:text-base text-txt-primary mt-5">{`${commasNumberFormat(
+        <p className="font-medium text-sm md:text-base text-txt-primary mt-6">{`${commasNumberFormat(
           item.currentValue
         )} / ${commasNumberFormat(item.totalMinted)}`}</p>
         <div className="mt-6 sm:mt-4 flex">
@@ -24,10 +24,9 @@ export default function ItemNft({ item }: Props) {
         </div>
       </div>
       <Image
-        className="w-3 h-3"
-        src="/fake_nft.png"
+        src={`/grade${item.grade}.png`}
         alt="logo"
-        width={120}
+        width={90}
         height={120}
         layout="fixed"
       />

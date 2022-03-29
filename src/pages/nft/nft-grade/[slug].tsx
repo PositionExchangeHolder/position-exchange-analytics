@@ -66,14 +66,15 @@ export default function Index({ positionNFTs, nftStatistic }: Props) {
 
   return (
     <main className="relative bg-primary w-full  mt-10  md:mt-16 px-6  xl:px-0">
-      <div className="sx:grid sx:grid-rows-3 sm:flex md:flex-row  justify-between">
+      <div className="sx:grid sx:grid-rows-3 md:flex md:flex-row  justify-between">
         <div className="lg:flex lg:flex-row lg:gap-x-8">
-          <div className=" md:w-80 sm:h-80 lg:w-96 lg:h-96   rounded-md bg-secondary ">
+          <div className=" lg:w-96 lg:h-96  ">
             <Image
-              src="/fake_nft.png"
+              // src="/fake_nft.png"
+              src={`/grade${grade}.png`}
               alt="logo"
               width={100}
-              height={100}
+              height={120}
               loading="eager"
               layout="responsive"
             />
