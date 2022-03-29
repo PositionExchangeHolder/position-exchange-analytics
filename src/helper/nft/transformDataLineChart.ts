@@ -1,7 +1,7 @@
 import { format, fromUnixTime } from 'date-fns'
 import { isArray } from 'lodash'
 
-export type DataLineChartNftLineChart = {
+export type DataLineChartNft = {
   label: string[]
   dataChart: ItemDataNftLineChart[]
 }
@@ -97,5 +97,5 @@ export const transformDataLineChartNft = (array: any) => {
   return {
     label,
     dataChart: dataTransform,
-  } as DataLineChartNftLineChart
+  } as DataLineChartNft
 }

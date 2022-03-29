@@ -21,6 +21,7 @@ import {
   listFilterTransactionNftGrade,
   PropSSRNftGrade,
 } from 'common/nft/nft-gradle.type'
+import { transformDataDoughnutChart } from 'helper/nft/transformDataDoughnutChart'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import React, { useCallback, useEffect, useState } from 'react'
@@ -31,7 +32,7 @@ type Props = {
 }
 
 export default function Index({ positionNFTs, nftStatistic }: Props) {
-  console.log('nftStatistic', nftStatistic)
+  // console.log('nftStatistic', nftStatistic)
   console.log('positionNFTs', positionNFTs)
   const [currentFilter, setCurrentFilter] = useState<FilterTransaction>('All')
   const [skipPage, setSkipPage] = useState<number>(0)
@@ -40,6 +41,8 @@ export default function Index({ positionNFTs, nftStatistic }: Props) {
   const [dataTransaction, setDataTransaction] = useState<
     ItemTransactionNftGrade[]
   >([])
+
+  const dataDoughnutChart = transformDataDoughnutChart(nftStatistic, grade)
 
   // set filter and reset entries transaction
   const onSetCurrentFilter = useCallback((filter) => {
@@ -92,7 +95,7 @@ export default function Index({ positionNFTs, nftStatistic }: Props) {
           </div>
         </div>
         <div className="mt-12 md:mt-0   md:w-80 sm:h-80 lg:w-96 lg:h-96">
-          <DoughnutChart data={data} />
+          <DoughnutChart data={dataDoughnutChart} />
         </div>
       </div>
       <div className="mt-16 md:mt-20">
@@ -111,36 +114,6 @@ export default function Index({ positionNFTs, nftStatistic }: Props) {
       </div>
     </main>
   )
-}
-type FakeData = {
-  datasets: any[]
-  labels: string[]
-}
-export const data: FakeData = {
-  labels: ['Grade 1', 'Grade 2', 'Grade 3', 'Grade 4', 'Grade 5', ' Grade 6'],
-  datasets: [
-    {
-      label: '# of Votes',
-      data: [12, 19, 3, 5, 2, 3],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)',
-      ],
-      borderColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)',
-      ],
-      borderWidth: 1,
-    },
-  ],
 }
 
 export async function getServerSideProps({ query }: PropSSRNftGrade) {

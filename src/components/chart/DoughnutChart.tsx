@@ -35,8 +35,9 @@ export function DoughnutChart<T extends OptionValue>(props: Props<T>) {
             onClick: (e) => e.native,
           },
         },
-        layout: {
-          padding: 0,
+        radius: '90%',
+        animation: {
+          easing: 'easeOutQuad',
         },
       }}
     />

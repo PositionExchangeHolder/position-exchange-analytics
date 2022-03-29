@@ -5,6 +5,38 @@ export type TypeItemNft = {
   createdTimestamp: number
   grade: number
 }
+export const getDataGrade = (data: ItemNftStatistic) => {
+  const {
+    totalGrade1Minted,
+    totalGrade2Minted,
+    totalGrade3Minted,
+    totalGrade4Minted,
+    totalGrade5Minted,
+    totalGrade6Minted,
+    totalGrade1Burned,
+    totalGrade2Burned,
+    totalGrade3Burned,
+    totalGrade4Burned,
+    totalGrade5Burned,
+    totalGrade6Burned,
+    createdTimestamp,
+  } = data
+  return {
+    totalGrade1Minted,
+    totalGrade2Minted,
+    totalGrade3Minted,
+    totalGrade4Minted,
+    totalGrade5Minted,
+    totalGrade6Minted,
+    totalGrade1Burned,
+    totalGrade2Burned,
+    totalGrade3Burned,
+    totalGrade4Burned,
+    totalGrade5Burned,
+    totalGrade6Burned,
+    createdTimestamp,
+  }
+}
 export const transferDataTotalNft = (data: ItemNftStatistic) => {
   const itemGrade = (
     totalMinted: string,
@@ -32,7 +64,7 @@ export const transferDataTotalNft = (data: ItemNftStatistic) => {
     totalGrade5Burned,
     totalGrade6Burned,
     createdTimestamp,
-  } = data
+  } = getDataGrade(data)
   const listData: TypeItemNft[] = []
   listData.push(itemGrade(totalGrade1Minted, totalGrade1Burned, 1))
   listData.push(itemGrade(totalGrade2Minted, totalGrade2Burned, 2))
