@@ -103,10 +103,10 @@ export default function Index({ positionNFTs, nftStatistic }: Props) {
           </div>
         </div>
       </section>
-      <div className="mt-12 lg:mt-24 ">
+      <div className="mt-12 lg:mt-24">
         <TransactionTable
           transactions={dataTransaction}
-          titleTable={'Transaction'}
+          titleTable={'Transactions'}
           setCurrentFilter={onSetCurrentFilter}
           currentFilter={currentFilter}
           listFilterTransaction={listFilterTransactionNftGrade}

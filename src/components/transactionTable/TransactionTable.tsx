@@ -6,7 +6,10 @@ import DataTable, {
   TableColumn,
   TableStyles,
 } from 'react-data-table-component'
-import { BscscanLinkButton } from 'components/common/BscscanLinkButton'
+import {
+  BscscanLinkButton,
+  BscscanType,
+} from 'components/common/BscscanLinkButton'
 import Link from 'next/link'
 
 type ItemFilter = {
@@ -128,8 +131,10 @@ export const columnsTransaction: TableColumn<ItemTranSaction>[] = [
   {
     name: 'Transaction',
     selector: (row) => row?.id,
-    cell: (row) => <BscscanLinkButton hash={row?.id} />,
-    width: '280px',
+    cell: (row) => (
+      <BscscanLinkButton hash={row?.id} type={BscscanType.TX_HASH} />
+    ),
+    width: '220px',
   },
   {
     name: 'Action',
@@ -139,14 +144,18 @@ export const columnsTransaction: TableColumn<ItemTranSaction>[] = [
   {
     name: 'From',
     selector: (row) => row?.from?.id,
-    cell: (row) => <BscscanLinkButton hash={row?.from?.id} />,
-    width: '280px',
+    cell: (row) => (
+      <BscscanLinkButton hash={row?.from?.id} type={BscscanType.ADDRESS} />
+    ),
+    width: '220px',
   },
   {
     name: 'To',
     selector: (row) => row?.to?.id,
-    cell: (row) => <BscscanLinkButton hash={row?.to?.id} />,
-    width: '280px',
+    cell: (row) => (
+      <BscscanLinkButton hash={row?.to?.id} type={BscscanType.ADDRESS} />
+    ),
+    width: '220px',
   },
   {
     name: 'NFT ID',
@@ -156,7 +165,18 @@ export const columnsTransaction: TableColumn<ItemTranSaction>[] = [
         <a>{row?.nft?.id}</a>
       </Link>
     ),
-    width: '100px',
+
+    width: '120px',
+  },
+  {
+    name: 'Grade',
+    selector: (row) => row?.nft?.id,
+    cell: (row) => (
+      <Link href={`/nft/${row?.grade}`}>
+        <a>{row?.grade}</a>
+      </Link>
+    ),
+    width: '120px',
   },
   {
     name: 'Time',

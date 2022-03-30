@@ -52,7 +52,7 @@ export default function NftDetail() {
                 alt="Man using a computer"
               />
             </div>
-            <div className="xl:col-span-2 px-6">
+            <div className="xl:col-span-2 px-6 mt-6 md:mt-0">
               <h2 className="text-lg font-bold sm:text-2xl text-txt-primary">
                 Token ID: {nftId}
               </h2>
@@ -67,7 +67,7 @@ export default function NftDetail() {
           </div>
         </div>
       </section>
-      <div className="mt-10 sm:mt-16">
+      <div className="mt-0 sm:mt-8">
         <TransactionTable
           setCurrentFilter={onSetCurrentFilter}
           currentFilter={currentFilter}

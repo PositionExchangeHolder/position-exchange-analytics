@@ -5,7 +5,7 @@ const client = new ApolloClient({
   ssrMode: true,
   addTypename: false,
   link: createHttpLink({
-    uri: 'https://api.thegraph.com/subgraphs/name/positionexchanger/tnft3',
+    uri: 'https://api.thegraph.com/subgraphs/name/gafranslotteria/position-nft',
     credentials: 'same-origin',
   }),
 })
