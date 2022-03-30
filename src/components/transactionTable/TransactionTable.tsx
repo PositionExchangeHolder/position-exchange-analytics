@@ -139,19 +139,25 @@ export const columnsTransaction: TableColumn<ItemTranSaction>[] = [
     name: 'From',
     selector: (row) => row?.from?.id,
     cell: (row) => <BscscanLinkButton hash={row?.from?.id} type={BscscanType.ADDRESS} />,
-    width: '280px',
+    width: '220px',
   },
   {
     name: 'To',
     selector: (row) => row?.to?.id,
     cell: (row) => <BscscanLinkButton hash={row?.to?.id} type={BscscanType.ADDRESS} />,
-    width: '280px',
+    width: '220px',
   },
   {
     name: 'NFT ID',
     selector: (row) => row?.nft?.id,
     cell: (row) => <a href={`/nft/${row?.nft?.id}`}>{row?.nft?.id}</a>,
-    width: '100px',
+    width: '120px',
+  },
+  {
+    name: 'Grade',
+    selector: (row) => row?.nft?.id,
+    cell: (row) => <a href={`/nft/${row?.grade}`}>{row?.grade}</a>,
+    width: '120px',
   },
   {
     name: 'Time',

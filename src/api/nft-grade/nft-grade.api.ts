@@ -38,18 +38,27 @@ export const getListTransactionNftGrade = async ({
     skip,
     grade,
   }
+  filter.where = {
+    grade
+  }
+  
   if (action !== 'All') {
     filter.where = {
+      ...filter.where,
       action,
     }
   }
   const response: ListDataTransactionGradeResponse = await client.query({
     query: gql`
       query Transactions($skip: Int, $first: Int, $where: Transaction_filter) {
-        transactions(skip: $skip, first: $first, where: $where) {
+        transactions(skip: $skip, first: $first, where: $where, orderBy: createdTimestamp, orderDirection: desc) {
           id
           grade
           action
+          nft {
+            id
+            grade
+          }
           from {
             id
           }
