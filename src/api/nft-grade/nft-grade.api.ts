@@ -32,11 +32,13 @@ export const getListTransactionNftGrade = async ({
   grade,
   skip,
   action,
+  id,
 }: GetTransactionNftGradeRequestParam) => {
   const filter: any = {
     first: 10,
     skip,
     grade,
+    id,
   }
   if (action !== 'All') {
     filter.where = {

@@ -40,7 +40,8 @@ export type ListDataTransactionGradeResponse = {
   data: DataTransactionNftGrade
 }
 export type GetTransactionNftGradeRequestParam = {
-  grade: string
+  grade?: string
   skip: string | number
   action: FilterTransaction
+  id?: string
 }

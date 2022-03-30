@@ -1,13 +1,45 @@
 /* eslint-disable @next/next/no-img-element */
+import Pagination from '@/components/pagination'
+import TransactionTable from '@/components/transactionTable/TransactionTable'
+import { getListTransactionNftGrade } from 'api/nft-grade/nft-grade.api'
+import {
+  ItemTransactionNftGrade,
+  ListDataTransactionGradeResponse,
+} from 'api/nft-grade/nft-grade.api.type'
+import { FilterTransaction } from 'api/nft/nft.api.type'
+import { listFilterTransaction } from 'common/nft/nft.type'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 
 export default function NftDetail() {
+  const [dataTransaction, setDataTransaction] = useState<
+    ItemTransactionNftGrade[]
+  >([])
+  const [currentFilter, setCurrentFilter] = useState<FilterTransaction>('All')
+  const [skipPage, setSkipPage] = useState<number>(0)
+
   const router = useRouter()
 
   const nftId: string = (router?.query?.nft_id as string) || ''
-  console.log('nftId', nftId)
+  useEffect(() => {
+    const fetchDataTransaction = async () => {
+      const transactionsResponse: ListDataTransactionGradeResponse =
+        await getListTransactionNftGrade({
+          action: currentFilter,
+          skip: skipPage,
+          id: nftId,
+        })
+      const { transactions } = transactionsResponse.data
+      setDataTransaction(transactions)
+    }
+    fetchDataTransaction()
+  }, [currentFilter, skipPage, nftId])
 
+  // set filter and reset entries transaction
+  const onSetCurrentFilter = useCallback((filter) => {
+    setSkipPage(0)
+    setCurrentFilter(filter)
+  }, [])
   return (
     <div>
       <section>
@@ -35,6 +67,20 @@ export default function NftDetail() {
           </div>
         </div>
       </section>
+      <div className="mt-10 sm:mt-16">
+        <TransactionTable
+          setCurrentFilter={onSetCurrentFilter}
+          currentFilter={currentFilter}
+          transactions={dataTransaction}
+          titleTable={'Transactions'}
+          listFilterTransaction={listFilterTransaction}
+        />
+        <Pagination
+          currentItem={skipPage}
+          setNextItem={setSkipPage}
+          skip={10}
+        />
+      </div>
     </div>
   )
 }
