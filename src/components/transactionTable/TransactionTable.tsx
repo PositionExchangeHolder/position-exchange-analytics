@@ -7,6 +7,7 @@ import DataTable, {
   TableStyles,
 } from 'react-data-table-component'
 import { BscscanLinkButton } from 'components/common/BscscanLinkButton'
+import Link from 'next/link'
 
 type ItemFilter = {
   name: string
@@ -127,7 +128,7 @@ export const columnsTransaction: TableColumn<ItemTranSaction>[] = [
   {
     name: 'Transaction',
     selector: (row) => row?.id,
-    cell: (row) => <BscscanLinkButton hash={row?.id}/>,
+    cell: (row) => <BscscanLinkButton hash={row?.id} />,
     width: '280px',
   },
   {
@@ -138,19 +139,23 @@ export const columnsTransaction: TableColumn<ItemTranSaction>[] = [
   {
     name: 'From',
     selector: (row) => row?.from?.id,
-    cell: (row) => <BscscanLinkButton hash={row?.from?.id}/>,
+    cell: (row) => <BscscanLinkButton hash={row?.from?.id} />,
     width: '280px',
   },
   {
     name: 'To',
     selector: (row) => row?.to?.id,
-    cell: (row) => <BscscanLinkButton hash={row?.to?.id}/>,
+    cell: (row) => <BscscanLinkButton hash={row?.to?.id} />,
     width: '280px',
   },
   {
     name: 'NFT ID',
     selector: (row) => row?.nft?.id,
-    cell: (row) => <a href={`/nft/${row?.nft?.id}`}>{row?.nft?.id}</a>,
+    cell: (row) => (
+      <Link href={`/nft/${row?.nft?.id}`}>
+        <a>{row?.nft?.id}</a>
+      </Link>
+    ),
     width: '100px',
   },
   {
