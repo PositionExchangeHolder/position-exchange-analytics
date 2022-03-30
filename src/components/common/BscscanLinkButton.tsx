@@ -6,7 +6,7 @@ export function BscscanLinkButton(props: { hash: string }) {
   const endpoint = checkIsAddress(hash) ? `address/${hash}` : `tx/${hash}`
 
   return (
-    <a href={`${BSC_SCAN_URL}/${endpoint}`} target="_blank">
+    <a href={`${BSC_SCAN_URL}/${endpoint}`} target="_blank" rel="noreferrer">
       {props.hash}
     </a>
   )
