@@ -6,7 +6,7 @@ import DataTable, {
   TableColumn,
   TableStyles,
 } from 'react-data-table-component'
-import { BscscanLinkButton } from 'components/common/BscscanLinkButton'
+import { BscscanLinkButton, BscscanType } from 'components/common/BscscanLinkButton'
 
 type ItemFilter = {
   name: string
@@ -127,8 +127,8 @@ export const columnsTransaction: TableColumn<ItemTranSaction>[] = [
   {
     name: 'Transaction',
     selector: (row) => row?.id,
-    cell: (row) => <BscscanLinkButton hash={row?.id}/>,
-    width: '280px',
+    cell: (row) => <BscscanLinkButton hash={row?.id} type={BscscanType.TX_HASH} />,
+    width: '220px',
   },
   {
     name: 'Action',
@@ -138,13 +138,13 @@ export const columnsTransaction: TableColumn<ItemTranSaction>[] = [
   {
     name: 'From',
     selector: (row) => row?.from?.id,
-    cell: (row) => <BscscanLinkButton hash={row?.from?.id}/>,
+    cell: (row) => <BscscanLinkButton hash={row?.from?.id} type={BscscanType.ADDRESS} />,
     width: '280px',
   },
   {
     name: 'To',
     selector: (row) => row?.to?.id,
-    cell: (row) => <BscscanLinkButton hash={row?.to?.id}/>,
+    cell: (row) => <BscscanLinkButton hash={row?.to?.id} type={BscscanType.ADDRESS} />,
     width: '280px',
   },
   {
