@@ -21,6 +21,7 @@ import {
   listFilterTransactionNftGrade,
   PropSSRNftGrade,
 } from 'common/nft/nft-gradle.type'
+import { CurrentInfoNft, getCurrentInfoNft } from 'helper/nft/filterDataNft'
 import { transformDataDoughnutChart } from 'helper/nft/transformDataDoughnutChart'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
@@ -31,9 +32,8 @@ type Props = {
   nftStatistic: ItemNftStatistic
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function Index({ positionNFTs, nftStatistic }: Props) {
-  // console.log('nftStatistic', nftStatistic)
-  console.log('positionNFTs', positionNFTs)
   const [currentFilter, setCurrentFilter] = useState<FilterTransaction>('All')
   const [skipPage, setSkipPage] = useState<number>(0)
   const router = useRouter()
@@ -43,12 +43,15 @@ export default function Index({ positionNFTs, nftStatistic }: Props) {
   >([])
 
   const dataDoughnutChart = transformDataDoughnutChart(nftStatistic, grade)
-
   // set filter and reset entries transaction
   const onSetCurrentFilter = useCallback((filter) => {
     setSkipPage(0)
     setCurrentFilter(filter)
   }, [])
+  const dataCurrentInfoNft: CurrentInfoNft = getCurrentInfoNft(
+    nftStatistic,
+    grade
+  )
 
   useEffect(() => {
     const fetchDataTransaction = async () => {
@@ -81,14 +84,13 @@ export default function Index({ positionNFTs, nftStatistic }: Props) {
           </div>
           <div className="md:pt-10 mt-12 md:mt-4">
             <p className="text-txt-primary font-medium text-sm ">
-              ID:100300483357
+              Grade: {grade}
             </p>
             <p className="text-txt-primary font-medium text-sm mt-8">
-              NFT Atributes: grade, quality, owner, totalTxs NFT Atributes:
-              grade, quality, owner, totalTxs ...
+              Total Minted: {dataCurrentInfoNft.totalMinted}
             </p>
             <p className="text-txt-primary font-medium text-sm mt-12">
-              State: Staking, Burn,....
+              Total Burned: {dataCurrentInfoNft.totalBurned}
             </p>
             <p className="text-txt-primary font-medium text-sm mt-8">
               @SoftSkillNFT

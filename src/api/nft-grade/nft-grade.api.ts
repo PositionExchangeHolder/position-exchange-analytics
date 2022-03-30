@@ -62,6 +62,5 @@ export const getListTransactionNftGrade = async ({
     `,
     variables: filter,
   })
-  console.log('response', response)
   return response
 }
