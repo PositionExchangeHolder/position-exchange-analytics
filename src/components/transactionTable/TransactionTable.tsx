@@ -156,7 +156,7 @@ export const columnsTransaction: TableColumn<ItemTranSaction>[] = [
   {
     name: 'Time',
     selector: (row) =>
-      format(fromUnixTime(+row?.createdTimestamp), 'dd-MM-yyyy'),
+      format(fromUnixTime(+row?.createdTimestamp), 'dd-MM-yyyy hh:mm a'),
     width: '170px',
   },
 ]
