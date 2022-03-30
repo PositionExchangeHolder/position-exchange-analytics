@@ -1,11 +1,11 @@
-import HeaderLayout from '@/components/layout/HeaderLayout'
 import ContainerLayout from '@/components/layout/ContainerLayout'
+import HeaderLayout from '@/components/layout/HeaderLayout'
 import type { AppProps } from 'next/app'
-import '../styles/globals.css'
 import Head from 'next/head'
-import TopBarProgress from 'react-topbar-progress-indicator'
 import { Router } from 'next/router'
 import { useState } from 'react'
+import TopBarProgress from 'react-topbar-progress-indicator'
+import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [progress, setProgress] = useState(false)
@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <div className="w-full ">
+      <div className="w-full pb-20">
         <HeaderLayout />
         <ContainerLayout>
           {progress && <TopBarProgress />}

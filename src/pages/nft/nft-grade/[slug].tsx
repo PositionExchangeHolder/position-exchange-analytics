@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { DoughnutChart } from '@/components/chart/DoughnutChart'
 import Pagination from '@/components/pagination'
 import TransactionTable from '@/components/transactionTable/TransactionTable'
@@ -23,7 +24,6 @@ import {
 } from 'common/nft/nft-gradle.type'
 import { CurrentInfoNft, getCurrentInfoNft } from 'helper/nft/filterDataNft'
 import { transformDataDoughnutChart } from 'helper/nft/transformDataDoughnutChart'
-import Image from 'next/image'
 import { useRouter } from 'next/router'
 import React, { useCallback, useEffect, useState } from 'react'
 
@@ -69,39 +69,41 @@ export default function Index({ positionNFTs, nftStatistic }: Props) {
 
   return (
     <main className="relative bg-primary w-full  mt-10  md:mt-16 px-6  xl:px-0">
-      <div className="sx:grid sx:grid-rows-3 md:flex md:flex-row  justify-between">
-        <div className="lg:flex lg:flex-row lg:gap-x-8">
-          <div className=" lg:w-96 lg:h-96  ">
-            <Image
-              // src="/fake_nft.png"
-              src={`/grade${grade}.png`}
-              alt="logo"
-              width={100}
-              height={120}
-              loading="eager"
-              layout="responsive"
-            />
-          </div>
-          <div className="md:pt-10 mt-12 md:mt-4">
-            <p className="text-txt-primary font-medium text-sm ">
-              Grade: {grade}
-            </p>
-            <p className="text-txt-primary font-medium text-sm mt-8">
-              Total Minted: {dataCurrentInfoNft.totalMinted}
-            </p>
-            <p className="text-txt-primary font-medium text-sm mt-12">
-              Total Burned: {dataCurrentInfoNft.totalBurned}
-            </p>
-            <p className="text-txt-primary font-medium text-sm mt-8">
-              @SoftSkillNFT
-            </p>
+      <section>
+        <div className="max-w-screen-xl  mx-auto ">
+          <div className="grid grid-cols-1 gap-8 md:gap-0 md:grid-cols-2 xl:grid-cols-3 lg:gap-12 ">
+            <div>
+              <div className="relative h-96 rounded-lg  xl:col-span-2">
+                <img
+                  className="absolute inset-0 object-contain w-full h-full"
+                  src={`/grade${grade}.png`}
+                  alt="Man using a computer"
+                />
+              </div>
+            </div>
+            <div className="mt-4 ">
+              <p className="text-txt-primary font-medium text-xl ">
+                Grade: {grade}
+              </p>
+              <p className="text-txt-primary font-medium md:text-sm md:mt-12 mt-6 text-xs">
+                Total Minted: {dataCurrentInfoNft.totalMinted}
+              </p>
+              <p className="text-txt-primary font-medium md:text-sm md:mt-12 mt-4 text-xs">
+                Total Burned: {dataCurrentInfoNft.totalBurned}
+              </p>
+              <p className="text-txt-primary font-medium md:text-sm md:mt-8 mt-4 text-xs">
+                @SoftSkillNFT
+              </p>
+            </div>
+            <div className="px-6 md:mt-10 lg:mt-0">
+              <div className="mt-4 md:mt-0   md:w-80 sm:h-80 lg:w-96 lg:h-96">
+                <DoughnutChart data={dataDoughnutChart} />
+              </div>
+            </div>
           </div>
         </div>
-        <div className="mt-12 md:mt-0   md:w-80 sm:h-80 lg:w-96 lg:h-96">
-          <DoughnutChart data={dataDoughnutChart} />
-        </div>
-      </div>
-      <div className="mt-16 md:mt-20">
+      </section>
+      <div className="mt-12 lg:mt-24 ">
         <TransactionTable
           transactions={dataTransaction}
           titleTable={'Transaction'}
