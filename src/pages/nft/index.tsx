@@ -92,7 +92,7 @@ export default function Index({ nftStatistic, nftDayDatas }: Props) {
           setCurrentFilter={onSetCurrentFilter}
           currentFilter={currentFilter}
           transactions={dataTransaction}
-          titleTable={'Transaction'}
+          titleTable={'Transactions'}
           listFilterTransaction={listFilterTransaction}
         />
         <Pagination

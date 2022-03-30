@@ -14,12 +14,13 @@ export default function ItemNft({ item }: Props) {
           Circulating Supply
         </p>
 
-        <p className="font-medium text-sm md:text-base text-txt-primary mt-6">{`${commasNumberFormat(
-          item.currentValue
-        )} / ${commasNumberFormat(item.totalMinted)}`}</p>
+        <p className="font-medium text-sm md:text-base text-txt-primary mt-6">
+          {`${commasNumberFormat(item.currentValue)}
+          / ${commasNumberFormat(item.totalMinted)}`}
+        </p>
         <div className="mt-6 sm:mt-4 flex">
           <p className="font-medium  text-xs md:text-sm text-txt-secondary bg-gun-powder px-4 py-1 rounded-2xl">
-            gradle {item.grade}
+            Grade {item.grade}
           </p>
         </div>
       </div>

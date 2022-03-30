@@ -6,7 +6,7 @@ import DataTable, {
   TableColumn,
   TableStyles,
 } from 'react-data-table-component'
-import { nFormatter } from 'utils/number'
+import { BscscanLinkButton } from 'components/common/BscscanLinkButton'
 
 type ItemFilter = {
   name: string
@@ -29,20 +29,20 @@ export default function TransactionTable({
 }: Props) {
   return (
     <div>
-      <div className="w-full pt-3 pb-3 pl-6  bg-secondary rounded-t-md ">
+      <div className="w-full pt-3 pb-3 pl-6 bg-secondary rounded-t-md ">
         <p className="font-medium md:text-2xl lg:text-3xl text-txt-primary ">
           {titleTable}
         </p>
-        <div className=" md:flex md:flex-row gap-x-4 mt-4 my-2 flex-wrap grid-cols-3  grid ">
+        <div className="md:flex md:flex-row gap-x-4 mt-4 my-2 flex-wrap grid-cols-3 grid">
           {listFilterTransaction?.map((itemFilter) => {
             return (
-              <div className="flex items-center  " key={itemFilter.name}>
+              <div className="flex items-center" key={itemFilter.name}>
                 <input
                   onChange={() => setCurrentFilter(itemFilter.value)}
                   checked={itemFilter.value === currentFilter ? true : false}
                   name="currentFilter"
                   type="radio"
-                  className="focus:ring-slate-50 h-6   text-red-700 border-gray-300 "
+                  className="focus:ring-slate-50 h-6 text-red-700 border-gray-300 "
                 />
                 <label
                   htmlFor="push-everything"
@@ -125,29 +125,33 @@ createTheme(
 
 export const columnsTransaction: TableColumn<ItemTranSaction>[] = [
   {
+    name: 'Transaction',
+    selector: (row) => row?.id,
+    cell: (row) => <BscscanLinkButton hash={row?.id}/>,
+    width: '280px',
+  },
+  {
     name: 'Action',
     selector: (row) => row?.action,
     width: '170px',
   },
   {
-    name: 'Value',
-    selector: (row) => nFormatter(row?.createdBlockNumber, 2),
-    width: '100px',
-  },
-  {
-    name: 'Transaction',
-    selector: (row) => row?.id,
-    width: '280px',
-  },
-  {
     name: 'From',
     selector: (row) => row?.from?.id,
+    cell: (row) => <BscscanLinkButton hash={row?.from?.id}/>,
     width: '280px',
   },
   {
     name: 'To',
     selector: (row) => row?.to?.id,
+    cell: (row) => <BscscanLinkButton hash={row?.to?.id}/>,
     width: '280px',
+  },
+  {
+    name: 'NFT ID',
+    selector: (row) => row?.nft?.id,
+    cell: (row) => <a href={`/nft/${row?.nft?.id}`}>{row?.nft?.id}</a>,
+    width: '100px',
   },
   {
     name: 'Time',
