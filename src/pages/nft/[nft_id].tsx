@@ -1,19 +1,27 @@
 /* eslint-disable @next/next/no-img-element */
 import Pagination from '@/components/pagination'
+import { columnsActivities } from '@/components/transactionTable/columnsActivities'
 import TransactionTable from '@/components/transactionTable/TransactionTable'
-import { getListTransactionNftGrade } from 'api/nft-grade/nft-grade.api'
 import {
-  ItemTransactionNftGrade,
-  ListDataTransactionGradeResponse,
-} from 'api/nft-grade/nft-grade.api.type'
+  ItemTransactionActivities,
+  ListDataActivitiesNftResponse,
+  NftDetailResponse,
+  PositionNFTInfo,
+  PropSSRNftDetail,
+} from 'api/nft-detail/nft-detail-api.type'
+import {
+  getListActivitiesNft,
+  getNftDetail,
+} from 'api/nft-detail/nft-detail.api'
 import { FilterTransaction } from 'api/nft/nft.api.type'
-import { listFilterTransaction } from 'common/nft/nft.type'
 import { useRouter } from 'next/router'
 import React, { useCallback, useEffect, useState } from 'react'
-
-export default function NftDetail() {
+type Props = {
+  positionNFT: PositionNFTInfo
+}
+export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
   const [dataTransaction, setDataTransaction] = useState<
-    ItemTransactionNftGrade[]
+    ItemTransactionActivities[]
   >([])
   const [currentFilter, setCurrentFilter] = useState<FilterTransaction>('All')
   const [skipPage, setSkipPage] = useState<number>(0)
@@ -22,17 +30,15 @@ export default function NftDetail() {
 
   const nftId: string = (router?.query?.nft_id as string) || ''
   useEffect(() => {
-    const fetchDataTransaction = async () => {
-      const transactionsResponse: ListDataTransactionGradeResponse =
-        await getListTransactionNftGrade({
-          action: currentFilter,
-          skip: skipPage,
-          id: nftId,
-        })
-      const { transactions } = transactionsResponse.data
+    const fetchDataActivities = async () => {
+      const activitiesResponse: ListDataActivitiesNftResponse =
+        await getListActivitiesNft({ positionNftId: nftId })
+      const {
+        positionNFT: { transactions },
+      } = activitiesResponse.data
       setDataTransaction(transactions)
     }
-    fetchDataTransaction()
+    fetchDataActivities()
   }, [currentFilter, skipPage, nftId])
 
   // set filter and reset entries transaction
@@ -48,7 +54,7 @@ export default function NftDetail() {
             <div className="relative h-96 rounded-lg  ">
               <img
                 className="absolute inset-0 object-contain w-full h-full"
-                src="/grade1.png"
+                src={`/grade${positionNFTDetail.grade}.png`}
                 alt="Man using a computer"
               />
             </div>
@@ -62,6 +68,9 @@ export default function NftDetail() {
               <p className="mt-6 text-txt-secondary">
                 State: Staking, Burn,....
               </p>
+              <p className="mt-6 text-txt-secondary">
+                quality: {positionNFTDetail.quality}
+              </p>
               <p className="mt-6 text-txt-secondary">@SoftSkillNFT</p>
             </div>
           </div>
@@ -72,8 +81,8 @@ export default function NftDetail() {
           setCurrentFilter={onSetCurrentFilter}
           currentFilter={currentFilter}
           transactions={dataTransaction}
-          titleTable={'Transactions'}
-          listFilterTransaction={listFilterTransaction}
+          titleTable={'Activities'}
+          columns={columnsActivities}
         />
         <Pagination
           currentItem={skipPage}
@@ -83,4 +92,20 @@ export default function NftDetail() {
       </div>
     </div>
   )
+}
+
+export async function getServerSideProps({ query }: PropSSRNftDetail) {
+  const { nft_id } = query
+  const onGetNftDetailResponse = getNftDetail({ positionNftId: nft_id })
+  const nftData: [NftDetailResponse] = await Promise.all([
+    onGetNftDetailResponse,
+  ]).then((result) => result)
+  const [nftDetailResponse] = nftData
+  const { positionNFT } = nftDetailResponse.data
+
+  return {
+    props: {
+      positionNFT,
+    },
+  }
 }

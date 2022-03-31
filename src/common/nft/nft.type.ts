@@ -13,6 +13,7 @@ export type TypeFilter = {
   value: FilterTransaction
   name: string
 }
+
 export const listFilterTransaction: TypeFilter[] = [
   {
     name: 'All',
