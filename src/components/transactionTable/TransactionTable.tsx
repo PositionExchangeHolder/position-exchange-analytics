@@ -172,7 +172,7 @@ export const columnsTransaction: TableColumn<ItemTranSaction>[] = [
     name: 'Grade',
     selector: (row) => row?.nft?.id,
     cell: (row) => (
-      <Link href={`/nft/${row?.grade}`}>
+      <Link href={`/nft/nft-grade/${row?.grade}`}>
         <a>{row?.grade}</a>
       </Link>
     ),
