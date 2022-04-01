@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { Address } from '@/components/common/Address'
 import Pagination from '@/components/pagination'
 import { columnsActivities } from '@/components/transactionTable/columnsActivities'
 import TransactionTable from '@/components/transactionTable/TransactionTable'
@@ -82,10 +83,10 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
                 #{nftId}
               </h2>
               <p className="mt-6 text-txt-secondary">
-                Author: {author.id}
+                Author: <Address address={author.id} />
               </p>
               <p className="mt-6 text-txt-secondary">
-                Current Owner: {owner.id}
+                Current Owner: <Address address={owner.id} />
               </p>
               <p className="mt-6 text-txt-secondary">
                 Quality: {quality}

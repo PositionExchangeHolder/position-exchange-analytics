@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { getAddressLabel } from 'utils/address';
 import { BSC_SCAN_URL } from 'utils/constants'
 import { hashFormatter } from 'utils/string'
 
@@ -8,8 +9,12 @@ export enum BscscanType {
   TOKEN,
 }
 
-export function BscscanLinkButton(props: { hash: string; type: BscscanType }) {
-  const { hash, type } = props
+type Props = {
+  hash: string,
+  type: BscscanType
+}
+
+export function BscscanLinkButton({ hash, type }: Props) {
   let endpoint
   switch (type) {
     case BscscanType.TX_HASH:
@@ -28,7 +33,11 @@ export function BscscanLinkButton(props: { hash: string; type: BscscanType }) {
   return (
     <Link href={`${BSC_SCAN_URL}/${endpoint}`}>
       <a target="_blank" rel="noreferrer">
-        {hashFormatter(hash)}
+        {
+          type === BscscanType.ADDRESS
+            ? getAddressLabel(hash) || hashFormatter(hash)
+            : hashFormatter(hash)
+        }
       </a>
     </Link>
   )
