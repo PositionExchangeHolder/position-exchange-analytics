@@ -14,7 +14,7 @@ import {
   getNftDetail,
 } from 'api/nft-detail/nft-detail.api'
 import { FilterTransaction } from 'api/nft/nft.api.type'
-import { format, formatDistanceToNow, fromUnixTime } from 'date-fns'
+import { formatDistanceToNow } from 'date-fns'
 import { useRouter } from 'next/router'
 import React, { useCallback, useEffect, useState } from 'react'
 import { getNftMiningEfficiency, getNftMiningPower } from 'utils/nft'
@@ -60,8 +60,8 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
     owner,
     quality,
     amount,
-    lockedDays,
-    createdTime,
+    // lockedDays,
+    // createdTime,
     updatedTimestamp
   } = positionNFTDetail
   
