@@ -14,11 +14,16 @@ import {
   getNftDetail,
 } from 'api/nft-detail/nft-detail.api'
 import { FilterTransaction } from 'api/nft/nft.api.type'
+import { format, formatDistanceToNow, fromUnixTime } from 'date-fns'
 import { useRouter } from 'next/router'
 import React, { useCallback, useEffect, useState } from 'react'
+import { getNftMiningEfficiency, getNftMiningPower } from 'utils/nft'
+import { convertBigNumberToNumber } from 'utils/number'
+
 type Props = {
   positionNFT: PositionNFTInfo
 }
+
 export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
   const [dataTransaction, setDataTransaction] = useState<
     ItemTransactionActivities[]
@@ -46,6 +51,20 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
     setSkipPage(0)
     setCurrentFilter(filter)
   }, [])
+  
+  // TODO: lockedDays
+  const {
+    grade,
+    burned,
+    author,
+    owner,
+    quality,
+    amount,
+    lockedDays,
+    createdTime,
+    updatedTimestamp
+  } = positionNFTDetail
+  
   return (
     <div>
       <section>
@@ -54,24 +73,38 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
             <div className="relative h-96 rounded-lg  ">
               <img
                 className="absolute inset-0 object-contain w-full h-full"
-                src={`/grade${positionNFTDetail.grade}.png`}
+                src={`/grade${grade}.png`}
                 alt="Man using a computer"
               />
             </div>
             <div className="xl:col-span-2 px-6 mt-6 md:mt-0">
-              <h2 className="text-lg font-bold sm:text-2xl text-txt-primary">
-                Token ID: {nftId}
+              <h2 className={`text-lg font-bold sm:text-2xl text-txt-primary ${burned && 'line-through'}`}>
+                #{nftId}
               </h2>
-              <p className="mt-8 text-txt-secondary   sm:text-xl ">
-                NFT Atributes: grade, quality, owner, totalTxs...
+              <p className="mt-6 text-txt-secondary">
+                Author: {author.id}
               </p>
               <p className="mt-6 text-txt-secondary">
-                State: Staking, Burn,....
+                Current Owner: {owner.id}
               </p>
               <p className="mt-6 text-txt-secondary">
-                quality: {positionNFTDetail.quality}
+                Quality: {quality}
               </p>
-              <p className="mt-6 text-txt-secondary">@SoftSkillNFT</p>
+              <p className="mt-6 text-txt-secondary">
+                Par Value: {convertBigNumberToNumber(amount, 5)} POSI
+              </p>
+              <p className="mt-6 text-txt-secondary">
+                Mining Power: {getNftMiningPower(amount, grade, quality)} POSI
+              </p>
+              <p className="mt-6 text-txt-secondary">
+                Mining Efficiency: {getNftMiningEfficiency(grade, quality).toFixed(2)}%
+              </p>
+              {/* <p className="mt-6 text-txt-secondary">
+                Decompose Date: {createdTime + lockedDays}
+              </p> */}
+              <p className="mt-6 text-txt-secondary">
+                Last seen: {formatDistanceToNow(new Date(Number(updatedTimestamp) * 1000), { addSuffix: true })}
+              </p>
             </div>
           </div>
         </div>

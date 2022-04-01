@@ -58,9 +58,13 @@ export const getNftDetail = async ({
           author {
             id
           }
+          owner {
+            id
+          }
           lockedDays
           createdBlockNumber: blockNum
           burned
+          createdTime
           updatedTimestamp
         }
       }

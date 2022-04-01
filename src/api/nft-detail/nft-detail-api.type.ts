@@ -54,8 +54,14 @@ export type PositionNFTInfo = {
   quality: string
   amount: string
   author: { id: string }
+  owner: { id: string }
   lockedDays: string
+  totalTransactions: string
+  totalOwners: string
+  burned: boolean
   createdBlockNumber: string
+  createdTime: string
+  updatedTimestamp: string
 }
 
 export type DataNftDetailResponse = {

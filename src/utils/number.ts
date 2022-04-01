@@ -1,3 +1,5 @@
+import { BigNumber } from 'bignumber.js'
+
 export const commasNumberFormat = (data: string | number) => {
   return new Intl.NumberFormat().format(+data)
 }
@@ -29,4 +31,8 @@ export function percentage(
   totalValue: number | string
 ) {
   return (100 * Number(partialValue)) / Number(totalValue)
+}
+
+export function convertBigNumberToNumber(num: | number | string, digits = 2): number {
+  return Number(new BigNumber(num).div(1e18).toFixed(digits).toString())
 }
