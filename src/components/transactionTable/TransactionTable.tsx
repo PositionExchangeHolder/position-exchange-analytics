@@ -34,7 +34,7 @@ export default function TransactionTable({
 }: Props) {
   return (
     <div>
-      <div className="w-full pt-3 pb-2 pl-6 bg-mirage rounded-t-md ">
+      <div className="w-full pt-3 pb-2 pl-6 bg-secondary1 rounded-t-md ">
         <p className="font-medium text-sm lg:text-base text-txt-primary  ">
           {titleTable}
         </p>
@@ -128,7 +128,7 @@ createTheme(
       primary: 'white',
     },
     background: {
-      default: 'rgb(20, 28, 37)',
+      default: 'rgb(20, 20 ,35)',
     },
     context: {
       background: '#cb4b16',

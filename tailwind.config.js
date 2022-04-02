@@ -13,7 +13,7 @@ module.exports = {
       colors: {
         primary: '#0e1118',
         charade: 'rgba(120, 122, 145, 0.5)',
-        secondary: 'rgb(20, 28 ,37)',
+        secondary: 'rgb(20, 20 ,35)',
         'txt-primary': '#a4b0cb',
         'txt-secondary': '#87859F',
         'gun-powder': '#3A3953',
@@ -25,6 +25,8 @@ module.exports = {
         'txt-catskill-white': '#E2E8F0',
         'txt-white': 'white',
         'txt-sub-text-color': '#c3c3cc',
+        secondary1: 'rgb(35, 35 ,45)',
+        primary1: 'rgb(30, 25 ,40)',
       },
       maxHeight: {
         180: '11.25rem',

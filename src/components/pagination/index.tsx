@@ -14,7 +14,7 @@ export default function Pagination({ currentItem, setNextItem, skip }: Props) {
     setNextItem(currentItem - skip)
   }
   return (
-    <div className="px-5 pt-5 pb-8 bg-mira border-t flex flex-col items-end ">
+    <div className="px-5 pt-5 pb-8 bg-secondary border-t flex flex-col items-end ">
       <span className="text-xs xs:text-sm text-txt-catskill-white mb-4">
         {renderEntries(currentItem, skip)}
       </span>
