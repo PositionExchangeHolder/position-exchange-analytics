@@ -58,11 +58,13 @@ export const columnsTransaction: TableColumn<ItemTranSaction>[] = [
       </Link>
     ),
     width: '120px',
+    sortable: false,
   },
   {
     name: 'Time',
     selector: (row) =>
       format(fromUnixTime(+row?.createdTimestamp), 'dd-MM-yyyy hh:mm a'),
     width: '170px',
+    sortable: false,
   },
 ]

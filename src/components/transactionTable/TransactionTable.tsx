@@ -1,3 +1,4 @@
+import { ArrowDownIcon } from '@heroicons/react/outline'
 import { ItemTranSaction } from 'api/nft/nft.api.type'
 import React from 'react'
 import DataTable, {
@@ -5,8 +6,8 @@ import DataTable, {
   TableColumn,
   TableStyles,
 } from 'react-data-table-component'
+import Loading from '../loading/Loading'
 import { columnsTransaction } from './columnsTransaction'
-
 type ItemFilter = {
   name: string
   value: string
@@ -19,6 +20,7 @@ type Props = {
   setCurrentFilter: (filter: string) => void
   listFilterTransaction?: ItemFilter[]
   columns?: TableColumn<ItemTranSaction | any>[]
+  isLoading: boolean
 }
 
 export default function TransactionTable({
@@ -28,6 +30,7 @@ export default function TransactionTable({
   setCurrentFilter,
   listFilterTransaction,
   columns = columnsTransaction,
+  isLoading,
 }: Props) {
   return (
     <div>
@@ -59,6 +62,7 @@ export default function TransactionTable({
         </div>
       </div>
       <DataTable
+        sortIcon={<ArrowDownIcon />}
         responsive={true}
         title="Transaction"
         columns={columns}
@@ -66,13 +70,20 @@ export default function TransactionTable({
         customStyles={customStyles}
         theme="solarized"
         noHeader={true}
-        // progressPending={true}
         highlightOnHover={true}
         pointerOnHover={true}
+        //sort
+        onSort={handleSort}
+        // loading
+        progressPending={isLoading}
+        progressComponent={<Loading />}
       />
     </div>
   )
 }
+
+const handleSort = (column: any, sortDirection: any) =>
+  console.log(column.selector(), sortDirection)
 
 const customStyles: TableStyles = {
   rows: {

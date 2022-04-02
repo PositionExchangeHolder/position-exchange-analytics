@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Loading() {
   return (
-    <div className="inset-0 bg-gray-800 fixed flex w-full h-full items-center justify-center duration-300 transition-opacity opacity-90">
+    <div className="inset-0   flex w-full py-20 items-center justify-center duration-300 transition-opacity opacity-90">
       <div className="flex-col">
         <svg viewBox="0 0 860.1 876.5">
           <path

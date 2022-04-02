@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 import { DoughnutChart } from '@/components/chart/DoughnutChart'
 import Pagination from '@/components/pagination'
@@ -41,6 +42,7 @@ export default function Index({ positionNFTs, nftStatistic }: Props) {
   const [dataTransaction, setDataTransaction] = useState<
     ItemTransactionNftGrade[]
   >([])
+  const [isLoading, setLoading] = React.useState(false)
 
   const dataDoughnutChart = transformDataDoughnutChart(nftStatistic, grade)
   // set filter and reset entries transaction
@@ -55,12 +57,16 @@ export default function Index({ positionNFTs, nftStatistic }: Props) {
 
   useEffect(() => {
     const fetchDataTransaction = async () => {
+      if (isLoading) return
+      setLoading(true)
       const transactionsResponse: ListDataTransactionGradeResponse =
         await getListTransactionNftGrade({
           grade,
           action: currentFilter,
           skip: skipPage,
         })
+      setLoading(false)
+
       const { transactions } = transactionsResponse.data
       setDataTransaction(transactions)
     }
@@ -78,7 +84,9 @@ export default function Index({ positionNFTs, nftStatistic }: Props) {
                   className="absolute inset-0 object-contain w-full h-full"
                   src={`/grade${grade}.png`}
                   alt="Man using a computer"
+                  loading="lazy"
                 />
+                )
               </div>
             </div>
             <div className="mt-4 ">
@@ -110,6 +118,7 @@ export default function Index({ positionNFTs, nftStatistic }: Props) {
           setCurrentFilter={onSetCurrentFilter}
           currentFilter={currentFilter}
           listFilterTransaction={listFilterTransactionNftGrade}
+          isLoading={isLoading}
         />
         <Pagination
           currentItem={skipPage}

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import LineChart from '@/components/chart/LineChart'
 import CurrentValueLock from '@/components/nft/CurrentValueLock'
 import ItemNft from '@/components/nft/ItemNft'
@@ -38,6 +39,7 @@ export default function Index({ nftStatistic, nftDayDatas }: Props) {
   const [currentFilter, setCurrentFilter] = useState<FilterTransaction>('All')
   const [skipPage, setSkipPage] = useState<number>(0)
   const [dataTransaction, setDataTransaction] = useState<ItemTranSaction[]>([])
+  const [isLoading, setLoading] = React.useState(false)
 
   // set filter and reset entries transaction
   const onSetCurrentFilter = useCallback((filter) => {
@@ -47,11 +49,14 @@ export default function Index({ nftStatistic, nftDayDatas }: Props) {
 
   useEffect(() => {
     const fetchDataTransaction = async () => {
+      if (isLoading) return
+      setLoading(true)
       const transactionsResponse: ListTranSactionResponse =
         await getListTransaction({
           action: currentFilter,
           skip: skipPage,
         })
+      setLoading(false)
       const { transactions } = transactionsResponse.data
       setDataTransaction(transactions)
     }
@@ -93,6 +98,7 @@ export default function Index({ nftStatistic, nftDayDatas }: Props) {
           transactions={dataTransaction}
           titleTable={'TRANSACTIONS'}
           listFilterTransaction={listFilterTransaction}
+          isLoading={isLoading}
         />
         <Pagination
           currentItem={skipPage}

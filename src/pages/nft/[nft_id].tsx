@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 import { Address } from '@/components/common/Address'
 import Pagination from '@/components/pagination'
@@ -31,17 +32,23 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
   >([])
   const [currentFilter, setCurrentFilter] = useState<FilterTransaction>('All')
   const [skipPage, setSkipPage] = useState<number>(0)
+  const [isLoading, setLoading] = React.useState(false)
 
   const router = useRouter()
 
   const nftId: string = (router?.query?.nft_id as string) || ''
   useEffect(() => {
     const fetchDataActivities = async () => {
+      if (isLoading) return
+      setLoading(true)
+
       const activitiesResponse: ListDataActivitiesNftResponse =
         await getListActivitiesNft({ positionNftId: nftId })
       const {
         positionNFT: { transactions },
       } = activitiesResponse.data
+      setLoading(false)
+
       setDataTransaction(transactions)
     }
     fetchDataActivities()
@@ -76,6 +83,7 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
                 className="absolute inset-0 object-contain w-full h-full"
                 src={`/grade${grade}.png`}
                 alt="Man using a computer"
+                loading="lazy"
               />
             </div>
             <div className="xl:col-span-2 px-6 mt-6 md:mt-0">
@@ -124,6 +132,7 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
           transactions={dataTransaction}
           titleTable={'ACTIVITIES'}
           columns={columnsActivities}
+          isLoading={isLoading}
         />
         <Pagination
           currentItem={skipPage}
