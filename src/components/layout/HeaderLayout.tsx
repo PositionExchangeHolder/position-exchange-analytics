@@ -1,77 +1,16 @@
 import { Popover, Transition } from '@headlessui/react'
-import {
-  BookmarkAltIcon,
-  CalendarIcon,
-  ChartBarIcon,
-  CursorClickIcon,
-  MenuIcon,
-  ShieldCheckIcon,
-  SupportIcon,
-  ViewGridIcon,
-  XIcon,
-} from '@heroicons/react/outline'
+import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import { ChevronDownIcon } from '@heroicons/react/solid'
+import { nft, PopoverType, resources } from 'common/header/header.type'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Fragment } from 'react'
 
-const nft = [
-  {
-    name: 'NFT',
-    description: 'Speak directly to your customers in a more meaningful way.',
-    href: '/nft',
-    icon: CursorClickIcon,
-  },
-  {
-    name: 'NFT Marketplace',
-    description: "Connect with third-party tools that you're already using.",
-    href: '/nft-marketplace',
-    icon: ViewGridIcon,
-  },
-  {
-    name: 'Analytics',
-    description:
-      'Get a better understanding of where your traffic is coming from.',
-    href: '#',
-    icon: ChartBarIcon,
-  },
-]
-
-const resources = [
-  {
-    name: 'Help Center',
-    description:
-      'Get all of your questions answered in our forums or contact support.',
-    href: '#',
-    icon: SupportIcon,
-  },
-  {
-    name: 'Guides',
-    description:
-      'Learn how to maximize our platform to get the most out of it.',
-    href: '#',
-    icon: BookmarkAltIcon,
-  },
-  {
-    name: 'Events',
-    description:
-      'See what meet-ups and other events we might be planning near you.',
-    href: '#',
-    icon: CalendarIcon,
-  },
-  {
-    name: 'Security',
-    description: 'Understand how we take your privacy seriously.',
-    href: '#',
-    icon: ShieldCheckIcon,
-  },
-]
-
-function classNames(...classes) {
+function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function HeaderLayout() {
   return (
     <Popover className="relative bg-primary w-full border-b-2 border-mineShaft h-16 ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -97,7 +36,7 @@ export default function Example() {
           </div>
           <Popover.Group as="nav" className="hidden md:flex space-x-10 ">
             <Popover className="relative">
-              {({ open, close }) => (
+              {({ open, close }: PopoverType) => (
                 <>
                   <Popover.Button
                     className={classNames(
@@ -173,7 +112,7 @@ export default function Example() {
               </a>
             </Link>
             <Popover className="relative">
-              {({ open, close }) => (
+              {({ open, close }: PopoverType) => (
                 <>
                   <Popover.Button
                     className={classNames(
@@ -248,7 +187,7 @@ export default function Example() {
           focus
           className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden z-10"
         >
-          {({ close }) => (
+          {({ close }: PopoverType) => (
             <div className="rounded-lg  bg-primary divide-y-2 divide-mineShaft drop-shadow-[0_1px_2px_#1B2431] shadow-md ring-1 ring-white ring-opacity-5 ">
               <div className="pt-5 pb-6 px-5">
                 <div className="flex items-center justify-between">
