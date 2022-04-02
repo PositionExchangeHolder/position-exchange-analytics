@@ -34,8 +34,8 @@ export default function TransactionTable({
 }: Props) {
   return (
     <div>
-      <div className="w-full pt-3 pb-2 pl-6 bg-secondary1 rounded-t-md ">
-        <p className="font-medium text-sm lg:text-base text-txt-primary  ">
+      <div className="w-full pt-3 pb-2 pl-6  border dark:border-0 bg-light-primary dark:bg-secondary border-b dark:border-b-gray-400 ">
+        <p className="font-medium text-sm lg:text-base dark:text-txt-primary text-txt-light-txt-primary  ">
           {titleTable}
         </p>
         <div className="md:flex md:flex-row gap-x-4 mt-4  flex-wrap grid-cols-3 grid">
@@ -52,7 +52,7 @@ export default function TransactionTable({
                   />
                   <label
                     htmlFor="push-everything"
-                    className="ml-3 block text-tiny-xs  lg:text-SM font-medium text-txt-primary "
+                    className="ml-3 block text-tiny-xs  lg:text-SM font-medium dark:text-txt-primary text-txt-secondary "
                   >
                     {itemFilter.name}
                   </label>

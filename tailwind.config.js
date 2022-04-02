@@ -5,28 +5,52 @@ module.exports = {
     './src/pages/**/*.{js,ts,jsx,tsx}',
     './src/components/**/*.{js,ts,jsx,tsx}',
   ],
+  darkMode: 'class',
+
   theme: {
     extend: {
       fontFamily: {
         Rampart: ['Inter', 'sans - serif', 'Rampart One', 'cursive'],
       },
       colors: {
-        primary: '#0e1118',
-        charade: 'rgba(120, 122, 145, 0.5)',
-        secondary: 'rgb(20, 20 ,35)',
-        'txt-primary': '#a4b0cb',
-        'txt-secondary': '#87859F',
-        'gun-powder': '#3A3953',
-        mineShaft: '#2D2D3D',
-        'mineShaft-30': 'rgba(45, 45, 61, 0.3)',
-        mirage: '#1d2732',
-        mira: 'rgb(20, 28, 37)',
-        mirage1: 'rgb(29, 39, 50)',
+        //border
+        waterloo: 'rgba(120,122,145,.5)',
+        //
+        // text
         'txt-catskill-white': '#E2E8F0',
         'txt-white': 'white',
         'txt-sub-text-color': '#c3c3cc',
+        'txt-primary': '#DDDDDD',
+        'txt-light-txt-primary': '#111119',
+        'txt-secondary': '#87859F',
+        'txt-light-secondary': '#93938A',
+
+        // text
+        // background
+        primary: '#0e1118',
+        'light-primary': 'white',
+        'light-primary-hv': '#F1F1F1',
+
+        secondary: 'rgb(20, 20 ,35)',
+        'light-secondary': 'rgb(226, 232 ,240)',
+        mineShaft: '#2D2D3D',
+        'light-mineShaft': '#2D2D3D',
+        'mineShaft-30': 'rgba(45, 45, 61, 0.3)',
+        'light-mineShaft-30': 'rgba(45, 45, 61, 0.3)',
+        mirage: '#1d2732',
+        'light-mirage': '#1d2732',
+        'gun-powder': '#3A3953',
+        'light-gun-powder': '#3A3953',
+        mira: 'rgb(20, 28, 37)',
+        'light-mira': 'rgb(20, 28, 37)',
+        mirage1: 'rgb(29, 39, 50)',
+        'light-mirage1': 'rgb(29, 39, 50)',
         secondary1: 'rgb(35, 35 ,45)',
+        'light-secondary1': 'rgb(35, 35 ,45)',
         primary1: 'rgb(30, 25 ,40)',
+        'light-primary1': 'rgb(30, 25 ,40)',
+
+        // background
       },
       maxHeight: {
         180: '11.25rem',
