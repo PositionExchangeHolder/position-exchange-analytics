@@ -16,7 +16,7 @@ export type styleLineChart = {
   lineTension: number
   pointBorderColor: string
   pointBackgroundColor: string
-  pointBorderWidth: number
+  borderWidth: number
 }
 const transferDataItemLineChart = (arr: []) => {
   const label: string[] = []
@@ -56,40 +56,40 @@ export const transformDataLineChartNft = (array: any) => {
         lineTension: 0.1,
         pointBorderColor: '#111',
         pointBackgroundColor: '#ff4000',
-        pointBorderWidth: 2,
+        borderWidth: 1,
       })
     }
     if (key === 'dailyNftMinted') {
       dataTransform.push({
         label: 'Minted',
         data: valueReverse,
-        borderColor: ' #9DBCD4',
+        borderColor: '#fbad37',
         lineTension: 0.1,
         pointBorderColor: '#111',
         pointBackgroundColor: '#ff4000',
-        pointBorderWidth: 2,
+        borderWidth: 1,
       })
     }
     if (key === 'dailyNftBurned') {
       dataTransform.push({
         label: 'Burned',
         data: valueReverse,
-        borderColor: '#32BF84',
+        borderColor: '#bb6bd9',
         lineTension: 0.1,
         pointBorderColor: '#111',
         pointBackgroundColor: '#ff4000',
-        pointBorderWidth: 2,
+        borderWidth: 1,
       })
     }
     if (key === 'dailyTransactions') {
       dataTransform.push({
         label: 'Transactions',
         data: valueReverse,
-        borderColor: '#02066F',
+        borderColor: '#6ec2f0',
         lineTension: 0.1,
         pointBorderColor: '#111',
         pointBackgroundColor: '#ff4000',
-        pointBorderWidth: 2,
+        borderWidth: 1,
       })
     }
   })

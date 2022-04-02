@@ -8,18 +8,18 @@ type Props = {
 }
 export default function ItemNft({ item }: Props) {
   return (
-    <div className="border-charade border rounded-md bg-secondary py-3 lg:py-4  px-6  w-full flex justify-between">
+    <div className=" rounded-md bg-secondary py-3 lg:py-4  px-6  w-full flex justify-between">
       <div className="sm:pt-2 ">
-        <p className="font-medium text-xs md:text-sm text-txt-primary  ">
+        <p className="font-medium text-xs md:text-sm text-txt-white  ">
           Circulating Supply
         </p>
 
-        <p className="font-medium text-sm md:text-base text-txt-primary mt-6">
+        <p className="font-medium text-sm md:text-base text-txt-white mt-6">
           {`${commasNumberFormat(item.currentValue)}
           / ${commasNumberFormat(item.totalMinted)}`}
         </p>
         <div className="mt-6 sm:mt-4 flex">
-          <p className="font-medium  text-xs md:text-sm text-txt-secondary bg-gun-powder px-4 py-1 rounded-2xl">
+          <p className="font-medium  text-xs md:text-sm text-txt-primary bg-mirage1 px-4 py-1 rounded-2xl">
             Grade {item.grade}
           </p>
         </div>

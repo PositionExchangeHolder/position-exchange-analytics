@@ -31,11 +31,11 @@ export default function TransactionTable({
 }: Props) {
   return (
     <div>
-      <div className="w-full pt-3 pb-3 pl-6 bg-secondary rounded-t-md ">
-        <p className="font-medium md:text-2xl lg:text-3xl text-txt-primary ">
+      <div className="w-full pt-3 pb-2 pl-6 bg-mirage rounded-t-md ">
+        <p className="font-medium text-sm lg:text-base text-txt-primary  ">
           {titleTable}
         </p>
-        <div className="md:flex md:flex-row gap-x-4 mt-4 my-2 flex-wrap grid-cols-3 grid">
+        <div className="md:flex md:flex-row gap-x-4 mt-4  flex-wrap grid-cols-3 grid">
           {listFilterTransaction &&
             listFilterTransaction?.map((itemFilter) => {
               return (
@@ -49,7 +49,7 @@ export default function TransactionTable({
                   />
                   <label
                     htmlFor="push-everything"
-                    className="ml-3 block text-tiny-xs md:text-sm font-medium text-txt-primary "
+                    className="ml-3 block text-tiny-xs  lg:text-SM font-medium text-txt-primary "
                   >
                     {itemFilter.name}
                   </label>
@@ -66,6 +66,9 @@ export default function TransactionTable({
         customStyles={customStyles}
         theme="solarized"
         noHeader={true}
+        // progressPending={true}
+        highlightOnHover={true}
+        pointerOnHover={true}
       />
     </div>
   )
@@ -76,18 +79,24 @@ const customStyles: TableStyles = {
     style: {
       minHeight: '72px', // override the row height
     },
+    highlightOnHoverStyle: {
+      background: 'rgb(31 41 55)',
+    },
   },
   headCells: {
     style: {
       paddingLeft: '30px', // override the cell padding for head cells
       paddingRight: '8px',
-      fontSize: 18,
+      fontSize: 14,
     },
   },
   cells: {
     style: {
       paddingLeft: '30px', // override the cell padding for data cells
       paddingRight: '8px',
+      fontSize: 12,
+      color: 'rgb(226 ,232 ,240)',
+      fontWeight: '600',
     },
   },
   header: {
@@ -108,7 +117,7 @@ createTheme(
       primary: 'white',
     },
     background: {
-      default: '#29263C',
+      default: 'rgb(20, 28, 37)',
     },
     context: {
       background: '#cb4b16',

@@ -82,16 +82,16 @@ export default function Index({ positionNFTs, nftStatistic }: Props) {
               </div>
             </div>
             <div className="mt-4 ">
-              <p className="text-txt-primary font-medium text-xl ">
+              <p className="text-txt-catskill-white font-medium text-xl ">
                 Grade: {grade}
               </p>
-              <p className="text-txt-primary font-medium md:text-sm md:mt-12 mt-6 text-xs">
+              <p className="text-txt-sub-text-color font-medium md:text-sm md:mt-12 mt-6 text-xs">
                 Total Minted: {dataCurrentInfoNft.totalMinted}
               </p>
-              <p className="text-txt-primary font-medium md:text-sm md:mt-12 mt-4 text-xs">
+              <p className="text-txt-sub-text-color font-medium md:text-sm md:mt-12 mt-4 text-xs">
                 Total Burned: {dataCurrentInfoNft.totalBurned}
               </p>
-              <p className="text-txt-primary font-medium md:text-sm md:mt-8 mt-4 text-xs">
+              <p className="text-txt-sub-text-color font-medium md:text-sm md:mt-8 mt-4 text-xs">
                 @SoftSkillNFT
               </p>
             </div>

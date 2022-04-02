@@ -14,8 +14,8 @@ export default function Pagination({ currentItem, setNextItem, skip }: Props) {
     setNextItem(currentItem - skip)
   }
   return (
-    <div className="px-5 pt-5 pb-8 bg-secondary border-t flex flex-col items-end ">
-      <span className="text-xs xs:text-sm text-txt-primary mb-4">
+    <div className="px-5 pt-5 pb-8 bg-mira border-t flex flex-col items-end ">
+      <span className="text-xs xs:text-sm text-txt-catskill-white mb-4">
         {renderEntries(currentItem, skip)}
       </span>
       <div className="inline-flex mt-2 xs:mt-0 gap-x-1">
@@ -26,13 +26,13 @@ export default function Pagination({ currentItem, setNextItem, skip }: Props) {
             currentItem === 0
               ? ' disabled:transform-none disabled:transition-none disabled:bg-gray disabled:cursor-not-allowed bg-gray-600'
               : 'hover:bg-gray-700 '
-          } " disabled:cursor-not-allowed text-sm bg-primary  text-txt-primary font-semibold py-2 px-4 rounded-l"`}
+          } " disabled:cursor-not-allowed text-sm bg-primary  text-txt-catskill-white font-semibold py-2 px-4 rounded-l"`}
         >
           Prev
         </button>
         <button
           onClick={onNextPage}
-          className="text-sm bg-primary hover:bg-gray-700 text-txt-primary font-semibold py-2 px-4 rounded-r"
+          className="text-sm bg-primary hover:bg-gray-700 text-txt-catskill-white font-semibold py-2 px-4 rounded-r"
         >
           Next
         </button>
@@ -42,9 +42,10 @@ export default function Pagination({ currentItem, setNextItem, skip }: Props) {
 }
 
 const renderEntries = (entries: number, skip: number) => {
-  if (entries < skip) {
-    return `Showing 1 to ${skip} of 9999 Entries`
-  } else {
-    return `Showing ${entries} to ${skip + entries} of 9999 Entries`
-  }
+  // if (entries < skip) {
+  //   return `Showing 1 to ${skip} of 9999 Entries`
+  // } else {
+  //   return `Showing ${entries} to ${skip + entries} of 9999 Entries`
+  // }
+  return `Showing ${entries} - ${skip + entries} out of 180`
 }

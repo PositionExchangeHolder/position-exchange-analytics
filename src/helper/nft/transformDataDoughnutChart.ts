@@ -9,12 +9,12 @@ export type TypeItemNft = {
 }
 
 const backgroundColor = [
-  'rgba(255, 99, 132, 0.2)',
-  'rgba(54, 162, 235, 0.2)',
-  'rgba(255, 206, 86, 0.2)',
-  'rgba(75, 192, 192, 0.2)',
-  'rgba(153, 102, 255, 0.2)',
-  'rgba(255, 159, 64, 0.2)',
+  'rgba(57, 70, 238, 0.4)',
+  'rgba(251, 173, 55, 0.4)',
+  'rgba(187, 107, 217, 0.4)',
+  'rgba(171, 5, 242, 0.4)',
+  'rgba(110, 192, 242, 0.4)',
+  'rgba(114, 216, 218, 0.4)',
 ]
 const calculatePercentageCirculate = (
   minted: string | number,
@@ -57,12 +57,12 @@ export const transformDataDoughnutChart = (
   data.push(calculatePercentageCirculate(totalGrade5Minted, totalGrade5Burned))
   data.push(calculatePercentageCirculate(totalGrade6Minted, totalGrade6Burned))
   const borderColor = [
-    'rgba(255, 99, 132, 0.2)',
-    'rgba(54, 162, 235, 0.2)',
-    'rgba(255, 206, 86, 0.2)',
-    'rgba(75, 192, 192, 0.2)',
-    'rgba(153, 102, 255, 0.2)',
-    'rgba(255, 159, 64, 0.2)',
+    'rgba(57, 70, 238, 0.2)',
+    'rgba(251, 173, 55, 0.2)',
+    'rgba(187, 107, 217, 0.2)',
+    'rgba(171, 5, 2422, 0.2)',
+    'rgba(110, 192, 242, 0.2)',
+    'rgba(114, 216, 218, 0.2)',
   ]
 
   const newBorderHeightLight = borderColor[+grade - 1].replace('0.2', '1')
@@ -75,7 +75,7 @@ export const transformDataDoughnutChart = (
         data,
         backgroundColor,
         borderColor,
-        borderWidth: 1,
+        borderWidth: 2,
         hoverOffset: 20,
       },
     ],

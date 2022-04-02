@@ -20,27 +20,27 @@ export const listFilterTransaction: TypeFilter[] = [
     value: 'All',
   },
   {
-    name: 'Mint',
+    name: 'MINT',
     value: 'Mint',
   },
   {
-    name: 'Burn',
+    name: 'BURN',
     value: 'Burn',
   },
   {
-    name: 'Transfer',
+    name: 'TRANSFER',
     value: 'Transfer',
   },
   {
-    name: 'Trade',
+    name: 'TRADE',
     value: 'TradeOnMarketplace',
   },
   {
-    name: 'Stake',
+    name: 'STAKE',
     value: 'Stake',
   },
   {
-    name: 'Unstake',
+    name: 'UNSTAKE',
     value: 'Unstake',
   },
 ]

@@ -7,15 +7,24 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        Rampart: ['Inter', 'sans - serif', 'Rampart One', 'cursive'],
+      },
       colors: {
-        primary: '#1C1C28',
+        primary: '#0e1118',
         charade: 'rgba(120, 122, 145, 0.5)',
-        secondary: '#302E4C',
-        'txt-primary': '#F7F7F7',
+        secondary: 'rgb(20, 28 ,37)',
+        'txt-primary': '#a4b0cb',
         'txt-secondary': '#87859F',
         'gun-powder': '#3A3953',
         mineShaft: '#2D2D3D',
         'mineShaft-30': 'rgba(45, 45, 61, 0.3)',
+        mirage: '#1d2732',
+        mira: 'rgb(20, 28, 37)',
+        mirage1: 'rgb(29, 39, 50)',
+        'txt-catskill-white': '#E2E8F0',
+        'txt-white': 'white',
+        'txt-sub-text-color': '#c3c3cc',
       },
       maxHeight: {
         180: '11.25rem',

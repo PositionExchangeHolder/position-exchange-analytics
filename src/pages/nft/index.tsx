@@ -62,7 +62,7 @@ export default function Index({ nftStatistic, nftDayDatas }: Props) {
     <main className="relative bg-primary w-full  mt-10  md:mt-16   px-6  xl:px-0">
       <div className="grid-cols-1   gap-x-6 grid   md:grid-cols-2">
         <CurrentValueLock nftStatistic={nftStatistic} />
-        <div className="bg-secondary rounded-md mt-8 md:mt-0 h-72 xs:h-full border-charade border">
+        <div className="bg-secondary rounded-md mt-8 md:mt-0 h-72 xs:h-full ">
           <div className="w-full h-full rounded-md">
             <LineChart data={dataNftLineChart} />
           </div>
@@ -91,7 +91,7 @@ export default function Index({ nftStatistic, nftDayDatas }: Props) {
           setCurrentFilter={onSetCurrentFilter}
           currentFilter={currentFilter}
           transactions={dataTransaction}
-          titleTable={'Transactions'}
+          titleTable={'TRANSACTIONS'}
           listFilterTransaction={listFilterTransaction}
         />
         <Pagination

@@ -52,7 +52,7 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
     setSkipPage(0)
     setCurrentFilter(filter)
   }, [])
-  
+
   // TODO: lockedDays
   const {
     grade,
@@ -63,9 +63,9 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
     amount,
     // lockedDays,
     // createdTime,
-    updatedTimestamp
+    updatedTimestamp,
   } = positionNFTDetail
-  
+
   return (
     <div>
       <section>
@@ -79,32 +79,39 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
               />
             </div>
             <div className="xl:col-span-2 px-6 mt-6 md:mt-0">
-              <h2 className={`text-lg font-bold sm:text-2xl text-txt-primary ${burned && 'line-through'}`}>
+              <h2
+                className={`text-lg font-bold sm:text-2xl text-txt-catskill-white ${
+                  burned && 'line-through'
+                }`}
+              >
                 #{nftId}
               </h2>
-              <p className="mt-6 text-txt-secondary">
+              <p className="mt-6 text-txt-sub-text-color">
                 Author: <Address address={author.id} />
               </p>
-              <p className="mt-6 text-txt-secondary">
+              <p className="mt-6 text-txt-sub-text-color">
                 Current Owner: <Address address={owner.id} />
               </p>
-              <p className="mt-6 text-txt-secondary">
-                Quality: {quality}
-              </p>
-              <p className="mt-6 text-txt-secondary">
+              <p className="mt-6 text-txt-sub-text-color">Quality: {quality}</p>
+              <p className="mt-6 text-txt-sub-text-color">
                 Par Value: {convertBigNumberToNumber(amount, 5)} POSI
               </p>
-              <p className="mt-6 text-txt-secondary">
+              <p className="mt-6 text-txt-sub-text-color">
                 Mining Power: {getNftMiningPower(amount, grade, quality)} POSI
               </p>
-              <p className="mt-6 text-txt-secondary">
-                Mining Efficiency: {getNftMiningEfficiency(grade, quality).toFixed(2)}%
+              <p className="mt-6 text-txt-sub-text-color">
+                Mining Efficiency:{' '}
+                {getNftMiningEfficiency(grade, quality).toFixed(2)}%
               </p>
-              {/* <p className="mt-6 text-txt-secondary">
+              {/* <p className="mt-6 text-txt-sub-text-color">
                 Decompose Date: {createdTime + lockedDays}
               </p> */}
-              <p className="mt-6 text-txt-secondary">
-                Last seen: {formatDistanceToNow(new Date(Number(updatedTimestamp) * 1000), { addSuffix: true })}
+              <p className="mt-6 text-txt-sub-text-color">
+                Last seen:{' '}
+                {formatDistanceToNow(
+                  new Date(Number(updatedTimestamp) * 1000),
+                  { addSuffix: true }
+                )}
               </p>
             </div>
           </div>
@@ -115,7 +122,7 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
           setCurrentFilter={onSetCurrentFilter}
           currentFilter={currentFilter}
           transactions={dataTransaction}
-          titleTable={'Activities'}
+          titleTable={'ACTIVITIES'}
           columns={columnsActivities}
         />
         <Pagination
