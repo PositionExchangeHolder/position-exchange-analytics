@@ -52,7 +52,7 @@ export const transformDataLineChartNft = (array: any) => {
       dataTransform.push({
         label: 'Token lock',
         data: valueReverse,
-        borderColor: '#FD4659',
+        borderColor: '#bb6bd9',
         lineTension: 0.1,
         pointBorderColor: '#111',
         pointBackgroundColor: '#ff4000',
@@ -63,7 +63,7 @@ export const transformDataLineChartNft = (array: any) => {
       dataTransform.push({
         label: 'Minted',
         data: valueReverse,
-        borderColor: '#fbad37',
+        borderColor: '#78ffd6',
         lineTension: 0.1,
         pointBorderColor: '#111',
         pointBackgroundColor: '#ff4000',
@@ -74,7 +74,7 @@ export const transformDataLineChartNft = (array: any) => {
       dataTransform.push({
         label: 'Burned',
         data: valueReverse,
-        borderColor: '#bb6bd9',
+        borderColor: '#FD4659 ',
         lineTension: 0.1,
         pointBorderColor: '#111',
         pointBackgroundColor: '#ff4000',
