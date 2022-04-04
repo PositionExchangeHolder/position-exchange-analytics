@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { getAddressLabel } from 'utils/address';
+import { getAddressLabel } from 'utils/address'
 import { BSC_SCAN_URL } from 'utils/constants'
 import { hashFormatter } from 'utils/string'
 
@@ -10,7 +10,7 @@ export enum BscscanType {
 }
 
 type Props = {
-  hash: string,
+  hash: string
   type: BscscanType
 }
 
@@ -29,16 +29,15 @@ export function BscscanLinkButton({ hash, type }: Props) {
     default:
       break
   }
-
   return (
-    <Link href={`${BSC_SCAN_URL}/${endpoint}`}>
-      <a target="_blank" rel="noreferrer">
-        {
-          type === BscscanType.ADDRESS
+    <div className="font-medium  text-xs md:text-sm dark:text-txt-primary text-gray-400 bg-light-primary dark:bg-primary flex items-center w-full h-full">
+      <Link href={`${BSC_SCAN_URL}/${endpoint}`}>
+        <a target="_blank" rel="noreferrer">
+          {type === BscscanType.ADDRESS
             ? getAddressLabel(hash) || hashFormatter(hash)
-            : hashFormatter(hash)
-        }
-      </a>
-    </Link>
+            : hashFormatter(hash)}
+        </a>
+      </Link>
+    </div>
   )
 }
