@@ -61,23 +61,27 @@ export default function TransactionTable({
             })}
         </div>
       </div>
-      <DataTable
-        sortIcon={<ArrowDownIcon />}
-        responsive={true}
-        title="Transaction"
-        columns={columns}
-        data={transactions}
-        customStyles={customStyles}
-        theme="solarized"
-        noHeader={true}
-        highlightOnHover={true}
-        pointerOnHover={true}
-        //sort
-        onSort={handleSort}
-        // loading
-        progressPending={isLoading}
-        progressComponent={<Loading />}
-      />
+      <div className="relative">
+        <DataTable
+          sortIcon={<ArrowDownIcon />}
+          responsive={true}
+          title="Transaction"
+          columns={columns}
+          data={transactions}
+          customStyles={customStyles}
+          theme="solarized"
+          noHeader={true}
+          highlightOnHover={true}
+          pointerOnHover={true}
+          //sort
+          onSort={handleSort}
+        />
+        {isLoading && (
+          <div className="bg-slate-200 absolute w-full h-full top-0 opacity-80 flex justify-center items-center">
+            <Loading />
+          </div>
+        )}
+      </div>
     </div>
   )
 }
