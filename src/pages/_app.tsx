@@ -1,3 +1,4 @@
+import StoreProvider from '@/components/app/StoreProvider'
 import ContainerLayout from '@/components/layout/ContainerLayout'
 import HeaderLayout from '@/components/layout/HeaderLayout'
 import type { AppProps } from 'next/app'
@@ -19,20 +20,22 @@ function MyApp({ Component, pageProps }: AppProps) {
       setProgress(false)
     })
   }, [])
-  return (
-    <div className="bg-primary flex w-full min-h-screen">
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
 
-      <div className="w-full pb-20">
-        <HeaderLayout />
-        <ContainerLayout>
-          {progress && <TopBarProgress />}
-          <Component {...pageProps} />
-        </ContainerLayout>
+  return (
+    <StoreProvider>
+      <div className="bg-primary flex w-full min-h-screen">
+        <Head>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+        </Head>
+        <div className="w-full pb-20">
+          <HeaderLayout />
+          <ContainerLayout>
+            {progress && <TopBarProgress />}
+            <Component {...pageProps} />
+          </ContainerLayout>
+        </div>
       </div>
-    </div>
+    </StoreProvider>
   )
 }
 
