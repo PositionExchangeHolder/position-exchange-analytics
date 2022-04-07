@@ -7,24 +7,25 @@ import { format, fromUnixTime } from 'date-fns'
 import Link from 'next/link'
 import React from 'react'
 import { TableColumn } from 'react-data-table-component'
+import RowData from './RowData'
 
 export const columnsTransaction: TableColumn<ItemTranSaction>[] = [
   {
     name: 'Transaction',
-    selector: (row) => row?.id,
     cell: (row) => (
       <BscscanLinkButton hash={row?.id} type={BscscanType.TX_HASH} />
     ),
     width: '220px',
+    hide: 10,
   },
   {
     name: 'Action',
     selector: (row) => row?.action,
     width: '170px',
+    cell: (row) => <RowData data={row.action} />,
   },
   {
     name: 'From',
-    selector: (row) => row?.from?.id,
     cell: (row) => (
       <BscscanLinkButton hash={row?.from?.id} type={BscscanType.ADDRESS} />
     ),
@@ -32,7 +33,6 @@ export const columnsTransaction: TableColumn<ItemTranSaction>[] = [
   },
   {
     name: 'To',
-    selector: (row) => row?.to?.id,
     cell: (row) => (
       <BscscanLinkButton hash={row?.to?.id} type={BscscanType.ADDRESS} />
     ),
@@ -40,31 +40,39 @@ export const columnsTransaction: TableColumn<ItemTranSaction>[] = [
   },
   {
     name: 'NFT ID',
-    selector: (row) => row?.nft?.id,
     cell: (row) => (
-      <Link href={`/nft/${row?.nft?.id}`}>
-        <a>{row?.nft?.id}</a>
-      </Link>
+      <RowData>
+        <Link href={`/nft/${row?.nft?.id}`}>
+          <a>{row?.nft?.id}</a>
+        </Link>
+      </RowData>
     ),
 
     width: '120px',
   },
   {
     name: 'Grade',
-    selector: (row) => row?.nft?.id,
     cell: (row) => (
-      <Link href={`/nft/nft-grade/${row?.grade}`}>
-        <a>{row?.grade}</a>
-      </Link>
+      <RowData>
+        <Link href={`/nft/nft-grade/${row?.grade}`}>
+          <a>{row?.grade}</a>
+        </Link>
+      </RowData>
     ),
     width: '120px',
     sortable: false,
   },
   {
     name: 'Time',
-    selector: (row) =>
-      format(fromUnixTime(+row?.createdTimestamp), 'dd-MM-yyyy hh:mm a'),
-    width: '170px',
+    width: '200px',
     sortable: false,
+    cell: (row) => (
+      <RowData
+        data={format(
+          fromUnixTime(+row?.createdTimestamp),
+          'dd-MM-yyyy hh:mm a'
+        )}
+      />
+    ),
   },
 ]

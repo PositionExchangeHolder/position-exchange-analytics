@@ -74,7 +74,7 @@ export default function Index({ positionNFTs, nftStatistic }: Props) {
   }, [currentFilter, skipPage, grade])
 
   return (
-    <main className="relative bg-primary w-full  mt-10  md:mt-16 px-6  xl:px-0">
+    <main className="relative bg-light-primary dark:bg-primary w-full  mt-10  md:mt-16 px-6  xl:px-0">
       <section>
         <div className="max-w-screen-xl  mx-auto ">
           <div className="grid grid-cols-1 gap-8 md:gap-0 md:grid-cols-2 xl:grid-cols-3 lg:gap-12 ">
@@ -86,20 +86,19 @@ export default function Index({ positionNFTs, nftStatistic }: Props) {
                   alt="Man using a computer"
                   loading="lazy"
                 />
-                )
               </div>
             </div>
             <div className="mt-4 ">
-              <p className="text-txt-catskill-white font-medium text-xl ">
+              <p className="dark:text-txt-catskill-white text-txt-light-txt-primary font-medium text-xl ">
                 Grade: {grade}
               </p>
-              <p className="text-txt-sub-text-color font-medium md:text-sm md:mt-12 mt-6 text-xs">
+              <p className="dark:text-txt-sub-text-color dark:font-medium md:text-sm md:mt-12 mt-6 text-xs">
                 Total Minted: {dataCurrentInfoNft.totalMinted}
               </p>
-              <p className="text-txt-sub-text-color font-medium md:text-sm md:mt-12 mt-4 text-xs">
+              <p className="dark:text-txt-sub-text-color dark:font-medium md:text-sm md:mt-12 mt-4 text-xs">
                 Total Burned: {dataCurrentInfoNft.totalBurned}
               </p>
-              <p className="text-txt-sub-text-color font-medium md:text-sm md:mt-8 mt-4 text-xs">
+              <p className="dark:text-txt-sub-text-color  text-txt-light-secondary font-medium md:text-sm md:mt-8 mt-4 text-xs">
                 @SoftSkillNFT
               </p>
             </div>
