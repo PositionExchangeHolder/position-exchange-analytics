@@ -118,8 +118,8 @@ export async function getServerSideProps() {
       (result) => result
     )
   const [nftStatisticResponse, listNftDayData] = nftData
-  const { nftStatistic } = nftStatisticResponse.data
-  const { nftDayDatas } = listNftDayData.data
+  const { nftStatistic } = nftStatisticResponse?.data
+  const { nftDayDatas } = listNftDayData?.data
 
   return {
     props: {

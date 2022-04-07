@@ -19,7 +19,13 @@ export const getListTransaction = async ({ skip, action }: QueryNft) => {
   const response: ListTranSactionResponse = await client.query({
     query: gql`
       query transactions($skip: Int, $first: Int, $where: Transaction_filter) {
-        transactions(skip: $skip, first: $first, where: $where, orderBy: createdTimestamp, orderDirection: desc) {
+        transactions(
+          skip: $skip
+          first: $first
+          where: $where
+          orderBy: createdTimestamp
+          orderDirection: desc
+        ) {
           id
           nft {
             id
@@ -44,6 +50,9 @@ export const getListTransaction = async ({ skip, action }: QueryNft) => {
       }
     `,
     variables: filter,
+    context: {
+      endPointName: 'nft',
+    },
   })
   return response
 }
@@ -79,6 +88,9 @@ export const getListNftStatistic = async () => {
         }
       }
     `,
+    context: {
+      endPointName: 'nft',
+    },
   })
   return response
 }
@@ -98,6 +110,9 @@ export const getListNftDayData = async () => {
         }
       }
     `,
+    context: {
+      endPointName: 'nft',
+    },
   })
   return response
 }

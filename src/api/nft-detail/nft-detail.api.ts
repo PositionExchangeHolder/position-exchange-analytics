@@ -40,6 +40,9 @@ export const getListActivitiesNft = async ({
       }
     `,
     variables: { first, positionNftId, orderBy, orderDirection },
+    context: {
+      endPointName: 'nft',
+    },
   })
   return response
 }
@@ -70,6 +73,9 @@ export const getNftDetail = async ({
       }
     `,
     variables: { positionNftId },
+    context: {
+      endPointName: 'nft',
+    },
   })
   return response
 }
