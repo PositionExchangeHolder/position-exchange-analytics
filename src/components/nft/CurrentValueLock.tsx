@@ -16,12 +16,12 @@ export default function CurrentValueLock({ nftStatistic }: Props) {
     totalTokenLocked,
   } = nftStatistic
   return (
-    <div className="  rounded-md bg-secondary px-4 lg:px-6 pt-4 w-full ">
-      <p className="font-medium  text-txt-white text-xs lg:text-base ">
+    <div className="  rounded-md dark:bg-secondary dark:border-0 border px-4 lg:px-6 pt-4 w-full ">
+      <p className="font-medium  dark:text-txt-white text-txt-light-txt-primary text-xs lg:text-base ">
         Current Value Locked
       </p>
 
-      <p className="font-medium text-xs lg:text-lg  text-txt-white mt-4">
+      <p className="font-medium text-xs lg:text-lg  dark:text-txt-white text-txt-light-txt-primary mt-4">
         {`${nFormatter(currentTokenLocked, 2)} POSI ~${nFormatter(
           totalTokenLocked,
           2
@@ -35,7 +35,7 @@ export default function CurrentValueLock({ nftStatistic }: Props) {
           height={44}
           className="rounded-md"
         />
-        <p className="font-medium  text-xs lg:text-base  text-txt-secondary ml-3 ">
+        <p className="font-medium  text-xs lg:text-base  dark:text-txt-secondary text-red-500 ml-3 ">
           {`Total circulation ${percentage(
             currentTokenLocked,
             totalTokenLocked

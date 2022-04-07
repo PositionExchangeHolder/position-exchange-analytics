@@ -30,7 +30,7 @@ export default function LineChart<T extends OptionValue>(props: Props<T>) {
           },
         },
       }}
-      className="h-10 rounded-md px-2 py-2 bg-secondary"
+      className="h-10 rounded-md px-2 py-2 dark:bg-secondary border dark:border-0"
       type="line"
       datasetIdKey="id"
       data={{

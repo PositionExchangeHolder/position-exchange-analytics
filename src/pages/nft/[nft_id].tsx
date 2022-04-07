@@ -88,33 +88,35 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
             </div>
             <div className="xl:col-span-2 px-6 mt-6 md:mt-0">
               <h2
-                className={`text-lg font-bold sm:text-2xl text-txt-catskill-white ${
+                className={`text-lg font-bold sm:text-2xl dark:text-txt-primary text-txt-light-txt-primary  ${
                   burned && 'line-through'
                 }`}
               >
                 #{nftId}
               </h2>
-              <p className="mt-6 text-txt-sub-text-color">
+              <p className="mt-6 dark:text-txt-sub-text-color text-txt-light-txt-primary">
                 Author: <Address address={author.id} />
               </p>
-              <p className="mt-6 text-txt-sub-text-color">
+              <p className="mt-4 dark:text-txt-sub-text-color text-txt-light-secondary text-xs">
                 Current Owner: <Address address={owner.id} />
               </p>
-              <p className="mt-6 text-txt-sub-text-color">Quality: {quality}</p>
-              <p className="mt-6 text-txt-sub-text-color">
+              <p className="mt-8 dark:text-txt-sub-text-color text-xs">
+                Quality: {quality}
+              </p>
+              <p className="mt-6 dark:text-txt-sub-text-color text-xs">
                 Par Value: {convertBigNumberToNumber(amount, 5)} POSI
               </p>
-              <p className="mt-6 text-txt-sub-text-color">
+              <p className="mt-6 dark:text-txt-sub-text-color text-xs">
                 Mining Power: {getNftMiningPower(amount, grade, quality)} POSI
               </p>
-              <p className="mt-6 text-txt-sub-text-color">
+              <p className="mt-6 dark:text-txt-sub-text-color text-xs">
                 Mining Efficiency:{' '}
                 {getNftMiningEfficiency(grade, quality).toFixed(2)}%
               </p>
-              {/* <p className="mt-6 text-txt-sub-text-color">
+              {/* <p className="mt-6 dark:text-txt-sub-text-color">
                 Decompose Date: {createdTime + lockedDays}
               </p> */}
-              <p className="mt-6 text-txt-sub-text-color">
+              <p className="mt-8 dark:text-txt-sub-text-color  text-txt-light-secondary text-xs">
                 Last seen:{' '}
                 {formatDistanceToNow(
                   new Date(Number(updatedTimestamp) * 1000),
