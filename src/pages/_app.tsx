@@ -41,6 +41,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           </div>
         </div>
       </ThemeProvider>
+
     </StoreProvider>
   )
 }
