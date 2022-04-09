@@ -36,7 +36,7 @@ type Props = {
 export default function Index({ nftStatistic, nftDayDatas }: Props) {
   const dataNft: TypeItemNft[] = transferDataTotalNft(nftStatistic)
   const dataNftLineChart = transformDataLineChartNft(nftDayDatas)
-  const pathRedirect = '/nft/nft-grade/[slug]'
+  const pathRedirect = '/nft/grade/[slug]'
   const [currentFilter, setCurrentFilter] = useState<FilterTransaction>('All')
   const [skipPage, setSkipPage] = useState<number>(0)
   const [dataTransaction, setDataTransaction] = useState<ItemTranSaction[]>([])

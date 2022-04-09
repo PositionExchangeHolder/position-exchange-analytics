@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/pages/nft/nft-grade/[slug].tsx"
+    "src/pages/nft/grade/[slug].tsx",
   ],
   "exclude": ["node_modules"]
 }
