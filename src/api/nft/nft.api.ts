@@ -100,7 +100,7 @@ export const getListNftDayData = async () => {
   const response: ListDataIntDayDateResponse = await client.query({
     query: gql`
       query nftDayDatas {
-        nftDayDatas(first: 7, orderBy: date, orderDirection: desc) {
+        nftDayDatas(first: 15, orderBy: date, orderDirection: desc) {
           id
           date
           dailyTokenLocked
