@@ -4,9 +4,10 @@ import {
   BscscanLinkButton,
   BscscanType,
 } from 'components/common/BscscanLinkButton'
-import { format, fromUnixTime } from 'date-fns'
 import React from 'react'
 import { TableColumn } from 'react-data-table-component'
+import { getLastSeen } from 'utils/date'
+import { convertBigNumberToStringNumber } from 'utils/number'
 import RowData from './RowData'
 const caseTotalReferralsSort = (
   rowA: TopReferralRecord,
@@ -94,22 +95,15 @@ export const columnsReferral: TableColumn<TopReferralRecord>[] = [
   },
   {
     name: 'Total Commissions',
-    cell: (row) => <RowData data={row.totalReferralCommissions} />,
+    cell: (row) => <RowData data={convertBigNumberToStringNumber(row.totalReferralCommissions, 0) + ' POSI'} />,
     width: '250px',
     sortable: true,
     sortFunction: caseTotalCommissionsSort,
   },
 
   {
-    name: 'Time (updatedTimestamp)',
+    name: 'Last Updated',
     width: '230px',
-    cell: (row) => (
-      <RowData
-        data={format(
-          fromUnixTime(+row?.createdTimestamp),
-          'dd-MM-yyyy hh:mm a'
-        )}
-      />
-    ),
+    cell: (row) => <RowData data={getLastSeen(+row?.createdTimestamp)} />,
   },
 ]

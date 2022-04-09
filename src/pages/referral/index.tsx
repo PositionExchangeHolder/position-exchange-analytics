@@ -53,7 +53,7 @@ export default function Referral() {
       <div className="pt-16">
         <TransactionTable
           transactions={referralsRanker || []}
-          titleTable={'TOP COMPOUNDERS'}
+          titleTable={'LEADERBOARD'}
           isLoading={isLoading}
           columns={columnsReferral}
         />

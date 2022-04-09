@@ -16,11 +16,11 @@ import {
   getNftDetail,
 } from 'api/nft-detail/nft-detail.api'
 import { FilterTransaction } from 'api/nft/nft.api.type'
-import { formatDistanceToNow } from 'date-fns'
 import { useRouter } from 'next/router'
 import React, { useCallback, useEffect, useState } from 'react'
+import { getLastSeen } from 'utils/date'
 import { getNftMiningEfficiency, getNftMiningPower } from 'utils/nft'
-import { convertBigNumberToNumber } from 'utils/number'
+import { convertBigNumberToStringNumber } from 'utils/number'
 
 type Props = {
   positionNFT: PositionNFTInfo
@@ -104,7 +104,7 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
                 Quality: {quality}
               </p>
               <p className="mt-6 dark:text-txt-sub-text-color text-xs">
-                Par Value: {convertBigNumberToNumber(amount, 5)} POSI
+                Par Value: {convertBigNumberToStringNumber(amount, 5)} POSI
               </p>
               <p className="mt-6 dark:text-txt-sub-text-color text-xs">
                 Mining Power: {getNftMiningPower(amount, grade, quality)} POSI
@@ -118,10 +118,7 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
               </p> */}
               <p className="mt-8 dark:text-txt-sub-text-color  text-txt-light-secondary text-xs">
                 Last seen:{' '}
-                {formatDistanceToNow(
-                  new Date(Number(updatedTimestamp) * 1000),
-                  { addSuffix: true }
-                )}
+                {getLastSeen(updatedTimestamp)}
               </p>
             </div>
           </div>

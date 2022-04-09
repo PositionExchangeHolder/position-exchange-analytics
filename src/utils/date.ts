@@ -1,3 +1,5 @@
+import { formatDistanceToNow } from 'date-fns'
+
 export const convertTimesTampToDate = (timestamp: number | string) => {
   const date = new Date(+timestamp)
   return {
@@ -13,4 +15,11 @@ export const prefixDate = (time: number) => {
   } else {
     return time
   }
+}
+
+export const getLastSeen = (timestamp: number | string): string => {
+  return formatDistanceToNow(
+    new Date(Number(timestamp) * 1000),
+    { addSuffix: true }
+  )
 }
