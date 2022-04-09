@@ -24,6 +24,9 @@ export const getListNftGrade = async ({
         grade: grade,
       },
     },
+    context: {
+      endPointName: 'nft',
+    },
   })
   return response
 }
@@ -41,9 +44,9 @@ export const getListTransactionNftGrade = async ({
     id,
   }
   filter.where = {
-    grade
+    grade,
   }
-  
+
   if (action !== 'All') {
     filter.where = {
       ...filter.where,
@@ -53,8 +56,15 @@ export const getListTransactionNftGrade = async ({
   const response: ListDataTransactionGradeResponse = await client.query({
     query: gql`
       query Transactions($skip: Int, $first: Int, $where: Transaction_filter) {
-        transactions(skip: $skip, first: $first, where: $where, orderBy: createdTimestamp, orderDirection: desc) {
+        transactions(
+          skip: $skip
+          first: $first
+          where: $where
+          orderBy: createdTimestamp
+          orderDirection: desc
+        ) {
           id
+          txHash
           grade
           action
           nft {
@@ -72,6 +82,9 @@ export const getListTransactionNftGrade = async ({
       }
     `,
     variables: filter,
+    context: {
+      endPointName: 'nft',
+    },
   })
   return response
 }

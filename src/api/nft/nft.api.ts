@@ -19,8 +19,15 @@ export const getListTransaction = async ({ skip, action }: QueryNft) => {
   const response: ListTranSactionResponse = await client.query({
     query: gql`
       query transactions($skip: Int, $first: Int, $where: Transaction_filter) {
-        transactions(skip: $skip, first: $first, where: $where, orderBy: createdTimestamp, orderDirection: desc) {
+        transactions(
+          skip: $skip
+          first: $first
+          where: $where
+          orderBy: createdTimestamp
+          orderDirection: desc
+        ) {
           id
+          txHash
           nft {
             id
             grade
@@ -44,6 +51,9 @@ export const getListTransaction = async ({ skip, action }: QueryNft) => {
       }
     `,
     variables: filter,
+    context: {
+      endPointName: 'nft',
+    },
   })
   return response
 }
@@ -79,6 +89,9 @@ export const getListNftStatistic = async () => {
         }
       }
     `,
+    context: {
+      endPointName: 'nft',
+    },
   })
   return response
 }
@@ -87,7 +100,7 @@ export const getListNftDayData = async () => {
   const response: ListDataIntDayDateResponse = await client.query({
     query: gql`
       query nftDayDatas {
-        nftDayDatas(first: 7, orderBy: date, orderDirection: desc) {
+        nftDayDatas(first: 15, orderBy: date, orderDirection: desc) {
           id
           date
           dailyTokenLocked
@@ -98,6 +111,9 @@ export const getListNftDayData = async () => {
         }
       }
     `,
+    context: {
+      endPointName: 'nft',
+    },
   })
   return response
 }

@@ -10,6 +10,7 @@ export type DataActivitiesNftDetail = {
 // transaction
 export type ItemTransactionActivities = {
   id: number
+  txHash: string
   action: ActiveTransaction
   from: {
     id: string

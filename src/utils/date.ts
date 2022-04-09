@@ -1,10 +1,12 @@
-export const convertTimesTampToDate = (timestamp: number | string) => {
-  const date = new Date(+timestamp)
-  return {
-    year: date.getFullYear(),
-    month: prefixDate(date.getMonth() + 1),
-    date: prefixDate(date.getDate()),
-  }
+import { format, formatDistanceToNow, fromUnixTime } from 'date-fns'
+
+export const convertTimestampToDate = (timestamp: number | string): string => {
+  return (
+    format(
+      fromUnixTime(+timestamp),
+      'dd-MM-yyyy hh:mm a'
+    )
+  )
 }
 
 export const prefixDate = (time: number) => {
@@ -13,4 +15,11 @@ export const prefixDate = (time: number) => {
   } else {
     return time
   }
+}
+
+export const getLastSeen = (timestamp: number | string): string => {
+  return formatDistanceToNow(
+    new Date(Number(timestamp) * 1000),
+    { addSuffix: true }
+  )
 }

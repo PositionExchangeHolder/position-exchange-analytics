@@ -44,6 +44,7 @@ export type DataTranSaction = {
 
 export type ItemTranSaction = {
   id: string
+  txHash: string
   nft: {
     id: string
     grade: string

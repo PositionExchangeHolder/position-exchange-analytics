@@ -50,7 +50,7 @@ export const transformDataLineChartNft = (array: any) => {
 
     if (key === 'dailyTokenLocked') {
       dataTransform.push({
-        label: 'Token lock',
+        label: 'Token Locked',
         data: valueReverse,
         borderColor: '#bb6bd9',
         lineTension: 0.1,

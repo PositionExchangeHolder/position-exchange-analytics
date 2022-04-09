@@ -26,6 +26,7 @@ import {
 import { transformDataLineChartNft } from 'helper/nft/transformDataLineChart'
 import Link from 'next/link'
 import React, { useCallback, useEffect, useState } from 'react'
+
 type Props = {
   transactions: ItemTranSaction[]
   nftStatistic: ItemNftStatistic
@@ -118,8 +119,8 @@ export async function getServerSideProps() {
       (result) => result
     )
   const [nftStatisticResponse, listNftDayData] = nftData
-  const { nftStatistic } = nftStatisticResponse.data
-  const { nftDayDatas } = listNftDayData.data
+  const { nftStatistic } = nftStatisticResponse?.data
+  const { nftDayDatas } = listNftDayData?.data
 
   return {
     props: {

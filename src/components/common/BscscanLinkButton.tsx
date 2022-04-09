@@ -12,9 +12,10 @@ export enum BscscanType {
 type Props = {
   hash: string
   type: BscscanType
+  shortLink?: boolean
 }
 
-export function BscscanLinkButton({ hash, type }: Props) {
+export function BscscanLinkButton({ hash, type, shortLink = true }: Props) {
   let endpoint
   switch (type) {
     case BscscanType.TX_HASH:
@@ -32,10 +33,11 @@ export function BscscanLinkButton({ hash, type }: Props) {
   return (
     <div className="font-medium  text-xs md:text-sm dark:text-txt-primary text-gray-400 bg-light-primary dark:bg-primary flex items-center w-full h-full">
       <Link href={`${BSC_SCAN_URL}/${endpoint}`}>
-        <a target="_blank" rel="noreferrer">
+        <a target="_blank" rel="noreferrer" className="line-clamp-1">
           {type === BscscanType.ADDRESS
-            ? getAddressLabel(hash) || hashFormatter(hash)
-            : hashFormatter(hash)}
+            ? getAddressLabel(hash) || hashFormatter(hash, shortLink)
+            : hashFormatter(hash, shortLink)
+          }
         </a>
       </Link>
     </div>
