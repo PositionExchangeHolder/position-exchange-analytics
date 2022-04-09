@@ -27,6 +27,7 @@ export const getListTransaction = async ({ skip, action }: QueryNft) => {
           orderDirection: desc
         ) {
           id
+          txHash
           nft {
             id
             grade

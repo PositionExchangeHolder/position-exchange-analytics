@@ -44,9 +44,7 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
 
       const activitiesResponse: ListDataActivitiesNftResponse =
         await getListActivitiesNft({ positionNftId: nftId })
-      const {
-        positionNFT: { transactions },
-      } = activitiesResponse.data
+      const { positionNFT: { transactions } } = activitiesResponse.data
       setLoading(false)
 
       setDataTransaction(transactions)

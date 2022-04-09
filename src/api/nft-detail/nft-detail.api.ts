@@ -27,6 +27,7 @@ export const getListActivitiesNft = async ({
             orderDirection: $orderDirection
           ) {
             id
+            txHash
             action
             from {
               id

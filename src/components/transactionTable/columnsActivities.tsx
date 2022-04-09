@@ -3,16 +3,16 @@ import {
   BscscanLinkButton,
   BscscanType,
 } from 'components/common/BscscanLinkButton'
-import { format, fromUnixTime } from 'date-fns'
 import React from 'react'
 import { TableColumn } from 'react-data-table-component'
+import { getLastSeen } from 'utils/date'
 import RowData from './RowData'
 
 export const columnsActivities: TableColumn<ItemTranSaction>[] = [
   {
     name: 'Transaction',
     cell: (row) => (
-      <BscscanLinkButton hash={row?.id} type={BscscanType.TX_HASH} />
+      <BscscanLinkButton hash={row?.txHash} type={BscscanType.TX_HASH} />
     ),
     width: '270px',
   },
@@ -40,13 +40,6 @@ export const columnsActivities: TableColumn<ItemTranSaction>[] = [
     name: 'Time',
 
     width: '170px',
-    cell: (row) => (
-      <RowData
-        data={format(
-          fromUnixTime(+row?.createdTimestamp),
-          'dd-MM-yyyy hh:mm a'
-        )}
-      />
-    ),
+    cell: (row) => <RowData data={getLastSeen(+row?.createdTimestamp)} />,
   },
 ]
