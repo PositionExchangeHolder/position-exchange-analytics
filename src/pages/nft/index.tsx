@@ -26,6 +26,7 @@ import {
 import { transformDataLineChartNft } from 'helper/nft/transformDataLineChart'
 import Link from 'next/link'
 import React, { useCallback, useEffect, useState } from 'react'
+
 type Props = {
   transactions: ItemTranSaction[]
   nftStatistic: ItemNftStatistic

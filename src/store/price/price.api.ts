@@ -1,2 +1,3 @@
-export const PRICE_ENDPOINT =
-  'https://position-token-api.vercel.app/api/v1/prices'
+import { POSITION_API } from 'utils/constants'
+
+export const PRICE_ENDPOINT = `${POSITION_API}/v1/prices`
