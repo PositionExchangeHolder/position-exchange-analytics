@@ -64,6 +64,7 @@ export const getListTransactionNftGrade = async ({
           orderDirection: desc
         ) {
           id
+          txHash
           grade
           action
           nft {

@@ -6,7 +6,8 @@ import {
 import Link from 'next/link'
 import React from 'react'
 import { TableColumn } from 'react-data-table-component'
-import { getLastSeen } from 'utils/date'
+import { getLastSeen, convertTimestampToDate } from 'utils/date'
+import ToolTip from '../common/ToolTip'
 import RowData from './RowData'
 
 export const columnsTransaction: TableColumn<ItemTranSaction>[] = [
@@ -66,6 +67,12 @@ export const columnsTransaction: TableColumn<ItemTranSaction>[] = [
     name: 'Time',
     width: '200px',
     sortable: false,
-    cell: (row) => <RowData data={getLastSeen(+row?.createdTimestamp)} />,
+    cell: (row) => (
+      <RowData>
+        <ToolTip toolTipText={convertTimestampToDate(row?.createdTimestamp)}>
+          {getLastSeen(+row?.createdTimestamp)} 
+        </ToolTip>
+      </RowData>
+    ),
   },
 ]

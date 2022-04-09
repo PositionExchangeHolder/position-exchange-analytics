@@ -1,12 +1,12 @@
-import { formatDistanceToNow } from 'date-fns'
+import { format, formatDistanceToNow, fromUnixTime } from 'date-fns'
 
-export const convertTimesTampToDate = (timestamp: number | string) => {
-  const date = new Date(+timestamp)
-  return {
-    year: date.getFullYear(),
-    month: prefixDate(date.getMonth() + 1),
-    date: prefixDate(date.getDate()),
-  }
+export const convertTimestampToDate = (timestamp: number | string): string => {
+  return (
+    format(
+      fromUnixTime(+timestamp),
+      'dd-MM-yyyy hh:mm a'
+    )
+  )
 }
 
 export const prefixDate = (time: number) => {

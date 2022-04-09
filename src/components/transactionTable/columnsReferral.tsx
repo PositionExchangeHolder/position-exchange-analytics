@@ -6,9 +6,11 @@ import {
 } from 'components/common/BscscanLinkButton'
 import React from 'react'
 import { TableColumn } from 'react-data-table-component'
-import { getLastSeen } from 'utils/date'
+import { convertTimestampToDate, getLastSeen } from 'utils/date'
 import { convertBigNumberToStringNumber } from 'utils/number'
+import ToolTip from '../common/ToolTip'
 import RowData from './RowData'
+
 const caseTotalReferralsSort = (
   rowA: TopReferralRecord,
   rowB: TopReferralRecord
@@ -44,6 +46,7 @@ const caseTotalCommissionsSort = (
 
   return 0
 }
+
 const renderIconRanking = (index: number) => {
   let urlIcon = ''
   if (index === 0) {
@@ -83,7 +86,7 @@ export const columnsReferral: TableColumn<TopReferralRecord>[] = [
     name: 'Address',
     width: '440px',
     cell: (row) => (
-      <BscscanLinkButton hash={row?.id} type={BscscanType.ADDRESS} />
+      <BscscanLinkButton hash={row?.id} type={BscscanType.ADDRESS} shortLink={false} />
     ),
   },
   {
@@ -104,6 +107,12 @@ export const columnsReferral: TableColumn<TopReferralRecord>[] = [
   {
     name: 'Last Updated',
     width: '230px',
-    cell: (row) => <RowData data={getLastSeen(+row?.createdTimestamp)} />,
+    cell: (row) => (
+      <RowData>
+        <ToolTip toolTipText={convertTimestampToDate(row?.createdTimestamp)}>
+          {getLastSeen(+row?.createdTimestamp)} 
+        </ToolTip>
+      </RowData>
+    ),
   },
 ]

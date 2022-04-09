@@ -5,7 +5,8 @@ import {
 } from 'components/common/BscscanLinkButton'
 import React from 'react'
 import { TableColumn } from 'react-data-table-component'
-import { getLastSeen } from 'utils/date'
+import { convertTimestampToDate, getLastSeen } from 'utils/date'
+import ToolTip from '../common/ToolTip'
 import RowData from './RowData'
 
 export const columnsActivities: TableColumn<ItemTranSaction>[] = [
@@ -38,8 +39,13 @@ export const columnsActivities: TableColumn<ItemTranSaction>[] = [
 
   {
     name: 'Time',
-
     width: '170px',
-    cell: (row) => <RowData data={getLastSeen(+row?.createdTimestamp)} />,
+    cell: (row) => (
+      <RowData>
+        <ToolTip toolTipText={convertTimestampToDate(row?.createdTimestamp)}>
+          {getLastSeen(+row?.createdTimestamp)} 
+        </ToolTip>
+      </RowData>
+    ),
   },
 ]
