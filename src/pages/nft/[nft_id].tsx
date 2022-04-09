@@ -19,7 +19,7 @@ import { FilterTransaction } from 'api/nft/nft.api.type'
 import { useRouter } from 'next/router'
 import React, { useCallback, useEffect, useState } from 'react'
 import { getLastSeen } from 'utils/date'
-import { getNftMiningEfficiency, getNftMiningPower } from 'utils/nft'
+import { getDecomposeDate, getNftMiningEfficiency, getNftMiningPower } from 'utils/nft'
 import { convertBigNumberToStringNumber } from 'utils/number'
 
 type Props = {
@@ -58,7 +58,6 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
     setCurrentFilter(filter)
   }, [])
 
-  // TODO: lockedDays
   const {
     grade,
     burned,
@@ -66,8 +65,8 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
     owner,
     quality,
     amount,
-    // lockedDays,
-    // createdTime,
+    lockedDays,
+    createdTime,
     updatedTimestamp,
   } = positionNFTDetail
 
@@ -111,9 +110,9 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
                 Mining Efficiency:{' '}
                 {getNftMiningEfficiency(grade, quality).toFixed(2)}%
               </p>
-              {/* <p className="mt-6 dark:text-txt-sub-text-color">
-                Decompose Date: {createdTime + lockedDays}
-              </p> */}
+              <p className="mt-6 dark:text-txt-sub-text-color text-xs">
+                Decompose Date: {getDecomposeDate(createdTime, lockedDays)}
+              </p>
               <p className="mt-8 dark:text-txt-sub-text-color  text-txt-light-secondary text-xs">
                 Last seen:{' '}
                 {getLastSeen(updatedTimestamp)}

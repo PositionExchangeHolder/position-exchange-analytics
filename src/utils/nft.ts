@@ -1,4 +1,7 @@
 import { BigNumber } from 'bignumber.js'
+import { format, fromUnixTime } from 'date-fns'
+import { DAY_IN_SECONDS } from './constants'
+import { getLastSeen } from './date'
 
 export function getNftMiningEfficiency(grade: number | string, productivity: number | string): number {
   grade = Number(grade)
@@ -42,4 +45,12 @@ export function getNftMiningPower(parValue: string, grade: number | string, prod
         .toFixed(digits)
         .toString()
     )
+}
+
+export const getDecomposeDate = (createdTime: number | string, lockedDays: number | string): string => {
+  const decomposeDateTimestamp = Number(createdTime) + Number(lockedDays) * DAY_IN_SECONDS
+  const decomposeDate = format(fromUnixTime(decomposeDateTimestamp), 'dd-MM-yyyy hh:mm a')
+  const inAbout = getLastSeen(decomposeDateTimestamp)
+  
+  return `${decomposeDate} (${inAbout})`
 }

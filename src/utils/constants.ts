@@ -1,5 +1,7 @@
 export const BSC_SCAN_URL: string = 'https://bscscan.com'
 
+export const DAY_IN_SECONDS = 86400
+
 export const ADDRESS_LABELS: any = {
   '0x0000000000000000000000000000000000000000': 'Null Address (0x000...000)',
   '0x000000000000000000000000000000000000dead': 'Null Address (0x000...dEaD)',
