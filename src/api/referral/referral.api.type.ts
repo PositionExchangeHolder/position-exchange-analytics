@@ -12,3 +12,19 @@ export type DataPositionReferral = {
 export type ToTalReferralRequest = {
   positionReferralId?: string
 }
+// Top Compounders
+export type TopReferralResponse = {
+  data: DataReferrers
+}
+export type TopReferralRecord = {
+  id: string
+  totalReferralCommissions: string
+  totalReferrals: string
+  createdTimestamp: string
+  updatedTimestamp: string
+}
+export type DataReferrers = {
+  referrers: TopReferralRecord[]
+}
+
+export type TopReferralRequest = Record<string, unknown>

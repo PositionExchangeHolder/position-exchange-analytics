@@ -13,8 +13,8 @@ type ItemFilter = {
 type Props = {
   transactions: any[]
   titleTable: string
-  currentFilter: string
-  setCurrentFilter: (filter: string) => void
+  currentFilter?: string
+  setCurrentFilter?: (filter: string) => void
   listFilterTransaction?: ItemFilter[]
   columns?: TableColumn<ItemTranSaction | any>[]
   isLoading: boolean
@@ -38,10 +38,14 @@ export default function TransactionTable({
         <div className="md:flex md:flex-row gap-x-4 mt-4  flex-wrap grid-cols-3 grid">
           {listFilterTransaction &&
             listFilterTransaction?.map((itemFilter) => {
+              const onSetCurrentFilter = () => {
+                typeof setCurrentFilter === 'function' &&
+                  setCurrentFilter(itemFilter.value)
+              }
               return (
                 <div className="flex items-center" key={itemFilter.name}>
                   <input
-                    onChange={() => setCurrentFilter(itemFilter.value)}
+                    onChange={onSetCurrentFilter}
                     checked={itemFilter.value === currentFilter ? true : false}
                     name="currentFilter"
                     type="radio"
@@ -68,9 +72,11 @@ export default function TransactionTable({
           customStyles={customStylesTransactionTable}
           noHeader={true}
           theme="solarized"
-          onSort={handleSort}
+          // onSort={handleSort}
           noDataComponent={null}
         />
+        <div className="w-full border-b border-waterloo" />
+
         {isLoading && (
           <div className=" bg-slate-200 absolute w-full h-full top-0 opacity-80 flex justify-center items-center">
             <Loading />
@@ -81,8 +87,8 @@ export default function TransactionTable({
   )
 }
 
-const handleSort = (column: any, sortDirection: any) =>
-  console.log(column.selector(), sortDirection)
+// const handleSort = (column: any, sortDirection: any) =>
+//   console.log(column.selector(), sortDirection)
 
 createTheme(
   'solarized',

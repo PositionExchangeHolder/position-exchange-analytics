@@ -14,7 +14,7 @@ module.exports = {
       },
       colors: {
         //border
-        waterloo: 'rgba(120,122,145,.5)',
+        waterloo: 'rgba(120,122,145,0.5)',
         //
         // text
         'txt-catskill-white': '#E2E8F0',
@@ -92,5 +92,5 @@ module.exports = {
       '7xl': '5rem',
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/line-clamp')],
 }
