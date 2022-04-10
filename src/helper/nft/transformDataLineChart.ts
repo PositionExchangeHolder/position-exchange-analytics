@@ -1,5 +1,6 @@
 import { format, fromUnixTime } from 'date-fns'
 import { isArray } from 'lodash'
+import { convertBigNumberToNumber } from 'utils/number'
 
 export type DataLineChartNft = {
   label: string[]
@@ -49,9 +50,10 @@ export const transformDataLineChartNft = (array: any) => {
     const valueReverse = value.slice().reverse()
 
     if (key === 'dailyTokenLocked') {
+      const valueReverseToNumber = valueReverse.map((value: string) => convertBigNumberToNumber(value, 0))
       dataTransform.push({
         label: 'Token Locked',
-        data: valueReverse,
+        data: valueReverseToNumber,
         borderColor: '#bb6bd9',
         lineTension: 0.1,
         pointBorderColor: '#111',
