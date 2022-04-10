@@ -8,5 +8,5 @@ const NFT_GRADE_CIDs = [
 ]
 
 export const getNftGradeImageUrl = (grade: string | number): string => {
-  return `${NFT_GRADE_CIDs[+grade]}.ipfs.nftstorage.link`
+  return `https://ipfs.io/ipfs/${NFT_GRADE_CIDs[+grade - 1]}`
 }

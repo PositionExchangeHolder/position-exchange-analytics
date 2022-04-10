@@ -24,6 +24,7 @@ import {
   PropSSRNftGrade,
 } from 'common/nft/nft-gradle.type'
 import { CurrentInfoNft, getCurrentInfoNft } from 'helper/nft/filterDataNft'
+import { getNftGradeImageUrl } from 'helper/nft/getNftImageUrl'
 import { transformDataDoughnutChart } from 'helper/nft/transformDataDoughnutChart'
 import { useRouter } from 'next/router'
 import React, { useCallback, useEffect, useState } from 'react'
@@ -82,7 +83,7 @@ export default function Index({ positionNFTs, nftStatistic }: Props) {
               <div className="relative h-96 rounded-lg  xl:col-span-2">
                 <img
                   className="absolute inset-0 object-contain w-full h-full"
-                  src={`/grade${grade}.png`}
+                  src={getNftGradeImageUrl(grade)}
                   alt="Man using a computer"
                   loading="lazy"
                 />

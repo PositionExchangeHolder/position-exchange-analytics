@@ -4,6 +4,9 @@ const nextConfig = {
   experimental: {
     scrollRestoration: true,
   },
+  images: {
+    domains: ['ipfs.io']
+  }
 }
 
 module.exports = nextConfig

@@ -16,6 +16,7 @@ import {
   getNftDetail,
 } from 'api/nft-detail/nft-detail.api'
 import { FilterTransaction } from 'api/nft/nft.api.type'
+import { getNftGradeImageUrl } from 'helper/nft/getNftImageUrl'
 import { useRouter } from 'next/router'
 import React, { useCallback, useEffect, useState } from 'react'
 import { getLastSeen } from 'utils/date'
@@ -78,7 +79,7 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
             <div className="relative h-96 rounded-lg  ">
               <img
                 className="absolute inset-0 object-contain w-full h-full"
-                src={`/grade${grade}.png`}
+                src={getNftGradeImageUrl(grade)}
                 alt="Man using a computer"
                 loading="lazy"
               />
