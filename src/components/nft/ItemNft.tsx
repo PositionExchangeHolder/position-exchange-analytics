@@ -1,3 +1,4 @@
+import { getNftGradeImageUrl } from 'helper/nft/getNftImageUrl'
 import { TypeItemNft } from 'helper/nft/transferDataTotalNft'
 import Image from 'next/image'
 import React from 'react'
@@ -25,7 +26,7 @@ export default function ItemNft({ item }: Props) {
         </div>
       </div>
       <Image
-        src={`/grade${item.grade}.png`}
+        src={getNftGradeImageUrl(item.grade)}
         alt="logo"
         width={90}
         height={120}
