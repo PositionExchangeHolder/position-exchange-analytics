@@ -5,7 +5,6 @@ import { ChevronDownIcon } from '@heroicons/react/solid'
 import { nft, PopoverType, resources } from 'common/header/header.type'
 import Link from 'next/link'
 import { Fragment } from 'react'
-import ChangeThemes from '../changeThemes'
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')

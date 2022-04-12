@@ -41,11 +41,11 @@ export default function Pagination({ currentItem, setNextItem, skip }: Props) {
   )
 }
 
-const renderEntries = (entries: number, skip: number) => {
-  // if (entries < skip) {
-  //   return `Showing 1 to ${skip} of 9999 Entries`
-  // } else {
-  //   return `Showing ${entries} to ${skip + entries} of 9999 Entries`
-  // }
-  return `Showing ${entries} - ${skip + entries} out of 180`
-}
+// const renderEntries = (entries: number, skip: number) => {
+//   if (entries < skip) {
+//     return `Showing 1 to ${skip} of 9999 Entries`
+//   } else {
+//     return `Showing ${entries} to ${skip + entries} of 9999 Entries`
+//   }
+//   return `Showing ${entries} - ${skip + entries} out of 180`
+// }
