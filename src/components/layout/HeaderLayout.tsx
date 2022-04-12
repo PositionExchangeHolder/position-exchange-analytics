@@ -162,11 +162,11 @@ export default function HeaderLayout() {
               </Popover>
             </Popover.Group>
           </div>
-          <div className="hidden lg:w-full  md:flex flex-row justify-end items-center  ">
+          {/* <div className="hidden lg:w-full  md:flex flex-row justify-end items-center  ">
             <div className="w-8 h-8">
               <ChangeThemes />
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -200,11 +200,11 @@ export default function HeaderLayout() {
                     </Popover.Button>
                   </div>
                 </div>
-                <div className="px-5 w-full rounded-sm mt-4 bg-white dark:bg-primary  dark:drop-shadow-[0_1px_1px_#1B2431] drop-shadow-[0_1px_2px_#F1F1F1] py-4 ring-1 ring-neutral-300 ring-opacity-5">
+                {/* <div className="px-5 w-full rounded-sm mt-4 bg-white dark:bg-primary  dark:drop-shadow-[0_1px_1px_#1B2431] drop-shadow-[0_1px_2px_#F1F1F1] py-4 ring-1 ring-neutral-300 ring-opacity-5">
                   <div className="w-6 h-6">
                     <ChangeThemes />
                   </div>
-                </div>
+                </div> */}
                 <div className="mt-6  px-5">
                   <nav className="grid gap-y-8">
                     {nft.map((item) => (

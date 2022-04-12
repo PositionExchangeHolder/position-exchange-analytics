@@ -15,9 +15,9 @@ export default function Pagination({ currentItem, setNextItem, skip }: Props) {
   }
   return (
     <div className="px-5 pt-5 pb-8 dark:border-t  dark:border-0 border flex flex-col items-end bg-light-primary dark:bg-secondary border-b dark:border-b-gray-400  ">
-      <span className="text-xs xs:text-sm dark:text-txt-catskill-white text-txt-light-txt-primary mb-4">
+      {/* <span className="text-xs xs:text-sm dark:text-txt-catskill-white text-txt-light-txt-primary mb-4">
         {renderEntries(currentItem, skip)}
-      </span>
+      </span> */}
       <div className="inline-flex mt-2 xs:mt-0 gap-x-1">
         <button
           disabled={currentItem === 0 ? true : false}
