@@ -1,7 +1,5 @@
 import { ArrowDownIcon } from '@heroicons/react/outline'
 import { ItemTranSaction } from 'api/nft/nft.api.type'
-import { TopReferralRecord } from 'api/referral/referral.api.type'
-import { getWidthHeader } from 'helper/tableTransaction/getWidthHeader'
 import { isArray } from 'lodash'
 import React from 'react'
 import DataTable, { createTheme, TableColumn } from 'react-data-table-component'
@@ -35,7 +33,7 @@ export default function TransactionTable({
   isLoading,
   showCustomHeader,
 }: Props) {
-  const headerWidth = getWidthHeader<TopReferralRecord>(columns)
+  // const headerWidth = getWidthHeader<TopReferralRecord>(columns)
   return (
     <div>
       <div className="w-full pt-3 pb-2 pl-6  border dark:border-0 bg-light-primary dark:bg-secondary border-b dark:border-b-gray-400 ">
@@ -72,8 +70,7 @@ export default function TransactionTable({
       <div className="relative  min-h-120 border dark:border-0 ">
         {showCustomHeader && (
           <div
-            style={{ width: headerWidth }}
-            className={`flex flex-row  h-[3.25rem]  items-center border-b border-[#787a9180]`}
+            className={`flex flex-row h-[3.25rem]  items-center border-b border-[#787a9180]`}
           >
             {isArray(columns) && showCustomHeader && (
               <CustomHeaderTableTransaction columns={columns} />
