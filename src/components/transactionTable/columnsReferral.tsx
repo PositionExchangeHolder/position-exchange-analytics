@@ -11,42 +11,6 @@ import { convertBigNumberToStringNumber } from 'utils/number'
 import ToolTip from '../common/ToolTip'
 import RowData from './RowData'
 
-const caseTotalReferralsSort = (
-  rowA: TopReferralRecord,
-  rowB: TopReferralRecord
-) => {
-  const a = +rowA.totalReferrals
-  const b = +rowB.totalReferrals
-
-  if (a > b) {
-    return 1
-  }
-
-  if (b > a) {
-    return -1
-  }
-
-  return 0
-}
-
-const caseTotalCommissionsSort = (
-  rowA: TopReferralRecord,
-  rowB: TopReferralRecord
-) => {
-  const a = +rowA.totalReferralCommissions
-  const b = +rowB.totalReferralCommissions
-
-  if (a > b) {
-    return 1
-  }
-
-  if (b > a) {
-    return -1
-  }
-
-  return 0
-}
-
 const renderIconRanking = (index: number) => {
   let urlIcon = ''
   if (index === 0) {
@@ -86,7 +50,11 @@ export const columnsReferral: TableColumn<TopReferralRecord>[] = [
     name: 'Address',
     width: '440px',
     cell: (row) => (
-      <BscscanLinkButton hash={row?.id} type={BscscanType.ADDRESS} shortLink={false} />
+      <BscscanLinkButton
+        hash={row?.id}
+        type={BscscanType.ADDRESS}
+        shortLink={false}
+      />
     ),
   },
   {
@@ -94,14 +62,19 @@ export const columnsReferral: TableColumn<TopReferralRecord>[] = [
     cell: (row) => <RowData data={row.totalReferrals} />,
     width: '170px',
     sortable: true,
-    sortFunction: caseTotalReferralsSort,
   },
   {
     name: 'Total Commissions',
-    cell: (row) => <RowData data={convertBigNumberToStringNumber(row.totalReferralCommissions, 0) + ' POSI'} />,
+    cell: (row) => (
+      <RowData
+        data={
+          convertBigNumberToStringNumber(row.totalReferralCommissions, 0) +
+          ' POSI'
+        }
+      />
+    ),
     width: '250px',
     sortable: true,
-    sortFunction: caseTotalCommissionsSort,
   },
 
   {
@@ -110,7 +83,7 @@ export const columnsReferral: TableColumn<TopReferralRecord>[] = [
     cell: (row) => (
       <RowData>
         <ToolTip toolTipText={convertTimestampToDate(row?.createdTimestamp)}>
-          {getLastSeen(+row?.createdTimestamp)} 
+          {getLastSeen(+row?.createdTimestamp)}
         </ToolTip>
       </RowData>
     ),

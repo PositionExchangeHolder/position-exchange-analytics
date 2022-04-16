@@ -1,10 +1,14 @@
 import { ArrowDownIcon } from '@heroicons/react/outline'
 import { ItemTranSaction } from 'api/nft/nft.api.type'
+import { TopReferralRecord } from 'api/referral/referral.api.type'
+import { getWidthHeader } from 'helper/tableTransaction/getWidthHeader'
+import { isArray } from 'lodash'
 import React from 'react'
 import DataTable, { createTheme, TableColumn } from 'react-data-table-component'
 import { customStylesTransactionTable } from 'styles/customStylesTransactionTable'
 import Loading from '../loading/Loading'
 import { columnsTransaction } from './columnsTransaction'
+import CustomHeaderTableTransaction from './CustomHeaderTableTransaction'
 type ItemFilter = {
   name: string
   value: string
@@ -18,6 +22,7 @@ type Props = {
   listFilterTransaction?: ItemFilter[]
   columns?: TableColumn<ItemTranSaction | any>[]
   isLoading: boolean
+  showCustomHeader?: boolean
 }
 
 export default function TransactionTable({
@@ -28,7 +33,10 @@ export default function TransactionTable({
   listFilterTransaction,
   columns = columnsTransaction,
   isLoading,
+  showCustomHeader,
 }: Props) {
+  const headerWidth = getWidthHeader<TopReferralRecord>(columns)
+  console.log('headerWidth', headerWidth)
   return (
     <div>
       <div className="w-full pt-3 pb-2 pl-6  border dark:border-0 bg-light-primary dark:bg-secondary border-b dark:border-b-gray-400 ">
@@ -62,7 +70,17 @@ export default function TransactionTable({
             })}
         </div>
       </div>
-      <div className="relative  min-h-120 border dark:border-0">
+      <div className="relative  min-h-120 border dark:border-0 ">
+        {showCustomHeader && (
+          <div
+            className={`flex flex-row w-[${headerWidth}px] h-[3.25rem]  items-center border-b border-[#787a9180]`}
+          >
+            {isArray(columns) && showCustomHeader && (
+              <CustomHeaderTableTransaction columns={columns} />
+            )}
+          </div>
+        )}
+
         <DataTable
           sortIcon={<ArrowDownIcon />}
           responsive={true}
@@ -72,11 +90,11 @@ export default function TransactionTable({
           customStyles={customStylesTransactionTable}
           noHeader={true}
           theme="solarized"
-          // onSort={handleSort}
           noDataComponent={null}
+          noTableHead={showCustomHeader}
         />
-        <div className="w-full border-b border-waterloo" />
 
+        <div className="w-full border-b border-waterloo" />
         {isLoading && (
           <div className=" bg-slate-200 absolute w-full h-full top-0 opacity-80 flex justify-center items-center">
             <Loading />

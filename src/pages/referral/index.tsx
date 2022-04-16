@@ -18,11 +18,6 @@ export default function Referral() {
   const [referralsRanker, setReferralsRanker] = useState<TopReferralRecord[]>()
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
-  // const onFetchReferrals = async () => {
-  //   const response: TopReferralResponse = await getReferralResponse()
-  //   setReferralsRanker(response.data.referrers)
-  // }
-
   useEffect(() => {
     initialFetchData()
   }, [])
@@ -56,6 +51,7 @@ export default function Referral() {
           titleTable={'LEADERBOARD'}
           isLoading={isLoading}
           columns={columnsReferral}
+          showCustomHeader
         />
       </div>
     </div>
