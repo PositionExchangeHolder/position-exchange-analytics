@@ -1,6 +1,7 @@
 import { gql } from '@apollo/client'
 import client from 'api/apolloInstance'
 import {
+  queryGetTopReferralResponse,
   TopReferralResponse,
   ToTalReferralRequest,
   ToTalReferralResponse,
@@ -26,7 +27,9 @@ export const getToTalReferralResponse = async ({}: ToTalReferralRequest) => {
   return response
 }
 
-export const getReferralResponse = async () => {
+export const getTopReferralResponse = async ({
+  orderBy = 'totalReferrals',
+}: queryGetTopReferralResponse) => {
   const response: TopReferralResponse = await client.query({
     query: gql`
       query Referrers(
@@ -49,7 +52,7 @@ export const getReferralResponse = async () => {
     `,
     variables: {
       first: 10,
-      orderBy: 'totalReferrals',
+      orderBy: orderBy,
       orderDirection: 'desc',
     },
     context: {

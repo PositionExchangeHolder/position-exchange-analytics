@@ -1,9 +1,11 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit'
-import priceSlice from './price/priceSlice'
+import priceReducer from './price/priceSlice'
+import referralsRankerReducer from './referral/referralSlice'
 
 export const store = configureStore({
   reducer: {
-    prices: priceSlice,
+    prices: priceReducer,
+    referralsRanker: referralsRankerReducer,
   },
 })
 

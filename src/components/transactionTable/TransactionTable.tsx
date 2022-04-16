@@ -15,7 +15,7 @@ type ItemFilter = {
 }
 
 type Props = {
-  transactions: any[]
+  transactions: any
   titleTable: string
   currentFilter?: string
   setCurrentFilter?: (filter: string) => void
@@ -36,7 +36,6 @@ export default function TransactionTable({
   showCustomHeader,
 }: Props) {
   const headerWidth = getWidthHeader<TopReferralRecord>(columns)
-  console.log('headerWidth', headerWidth)
   return (
     <div>
       <div className="w-full pt-3 pb-2 pl-6  border dark:border-0 bg-light-primary dark:bg-secondary border-b dark:border-b-gray-400 ">
@@ -104,9 +103,6 @@ export default function TransactionTable({
     </div>
   )
 }
-
-// const handleSort = (column: any, sortDirection: any) =>
-//   console.log(column.selector(), sortDirection)
 
 createTheme(
   'solarized',

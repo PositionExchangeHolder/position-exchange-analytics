@@ -27,4 +27,13 @@ export type DataReferrers = {
   referrers: TopReferralRecord[]
 }
 
+export type TopDataReferrers = {
+  topReferralsRanker: TopReferralRecord[]
+  orderBy: 'totalReferralCommissions' | 'totalReferrals'
+}
+
 export type TopReferralRequest = Record<string, unknown>
+
+export type queryGetTopReferralResponse = {
+  orderBy: 'totalReferralCommissions' | 'totalReferrals'
+}

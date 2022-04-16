@@ -1,41 +1,49 @@
 import TotalReferrals from '@/components/referral/TotalReferrals'
+import { columnsReferral } from '@/components/transactionTable/columnsReferral'
+import TransactionTable from '@/components/transactionTable/TransactionTable'
 import {
-  getReferralResponse,
+  getTopReferralResponse,
   getToTalReferralResponse,
 } from 'api/referral/referral.api'
 import {
   PositionReferral,
-  ToTalReferralResponse,
   TopReferralResponse,
-  TopReferralRecord,
+  ToTalReferralResponse,
 } from 'api/referral/referral.api.type'
 import React, { useEffect, useState } from 'react'
-import TransactionTable from '@/components/transactionTable/TransactionTable'
-import { columnsReferral } from '@/components/transactionTable/columnsReferral'
+import { useAppDispatch, useAppSelector } from 'store/hooks'
+import {
+  ReferralsRankerOrderBySelector,
+  ReferralsRankerSelector,
+  setDataTopReferralsRanker,
+} from 'store/referral/referralSlice'
 
 export default function Referral() {
   const [toTalReferral, setToTalReferral] = useState<PositionReferral>()
-  const [referralsRanker, setReferralsRanker] = useState<TopReferralRecord[]>()
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const referralsRanker = useAppSelector(ReferralsRankerSelector)
+  const orderBy = useAppSelector(ReferralsRankerOrderBySelector)
+
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     initialFetchData()
-  }, [])
+  }, [orderBy])
 
   const initialFetchData = async () => {
     try {
       if (isLoading) return
       setIsLoading(true)
       const onGetToTalReferralResponse = getToTalReferralResponse({})
-      const ongGetReferralResponse = getReferralResponse()
+      const onGetTopReferralResponse = getTopReferralResponse({ orderBy })
       const dataReferralResponse: [ToTalReferralResponse, TopReferralResponse] =
         await Promise.all([
           onGetToTalReferralResponse,
-          ongGetReferralResponse,
+          onGetTopReferralResponse,
         ]).then((result) => result)
       const [dataPositionReferral, dataReferral] = dataReferralResponse
       setToTalReferral(dataPositionReferral.data.positionReferral)
-      setReferralsRanker(dataReferral.data.referrers)
+      dispatch(setDataTopReferralsRanker(dataReferral.data.referrers))
     } catch (error) {
     } finally {
       setIsLoading(false)
