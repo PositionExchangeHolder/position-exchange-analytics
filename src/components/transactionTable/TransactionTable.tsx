@@ -72,7 +72,8 @@ export default function TransactionTable({
       <div className="relative  min-h-120 border dark:border-0 ">
         {showCustomHeader && (
           <div
-            className={`flex flex-row w-[${headerWidth}px] h-[3.25rem]  items-center border-b border-[#787a9180]`}
+            style={{ width: headerWidth }}
+            className={`flex flex-row  h-[3.25rem]  items-center border-b border-[#787a9180]`}
           >
             {isArray(columns) && showCustomHeader && (
               <CustomHeaderTableTransaction columns={columns} />
