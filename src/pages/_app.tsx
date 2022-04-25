@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <StoreProvider>
-      <ThemeProvider enableSystem={true} attribute="class">
+      <ThemeProvider forcedTheme="dark" enableSystem={true} attribute="class">
         <div className="dark:bg-primary bg-light-primary flex w-full min-h-screen">
           <Head>
             <meta
@@ -41,7 +41,6 @@ function MyApp({ Component, pageProps }: AppProps) {
           </div>
         </div>
       </ThemeProvider>
-
     </StoreProvider>
   )
 }
