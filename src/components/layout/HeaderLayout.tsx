@@ -93,9 +93,9 @@ export default function HeaderLayout() {
                 </a>
               </Link>
 
-              <Link href={'/yield'}>
+              <Link href={'/address'}>
                 <a className="text-base font-medium text-txt-light-txt-primary dark:text-txt-primary dark:hover:bg-mineShaft-30 hover:bg-light-primary-hv px-4 py-2 rounded-md">
-                  Yeild
+                  Address
                 </a>
               </Link>
               <Link href={'/referral'}>
@@ -236,12 +236,12 @@ export default function HeaderLayout() {
                     </a>
                   </Link>
 
-                  <Link href="/yield">
+                  <Link href="/address">
                     <a
                       onClick={close}
                       className="text-base font-medium text-txt-light-txt-primary dark:text-txt-primary rounded-md hover:bg-mineShaft-30  active:bg-mineShaft-30 px-4 py-2 "
                     >
-                      Yeild
+                      Address
                     </a>
                   </Link>
 
