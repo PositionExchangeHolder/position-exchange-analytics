@@ -58,7 +58,7 @@ export default function TransactionTable({
                   />
                   <label
                     htmlFor="push-everything"
-                    className="ml-3 block text-tiny-xs  lg:text-SM font-medium dark:text-txt-primary text-txt-secondary "
+                    className="ml-3 block text-tiny-xs  lg:text-sm font-medium dark:text-txt-primary text-txt-secondary "
                   >
                     {itemFilter.name}
                   </label>
