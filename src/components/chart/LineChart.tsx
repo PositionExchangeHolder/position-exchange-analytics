@@ -12,9 +12,10 @@ type Option<T extends OptionValue> = {
 
 type Props<T extends OptionValue> = {
   data: Option<T>
+  showLabel?: boolean
 }
 export default function LineChart<T extends OptionValue>(props: Props<T>) {
-  const { data } = props
+  const { data, showLabel = true } = props
   return (
     <Chart
       options={{
@@ -27,6 +28,7 @@ export default function LineChart<T extends OptionValue>(props: Props<T>) {
             },
             position: 'bottom',
             align: 'start',
+            display: showLabel,
           },
         },
       }}

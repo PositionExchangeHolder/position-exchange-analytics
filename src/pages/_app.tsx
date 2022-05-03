@@ -12,7 +12,9 @@ import TopBarProgress from 'react-topbar-progress-indicator'
 import '../styles/globals.css'
 
 function getLibrary(provider: ExternalProvider) {
-  return new Web3Provider(provider) // this will vary according to whether you use e.g. ethers or web3.js
+  const library = new Web3Provider(provider)
+  library.pollingInterval = 12000
+  return library // this will vary according to whether you use e.g. ethers or web3.js
 }
 
 function MyApp({ Component, pageProps }: AppProps) {

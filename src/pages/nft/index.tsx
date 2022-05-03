@@ -63,7 +63,7 @@ export default function Index({ nftStatistic, nftDayDatas }: Props) {
     }
     fetchDataTransaction()
   }, [currentFilter, skipPage])
-
+  console.log('dataNftLineChart', dataNftLineChart)
   return (
     <main className="relative bg-light-primary dark:bg-primary w-full  mt-10  md:mt-16   px-6  xl:px-0">
       <div className="grid-cols-1   gap-x-6 grid   md:grid-cols-2">
