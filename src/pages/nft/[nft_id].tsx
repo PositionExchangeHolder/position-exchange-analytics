@@ -20,7 +20,11 @@ import { getNftGradeImageUrl } from 'helper/nft/getNftImageUrl'
 import { useRouter } from 'next/router'
 import React, { useCallback, useEffect, useState } from 'react'
 import { getLastSeen } from 'utils/date'
-import { getDecomposeDate, getNftMiningEfficiency, getNftMiningPower } from 'utils/nft'
+import {
+  getDecomposeDate,
+  getNftMiningEfficiency,
+  getNftMiningPower,
+} from 'utils/nft'
 import { convertBigNumberToStringNumber } from 'utils/number'
 
 type Props = {
@@ -45,7 +49,9 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
 
       const activitiesResponse: ListDataActivitiesNftResponse =
         await getListActivitiesNft({ positionNftId: nftId })
-      const { positionNFT: { transactions } } = activitiesResponse.data
+      const {
+        positionNFT: { transactions },
+      } = activitiesResponse.data
       setLoading(false)
 
       setDataTransaction(transactions)
@@ -115,8 +121,7 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
                 Decompose Date: {getDecomposeDate(createdTime, lockedDays)}
               </p>
               <p className="mt-8 dark:text-txt-sub-text-color  text-txt-light-secondary text-xs">
-                Last seen:{' '}
-                {getLastSeen(updatedTimestamp)}
+                Last seen: {getLastSeen(updatedTimestamp)}
               </p>
             </div>
           </div>

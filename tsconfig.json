@@ -24,6 +24,7 @@
     "**/*.ts",
     "**/*.tsx",
     "src/pages/nft/grade/[slug].tsx",
+    "src/components/wallet/IconWallet.js"
   ],
   "exclude": ["node_modules"]
 }

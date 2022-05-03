@@ -5,6 +5,7 @@ import { ChevronDownIcon } from '@heroicons/react/solid'
 import { nft, PopoverType, resources } from 'common/header/header.type'
 import Link from 'next/link'
 import { Fragment } from 'react'
+import ButtonConnectMetamask from '../wallet/ButtonConnectMetamask'
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
@@ -166,6 +167,9 @@ export default function HeaderLayout() {
               <ChangeThemes />
             </div>
           </div> */}
+          <div className="hidden lg:w-full  md:flex flex-row justify-end items-center  ">
+            <ButtonConnectMetamask />
+          </div>
         </div>
       </div>
 
@@ -204,6 +208,10 @@ export default function HeaderLayout() {
                     <ChangeThemes />
                   </div>
                 </div> */}
+
+                <div className="px-5 w-full rounded-sm mt-4 bg-white dark:bg-primary  dark:drop-shadow-[0_1px_1px_#1B2431] drop-shadow-[0_1px_2px_#F1F1F1] py-4 ring-1 ring-neutral-300 ring-opacity-5">
+                  <ButtonConnectMetamask />
+                </div>
                 <div className="mt-6  px-5">
                   <nav className="grid gap-y-8">
                     {nft.map((item) => (
