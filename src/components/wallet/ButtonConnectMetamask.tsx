@@ -6,7 +6,8 @@ import React, { Fragment, useCallback } from 'react'
 import { IconCoinbase, IconMetamask, IconWalletConnect } from './IconWallet'
 
 export default function ButtonConnectMetamask() {
-  const { active, activate, deactivate } = useWeb3React()
+  const { active, activate, deactivate, chainId } = useWeb3React()
+  console.log('chainId', chainId)
 
   const onConnectMetaMaskWallet = useCallback(async () => {
     await setTimeout(() => {
