@@ -1,11 +1,13 @@
 import BalanceWallet from '@/components/address/BalanceWallet'
 import SocialButton from '@/components/address/SocialButton'
+import StakingListItem from '@/components/address/StakingListItem'
 import { DoughnutChart } from '@/components/chart/DoughnutChart'
 import LineChart from '@/components/chart/LineChart'
 import PnLChart from '@/components/CusTomPnLChart/PnLChart'
 import { fakeDataLineChart, getUserInfoBalance } from 'api/address/address.api'
 import { DataBalancerResponse } from 'api/address/address.api.type'
 import { transformDataWalletDoughnutChart } from 'helper/nft/transformDataWalletDoughnutChart'
+import { isEmpty } from 'lodash'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
@@ -15,6 +17,7 @@ export default function Account() {
   const router = useRouter()
   const account: string = (router?.query?.account as string) || ''
   const [balance, setBalance] = useState<DataBalancerResponse>()
+  console.log('balance', balance)
 
   // const infoWallet = [
   //   +convertBigNumberToStringNumber(
@@ -31,13 +34,14 @@ export default function Account() {
   const dataDoughnutWalletChart = transformDataWalletDoughnutChart(infoWallet)
 
   useEffect(() => {
+    if (isEmpty(account)) return
+
     const fetchBalancer = async () => {
       const data: DataBalancerResponse = await getUserInfoBalance(account)
-      console.log('data', data)
       setBalance(data)
     }
     fetchBalancer()
-  }, [])
+  }, [account])
 
   return (
     <main className="relative bg-light-primary dark:bg-primary w-full  mt-10  md:mt-16   px-6  xl:px-0">
@@ -90,6 +94,7 @@ export default function Account() {
           </div>
         </div>
       </div>
+      <StakingListItem stakingPoolBalances={balance?.stakingPoolBalances} />
     </main>
   )
 }

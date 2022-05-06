@@ -5,7 +5,11 @@ import { useAppSelector } from 'store/hooks'
 import { convertBigNumberToStringNumber, percentage } from 'utils/number'
 import ValueNftInfo from './ValueNftInfo'
 import { selectPrice } from 'store/price/priceSlice'
-import { calculateWorthOfToken, formatMoney, getPosiBusdPrice } from 'utils/price'
+import {
+  calculateWorthOfToken,
+  formatMoney,
+  getPosiBusdPrice,
+} from 'utils/price'
 
 type Props = {
   nftStatistic: ItemNftStatistic
@@ -22,7 +26,7 @@ export default function CurrentValueLock({ nftStatistic }: Props) {
   } = nftStatistic
   const { prices } = useAppSelector(selectPrice)
   const busdPrice = getPosiBusdPrice(prices)
-  
+
   return (
     <div className="rounded-md dark:bg-secondary dark:border-0 border px-4 lg:px-6 pt-4 w-full ">
       <p className="font-medium dark:text-txt-white text-txt-light-txt-primary text-xs lg:text-base">

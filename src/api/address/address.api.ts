@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { DataLineChartNft } from 'helper/nft/transformDataLineChart'
 import { BALANCER_ENDPOINT } from 'utils/constants'
 import { BalancerResponse } from './address.api.type'
 
@@ -9,7 +10,7 @@ export const getUserInfoBalance = async (address: string) => {
   return response?.data?.data
 }
 
-export const fakeDataLineChart = {
+export const fakeDataLineChart: DataLineChartNft = {
   label: [
     '19-04',
     '20-04',

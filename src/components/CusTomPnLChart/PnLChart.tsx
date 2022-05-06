@@ -71,10 +71,8 @@ export default function PnLChart() {
       curve="cardinal"
       layers={['mesh', 'areas', 'grid', 'lines', 'slices', 'crosshair']}
       tooltip={(x) => {
-        console.log('x', x)
         return (
           <div className="bg-slate-50 rounded-md px-4 py-2">
-            {/* <div className="text-txt-light-txt-primary">{`${x?.point?.data?.x} - ${x?.point?.data?.y}`}</div> */}
             <div className="flex flex-row font-medium  text-xs  md:text-base items-center  ">
               <div className="text-txt-secondary">PnL: </div>
               {x?.point?.color === '#61CDBB' ? (
