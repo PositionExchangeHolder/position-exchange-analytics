@@ -2,6 +2,7 @@ import BalanceWallet from '@/components/address/BalanceWallet'
 import SocialButton from '@/components/address/SocialButton'
 import { DoughnutChart } from '@/components/chart/DoughnutChart'
 import LineChart from '@/components/chart/LineChart'
+import PnLChart from '@/components/CusTomPnLChart/PnLChart'
 import { fakeDataLineChart, getUserInfoBalance } from 'api/address/address.api'
 import { DataBalancerResponse } from 'api/address/address.api.type'
 import { transformDataWalletDoughnutChart } from 'helper/nft/transformDataWalletDoughnutChart'
@@ -73,8 +74,20 @@ export default function Account() {
             <DoughnutChart data={dataDoughnutWalletChart} />
           </div>
         </div>
-        <div className="h-80 mt-12 md:mt-0  w-full  col-span-2">
-          <LineChart data={fakeDataLineChart} showLabel={false} />
+        <div className="h-80 md:mt-0 mt-12  w-full  col-span-2 bg-secondary flex  flex-col justify-between ">
+          <div className="flex flex-row">
+            <div className="flex flex-row font-medium  text-xs  md:text-base h-16 items-center  px-6  ">
+              <div>PnL: </div>
+              <div className="text-red-500 ml-2">{'-$0.88'}</div>
+            </div>
+            <div className="flex flex-row font-medium  text-xs  md:text-base h-16 items-center  px-6  ">
+              <div>All-time ROI: </div>
+              <div className="text-red-500 ml-2">{'-11%'}</div>
+            </div>
+          </div>
+          <div className="h-64 py-2 ">
+            <PnLChart />
+          </div>
         </div>
       </div>
     </main>
