@@ -34,13 +34,14 @@ export default function Account() {
   const dataDoughnutWalletChart = transformDataWalletDoughnutChart(infoWallet)
 
   useEffect(() => {
-    if (isEmpty(account)) return
-
-    const fetchBalancer = async () => {
-      const data: DataBalancerResponse = await getUserInfoBalance(account)
-      setBalance(data)
-    }
-    fetchBalancer()
+    try {
+      if (isEmpty(account)) return
+      const fetchBalancer = async () => {
+        const data: DataBalancerResponse = await getUserInfoBalance(account)
+        setBalance(data)
+      }
+      fetchBalancer()
+    } catch (error) {}
   }, [account])
 
   return (

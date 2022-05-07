@@ -26,14 +26,14 @@ export default function StakingListItem({
                   <div className=" flex gap-x-2 justify-center mt-4">
                     <button
                       type="button"
-                      className="py-2.5 px-5 mr-2  mb-2 text-sm font-medium text-white bg-gray-800 hover:bg-gray-900 rounded-lg "
+                      className=" py-2.5 px-5 mr-2  mb-2 text-sm font-medium text-white bg-neutral-800 hover:bg-neutral-700 rounded-lg "
                     >
                       UnStake
                     </button>
 
                     <button
                       type="button"
-                      className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-white bg-emerald-800 hover:bg-emerald-900 rounded-lg "
+                      className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-white bg-neutral-800 hover:bg-neutral-700 rounded-lg "
                     >
                       Harvest
                     </button>
