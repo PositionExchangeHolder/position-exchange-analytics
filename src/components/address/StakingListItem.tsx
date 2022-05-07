@@ -8,7 +8,7 @@ export default function StakingListItem({
 }) {
   return (
     <div className="flex flex-col m-auto mt-12 bg-secondary rounded-md ">
-      <div className="flex overflow-x-scroll py-10 ">
+      <div className="flex overflow-x-scroll py-10 scrollbar-hide ">
         <div className="flex flex-nowrap md:ml-10 lg:ml-20  ">
           {stakingPoolBalances?.map((item) => {
             return (
