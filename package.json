@@ -39,6 +39,7 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
     "styled-components": "^5.3.3",
+    "tailwind-scrollbar-hide": "^1.1.7",
     "web3": "^1.7.1"
   },
   "devDependencies": {
