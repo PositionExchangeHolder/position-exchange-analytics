@@ -75,14 +75,14 @@ export default function Index({ positionNFTs, nftStatistic }: Props) {
   }, [currentFilter, skipPage, grade])
 
   return (
-    <main className="relative bg-light-primary dark:bg-primary w-full  mt-10  md:mt-16 px-6  xl:px-0">
+    <main className="relative px-6 mt-10 w-full  bg-light-primary  dark:bg-primary md:mt-16  xl:px-0">
       <section>
-        <div className="max-w-screen-xl  mx-auto ">
-          <div className="grid grid-cols-1 gap-8 md:gap-0 md:grid-cols-2 xl:grid-cols-3 lg:gap-12 ">
+        <div className="mx-auto  max-w-screen-xl ">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-0 lg:gap-12 xl:grid-cols-3 ">
             <div>
               <div className="relative h-96 rounded-lg  xl:col-span-2">
                 <img
-                  className="absolute inset-0 object-contain w-full h-full"
+                  className="object-contain absolute inset-0 w-full h-full"
                   src={getNftGradeImageUrl(grade)}
                   alt="Man using a computer"
                   loading="lazy"
@@ -90,21 +90,21 @@ export default function Index({ positionNFTs, nftStatistic }: Props) {
               </div>
             </div>
             <div className="mt-4 ">
-              <p className="dark:text-txt-catskill-white text-txt-light-txt-primary font-medium text-xl ">
+              <p className="text-xl font-medium text-txt-light-txt-primary dark:text-txt-catskill-white ">
                 Grade: {grade}
               </p>
-              <p className="dark:text-txt-sub-text-color dark:font-medium md:text-sm md:mt-12 mt-6 text-xs">
+              <p className="mt-6 text-xs dark:font-medium dark:text-txt-sub-text-color md:mt-12 md:text-sm">
                 Total Minted: {dataCurrentInfoNft.totalMinted}
               </p>
-              <p className="dark:text-txt-sub-text-color dark:font-medium md:text-sm md:mt-12 mt-4 text-xs">
+              <p className="mt-4 text-xs dark:font-medium dark:text-txt-sub-text-color md:mt-12 md:text-sm">
                 Total Burned: {dataCurrentInfoNft.totalBurned}
               </p>
-              <p className="dark:text-txt-sub-text-color  text-txt-light-secondary font-medium md:text-sm md:mt-8 mt-4 text-xs">
+              <p className="mt-4  text-xs font-medium text-txt-light-secondary dark:text-txt-sub-text-color md:mt-8 md:text-sm">
                 @SoftSkillNFT
               </p>
             </div>
             <div className="px-6 md:mt-10 lg:mt-0">
-              <div className="mt-4 md:mt-0   md:w-80 sm:h-80 lg:w-96 lg:h-96">
+              <div className="mt-4 sm:h-80   md:mt-0 md:w-80 lg:w-96 lg:h-96">
                 <DoughnutChart data={dataDoughnutChart} />
               </div>
             </div>

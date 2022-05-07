@@ -44,52 +44,52 @@ export default function Account() {
   }, [account])
 
   return (
-    <main className="relative bg-light-primary dark:bg-primary w-full  mt-10  md:mt-16   px-6  xl:px-0">
+    <main className="relative px-6 mt-10 w-full  bg-light-primary  dark:bg-primary   md:mt-16  xl:px-0">
       <div className="flex justify-center">
         <div className="flex flex-col  items-center">
-          <div className=" rounded-full bg-primary-1 w-32 h-32 flex items-center justify-center drop-shadow-[0_1px_2px_#1B2431] shadow-md ring-1 ring-white ring-opacity-5">
+          <div className=" flex justify-center items-center w-32 h-32 rounded-full ring-1 ring-white/5  shadow-md drop-shadow-[0_1px_2px_#1B2431] ">
             <Image
               alt="avatar"
               width={52}
               height={52}
-              className="rounded-full float-left h-full"
+              className="float-left h-full rounded-full"
               src="/user.svg"
             />
           </div>
           <span className="mt-6 text-2xl">Kate Horwitz</span>
-          <div className="bg-primary drop-shadow-[0_1px_2px_#1B2431] shadow-md ring-1 ring-white ring-opacity-5  mt-3    px-4 rounded-[30px] py-2">
+          <div className="py-2 px-4 mt-3 bg-primary rounded-[30px] ring-1  ring-white/5     shadow-md drop-shadow-[0_1px_2px_#1B2431]">
             <span className=" text-sm  ">{hashFormatter(account, true)}</span>
           </div>
           <SocialButton />
         </div>
       </div>
-      <div className="w-full mt-12 md:grid grid-cols-3 gap-x-12">
-        <div className=" h-32 group rounded-md bg-secondary col-span-1 flex justify-center items-center flex-col py-12 gap-y-4">
+      <div className="grid-cols-3 gap-x-12 mt-12 w-full md:grid">
+        <div className=" group flex flex-col col-span-1 gap-y-4 justify-center items-center py-12 h-32 bg-secondary rounded-md">
           <BalanceWallet totalPosiBalance={balance?.totalPosiBalance} />
         </div>
-        <div className="h-72 mt-12 md:mt-0  w-full  col-span-2">
+        <div className="col-span-2 mt-12 w-full  h-72  md:mt-0">
           <LineChart data={fakeDataLineChart} showLabel={false} />
         </div>
       </div>
 
-      <div className="w-full mt-12 md:grid grid-cols-3 gap-x-12">
-        <div className="h-80 group rounded-md bg-secondary col-span-1 flex justify-center items-center flex-col py-12 gap-y-4">
+      <div className="grid-cols-3 gap-x-12 mt-12 w-full md:grid">
+        <div className="group flex flex-col col-span-1 gap-y-4 justify-center items-center py-12 h-80 bg-secondary rounded-md">
           <div className="w-72 h-72">
             <DoughnutChart data={dataDoughnutWalletChart} />
           </div>
         </div>
-        <div className="h-80 md:mt-0 mt-12  w-full  col-span-2 bg-secondary flex  flex-col justify-between ">
+        <div className="flex flex-col col-span-2  justify-between  mt-12 w-full h-80  bg-secondary md:mt-0 ">
           <div className="flex flex-row">
-            <div className="flex flex-row font-medium  text-xs  md:text-base h-16 items-center  px-6  ">
+            <div className="flex flex-row items-center  px-6  h-16 text-xs font-medium  md:text-base  ">
               <div>PnL: </div>
-              <div className="text-red-500 ml-2">{'-$0.88'}</div>
+              <div className="ml-2 text-red-500">{'-$0.88'}</div>
             </div>
-            <div className="flex flex-row font-medium  text-xs  md:text-base h-16 items-center  px-6  ">
+            <div className="flex flex-row items-center  px-6  h-16 text-xs font-medium  md:text-base  ">
               <div>All-time ROI: </div>
-              <div className="text-red-500 ml-2">{'-11%'}</div>
+              <div className="ml-2 text-red-500">{'-11%'}</div>
             </div>
           </div>
-          <div className="h-64 py-2 ">
+          <div className="py-2 h-64 ">
             <PnLChart />
           </div>
         </div>

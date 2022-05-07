@@ -38,14 +38,14 @@ function MyApp({ Component, pageProps }: AppProps) {
           enableSystem={true}
           attribute="class"
         >
-          <div className="dark:bg-primary bg-light-primary flex w-full min-h-screen">
+          <div className="flex w-full min-h-screen bg-light-primary dark:bg-primary">
             <Head>
               <meta
                 name="viewport"
                 content="width=device-width, initial-scale=1"
               />
             </Head>
-            <div className="w-full pb-20 ">
+            <div className="pb-20 w-full ">
               <HeaderLayout />
               <ContainerLayout>
                 {progress && <TopBarProgress />}

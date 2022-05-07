@@ -28,6 +28,6 @@ export default function Address() {
   }, [account])
 
   return (
-    <div className="relative  w-full  mt-10  md:mt-16   px-6  xl:px-0"></div>
+    <div className="relative  px-6  mt-10  w-full   md:mt-16  xl:px-0"></div>
   )
 }

@@ -64,17 +64,17 @@ export default function Index({ nftStatistic, nftDayDatas }: Props) {
     fetchDataTransaction()
   }, [currentFilter, skipPage])
   return (
-    <main className="relative bg-light-primary dark:bg-primary w-full  mt-10  md:mt-16   px-6  xl:px-0">
-      <div className="grid-cols-1   gap-x-6 grid   md:grid-cols-2">
+    <main className="relative px-6 mt-10 w-full  bg-light-primary  dark:bg-primary   md:mt-16  xl:px-0">
+      <div className="grid   grid-cols-1 gap-x-6   md:grid-cols-2">
         <CurrentValueLock nftStatistic={nftStatistic} />
-        <div className="rounded-md mt-8 md:mt-0 h-72 xs:h-full ">
+        <div className="mt-8 h-72 rounded-md xs:h-full md:mt-0 ">
           <div className="w-full h-full rounded-md">
             <LineChart data={dataNftLineChart} />
           </div>
         </div>
       </div>
 
-      <div className="sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-8 grid mt-12 sm:mt-16 ">
+      <div className="grid gap-8 mt-12 sm:grid-cols-2 sm:mt-16 lg:grid-cols-3">
         {dataNft?.map((itemNft, index) => {
           return (
             <Link

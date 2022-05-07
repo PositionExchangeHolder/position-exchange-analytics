@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/enforces-negative-arbitrary-values */
 import { Popover, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/solid'
 import { useWeb3React } from '@web3-react/core'
@@ -75,9 +76,9 @@ export default function ButtonConnectMetamask() {
               leaveFrom="opacity-100 translate-y-0"
               leaveTo="opacity-0 translate-y-1"
             >
-              <Popover.Panel className="absolute md:-left-[20%]  z-10 mt-3 md:w-screen w-full  max-w-sm md:-translate-x-1/2 transform  px-4 sm:px-0  ">
-                <div className="drop-shadow-[0_1px_2px_#1B2431] shadow-md ring-1 ring-white ring-opacity-5 overflow-hidden  rounded-lg   ">
-                  <div className="relative  gap-8 bg-primary p-7 ">
+              <Popover.Panel className="absolute z-10 px-4 mt-3 w-full max-w-sm  sm:px-0 md:-left-[20%] md:w-screen  md:-translate-x-1/2">
+                <div className="overflow-hidden rounded-lg ring-1 ring-white/5  shadow-md  drop-shadow-[0_1px_2px_#1B2431]   ">
+                  <div className="relative  gap-8 p-7 bg-primary ">
                     {buttonsConnectWallet.map((item) => {
                       const onClickBtnWallet = () => {
                         item.action(), close()
@@ -87,9 +88,9 @@ export default function ButtonConnectMetamask() {
                           onClick={onClickBtnWallet}
                           type="button"
                           key={item.name}
-                          className="w-full focus:outline-none -m-3 flex items-center rounded-lg p-2 transition duration-150 ease-in-out hover:bg-mineShaft-30 focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
+                          className="flex items-center p-2 -m-3 w-full hover:bg-mineShaft-30 rounded-lg focus:outline-none focus-visible:ring focus-visible:ring-orange-500  transition duration-150 ease-in-out"
                         >
-                          <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center text-white sm:h-12 sm:w-12">
+                          <div className="flex shrink-0 justify-center items-center w-10 h-10 text-white sm:w-12 sm:h-12">
                             <item.icon aria-hidden="true" />
                           </div>
                           <div className="ml-4">

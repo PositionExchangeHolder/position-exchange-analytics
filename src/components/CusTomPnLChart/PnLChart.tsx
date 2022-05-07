@@ -72,8 +72,8 @@ export default function PnLChart() {
       layers={['mesh', 'areas', 'grid', 'lines', 'slices', 'crosshair']}
       tooltip={(x) => {
         return (
-          <div className="bg-slate-50 rounded-md px-4 py-2">
-            <div className="flex flex-row font-medium  text-xs  md:text-base items-center  ">
+          <div className="py-2 px-4 bg-slate-50 rounded-md">
+            <div className="flex flex-row items-center  text-xs  font-medium md:text-base  ">
               <div className="text-txt-secondary">PnL: </div>
               {x?.point?.color === '#61CDBB' ? (
                 <div className={`ml-2 text-[#61CDBB]`}>

@@ -19,7 +19,8 @@
       "officialSorting": false,
       "prependCustom": false,
       "removeDuplicates": true,
-      "whitelist": []
+      "whitelist": [],
+      "rules": {}
     }
   }
 }

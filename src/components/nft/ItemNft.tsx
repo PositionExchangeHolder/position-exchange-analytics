@@ -9,18 +9,18 @@ type Props = {
 }
 export default function ItemNft({ item }: Props) {
   return (
-    <div className=" rounded-md dark:bg-secondary dark:border-0 border py-3 lg:py-4  px-6  w-full flex justify-between">
+    <div className=" flex justify-between py-3 px-6 w-full dark:bg-secondary  rounded-md  border dark:border-0 lg:py-4">
       <div className="sm:pt-2 ">
-        <p className="dark:font-medium text-xs md:text-sm dark:text-txt-white text-txt-light-txt-primary  ">
+        <p className="text-xs dark:font-medium text-txt-light-txt-primary dark:text-txt-white md:text-sm  ">
           Circulating Supply
         </p>
 
-        <p className="dark:font-medium text-sm md:text-base dark:text-txt-white text-txt-light-txt-primary mt-6">
+        <p className="mt-6 text-sm dark:font-medium text-txt-light-txt-primary dark:text-txt-white md:text-base">
           {`${commasNumberFormat(item.currentValue)}
           / ${commasNumberFormat(item.totalMinted)}`}
         </p>
-        <div className="mt-6 sm:mt-4 flex">
-          <p className="font-medium  text-xs md:text-sm dark:text-txt-primary text-gray-400 bg-gray-100 dark:bg-mirage1 px-4 py-1 rounded-2xl">
+        <div className="flex mt-6 sm:mt-4">
+          <p className="py-1  px-4 text-xs font-medium text-gray-400 dark:text-txt-primary bg-gray-100 dark:bg-mirage1 rounded-2xl md:text-sm">
             Grade {item.grade}
           </p>
         </div>
