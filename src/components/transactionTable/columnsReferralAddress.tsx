@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { TopReferralRecord } from 'api/referral/referral.api.type'
+import { RecordsRefAddress } from 'api/address/address.api.type'
 import {
   BscscanLinkButton,
   BscscanType,
@@ -38,7 +38,7 @@ const renderIconRanking = (index: number) => {
   )
 }
 
-export const columnsReferral: TableColumn<TopReferralRecord>[] = [
+export const columnsReferralAddress: TableColumn<RecordsRefAddress>[] = [
   {
     name: 'Rank',
     cell: (row, index) => {
@@ -51,7 +51,7 @@ export const columnsReferral: TableColumn<TopReferralRecord>[] = [
     width: '440px',
     cell: (row) => (
       <BscscanLinkButton
-        hash={row?.id}
+        hash={row?.refTxHash}
         type={BscscanType.ADDRESS}
         shortLink={false}
       />
@@ -59,7 +59,7 @@ export const columnsReferral: TableColumn<TopReferralRecord>[] = [
   },
   {
     name: 'Total Referrals',
-    cell: (row) => <RowData data={row.totalReferrals} />,
+    cell: (row) => <RowData data={row.referrer.totalReferrals} />,
     width: '170px',
     sortable: true,
   },
@@ -68,8 +68,10 @@ export const columnsReferral: TableColumn<TopReferralRecord>[] = [
     cell: (row) => (
       <RowData
         data={
-          convertBigNumberToStringNumber(row.totalReferralCommissions, 0) +
-          ' POSI'
+          convertBigNumberToStringNumber(
+            row.referrer?.totalReferralCommissions,
+            0
+          ) + ' POSI'
         }
       />
     ),
@@ -82,8 +84,8 @@ export const columnsReferral: TableColumn<TopReferralRecord>[] = [
     width: '230px',
     cell: (row) => (
       <RowData>
-        <ToolTip toolTipText={convertTimestampToDate(row?.createdTimestamp)}>
-          {getLastSeen(+row?.createdTimestamp)}
+        <ToolTip toolTipText={convertTimestampToDate(+row?.createdTimestamp)}>
+          {getLastSeen(+row?.updatedTimestamp)}
         </ToolTip>
       </RowData>
     ),

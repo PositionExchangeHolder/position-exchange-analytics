@@ -1,6 +1,7 @@
 import BalanceWallet from '@/components/address/BalanceWallet'
 import SocialButton from '@/components/address/SocialButton'
 import StakingListItem from '@/components/address/StakingListItem'
+import TableDataReferralsAddress from '@/components/address/TableDataReferralsAddress'
 import { DoughnutChart } from '@/components/chart/DoughnutChart'
 import LineChart from '@/components/chart/LineChart'
 import PnLChart from '@/components/CusTomPnLChart/PnLChart'
@@ -96,6 +97,9 @@ export default function Account() {
         </div>
       </div>
       <StakingListItem stakingPoolBalances={balance?.stakingPoolBalances} />
+      <div className="pt-16">
+        <TableDataReferralsAddress referrerId={account} />
+      </div>
     </main>
   )
 }

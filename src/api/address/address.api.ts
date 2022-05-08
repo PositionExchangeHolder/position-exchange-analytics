@@ -1,13 +1,71 @@
+import { gql } from '@apollo/client'
+import client from 'api/apolloInstance'
 import axios from 'axios'
 import { DataLineChartNft } from 'helper/nft/transformDataLineChart'
 import { BALANCER_ENDPOINT } from 'utils/constants'
-import { BalancerResponse } from './address.api.type'
+import {
+  BalancerResponse,
+  queryGetReferralAddressRequest,
+  ReferralAddressResponse,
+} from './address.api.type'
 
 export const getUserInfoBalance = async (address: string) => {
   const response: BalancerResponse = await axios.get(
     `${BALANCER_ENDPOINT}/${address}`
   )
   return response?.data?.data
+}
+
+export const getReferralAddress = async ({
+  orderBy = 'updatedTimestamp',
+  referrerId,
+}: queryGetReferralAddressRequest) => {
+  console.log('>>>>referrerId', referrerId)
+  const response: ReferralAddressResponse = await client.query({
+    query: gql`
+      query Referrer(
+        $referrerId: ID!
+        $skip: Int
+        $first: Int
+        $orderBy: UserReferralRecord_orderBy
+        $orderDirection: OrderDirection
+      ) {
+        referrer(id: $referrerId) {
+          id
+          recordsRef(
+            skip: $skip
+            first: $first
+            orderBy: $orderBy
+            orderDirection: $orderDirection
+          ) {
+            id
+            user
+            refTxHash
+            totalCommissionsEarnedForReferrer
+            updatedTimestamp
+            createdTimestamp
+            referrer {
+              totalReferrals
+              totalReferralCommissions
+            }
+          }
+          totalReferrals
+          totalReferralCommissions
+        }
+      }
+    `,
+    variables: {
+      referrerId,
+      skip: 0,
+      first: 10,
+      orderBy,
+      orderDirection: 'desc',
+    },
+    context: {
+      endPointName: 'referral',
+    },
+  })
+  return response
 }
 
 export const fakeDataLineChart: DataLineChartNft = {
