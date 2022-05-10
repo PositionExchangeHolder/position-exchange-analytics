@@ -19,8 +19,8 @@ export const getUserInfoBalance = async (address: string) => {
 export const getReferralAddress = async ({
   orderBy = 'updatedTimestamp',
   referrerId,
+  skip = 0,
 }: queryGetReferralAddressRequest) => {
-  console.log('>>>>referrerId', referrerId)
   const response: ReferralAddressResponse = await client.query({
     query: gql`
       query Referrer(
@@ -56,7 +56,7 @@ export const getReferralAddress = async ({
     `,
     variables: {
       referrerId,
-      skip: 0,
+      skip,
       first: 10,
       orderBy,
       orderDirection: 'desc',

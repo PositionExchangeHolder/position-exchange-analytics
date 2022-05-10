@@ -11,41 +11,14 @@ import { convertBigNumberToStringNumber } from 'utils/number'
 import ToolTip from '../common/ToolTip'
 import RowData from './RowData'
 
-const renderIconRanking = (index: number) => {
-  let urlIcon = ''
-  if (index === 0) {
-    urlIcon = '1st.png'
-  } else if (index === 1) {
-    urlIcon = '2nd.png'
-  } else if (index === 2) {
-    urlIcon = '3rd.png'
-  }
-  return urlIcon ? (
-    <div className="w-8 h-8">
-      <img
-        className=" object-contain w-full h-full"
-        src={`/${urlIcon}`}
-        alt="Man using a computer"
-        loading="lazy"
-      />
-    </div>
-  ) : (
-    <div className="w-8 h-8">
-      <div className="flex  justify-center items-center w-full h-full text-xs text-gray-400 dark:text-txt-primary bg-light-primary dark:bg-primary md:text-sm">
-        {index + 1}
-      </div>
-    </div>
-  )
-}
-
 export const columnsReferralAddress: TableColumn<RecordsRefAddress>[] = [
-  {
-    name: 'Rank',
-    cell: (row, index) => {
-      return <>{renderIconRanking(index)}</>
-    },
-    width: '100px',
-  },
+  // {
+  //   name: 'Rank',
+  //   cell: (row, index) => {
+  //     return <>{renderIconRanking(index)}</>
+  //   },
+  //   width: '100px',
+  // },
   {
     name: 'Address',
     width: '440px',

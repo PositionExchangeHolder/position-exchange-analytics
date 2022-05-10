@@ -11,7 +11,7 @@ import { convertBigNumberToStringNumber } from 'utils/number'
 import ToolTip from '../common/ToolTip'
 import RowData from './RowData'
 
-const renderIconRanking = (index: number) => {
+export const renderIconRanking = (index: number) => {
   let urlIcon = ''
   if (index === 0) {
     urlIcon = '1st.png'

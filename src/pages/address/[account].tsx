@@ -18,7 +18,6 @@ export default function Account() {
   const router = useRouter()
   const account: string = (router?.query?.account as string) || ''
   const [balance, setBalance] = useState<DataBalancerResponse>()
-  console.log('balance', balance)
 
   // const infoWallet = [
   //   +convertBigNumberToStringNumber(

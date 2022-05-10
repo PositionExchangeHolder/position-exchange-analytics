@@ -13,7 +13,6 @@ export default function Address() {
     }, 250)
   }
   useEffect(() => {
-    console.log('active', active)
     if (!active) {
       autoConnectMetamask()
     }

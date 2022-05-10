@@ -44,6 +44,7 @@ export type queryGetReferralAddressRequest = {
     | 'createdTimestamp'
     | 'updatedTimestamp'
   referrerId: string
+  skip: number
 }
 
 export type ReferralAddressResponse = {
