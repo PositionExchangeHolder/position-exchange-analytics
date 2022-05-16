@@ -77,6 +77,7 @@ export default function TableDataReferralsAddress({
       />
       <div className="flex justify-center items-center mt-6">
         <Pagination
+          disabled={isEmpty(dataReferralAddress)}
           classes={{ ul: classes.ul }}
           color="primary"
           count={count}

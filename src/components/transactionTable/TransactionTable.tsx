@@ -87,7 +87,7 @@ export default function TransactionTable({
           customStyles={customStylesTransactionTable}
           noHeader={true}
           theme="solarized"
-          noDataComponent={null}
+          noDataComponent="There are no matching entries"
           noTableHead={showCustomHeader}
         />
 
