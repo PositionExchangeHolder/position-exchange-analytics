@@ -78,7 +78,7 @@ export default function Index({ positionNFTs, nftStatistic }: Props) {
     <main className="relative px-6 mt-10 w-full  bg-light-primary  dark:bg-primary md:mt-16  xl:px-0">
       <section>
         <div className="mx-auto  max-w-screen-xl ">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-0 lg:gap-12 xl:grid-cols-3 ">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-0 lg:gap-12 xl:grid-cols-4 ">
             <div>
               <div className="relative h-96 rounded-lg  xl:col-span-2">
                 <img
@@ -89,7 +89,7 @@ export default function Index({ positionNFTs, nftStatistic }: Props) {
                 />
               </div>
             </div>
-            <div className="mt-4 ">
+            <div className="mt-4  ">
               <p className="text-xl font-medium text-txt-light-txt-primary dark:text-txt-catskill-white ">
                 Grade: {grade}
               </p>
@@ -103,9 +103,12 @@ export default function Index({ positionNFTs, nftStatistic }: Props) {
                 @SoftSkillNFT
               </p>
             </div>
-            <div className="px-6 md:mt-10 lg:mt-0">
-              <div className="mt-4 sm:h-80   md:mt-0 md:w-80 lg:w-96 lg:h-96">
-                <DoughnutChart data={dataDoughnutChart} />
+            <div className="px-6 w-full h-80 md:mt-10 lg:mt-0 xl:col-span-2">
+              <div className="mt-4  w-full h-80 sm:h-80 md:mt-0 md:w-80 lg:w-full lg:h-96  ">
+                <DoughnutChart
+                  data={dataDoughnutChart.data}
+                  total={dataDoughnutChart.total}
+                />
               </div>
             </div>
           </div>

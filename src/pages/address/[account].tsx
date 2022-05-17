@@ -12,6 +12,7 @@ import { isEmpty } from 'lodash'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
+import { convertBigNumberToStringNumber } from 'utils/number'
 import { hashFormatter } from 'utils/string'
 
 export default function Account() {
@@ -19,19 +20,20 @@ export default function Account() {
   const account: string = (router?.query?.account as string) || ''
   const [balance, setBalance] = useState<DataBalancerResponse>()
 
-  // const infoWallet = [
-  //   +convertBigNumberToStringNumber(
-  //     balance?.totalPosiBalance?.walletBalance || 1
-  //   ),
-  //   +convertBigNumberToStringNumber(
-  //     balance?.totalPosiBalance?.stakingBalance || 1
-  //   ),
-  //   +convertBigNumberToStringNumber(
-  //     balance?.totalPosiBalance?.pendingBalance || 1
-  //   ),
-  // ]
-  const infoWallet = [1, 2, 1]
-  const dataDoughnutWalletChart = transformDataWalletDoughnutChart(infoWallet)
+  const totalWallet = +convertBigNumberToStringNumber(
+    balance?.totalPosiBalance?.walletBalance || 1
+  )
+  const totalPending = +convertBigNumberToStringNumber(
+    balance?.totalPosiBalance?.pendingBalance || 1
+  )
+  const totalStaking = +convertBigNumberToStringNumber(
+    balance?.totalPosiBalance?.stakingBalance || 1
+  )
+  const dataDoughnutWalletChart = transformDataWalletDoughnutChart({
+    totalWallet,
+    totalPending,
+    totalStaking,
+  })
 
   useEffect(() => {
     try {
@@ -74,9 +76,12 @@ export default function Account() {
       </div>
 
       <div className="grid-cols-3 gap-x-12 mt-12 w-full md:grid">
-        <div className="group flex flex-col col-span-1 gap-y-4 justify-center items-center py-12 h-80 bg-secondary rounded-md">
-          <div className="w-72 h-72">
-            <DoughnutChart data={dataDoughnutWalletChart} />
+        <div className="group flex flex-col col-span-1 gap-y-4 justify-center items-center  h-80 bg-secondary rounded-md">
+          <div className="w-96 h-96">
+            <DoughnutChart
+              data={dataDoughnutWalletChart.data}
+              total={dataDoughnutWalletChart.total}
+            />
           </div>
         </div>
         <div className="flex flex-col col-span-2  justify-between  mt-12 w-full h-80  bg-secondary md:mt-0 ">

@@ -1,44 +1,36 @@
-export const fakeDataDoughnutChart = {
-  labels: ['Wallet', 'Staking', 'Pending'],
-  datasets: [
-    {
-      data: [44468, 39524, 13509],
-      backgroundColor: [
-        'rgba(57, 70, 238, 0.4)',
-        'rgba(251, 173, 55, 0.4)',
-        'rgba(171, 5, 242, 0.4)',
-      ],
-      borderColor: [
-        'rgba(57, 70, 238, 0.2)',
-        'rgba(251, 173, 55, 1)',
-        'rgba(171, 5, 2422, 0.2)',
-      ],
-      borderWidth: 2,
-      hoverOffset: 20,
-    },
-  ],
+import { DataDoughnutChart } from './transformDataDoughnutChart'
+type Props = {
+  totalWallet: number
+  totalStaking: number
+  totalPending: number
 }
+export const transformDataWalletDoughnutChart = ({
+  totalWallet,
+  totalStaking,
+  totalPending,
+}: Props) => {
+  const data: any[] = []
+  data.push({
+    value: totalWallet,
+    id: 'Wallet',
+    label: 'Wallet',
+    // color: 'hsl(344, 70%, 50%)',
+  })
+  data.push({
+    value: totalStaking,
+    id: 'Staking',
+    label: 'Staking',
+    // color: 'hsl(344, 70%, 50%)',
+  })
 
-export const transformDataWalletDoughnutChart = (data: number[]) => {
-  const dataDoughnutChart = {
-    labels: ['Wallet', 'Staking', 'Pending'],
-    datasets: [
-      {
-        data,
-        backgroundColor: [
-          'rgba(57, 70, 238, 0.4)',
-          'rgba(251, 173, 55, 0.4)',
-          'rgba(171, 5, 242, 0.4)',
-        ],
-        borderColor: [
-          'rgba(57, 70, 238, 0.2)',
-          'rgba(251, 173, 55, 1)',
-          'rgba(171, 5, 2422, 0.2)',
-        ],
-        borderWidth: 2,
-        hoverOffset: 20,
-      },
-    ],
-  }
-  return dataDoughnutChart
+  data.push({
+    value: totalPending,
+    id: 'Pending',
+    label: 'Pending',
+    // color: 'hsl(344, 70%, 50%)',
+  })
+
+  const total = totalWallet + totalStaking + totalPending
+
+  return { data, total } as DataDoughnutChart
 }
