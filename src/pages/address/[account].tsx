@@ -4,6 +4,7 @@ import StakingListItem from '@/components/address/StakingListItem'
 import TableDataReferralsAddress from '@/components/address/TableDataReferralsAddress'
 import { DoughnutChart } from '@/components/chart/DoughnutChart'
 import LineChart from '@/components/chart/LineChart'
+import { BscscanLinkButton, BscscanType } from '@/components/common/BscscanLinkButton'
 import PnLChart from '@/components/CusTomPnLChart/PnLChart'
 import { fakeDataLineChart, getRealizedPnlAndTradingDataOfAddress, getUserInfoBalance } from 'api/address/address.api'
 import { DataBalancerResponse, RealizedPnlAndTradingData } from 'api/address/address.api.type'
@@ -13,7 +14,6 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { commasNumberFormat, convertBigNumberToNumber } from 'utils/number'
-import { hashFormatter } from 'utils/string'
 
 export default function Account() {
   const router = useRouter()
@@ -72,7 +72,10 @@ export default function Account() {
           </div>
           <span className="mt-6 text-2xl">Kate Horwitz</span>
           <div className="py-2 px-4 mt-3 bg-primary rounded-[30px] ring-1 ring-white/5 shadow-md drop-shadow-[0_1px_2px_#1B2431]">
-            <span className=" text-sm  ">{hashFormatter(account, true)}</span>
+            <BscscanLinkButton
+              hash={account}
+              type={BscscanType.ADDRESS}
+            />
           </div>
           <SocialButton />
         </div>
