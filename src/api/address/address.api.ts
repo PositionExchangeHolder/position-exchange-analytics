@@ -2,10 +2,12 @@ import { gql } from '@apollo/client'
 import client from 'api/apolloInstance'
 import axios from 'axios'
 import { DataLineChartNft } from 'helper/nft/transformDataLineChart'
-import { BALANCER_ENDPOINT } from 'utils/constants'
+import { BALANCER_ENDPOINT, POSITION_API } from 'utils/constants'
+import { convertBigNumberToNumber } from 'utils/number'
 import {
   BalancerResponse,
   queryGetReferralAddressRequest,
+  RealizedPnlAndTradingData,
   ReferralAddressResponse,
 } from './address.api.type'
 
@@ -66,6 +68,24 @@ export const getReferralAddress = async ({
     },
   })
   return response
+}
+
+export const getRealizedPnlAndTradingDataOfAddress = async (
+  address: string
+): Promise<RealizedPnlAndTradingData> => {
+  const res = await axios.get(`${POSITION_API}/v1/address/${address}/pnl`)
+
+  const realizedPnlAndTradingData = {
+    realizedPnl: convertBigNumberToNumber(res.data.data?.user.realizedPnl || 0, 0),
+    totalTokensBuy: res.data.data?.user.totalTokensBuy,
+    totalTokensSell: res.data.data?.user.totalTokensSell,
+    totalVolumeInBUSD: res.data.data?.user.totalVolumeInBUSD,
+    totalTransactions: res.data.data?.user.totalTransactions,
+    createdTimestamp: res.data.data?.user.createdTimestamp,
+    updatedTimestamp: res.data.data?.user.updatedTimestamp
+  }
+
+  return realizedPnlAndTradingData
 }
 
 export const fakeDataLineChart: DataLineChartNft = {

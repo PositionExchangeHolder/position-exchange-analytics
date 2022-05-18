@@ -5,20 +5,21 @@ import TableDataReferralsAddress from '@/components/address/TableDataReferralsAd
 import { DoughnutChart } from '@/components/chart/DoughnutChart'
 import LineChart from '@/components/chart/LineChart'
 import PnLChart from '@/components/CusTomPnLChart/PnLChart'
-import { fakeDataLineChart, getUserInfoBalance } from 'api/address/address.api'
-import { DataBalancerResponse } from 'api/address/address.api.type'
+import { fakeDataLineChart, getRealizedPnlAndTradingDataOfAddress, getUserInfoBalance } from 'api/address/address.api'
+import { DataBalancerResponse, RealizedPnlAndTradingData } from 'api/address/address.api.type'
 import { transformDataWalletDoughnutChart } from 'helper/nft/transformDataWalletDoughnutChart'
 import { isEmpty } from 'lodash'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-import { convertBigNumberToNumber } from 'utils/number'
+import { commasNumberFormat, convertBigNumberToNumber } from 'utils/number'
 import { hashFormatter } from 'utils/string'
 
 export default function Account() {
   const router = useRouter()
   const account: string = (router?.query?.account as string) || ''
   const [balance, setBalance] = useState<DataBalancerResponse>()
+  const [realizedPnlAndTradingData, setRealizedPnlAndTradingData] = useState<RealizedPnlAndTradingData>()
 
   const totalWallet = convertBigNumberToNumber(
     balance?.totalPosiBalance?.walletBalance
@@ -45,7 +46,14 @@ export default function Account() {
         const data: DataBalancerResponse = await getUserInfoBalance(account)
         setBalance(data)
       }
+
+      const fetchRealizedPnlAndTradingData = async () => {
+        const data = await getRealizedPnlAndTradingDataOfAddress(account)
+        setRealizedPnlAndTradingData(data)
+      }
+
       fetchBalancer()
+      fetchRealizedPnlAndTradingData()
     } catch (error) {}
   }, [account])
 
@@ -90,8 +98,22 @@ export default function Account() {
         <div className="flex flex-col col-span-2 justify-between mt-12 w-full h-80 bg-secondary md:mt-0 ">
           <div className="flex flex-row">
             <div className="flex flex-row items-center px-6 h-16 text-xs font-medium md:text-base">
-              <div>PnL: </div>
-              <div className="ml-2 text-red-500">{'-$0.88'}</div>
+              <div>
+                PnL:
+              </div>
+              <div className={`ml-2
+                ${
+                  Number(realizedPnlAndTradingData?.realizedPnl) > 0
+                    ? 'text-green-500'
+                    : 'text-red-500'
+                }
+              `}>
+                {
+                  Number(realizedPnlAndTradingData?.realizedPnl) > 0
+                    ? `+$${commasNumberFormat(realizedPnlAndTradingData?.realizedPnl || 0)}`
+                    : `-$${commasNumberFormat(realizedPnlAndTradingData?.realizedPnl || 0)}`
+                }
+              </div>
             </div>
             <div className="flex flex-row items-center px-6 h-16 text-xs font-medium md:text-base">
               <div>All-time ROI: </div>
