@@ -29,7 +29,7 @@ export default function Account() {
     balance?.totalPosiBalance?.pendingBalance
     || 0
   )
-  const totalStaking = +convertBigNumberToNumber(
+  const totalStaking = convertBigNumberToNumber(
     balance?.totalPosiBalance?.stakingBalance
     || 0
   )
@@ -61,7 +61,7 @@ export default function Account() {
     <main className="relative px-6 mt-10 w-full bg-light-primary dark:bg-primary md:mt-16 xl:px-0">
       <div className="flex justify-center">
         <div className="flex flex-col items-center">
-          <div className=" flex justify-center items-center w-32 h-32 rounded-full ring-1 ring-white/5 shadow-md drop-shadow-[0_1px_2px_#1B2431] ">
+          <div className="flex justify-center items-center w-32 h-32 rounded-full ring-1 ring-white/5 shadow-md drop-shadow-[0_1px_2px_#1B2431]">
             <Image
               alt="avatar"
               width={52}
@@ -111,14 +111,14 @@ export default function Account() {
                 {
                   Number(realizedPnlAndTradingData?.realizedPnl) > 0
                     ? `+$${commasNumberFormat(realizedPnlAndTradingData?.realizedPnl || 0)}`
-                    : `-$${commasNumberFormat(realizedPnlAndTradingData?.realizedPnl || 0)}`
+                    : `-$${commasNumberFormat(Math.abs(realizedPnlAndTradingData?.realizedPnl || 0))}`
                 }
               </div>
             </div>
-            <div className="flex flex-row items-center px-6 h-16 text-xs font-medium md:text-base">
+            {/* <div className="flex flex-row items-center px-6 h-16 text-xs font-medium md:text-base">
               <div>All-time ROI: </div>
               <div className="ml-2 text-red-500">{'-11%'}</div>
-            </div>
+            </div> */}
           </div>
           <div className="py-2 h-64 ">
             <PnLChart />
