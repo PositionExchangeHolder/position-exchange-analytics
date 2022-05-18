@@ -103,7 +103,12 @@ export default function Account() {
           </div>
         </div>
       </div>
-      <StakingListItem stakingPoolBalances={balance?.stakingPoolBalances} />
+      
+      <StakingListItem
+        stakingPoolBalances={balance?.stakingPoolBalances}
+        nftPoolBalance={balance?.nftPoolBalance}
+      />
+      
       <div className="pt-16">
         <TableDataReferralsAddress referrerId={account} />
       </div>
