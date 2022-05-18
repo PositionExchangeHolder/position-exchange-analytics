@@ -71,7 +71,7 @@ export default function TableDataReferralsAddress({ referrerId }: Props) {
     <div>
       <TransactionTable
         transactions={dataReferralAddress || []}
-        titleTable={'REFFERALS'}
+        titleTable={'REFERRALS'}
         isLoading={isLoading}
         columns={columnsReferralAddress}
         showCustomHeader
