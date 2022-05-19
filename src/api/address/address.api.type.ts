@@ -71,3 +71,13 @@ export type RecordsRefAddress = {
     totalReferralCommissions: string
   }
 }
+
+export type RealizedPnlAndTradingData = {
+  realizedPnl: number
+  totalTokensBuy: string
+  totalTokensSell: string
+  totalVolumeInBUSD: string
+  totalTransactions: string
+  createdTimestamp: string
+  updatedTimestamp: string
+}

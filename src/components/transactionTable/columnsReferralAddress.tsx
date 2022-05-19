@@ -12,38 +12,34 @@ import ToolTip from '../common/ToolTip'
 import RowData from './RowData'
 
 export const columnsReferralAddress: TableColumn<RecordsRefAddress>[] = [
-  // {
-  //   name: 'Rank',
-  //   cell: (row, index) => {
-  //     return <>{renderIconRanking(index)}</>
-  //   },
-  //   width: '100px',
-  // },
+  {
+    name: 'Transaction',
+    width: '160px',
+    cell: (row) => (
+      <BscscanLinkButton
+        hash={row.refTxHash}
+        type={BscscanType.TX_HASH}
+      />
+    ),
+  },
   {
     name: 'Address',
     width: '440px',
     cell: (row) => (
       <BscscanLinkButton
-        hash={row?.refTxHash}
+        hash={row.user}
         type={BscscanType.ADDRESS}
         shortLink={false}
       />
     ),
   },
   {
-    name: 'Total Referrals',
-    cell: (row) => <RowData data={row.referrer.totalReferrals} />,
-    width: '170px',
-    sortable: true,
-  },
-  {
-    name: 'Total Commissions',
+    name: 'Commissions Earned',
     cell: (row) => (
       <RowData
         data={
           convertBigNumberToStringNumber(
-            row.referrer?.totalReferralCommissions,
-            0
+            row.totalCommissionsEarnedForReferrer
           ) + ' POSI'
         }
       />
@@ -57,8 +53,8 @@ export const columnsReferralAddress: TableColumn<RecordsRefAddress>[] = [
     width: '230px',
     cell: (row) => (
       <RowData>
-        <ToolTip toolTipText={convertTimestampToDate(+row?.createdTimestamp)}>
-          {getLastSeen(+row?.updatedTimestamp)}
+        <ToolTip toolTipText={convertTimestampToDate(row.createdTimestamp)}>
+          {getLastSeen(row.updatedTimestamp)}
         </ToolTip>
       </RowData>
     ),

@@ -1,6 +1,7 @@
 // APIs
 export const POSITION_API =
   process.env.POSITION_API || 'https://position-token-api.vercel.app/api'
+
 // Subgraphs
 export const SUBGRAPH_POSITION_TOKEN =
   process.env.SUBGRAPH_POSITION_TOKEN ||
@@ -36,11 +37,9 @@ export const SUBGRAPH_POSITION_STAKING_POOL =
   process.env.SUBGRAPH_POSITION_STAKING_POOL ||
   'https://api.thegraph.com/subgraphs/name/gafranslotteria/position-staking-pool'
 
-// api end point
+// api endpoint
 export const PRICE_ENDPOINT = `${POSITION_API}/v1/prices`
 export const BALANCER_ENDPOINT = `${POSITION_API}/v1/address`
-
-// api end point
 
 export const BSC_SCAN_URL = 'https://bscscan.com'
 
@@ -53,8 +52,7 @@ export const ADDRESS_LABELS: any = {
   '0x00222d964a2077301309809ab3bf56485c126a9c': 'LP_POSI_BUSD',
   '0x84c518d8e8bdb30cf02407c2443e8897eab79478': 'POSI Company Reserve',
   '0x254baa324a7e8876f4d51c3eff4b962f16672c5f': 'LP_POSI_WBNB',
-  '0x849b333f2235819719a40c71bae150fe9afb4e99':
-    'POSITeamRewardsLockingContract',
+  '0x849b333f2235819719a40c71bae150fe9afb4e99': 'POSITeamRewardsLockingContract',
   '0xd3462c5c15f90d41eb920888f9080ac64488d16b': 'Position Bond003',
   '0xbe9ff181bfa9dd78191b81b23fd4ff774a3fb4f1': 'NFT Reward Pool V1',
   '0x77d2e86c25792ed30d17e6fc8334a09f6347f5a4': 'Position Bond002',

@@ -1,15 +1,18 @@
 import { DataDoughnutChart } from './transformDataDoughnutChart'
+
 type Props = {
   totalWallet: number
   totalStaking: number
   totalPending: number
 }
+
 export const transformDataWalletDoughnutChart = ({
   totalWallet,
   totalStaking,
   totalPending,
 }: Props) => {
   const data: any[] = []
+  
   data.push({
     value: totalWallet,
     id: 'Wallet',
@@ -22,7 +25,6 @@ export const transformDataWalletDoughnutChart = ({
     label: 'Staking',
     // color: 'hsl(344, 70%, 50%)',
   })
-
   data.push({
     value: totalPending,
     id: 'Pending',
@@ -30,7 +32,9 @@ export const transformDataWalletDoughnutChart = ({
     // color: 'hsl(344, 70%, 50%)',
   })
 
-  const total = totalWallet + totalStaking + totalPending
+  const total = Number(
+    (totalWallet + totalStaking + totalPending).toFixed(2)
+  )
 
   return { data, total } as DataDoughnutChart
 }

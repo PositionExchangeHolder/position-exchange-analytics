@@ -11,13 +11,14 @@ import React, { useEffect, useState } from 'react'
 import { useAppSelector } from 'store/hooks'
 import { ReferralsRankerOrderBySelector } from 'store/referral/referralSlice'
 import { columnsReferralAddress } from '../transactionTable/columnsReferralAddress'
+
 const PER_PAGE = 10
 
-export default function TableDataReferralsAddress({
-  referrerId,
-}: {
+type Props = {
   referrerId: string
-}) {
+}
+
+export default function TableDataReferralsAddress({ referrerId }: Props) {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [totalPage, setTotalPage] = useState<number>(1)
   const [currentPages, setCurrentPages] = useState<number>(1)
@@ -70,7 +71,7 @@ export default function TableDataReferralsAddress({
     <div>
       <TransactionTable
         transactions={dataReferralAddress || []}
-        titleTable={'REFFERALS'}
+        titleTable={'REFERRALS'}
         isLoading={isLoading}
         columns={columnsReferralAddress}
         showCustomHeader
