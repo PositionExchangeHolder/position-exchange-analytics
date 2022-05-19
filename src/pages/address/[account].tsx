@@ -1,4 +1,5 @@
 import BalanceWallet from '@/components/address/BalanceWallet'
+import NftListItem from '@/components/address/NftListItem'
 import SocialButton from '@/components/address/SocialButton'
 import StakingListItem from '@/components/address/StakingListItem'
 import TableDataReferralsAddress from '@/components/address/TableDataReferralsAddress'
@@ -101,6 +102,8 @@ export default function Account() {
         </div>
       </div>
       <StakingListItem stakingPoolBalances={balance?.stakingPoolBalances} />
+      <NftListItem stakingPoolBalances={balance?.stakingPoolBalances} />
+
       <div className="pt-16">
         <TableDataReferralsAddress referrerId={account} />
       </div>
