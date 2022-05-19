@@ -16,10 +16,7 @@ export const columnsReferralAddress: TableColumn<RecordsRefAddress>[] = [
     name: 'Transaction',
     width: '160px',
     cell: (row) => (
-      <BscscanLinkButton
-        hash={row.refTxHash}
-        type={BscscanType.TX_HASH}
-      />
+      <BscscanLinkButton hash={row.refTxHash} type={BscscanType.TX_HASH} />
     ),
   },
   {
