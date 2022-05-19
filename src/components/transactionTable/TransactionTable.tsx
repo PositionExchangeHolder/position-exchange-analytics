@@ -87,7 +87,13 @@ export default function TransactionTable({
           customStyles={customStylesTransactionTable}
           noHeader={true}
           theme="solarized"
-          noDataComponent="There are no matching entries"
+          noDataComponent={
+            isLoading ? null : (
+              <div className="flex justify-center items-center py-8  w-full">
+                There are no matching entries
+              </div>
+            )
+          }
           noTableHead={showCustomHeader}
         />
 
