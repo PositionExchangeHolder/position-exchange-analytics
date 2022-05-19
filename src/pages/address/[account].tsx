@@ -66,7 +66,6 @@ export default function Account() {
     } catch (error) {}
   }, [account])
 
-  console.log('balance', balance)
   return (
     <main className="relative px-6 mt-10 w-full bg-light-primary dark:bg-primary md:mt-16 xl:px-0">
       <div className="flex justify-center">
