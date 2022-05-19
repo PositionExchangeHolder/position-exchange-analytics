@@ -76,13 +76,16 @@ export const getRealizedPnlAndTradingDataOfAddress = async (
   const res = await axios.get(`${POSITION_API}/v1/address/${address}/pnl`)
 
   const realizedPnlAndTradingData = {
-    realizedPnl: convertBigNumberToNumber(res.data.data?.user.realizedPnl || 0, 0),
-    totalTokensBuy: res.data.data?.user.totalTokensBuy,
-    totalTokensSell: res.data.data?.user.totalTokensSell,
-    totalVolumeInBUSD: res.data.data?.user.totalVolumeInBUSD,
-    totalTransactions: res.data.data?.user.totalTransactions,
-    createdTimestamp: res.data.data?.user.createdTimestamp,
-    updatedTimestamp: res.data.data?.user.updatedTimestamp
+    realizedPnl: convertBigNumberToNumber(
+      res.data.data?.user?.realizedPnl || 0,
+      0
+    ),
+    totalTokensBuy: res.data.data?.user?.totalTokensBuy,
+    totalTokensSell: res.data.data?.user?.totalTokensSell,
+    totalVolumeInBUSD: res.data.data?.user?.totalVolumeInBUSD,
+    totalTransactions: res.data.data?.user?.totalTransactions,
+    createdTimestamp: res.data.data?.user?.createdTimestamp,
+    updatedTimestamp: res.data.data?.user?.updatedTimestamp,
   }
 
   return realizedPnlAndTradingData

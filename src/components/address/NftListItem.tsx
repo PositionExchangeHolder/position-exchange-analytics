@@ -19,6 +19,7 @@ export default function NftListItem({
       },
     },
   }))
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [totalPage, setTotalPage] = useState<number>(1)
   const [currentPages, setCurrentPages] = useState<number>(1)
   const handleChange = (e: any, p: number) => {
