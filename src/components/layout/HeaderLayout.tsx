@@ -20,14 +20,13 @@ type NavigationItemProps = {
 
 const NavigationItem = ({ href, name, onClick }: NavigationItemProps) => {
   return (
-    <Link href={href}>
-      <a
-        onClick={onClick}
-        className="py-2 px-4 text-base font-medium text-txt-light-txt-primary dark:text-txt-primary hover:bg-light-primary-hv dark:hover:bg-mineShaft-30 rounded-md"
-      >
-        {name}
-      </a>
-    </Link>
+    <div className="py-2 px-4 text-base font-medium text-txt-light-txt-primary dark:text-txt-primary hover:bg-light-primary-hv dark:hover:bg-mineShaft-30 rounded-md">
+      <Link href={href}>
+        <button onClick={onClick}>
+          {name}
+        </button>
+      </Link>
+    </div>
   )
 }
 
@@ -38,13 +37,13 @@ export default function HeaderLayout() {
         <div className="flex w-full">
           <div className="flex justify-between items-center py-2 w-full md:justify-start md:space-x-10">
             <div className="flex justify-start lg:w-12  ">
-              <a href="/">
+              <Link href="/">
                 <img
                   className="w-auto h-8 sm:h-10"
                   src="/vectary.svg"
                   alt="Home Page"
                 />
-              </a>
+              </Link>
             </div>
             <div className="-my-2 -mr-2 md:hidden">
               <Popover.Button className="inline-flex justify-center items-center p-2 text-gray-400 hover:text-txt-primary bg-white hover:bg-gray-100 dark:bg-primary rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
@@ -56,6 +55,7 @@ export default function HeaderLayout() {
               {
                 navigations.map(nav => (
                   <NavigationItem
+                    key={nav.href}
                     href={nav.href}
                     name={nav.name}
                   />
@@ -176,6 +176,7 @@ export default function HeaderLayout() {
                   {
                     navigations.map(nav => (
                       <NavigationItem
+                        key={nav.href}
                         onClick={close}
                         href={nav.href}
                         name={nav.name}
