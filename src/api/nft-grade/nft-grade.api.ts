@@ -25,7 +25,7 @@ export const getListNftGrade = async ({
       },
     },
     context: {
-      endPointName: 'nft',
+      endpointName: 'nft',
     },
   })
   return response
@@ -83,7 +83,7 @@ export const getListTransactionNftGrade = async ({
     `,
     variables: filter,
     context: {
-      endPointName: 'nft',
+      endpointName: 'nft',
     },
   })
   return response
