@@ -6,6 +6,7 @@ import {
   ListNftStatisticResponse,
   ListTranSactionResponse,
 } from './nft.api.type'
+
 export const getListTransaction = async ({ skip, action }: QueryNft) => {
   const filter: any = {
     first: 10,
@@ -16,6 +17,7 @@ export const getListTransaction = async ({ skip, action }: QueryNft) => {
       action,
     }
   }
+  
   const response: ListTranSactionResponse = await client.query({
     query: gql`
       query transactions($skip: Int, $first: Int, $where: Transaction_filter) {
@@ -55,6 +57,7 @@ export const getListTransaction = async ({ skip, action }: QueryNft) => {
       endPointName: 'nft',
     },
   })
+  
   return response
 }
 
@@ -93,6 +96,7 @@ export const getListNftStatistic = async () => {
       endPointName: 'nft',
     },
   })
+  
   return response
 }
 
@@ -116,4 +120,34 @@ export const getListNftDayData = async () => {
     },
   })
   return response
+}
+
+export const getNftsOfAddress = async (
+  address: string,
+  skip = 0,
+  first = 8
+) => {
+  const response = await client.query({
+    query: gql`
+      query Owner($ownerId: ID!, $skip: Int) {
+        owner(id: $ownerId) {
+          totalNfts
+          nft(skip: $skip, first: $first) {
+            id
+            grade
+          }
+        }
+      }
+    `,
+    variables: {
+      ownerId: address,
+      skip,
+      first
+    },
+    context: {
+      endPointName: 'nft'
+    }
+  })
+
+  return response.data.owner
 }
