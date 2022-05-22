@@ -45,7 +45,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 content="width=device-width, initial-scale=1"
               />
             </Head>
-            <div className="pb-20 w-full ">
+            <div className="pb-20 w-full">
               <HeaderLayout />
               <ContainerLayout>
                 {progress && <TopBarProgress />}
