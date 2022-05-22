@@ -6,7 +6,6 @@ export default function Home() {
   const { prices } = useAppSelector(selectPrice)
   console.log('prices', prices)
   return (
-    <div className=" dark:bg-primary bg-light-primary w-full h-full  "></div>
+    <div className=" w-full h-full bg-light-primary dark:bg-primary  "></div>
   )
-
 }

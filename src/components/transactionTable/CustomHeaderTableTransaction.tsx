@@ -17,9 +17,12 @@ export default function CustomHeaderTableTransaction({ columns }: Props) {
     <>
       {columns?.map((column, index) => {
         const onClickFilter = async () => {
-          await dispatch(
-            getFilterActionTransactionTable(column?.name as string)
-          )
+          if (column?.name === 'Commissions Earned') return
+          if (column?.sortable === true) {
+            await dispatch(
+              getFilterActionTransactionTable(column?.name as string)
+            )
+          }
         }
         return (
           <div

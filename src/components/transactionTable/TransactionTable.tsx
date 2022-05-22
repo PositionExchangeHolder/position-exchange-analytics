@@ -36,11 +36,11 @@ export default function TransactionTable({
   // const headerWidth = getWidthHeader<TopReferralRecord>(columns)
   return (
     <div>
-      <div className="w-full pt-3 pb-2 pl-6  border dark:border-0 bg-light-primary dark:bg-secondary border-b dark:border-b-gray-400 ">
-        <p className="font-medium text-sm lg:text-base dark:text-txt-primary text-txt-light-txt-primary  ">
+      <div className="pt-3 pb-2 pl-6 w-full  bg-light-primary dark:bg-secondary border dark:border-0 border-b dark:border-b-gray-400 ">
+        <p className="text-sm font-medium text-txt-light-txt-primary dark:text-txt-primary lg:text-base  ">
           {titleTable}
         </p>
-        <div className="md:flex md:flex-row gap-x-4 mt-4  flex-wrap grid-cols-3 grid">
+        <div className="grid flex-wrap grid-cols-3 gap-x-4  mt-4 md:flex md:flex-row">
           {listFilterTransaction &&
             listFilterTransaction?.map((itemFilter) => {
               const onSetCurrentFilter = () => {
@@ -54,11 +54,11 @@ export default function TransactionTable({
                     checked={itemFilter.value === currentFilter ? true : false}
                     name="currentFilter"
                     type="radio"
-                    className="focus:ring-slate-50 h-6 text-red-700 border-gray-300 "
+                    className="h-6 text-red-700 border-gray-300 focus:ring-slate-50 "
                   />
                   <label
                     htmlFor="push-everything"
-                    className="ml-3 block text-tiny-xs  lg:text-SM font-medium dark:text-txt-primary text-txt-secondary "
+                    className="block ml-3 text-tiny-xs  font-medium text-txt-secondary dark:text-txt-primary lg:text-sm "
                   >
                     {itemFilter.name}
                   </label>
@@ -67,7 +67,7 @@ export default function TransactionTable({
             })}
         </div>
       </div>
-      <div className="relative  min-h-120 border dark:border-0 ">
+      <div className="relative  border dark:border-0  ">
         {showCustomHeader && (
           <div
             className={`flex flex-row h-[3.25rem]  items-center border-b border-[#787a9180]`}
@@ -87,13 +87,19 @@ export default function TransactionTable({
           customStyles={customStylesTransactionTable}
           noHeader={true}
           theme="solarized"
-          noDataComponent={null}
+          noDataComponent={
+            isLoading ? null : (
+              <div className="flex justify-center items-center py-8  w-full">
+                There are no matching entries
+              </div>
+            )
+          }
           noTableHead={showCustomHeader}
         />
 
         <div className="w-full border-b border-waterloo" />
         {isLoading && (
-          <div className=" bg-slate-200 absolute w-full h-full top-0 opacity-80 flex justify-center items-center">
+          <div className=" flex absolute top-0 justify-center items-center w-full h-full bg-slate-200 opacity-80">
             <Loading />
           </div>
         )}

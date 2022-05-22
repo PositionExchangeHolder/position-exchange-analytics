@@ -14,11 +14,11 @@ export default function Pagination({ currentItem, setNextItem, skip }: Props) {
     setNextItem(currentItem - skip)
   }
   return (
-    <div className="px-5 pt-5 pb-8 dark:border-t  dark:border-0 border flex flex-col items-end bg-light-primary dark:bg-secondary border-b dark:border-b-gray-400  ">
+    <div className="flex flex-col items-end px-5  pt-5 pb-8 bg-light-primary dark:bg-secondary border dark:border-0 dark:border-t border-b dark:border-b-gray-400  ">
       {/* <span className="text-xs xs:text-sm dark:text-txt-catskill-white text-txt-light-txt-primary mb-4">
         {renderEntries(currentItem, skip)}
       </span> */}
-      <div className="inline-flex mt-2 xs:mt-0 gap-x-1">
+      <div className="inline-flex gap-x-1 mt-2 xs:mt-0">
         <button
           disabled={currentItem === 0 ? true : false}
           onClick={onPrePage}
@@ -32,7 +32,7 @@ export default function Pagination({ currentItem, setNextItem, skip }: Props) {
         </button>
         <button
           onClick={onNextPage}
-          className="border dark:border-0 text-sm bg-light-primary dark:bg-primary dark:hover:bg-gray-700 hover:bg-light-primary-hv dark:text-txt-catskill-white text-txt-light-txt-primary font-semibold py-2 px-4 rounded-r"
+          className="py-2 px-4 text-sm font-semibold text-txt-light-txt-primary dark:text-txt-catskill-white bg-light-primary hover:bg-light-primary-hv dark:bg-primary dark:hover:bg-gray-700 rounded-r border dark:border-0"
         >
           Next
         </button>

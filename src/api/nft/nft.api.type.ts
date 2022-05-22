@@ -96,6 +96,7 @@ export type ItemNftDayDate = {
 export type DataIntDayDate = {
   nftDayDatas: ItemNftDayDate[]
 }
+
 export type ListDataIntDayDateResponse = {
   data: DataIntDayDate
 }

@@ -2,12 +2,26 @@
   "extends": [
     "next/core-web-vitals",
     "prettier",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:tailwindcss/recommended"
   ],
   "rules": {
     "prefer-const": "error",
     "@typescript-eslint/no-unused-vars": "error",
-    "@typescript-eslint/no-explicit-any": "off"
+    "@typescript-eslint/no-explicit-any": "off",
+    //
+    "tailwindcss/no-custom-classname": "off"
   },
-  "plugins": ["@typescript-eslint"]
+  "plugins": ["@typescript-eslint", "tailwindcss"],
+  "settings": {
+    "tailwindcss": {
+      "callees": ["classnames", "clsx", "ctl"],
+      "config": "tailwind.config.js",
+      "groupByResponsive": true,
+      "officialSorting": false,
+      "prependCustom": false,
+      "removeDuplicates": true,
+      "whitelist": []
+    }
+  }
 }

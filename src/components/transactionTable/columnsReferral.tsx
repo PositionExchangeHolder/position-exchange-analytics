@@ -11,7 +11,7 @@ import { convertBigNumberToStringNumber } from 'utils/number'
 import ToolTip from '../common/ToolTip'
 import RowData from './RowData'
 
-const renderIconRanking = (index: number) => {
+export const renderIconRanking = (index: number) => {
   let urlIcon = ''
   if (index === 0) {
     urlIcon = '1st.png'
@@ -24,14 +24,14 @@ const renderIconRanking = (index: number) => {
     <div className="w-8 h-8">
       <img
         className=" object-contain w-full h-full"
-        src={urlIcon}
+        src={`/${urlIcon}`}
         alt="Man using a computer"
         loading="lazy"
       />
     </div>
   ) : (
     <div className="w-8 h-8">
-      <div className="justify-center  text-xs md:text-sm dark:text-txt-primary text-gray-400 bg-light-primary dark:bg-primary flex items-center w-full h-full">
+      <div className="flex  justify-center items-center w-full h-full text-xs text-gray-400 dark:text-txt-primary bg-light-primary dark:bg-primary md:text-sm">
         {index + 1}
       </div>
     </div>

@@ -1,4 +1,5 @@
 module.exports = {
+  // officialSorting: true,
   content: [
     // './pages/**/*.{js,ts,jsx,tsx}',
     // './components/**/*.{js,ts,jsx,tsx}',
@@ -92,5 +93,8 @@ module.exports = {
       '7xl': '5rem',
     },
   },
-  plugins: [require('@tailwindcss/line-clamp')],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+    require('tailwind-scrollbar-hide'),
+  ],
 }

@@ -1,30 +1,18 @@
+import TableDataReferralsRanker from '@/components/referral/TableDataReferralsRanker'
 import TotalReferrals from '@/components/referral/TotalReferrals'
-import { columnsReferral } from '@/components/transactionTable/columnsReferral'
-import TransactionTable from '@/components/transactionTable/TransactionTable'
-import {
-  getTopReferralResponse,
-  getToTalReferralResponse,
-} from 'api/referral/referral.api'
+import { getToTalReferralResponse } from 'api/referral/referral.api'
 import {
   PositionReferral,
-  TopReferralResponse,
   ToTalReferralResponse,
 } from 'api/referral/referral.api.type'
 import React, { useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from 'store/hooks'
-import {
-  ReferralsRankerOrderBySelector,
-  ReferralsRankerSelector,
-  setDataTopReferralsRanker,
-} from 'store/referral/referralSlice'
+import { useAppSelector } from 'store/hooks'
+import { ReferralsRankerOrderBySelector } from 'store/referral/referralSlice'
 
 export default function Referral() {
   const [toTalReferral, setToTalReferral] = useState<PositionReferral>()
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const referralsRanker = useAppSelector(ReferralsRankerSelector)
   const orderBy = useAppSelector(ReferralsRankerOrderBySelector)
-
-  const dispatch = useAppDispatch()
 
   useEffect(() => {
     initialFetchData()
@@ -35,15 +23,11 @@ export default function Referral() {
       if (isLoading) return
       setIsLoading(true)
       const onGetToTalReferralResponse = getToTalReferralResponse({})
-      const onGetTopReferralResponse = getTopReferralResponse({ orderBy })
-      const dataReferralResponse: [ToTalReferralResponse, TopReferralResponse] =
-        await Promise.all([
-          onGetToTalReferralResponse,
-          onGetTopReferralResponse,
-        ]).then((result) => result)
-      const [dataPositionReferral, dataReferral] = dataReferralResponse
+      const dataReferralResponse: [ToTalReferralResponse] = await Promise.all([
+        onGetToTalReferralResponse,
+      ]).then((result) => result)
+      const [dataPositionReferral] = dataReferralResponse
       setToTalReferral(dataPositionReferral.data.positionReferral)
-      dispatch(setDataTopReferralsRanker(dataReferral.data.referrers))
     } catch (error) {
     } finally {
       setIsLoading(false)
@@ -51,16 +35,10 @@ export default function Referral() {
   }
 
   return (
-    <div className="relative  w-full  mt-10  md:mt-16   px-6  xl:px-0">
+    <div className="relative  px-6  mt-10  w-full   md:mt-16  xl:px-0">
       <TotalReferrals toTalReferral={toTalReferral} />
       <div className="pt-16">
-        <TransactionTable
-          transactions={referralsRanker || []}
-          titleTable={'LEADERBOARD'}
-          isLoading={isLoading}
-          columns={columnsReferral}
-          showCustomHeader
-        />
+        <TableDataReferralsRanker />
       </div>
     </div>
   )

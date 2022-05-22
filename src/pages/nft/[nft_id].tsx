@@ -20,7 +20,11 @@ import { getNftGradeImageUrl } from 'helper/nft/getNftImageUrl'
 import { useRouter } from 'next/router'
 import React, { useCallback, useEffect, useState } from 'react'
 import { getLastSeen } from 'utils/date'
-import { getDecomposeDate, getNftMiningEfficiency, getNftMiningPower } from 'utils/nft'
+import {
+  getDecomposeDate,
+  getNftMiningEfficiency,
+  getNftMiningPower,
+} from 'utils/nft'
 import { convertBigNumberToStringNumber } from 'utils/number'
 
 type Props = {
@@ -45,7 +49,9 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
 
       const activitiesResponse: ListDataActivitiesNftResponse =
         await getListActivitiesNft({ positionNftId: nftId })
-      const { positionNFT: { transactions } } = activitiesResponse.data
+      const {
+        positionNFT: { transactions },
+      } = activitiesResponse.data
       setLoading(false)
 
       setDataTransaction(transactions)
@@ -74,17 +80,17 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
   return (
     <div>
       <section>
-        <div className="max-w-screen-xl py-16 mx-auto ">
-          <div className="grid grid-cols-1 gap-8 md:gap-0 md:grid-cols-2 xl:grid-cols-3 lg:gap-12 ">
+        <div className="py-16 mx-auto max-w-screen-xl ">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-0 lg:gap-12 xl:grid-cols-3 ">
             <div className="relative h-96 rounded-lg  ">
               <img
-                className="absolute inset-0 object-contain w-full h-full"
+                className="object-contain absolute inset-0 w-full h-full"
                 src={getNftGradeImageUrl(grade)}
                 alt="Man using a computer"
                 loading="lazy"
               />
             </div>
-            <div className="xl:col-span-2 px-6 mt-6 md:mt-0">
+            <div className="px-6 mt-6 md:mt-0 xl:col-span-2">
               <h2
                 className={`text-lg font-bold sm:text-2xl dark:text-txt-primary text-txt-light-txt-primary  ${
                   burned && 'line-through'
@@ -92,31 +98,30 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
               >
                 #{nftId}
               </h2>
-              <p className="mt-6 dark:text-txt-sub-text-color text-txt-light-txt-primary">
+              <p className="mt-6 text-txt-light-txt-primary dark:text-txt-sub-text-color">
                 Author: <Address address={author.id} />
               </p>
-              <p className="mt-4 dark:text-txt-sub-text-color text-txt-light-secondary text-xs">
+              <p className="mt-4 text-xs text-txt-light-secondary dark:text-txt-sub-text-color">
                 Current Owner: <Address address={owner.id} />
               </p>
-              <p className="mt-8 dark:text-txt-sub-text-color text-xs">
+              <p className="mt-8 text-xs dark:text-txt-sub-text-color">
                 Quality: {quality}
               </p>
-              <p className="mt-6 dark:text-txt-sub-text-color text-xs">
+              <p className="mt-6 text-xs dark:text-txt-sub-text-color">
                 Par Value: {convertBigNumberToStringNumber(amount, 5)} POSI
               </p>
-              <p className="mt-6 dark:text-txt-sub-text-color text-xs">
+              <p className="mt-6 text-xs dark:text-txt-sub-text-color">
                 Mining Power: {getNftMiningPower(amount, grade, quality)} POSI
               </p>
-              <p className="mt-6 dark:text-txt-sub-text-color text-xs">
+              <p className="mt-6 text-xs dark:text-txt-sub-text-color">
                 Mining Efficiency:{' '}
                 {getNftMiningEfficiency(grade, quality).toFixed(2)}%
               </p>
-              <p className="mt-6 dark:text-txt-sub-text-color text-xs">
+              <p className="mt-6 text-xs dark:text-txt-sub-text-color">
                 Decompose Date: {getDecomposeDate(createdTime, lockedDays)}
               </p>
-              <p className="mt-8 dark:text-txt-sub-text-color  text-txt-light-secondary text-xs">
-                Last seen:{' '}
-                {getLastSeen(updatedTimestamp)}
+              <p className="mt-8 text-xs  text-txt-light-secondary dark:text-txt-sub-text-color">
+                Last seen: {getLastSeen(updatedTimestamp)}
               </p>
             </div>
           </div>

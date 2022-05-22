@@ -8,32 +8,21 @@ export type TypeItemNft = {
   grade: number
 }
 
-const backgroundColor = [
-  'rgba(57, 70, 238, 0.4)',
-  'rgba(251, 173, 55, 0.4)',
-  'rgba(187, 107, 217, 0.4)',
-  'rgba(171, 5, 242, 0.4)',
-  'rgba(110, 192, 242, 0.4)',
-  'rgba(114, 216, 218, 0.4)',
-]
 const calculatePercentageCirculate = (
   minted: string | number,
   burned: string | number
 ) => {
   return +minted - +burned
 }
+export type DataDoughnutChart = {
+  data: []
+  total: number
+}
+
 export const transformDataDoughnutChart = (
   dataNftStatistic: ItemNftStatistic,
   grade: string
 ) => {
-  const labels = [
-    'Grade 1',
-    'Grade 2',
-    'Grade 3',
-    'Grade 4',
-    'Grade 5',
-    'Grade 6',
-  ]
   const {
     totalGrade1Minted,
     totalGrade2Minted,
@@ -49,35 +38,46 @@ export const transformDataDoughnutChart = (
     totalGrade6Burned,
   } = getDataGrade(dataNftStatistic)
 
-  const data: number[] = []
-  data.push(calculatePercentageCirculate(totalGrade1Minted, totalGrade1Burned))
-  data.push(calculatePercentageCirculate(totalGrade2Minted, totalGrade2Burned))
-  data.push(calculatePercentageCirculate(totalGrade3Minted, totalGrade3Burned))
-  data.push(calculatePercentageCirculate(totalGrade4Minted, totalGrade4Burned))
-  data.push(calculatePercentageCirculate(totalGrade5Minted, totalGrade5Burned))
-  data.push(calculatePercentageCirculate(totalGrade6Minted, totalGrade6Burned))
-  const borderColor = [
-    'rgba(57, 70, 238, 0.2)',
-    'rgba(251, 173, 55, 0.2)',
-    'rgba(187, 107, 217, 0.2)',
-    'rgba(171, 5, 2422, 0.2)',
-    'rgba(110, 192, 242, 0.2)',
-    'rgba(114, 216, 218, 0.2)',
-  ]
+  // const
+  const data: any[] = []
+  data.push({
+    value: calculatePercentageCirculate(totalGrade1Minted, totalGrade1Burned),
+    id: 'Grade1',
+    label: 'Grade 1',
+    color: 'rgba(57, 70, 238, 0.4)',
+  })
+  data.push({
+    value: calculatePercentageCirculate(totalGrade2Minted, totalGrade2Burned),
+    id: 'Grade2',
+    label: 'Grade 2',
+    color: 'rgba(251, 173, 55, 0.4)',
+  })
+  data.push({
+    value: calculatePercentageCirculate(totalGrade3Minted, totalGrade3Burned),
+    id: 'Grade3',
+    label: 'Grade 3',
+    color: 'rgba(187, 107, 217, 0.4)',
+  })
+  data.push({
+    value: calculatePercentageCirculate(totalGrade4Minted, totalGrade4Burned),
+    id: 'Grade4',
+    label: 'Grade 4',
+    color: 'rgba(171, 5, 242, 0.4)',
+  })
+  data.push({
+    value: calculatePercentageCirculate(totalGrade5Minted, totalGrade5Burned),
+    id: 'Grade5',
+    label: 'Grade 5',
+    color: 'rgba(110, 192, 242, 0.4)',
+  })
+  data.push({
+    value: calculatePercentageCirculate(totalGrade6Minted, totalGrade6Burned),
+    id: 'Grade6',
+    label: 'Grade 6',
+    color: 'rgba(114, 216, 218, 0.4)',
+  })
+  const total =
+    +dataNftStatistic.totalNftsMinted - +dataNftStatistic.totalNftsBurned
 
-  const newBorderHeightLight = borderColor[+grade - 1].replace('0.2', '1')
-  borderColor[+grade - 1] = newBorderHeightLight
-
-  return {
-    labels,
-    datasets: [
-      {
-        data,
-        backgroundColor,
-        borderColor,
-        borderWidth: 2,
-        hoverOffset: 20,
-      },
-    ],
-  }
+  return { data, total } as DataDoughnutChart
 }

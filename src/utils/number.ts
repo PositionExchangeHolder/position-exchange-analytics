@@ -33,10 +33,18 @@ export function percentage(
   return (100 * Number(partialValue)) / Number(totalValue)
 }
 
-export function convertBigNumberToStringNumber(num: BigNumber | number | string, digits = 2): string {
-  return commasNumberFormat(new BigNumber(num).div(1e18).toFixed(digits).toString())
+export function convertBigNumberToStringNumber(
+  num: BigNumber | number | string,
+  digits = 2
+): string {
+  return commasNumberFormat(
+    new BigNumber(num).div(1e18).toFixed(digits).toString()
+  )
 }
 
-export const convertBigNumberToNumber = (num: BigNumber | number | string, digits = 2): number => {
+export const convertBigNumberToNumber = (
+  num: BigNumber | number | string,
+  digits = 2
+): number => {
   return Number(new BigNumber(num).div(1e18).toFixed(digits))
 }

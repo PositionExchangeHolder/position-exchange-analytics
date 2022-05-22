@@ -9,7 +9,7 @@ export type DataLineChartNft = {
 
 export interface ItemDataNftLineChart extends styleLineChart {
   label: string
-  data: string[]
+  data: string | number[]
 }
 
 export type styleLineChart = {
@@ -50,7 +50,9 @@ export const transformDataLineChartNft = (array: any) => {
     const valueReverse = value.slice().reverse()
 
     if (key === 'dailyTokenLocked') {
-      const valueReverseToNumber = valueReverse.map((value: string) => convertBigNumberToNumber(value, 0))
+      const valueReverseToNumber = valueReverse.map((value: string) =>
+        convertBigNumberToNumber(value, 0)
+      )
       dataTransform.push({
         label: 'Token Locked',
         data: valueReverseToNumber,

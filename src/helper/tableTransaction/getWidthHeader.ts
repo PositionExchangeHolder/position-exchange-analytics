@@ -22,5 +22,8 @@ export const getFilterActionTransactionTable = (name: string) => {
 
     case 'Total Referrals':
       return setOrderByTopReferralsRanker('totalReferrals') as any
+
+    case 'Commissions Earned':
+      return null
   }
 }

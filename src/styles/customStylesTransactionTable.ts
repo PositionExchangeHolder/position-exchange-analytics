@@ -31,7 +31,7 @@ export const customStylesTransactionTable: TableStyles = {
   },
   noData: {
     style: {
-      minHeight: 200,
+      height: 100,
     },
   },
 }

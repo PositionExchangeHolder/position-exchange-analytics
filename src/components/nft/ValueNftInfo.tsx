@@ -13,36 +13,36 @@ export default function ValueNftInfo({
   totalUniqueMiners,
 }: Props) {
   return (
-    <div className="mt-6 mb-6  flex-row flex items-stretch columns-4  gap-x-1   lg:mt-10 lg:mb-10 h-20 lg:gap-x-3 lg:h-28 md:h-20 ">
-      <div className="border rounded-md dark:bg-secondary  dark:border-waterloo  flex-1 items-center justify-center flex flex-col px-1 gap-y-1 lg:gap-y-2">
-        <p className=" text-tiny-xs lg:text-sm dark:text-txt-primary text-txt-light-secondary text-center  ">
+    <div className="columns-4 flex  flex-row gap-x-1 items-stretch my-6  h-20   md:h-20 lg:gap-x-3 lg:my-10 lg:h-28">
+      <div className="flex flex-col flex-1  gap-y-1  justify-center items-center px-1 dark:bg-secondary rounded-md border dark:border-waterloo lg:gap-y-2">
+        <p className=" text-tiny-xs text-center text-txt-light-secondary dark:text-txt-primary lg:text-sm  ">
           Minted
         </p>
-        <p className="font-medium text-xs lg:text-sm dark:text-txt-primary text-txt-light-txt-primary text-center">
+        <p className="text-xs font-medium text-center text-txt-light-txt-primary dark:text-txt-primary lg:text-sm">
           {commasNumberFormat(totalNftsMinted)}
         </p>
       </div>
-      <div className="border  rounded-md dark:bg-secondary dark:border-waterloo   flex-1 items-center justify-center flex flex-col  px-1 gap-y-1 lg:gap-y-2">
-        <p className=" text-tiny-xs lg:text-sm dark:text-txt-primary text-txt-light-secondary  text-center  ">
+      <div className="flex  flex-col flex-1 gap-y-1   justify-center items-center px-1 dark:bg-secondary rounded-md  border dark:border-waterloo lg:gap-y-2">
+        <p className=" text-tiny-xs text-center text-txt-light-secondary dark:text-txt-primary  lg:text-sm  ">
           Burned
         </p>
-        <p className="font-medium text-xs lg:text-sm dark:text-txt-primary text-txt-light-txt-primary text-center">
+        <p className="text-xs font-medium text-center text-txt-light-txt-primary dark:text-txt-primary lg:text-sm">
           {commasNumberFormat(totalNftsBurned)}
         </p>
       </div>
-      <div className="border  rounded-md dark:bg-secondary  dark:border-waterloo  flex-1 items-center justify-center flex flex-col px-1 gap-y-1 lg:gap-y-2">
-        <p className=" text-tiny-xs lg:text-sm dark:text-txt-primary text-txt-light-secondary text-center  ">
+      <div className="flex  flex-col flex-1  gap-y-1  justify-center items-center px-1 dark:bg-secondary rounded-md border dark:border-waterloo lg:gap-y-2">
+        <p className=" text-tiny-xs text-center text-txt-light-secondary dark:text-txt-primary lg:text-sm  ">
           Staking
         </p>
-        <p className="font-medium text-xs lg:text-sm dark:text-txt-primary text-txt-light-txt-primary text-center ">
+        <p className="text-xs font-medium text-center text-txt-light-txt-primary dark:text-txt-primary lg:text-sm ">
           {commasNumberFormat(totalNftsStaking)}
         </p>
       </div>
-      <div className=" border  rounded-md dark:bg-secondary  dark:border-waterloo  flex-1 items-center justify-center flex flex-col px-1  gap-y-1 lg:gap-y-2">
-        <p className=" text-tiny-xs lg:text-sm dark:text-txt-primary text-txt-light-secondary text-center">
+      <div className=" flex  flex-col flex-1  gap-y-1  justify-center items-center px-1 dark:bg-secondary rounded-md border  dark:border-waterloo lg:gap-y-2">
+        <p className=" text-tiny-xs text-center text-txt-light-secondary dark:text-txt-primary lg:text-sm">
           Unique Miners
         </p>
-        <p className="font-medium text-xs lg:text-sm dark:text-txt-primary text-txt-light-txt-primary  text-center">
+        <p className="text-xs font-medium text-center text-txt-light-txt-primary dark:text-txt-primary  lg:text-sm">
           {commasNumberFormat(totalUniqueMiners)}
         </p>
       </div>
