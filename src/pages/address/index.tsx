@@ -1,22 +1,12 @@
+import React, { useEffect } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { Injected } from 'config/connected/InjectedConnect'
 import { isEmpty } from 'lodash'
 import { useRouter } from 'next/router'
-import React, { useEffect } from 'react'
 
 export default function Address() {
-  const { active, account, activate } = useWeb3React()
+  const { account, activate } = useWeb3React()
   const router = useRouter()
-  const autoConnectMetamask = async () => {
-    await setTimeout(() => {
-      activate(Injected)
-    }, 250)
-  }
-  useEffect(() => {
-    if (!active) {
-      autoConnectMetamask()
-    }
-  }, [active])
 
   useEffect(() => {
     if (!isEmpty(account)) {
@@ -26,7 +16,27 @@ export default function Address() {
     }
   }, [account])
 
-  return (
-    <div className="relative  px-6  mt-10  w-full   md:mt-16  xl:px-0"></div>
-  )
+  const connectMetamask = () => {
+    activate(Injected)
+  }
+
+  if (!account) {
+    return (
+      <div className="">
+        <button
+          onClick={connectMetamask}
+          type="button"
+          className="bg-cyan-700 p-2 rounded-md"
+        >
+          Connect Wallet
+        </button>
+      </div>
+    )
+  } else {
+    return (
+      <div className="relative px-6 mt-10 w-full md:mt-16 xl:px-0">
+
+      </div>
+    )
+  }
 }

@@ -7,7 +7,7 @@ import React, { Fragment, useCallback } from 'react'
 import { IconCoinbase, IconMetamask, IconWalletConnect } from './IconWallet'
 
 export default function ButtonConnectMetamask() {
-  const { active, activate, deactivate } = useWeb3React()
+  const { active, activate, deactivate, account } = useWeb3React()
 
   const onConnectMetaMaskWallet = useCallback(async () => {
     await setTimeout(() => {
@@ -45,7 +45,9 @@ export default function ButtonConnectMetamask() {
                 ${open ? '' : 'text-opacity-90'}
                  text-gray-900 bg-primary hover:bg-gray-100 border border-gray-200 focus:ring-2 focus:ring-gray-100 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 `}
               >
-                <span className="mr-2 text-xs">Disconnect</span>
+                <span className="mr-2 text-xs">
+                  {account}
+                </span>
                 <ChevronDownIcon
                   className={`${open ? '' : 'text-opacity-70'}
                   ml-2 h-5 w-5 text-white transition duration-150 ease-in-out group-hover:text-opacity-80`}
