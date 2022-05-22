@@ -1,5 +1,5 @@
 import BalanceWallet from '@/components/address/BalanceWallet'
-import NftListItem from '@/components/address/NftListItem'
+// import NftListItem from '@/components/address/NftListItem'
 import SocialButton from '@/components/address/SocialButton'
 import StakingListItem from '@/components/address/StakingListItem'
 import TableDataReferralsAddress from '@/components/address/TableDataReferralsAddress'
