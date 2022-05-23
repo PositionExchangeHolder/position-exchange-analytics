@@ -1,7 +1,8 @@
 
 type NavigationItem = {
-  name: string,
+  name: string
   href: string
+  disable?: boolean
 }
 
 export const navigations: NavigationItem[] = [
@@ -11,14 +12,25 @@ export const navigations: NavigationItem[] = [
   },
   {
     name: 'Token',
-    href: '/token'
-  },
-  {
-    name: 'Address',
-    href: '/address'
+    href: '/token',
+    disable: true
   },
   {
     name: 'Referral',
     href: '/referral'
+  },
+  {
+    name: 'Bond',
+    href: '/bond',
+    disable: true
+  },
+  {
+    name: 'Vault',
+    href: 'vault',
+    disable: true,
+  },
+  {
+    name: 'Address',
+    href: '/address'
   }
 ]

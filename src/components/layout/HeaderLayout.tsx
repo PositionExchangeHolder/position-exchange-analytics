@@ -12,17 +12,23 @@ function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
 }
 
-type NavigationItemProps = {
-  href: string,
-  name: string,
+type NavigationItemProps  = {
+  href: string
+  name: string
+  disable?: boolean
   onClick?: any
 }
 
-const NavigationItem = ({ href, name, onClick }: NavigationItemProps) => {
+const NavigationItem = ({ href, name, disable, onClick }: NavigationItemProps) => {
   return (
     <div className="py-2 px-4 text-base font-medium text-txt-light-txt-primary dark:text-txt-primary hover:bg-light-primary-hv dark:hover:bg-mineShaft-30 rounded-md">
       <Link href={href}>
-        <button onClick={onClick}>
+        <button
+          disabled={disable}
+          onClick={onClick}
+          title={disable ? 'Coming Soon' : ''}
+          className={disable ? 'text-gray-500' : ''}
+        >
           {name}
         </button>
       </Link>
@@ -36,7 +42,7 @@ export default function HeaderLayout() {
       <div className="flex px-4 mx-auto w-full max-w-7xl sm:px-6">
         <div className="flex w-full">
           <div className="flex justify-between items-center py-2 w-full md:justify-start md:space-x-10">
-            <div className="flex justify-start lg:w-12  ">
+            <div className="flex justify-start lg:w-12">
               <Link href="/">
                 <img
                   className="w-auto h-8 sm:h-10"
@@ -58,6 +64,7 @@ export default function HeaderLayout() {
                     key={nav.href}
                     href={nav.href}
                     name={nav.name}
+                    disable={nav.disable}
                   />
                 ))
               }
@@ -180,6 +187,7 @@ export default function HeaderLayout() {
                         onClick={close}
                         href={nav.href}
                         name={nav.name}
+                        disable={nav.disable}
                       />
                     ))
                   }
