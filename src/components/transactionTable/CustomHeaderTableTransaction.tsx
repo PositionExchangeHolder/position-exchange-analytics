@@ -9,6 +9,7 @@ import { ReferralsRankerOrderBySelector } from 'store/referral/referralSlice'
 type Props = {
   columns?: TableColumn<ItemTranSaction | any>[]
 }
+
 export default function CustomHeaderTableTransaction({ columns }: Props) {
   const dispatch = useAppDispatch()
   const orderBy = useAppSelector(ReferralsRankerOrderBySelector)

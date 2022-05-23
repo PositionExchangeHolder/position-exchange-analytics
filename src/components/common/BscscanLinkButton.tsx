@@ -31,7 +31,7 @@ export function BscscanLinkButton({ hash, type, shortLink = true }: Props) {
       break
   }
   return (
-    <div className="flex  items-center w-full h-full text-xs font-medium text-gray-400 dark:text-txt-primary bg-light-primary dark:bg-primary md:text-sm">
+    <div className="flex items-center w-full h-full text-xs font-medium text-gray-400 dark:text-txt-primary bg-light-primary dark:bg-primary md:text-sm">
       <Link href={`${BSC_SCAN_URL}/${endpoint}`}>
         <a target="_blank" rel="noreferrer" className="line-clamp-1">
           {type === BscscanType.ADDRESS

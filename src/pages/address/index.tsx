@@ -4,7 +4,7 @@ import { Injected } from 'config/connected/InjectedConnect'
 import { isEmpty } from 'lodash'
 import { useRouter } from 'next/router'
 
-export default function Address() {
+export default function AddressPage() {
   const { account, activate } = useWeb3React()
   const router = useRouter()
 

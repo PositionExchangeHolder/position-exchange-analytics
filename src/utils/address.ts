@@ -29,10 +29,10 @@ const ADDRESS_LABELS: any = {
   '0x05e5b3cd263c4cd40cfa74b5e221dbede60c632e': 'Marketplace',
 }
 
-export function isAddress(address: string): boolean {
+export const isAddress = (address: string): boolean => {
   return web3.utils.isAddress(address)
 }
 
-export function getAddressLabel(address: string): string | undefined {
+export const getAddressLabel = (address: string): string | undefined => {
   return ADDRESS_LABELS[address]
 }

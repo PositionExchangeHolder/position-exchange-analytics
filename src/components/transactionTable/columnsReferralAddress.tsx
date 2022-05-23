@@ -8,6 +8,7 @@ import React from 'react'
 import { TableColumn } from 'react-data-table-component'
 import { convertTimestampToDate, getLastSeen } from 'utils/date'
 import { convertBigNumberToStringNumber } from 'utils/number'
+import { Address } from '../common/Address'
 import ToolTip from '../common/ToolTip'
 import RowData from './RowData'
 
@@ -23,11 +24,7 @@ export const columnsReferralAddress: TableColumn<RecordsRefAddress>[] = [
     name: 'Address',
     width: '440px',
     cell: (row) => (
-      <BscscanLinkButton
-        hash={row.user}
-        type={BscscanType.ADDRESS}
-        shortLink={false}
-      />
+      <Address address={row.user} shortLink={false} />
     ),
   },
   {
