@@ -1,13 +1,14 @@
+import React from 'react'
+import { TableColumn } from 'react-data-table-component'
+import { convertTimestampToDate, getLastSeen } from 'utils/date'
 import { ItemTranSaction } from 'api/nft/nft.api.type'
 import {
   BscscanLinkButton,
   BscscanType,
 } from 'components/common/BscscanLinkButton'
-import React from 'react'
-import { TableColumn } from 'react-data-table-component'
-import { convertTimestampToDate, getLastSeen } from 'utils/date'
 import ToolTip from '../common/ToolTip'
 import RowData from './RowData'
+import { Address } from '../common/Address'
 
 export const columnsActivities: TableColumn<ItemTranSaction>[] = [
   {
@@ -25,14 +26,14 @@ export const columnsActivities: TableColumn<ItemTranSaction>[] = [
   {
     name: 'From',
     cell: (row) => (
-      <BscscanLinkButton hash={row?.from?.id} type={BscscanType.ADDRESS} />
+      <Address address={row?.from.id} />
     ),
     width: '270px',
   },
   {
     name: 'To',
     cell: (row) => (
-      <BscscanLinkButton hash={row?.to?.id} type={BscscanType.ADDRESS} />
+      <Address address={row?.to.id} />
     ),
     width: '270px',
   },

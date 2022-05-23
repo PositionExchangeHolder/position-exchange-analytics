@@ -54,7 +54,7 @@ export const getListTransaction = async ({ skip, action }: QueryNft) => {
     `,
     variables: filter,
     context: {
-      endPointName: 'nft',
+      endpointName: 'nft',
     },
   })
   
@@ -93,7 +93,7 @@ export const getListNftStatistic = async () => {
       }
     `,
     context: {
-      endPointName: 'nft',
+      endpointName: 'nft',
     },
   })
   
@@ -116,7 +116,7 @@ export const getListNftDayData = async () => {
       }
     `,
     context: {
-      endPointName: 'nft',
+      endpointName: 'nft',
     },
   })
   return response
@@ -145,7 +145,7 @@ export const getNftsOfAddress = async (
       first
     },
     context: {
-      endPointName: 'nft'
+      endpointName: 'nft'
     }
   })
 

@@ -1,12 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @next/next/no-img-element */
 import { Address } from '@/components/common/Address'
+import { NotFoundNft } from '@/components/nft/NotFoundNft'
 import Pagination from '@/components/pagination'
 import { columnsActivities } from '@/components/transactionTable/columnsActivities'
 import TransactionTable from '@/components/transactionTable/TransactionTable'
 import {
   ItemTransactionActivities,
-  ListDataActivitiesNftResponse,
   NftDetailResponse,
   PositionNFTInfo,
   PropSSRNftDetail,
@@ -32,9 +31,7 @@ type Props = {
 }
 
 export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
-  const [dataTransaction, setDataTransaction] = useState<
-    ItemTransactionActivities[]
-  >([])
+  const [dataTransaction, setDataTransaction] = useState<ItemTransactionActivities[]>([])
   const [currentFilter, setCurrentFilter] = useState<FilterTransaction>('All')
   const [skipPage, setSkipPage] = useState<number>(0)
   const [isLoading, setLoading] = React.useState(false)
@@ -47,23 +44,26 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
       if (isLoading) return
       setLoading(true)
 
-      const activitiesResponse: ListDataActivitiesNftResponse =
-        await getListActivitiesNft({ positionNftId: nftId })
-      const {
-        positionNFT: { transactions },
-      } = activitiesResponse.data
+      const activitiesResponse = await getListActivitiesNft({ positionNftId: nftId })
+      const { positionNFT } = activitiesResponse.data
       setLoading(false)
 
-      setDataTransaction(transactions)
+      setDataTransaction(positionNFT?.transactions)
     }
     fetchDataActivities()
   }, [currentFilter, skipPage, nftId])
 
   // set filter and reset entries transaction
-  const onSetCurrentFilter = useCallback((filter) => {
+  const onSetCurrentFilter = useCallback((filter: any) => {
     setSkipPage(0)
     setCurrentFilter(filter)
   }, [])
+
+  if (!positionNFTDetail) {
+    return (
+      <NotFoundNft nftId={nftId} />
+    )
+  }
 
   const {
     grade,
@@ -80,47 +80,43 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
   return (
     <div>
       <section>
-        <div className="py-16 mx-auto max-w-screen-xl ">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-0 lg:gap-12 xl:grid-cols-3 ">
-            <div className="relative h-96 rounded-lg  ">
+        <div className="py-16 mx-auto max-w-screen-xl">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-0 lg:gap-12 xl:grid-cols-3">
+            <div className="relative h-96 rounded-lg">
               <img
                 className="object-contain absolute inset-0 w-full h-full"
                 src={getNftGradeImageUrl(grade)}
-                alt="Man using a computer"
+                alt={nftId}
                 loading="lazy"
               />
             </div>
             <div className="px-6 mt-6 md:mt-0 xl:col-span-2">
-              <h2
-                className={`text-lg font-bold sm:text-2xl dark:text-txt-primary text-txt-light-txt-primary  ${
-                  burned && 'line-through'
-                }`}
-              >
+              <h2 className={`text-lg font-bold sm:text-2xl dark:text-txt-primary text-txt-light-txt-primary ${burned && 'line-through'}`}>
                 #{nftId}
               </h2>
-              <p className="mt-6 text-txt-light-txt-primary dark:text-txt-sub-text-color">
-                Author: <Address address={author.id} />
+              <p className="mt-4 text-base text-txt-light-txt-primary dark:text-txt-sub-text-color">
+                Author: <Address address={author.id} shortLink={false} />
               </p>
-              <p className="mt-4 text-xs text-txt-light-secondary dark:text-txt-sub-text-color">
-                Current Owner: <Address address={owner.id} />
+              <p className="mt-4 text-base text-txt-light-secondary dark:text-txt-sub-text-color">
+                Current Owner: <Address address={owner.id} shortLink={false} />
               </p>
-              <p className="mt-8 text-xs dark:text-txt-sub-text-color">
+              <p className="mt-4 text-base dark:text-txt-sub-text-color">
                 Quality: {quality}
               </p>
-              <p className="mt-6 text-xs dark:text-txt-sub-text-color">
+              <p className="mt-4 text-base dark:text-txt-sub-text-color">
                 Par Value: {convertBigNumberToStringNumber(amount, 5)} POSI
               </p>
-              <p className="mt-6 text-xs dark:text-txt-sub-text-color">
+              <p className="mt-4 text-base dark:text-txt-sub-text-color">
                 Mining Power: {getNftMiningPower(amount, grade, quality)} POSI
               </p>
-              <p className="mt-6 text-xs dark:text-txt-sub-text-color">
+              <p className="mt-4 text-base dark:text-txt-sub-text-color">
                 Mining Efficiency:{' '}
                 {getNftMiningEfficiency(grade, quality).toFixed(2)}%
               </p>
-              <p className="mt-6 text-xs dark:text-txt-sub-text-color">
+              <p className="mt-4 text-base dark:text-txt-sub-text-color">
                 Decompose Date: {getDecomposeDate(createdTime, lockedDays)}
               </p>
-              <p className="mt-8 text-xs  text-txt-light-secondary dark:text-txt-sub-text-color">
+              <p className="mt-4 text-base text-txt-light-secondary dark:text-txt-sub-text-color">
                 Last seen: {getLastSeen(updatedTimestamp)}
               </p>
             </div>

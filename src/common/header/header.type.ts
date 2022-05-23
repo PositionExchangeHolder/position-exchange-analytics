@@ -1,33 +1,9 @@
 import {
   BookmarkAltIcon,
   CalendarIcon,
-  ChartBarIcon,
-  CursorClickIcon,
   ShieldCheckIcon,
   SupportIcon,
-  ViewGridIcon,
 } from '@heroicons/react/outline'
-export const nft = [
-  {
-    name: 'NFT',
-    description: 'Speak directly to your customers in a more meaningful way.',
-    href: '/nft',
-    icon: CursorClickIcon,
-  },
-  {
-    name: 'NFT Marketplace',
-    description: "Connect with third-party tools that you're already using.",
-    href: '/nft-marketplace',
-    icon: ViewGridIcon,
-  },
-  {
-    name: 'Analytics',
-    description:
-      'Get a better understanding of where your traffic is coming from.',
-    href: '#',
-    icon: ChartBarIcon,
-  },
-]
 
 export const resources = [
   {

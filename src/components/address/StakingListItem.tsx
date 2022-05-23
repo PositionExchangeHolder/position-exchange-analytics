@@ -62,7 +62,10 @@ export default function StakingListItem({
 }: StakingListItemProps) {
   return (
     <div className="flex flex-col m-auto mt-12 bg-secondary rounded-md">
-      <div className="flex overflow-x-scroll py-10 scrollbar-hide">
+      <p className="pt-3 pb-2 pl-6 text-sm font-medium text-txt-light-txt-primary dark:text-txt-primary lg:text-base uppercase">
+        Staking Pools
+      </p>
+      <div className="flex overflow-x-scroll py-6 scrollbar-hide">
         <div className="flex flex-nowrap md:ml-10 lg:ml-20">
           {nftPoolBalance &&
             isValidStakingPool(

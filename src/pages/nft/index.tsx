@@ -43,7 +43,7 @@ export default function Index({ nftStatistic, nftDayDatas }: Props) {
   const [isLoading, setLoading] = React.useState(false)
 
   // set filter and reset entries transaction
-  const onSetCurrentFilter = useCallback((filter) => {
+  const onSetCurrentFilter = useCallback((filter: any) => {
     setSkipPage(0)
     setCurrentFilter(filter)
   }, [])
@@ -63,11 +63,12 @@ export default function Index({ nftStatistic, nftDayDatas }: Props) {
     }
     fetchDataTransaction()
   }, [currentFilter, skipPage])
+  
   return (
-    <main className="relative px-6 mt-10 w-full  bg-light-primary  dark:bg-primary   md:mt-16  xl:px-0">
-      <div className="grid   grid-cols-1 gap-x-6   md:grid-cols-2">
+    <main className="relative px-6 mt-10 w-full bg-light-primary dark:bg-primary md:mt-16 xl:px-0">
+      <div className="grid grid-cols-1 gap-x-6 md:grid-cols-2">
         <CurrentValueLock nftStatistic={nftStatistic} />
-        <div className="mt-8 h-72 rounded-md xs:h-full md:mt-0 ">
+        <div className="mt-8 h-72 rounded-md xs:h-full md:mt-0">
           <div className="w-full h-full rounded-md">
             <LineChart data={dataNftLineChart} />
           </div>

@@ -21,7 +21,7 @@ export const getToTalReferralResponse = async ({}: ToTalReferralRequest) => {
       positionReferralId: '1',
     },
     context: {
-      endPointName: 'referral',
+      endpointName: 'referral',
     },
   })
   return response
@@ -56,7 +56,7 @@ export const getTopReferralResponse = async ({
       orderDirection: 'desc',
     },
     context: {
-      endPointName: 'referral',
+      endpointName: 'referral',
     },
   })
   return response
