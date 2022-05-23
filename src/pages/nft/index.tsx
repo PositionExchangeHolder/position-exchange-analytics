@@ -43,7 +43,7 @@ export default function Index({ nftStatistic, nftDayDatas }: Props) {
   const [isLoading, setLoading] = React.useState(false)
 
   // set filter and reset entries transaction
-  const onSetCurrentFilter = useCallback((filter) => {
+  const onSetCurrentFilter = useCallback((filter: any) => {
     setSkipPage(0)
     setCurrentFilter(filter)
   }, [])

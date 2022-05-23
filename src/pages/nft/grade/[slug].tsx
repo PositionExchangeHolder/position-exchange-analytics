@@ -47,7 +47,7 @@ export default function Index({ positionNFTs, nftStatistic }: Props) {
 
   const dataDoughnutChart = transformDataDoughnutChart(nftStatistic, grade)
   // set filter and reset entries transaction
-  const onSetCurrentFilter = useCallback((filter) => {
+  const onSetCurrentFilter = useCallback((filter: any) => {
     setSkipPage(0)
     setCurrentFilter(filter)
   }, [])
