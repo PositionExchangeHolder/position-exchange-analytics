@@ -86,41 +86,37 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
               <img
                 className="object-contain absolute inset-0 w-full h-full"
                 src={getNftGradeImageUrl(grade)}
-                alt="Man using a computer"
+                alt={nftId}
                 loading="lazy"
               />
             </div>
             <div className="px-6 mt-6 md:mt-0 xl:col-span-2">
-              <h2
-                className={`text-lg font-bold sm:text-2xl dark:text-txt-primary text-txt-light-txt-primary  ${
-                  burned && 'line-through'
-                }`}
-              >
+              <h2 className={`text-lg font-bold sm:text-2xl dark:text-txt-primary text-txt-light-txt-primary ${burned && 'line-through'}`}>
                 #{nftId}
               </h2>
-              <p className="mt-6 text-txt-light-txt-primary dark:text-txt-sub-text-color">
-                Author: <Address address={author.id} />
+              <p className="mt-4 text-base text-txt-light-txt-primary dark:text-txt-sub-text-color">
+                Author: <Address address={author.id} shortLink={false} />
               </p>
-              <p className="mt-4 text-xs text-txt-light-secondary dark:text-txt-sub-text-color">
-                Current Owner: <Address address={owner.id} />
+              <p className="mt-4 text-base text-txt-light-secondary dark:text-txt-sub-text-color">
+                Current Owner: <Address address={owner.id} shortLink={false} />
               </p>
-              <p className="mt-8 text-xs dark:text-txt-sub-text-color">
+              <p className="mt-4 text-base dark:text-txt-sub-text-color">
                 Quality: {quality}
               </p>
-              <p className="mt-6 text-xs dark:text-txt-sub-text-color">
+              <p className="mt-4 text-base dark:text-txt-sub-text-color">
                 Par Value: {convertBigNumberToStringNumber(amount, 5)} POSI
               </p>
-              <p className="mt-6 text-xs dark:text-txt-sub-text-color">
+              <p className="mt-4 text-base dark:text-txt-sub-text-color">
                 Mining Power: {getNftMiningPower(amount, grade, quality)} POSI
               </p>
-              <p className="mt-6 text-xs dark:text-txt-sub-text-color">
+              <p className="mt-4 text-base dark:text-txt-sub-text-color">
                 Mining Efficiency:{' '}
                 {getNftMiningEfficiency(grade, quality).toFixed(2)}%
               </p>
-              <p className="mt-6 text-xs dark:text-txt-sub-text-color">
+              <p className="mt-4 text-base dark:text-txt-sub-text-color">
                 Decompose Date: {getDecomposeDate(createdTime, lockedDays)}
               </p>
-              <p className="mt-8 text-xs  text-txt-light-secondary dark:text-txt-sub-text-color">
+              <p className="mt-4 text-base text-txt-light-secondary dark:text-txt-sub-text-color">
                 Last seen: {getLastSeen(updatedTimestamp)}
               </p>
             </div>
