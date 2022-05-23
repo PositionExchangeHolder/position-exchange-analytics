@@ -1,12 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @next/next/no-img-element */
 import { Address } from '@/components/common/Address'
+import { NotFoundNft } from '@/components/nft/NotFoundNft'
 import Pagination from '@/components/pagination'
 import { columnsActivities } from '@/components/transactionTable/columnsActivities'
 import TransactionTable from '@/components/transactionTable/TransactionTable'
 import {
   ItemTransactionActivities,
-  ListDataActivitiesNftResponse,
   NftDetailResponse,
   PositionNFTInfo,
   PropSSRNftDetail,
@@ -32,9 +31,7 @@ type Props = {
 }
 
 export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
-  const [dataTransaction, setDataTransaction] = useState<
-    ItemTransactionActivities[]
-  >([])
+  const [dataTransaction, setDataTransaction] = useState<ItemTransactionActivities[]>([])
   const [currentFilter, setCurrentFilter] = useState<FilterTransaction>('All')
   const [skipPage, setSkipPage] = useState<number>(0)
   const [isLoading, setLoading] = React.useState(false)
@@ -47,14 +44,11 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
       if (isLoading) return
       setLoading(true)
 
-      const activitiesResponse: ListDataActivitiesNftResponse =
-        await getListActivitiesNft({ positionNftId: nftId })
-      const {
-        positionNFT: { transactions },
-      } = activitiesResponse.data
+      const activitiesResponse = await getListActivitiesNft({ positionNftId: nftId })
+      const { positionNFT } = activitiesResponse.data
       setLoading(false)
 
-      setDataTransaction(transactions)
+      setDataTransaction(positionNFT?.transactions)
     }
     fetchDataActivities()
   }, [currentFilter, skipPage, nftId])
@@ -64,6 +58,12 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
     setSkipPage(0)
     setCurrentFilter(filter)
   }, [])
+
+  if (!positionNFTDetail) {
+    return (
+      <NotFoundNft nftId={nftId} />
+    )
+  }
 
   const {
     grade,
@@ -80,9 +80,9 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
   return (
     <div>
       <section>
-        <div className="py-16 mx-auto max-w-screen-xl ">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-0 lg:gap-12 xl:grid-cols-3 ">
-            <div className="relative h-96 rounded-lg  ">
+        <div className="py-16 mx-auto max-w-screen-xl">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-0 lg:gap-12 xl:grid-cols-3">
+            <div className="relative h-96 rounded-lg">
               <img
                 className="object-contain absolute inset-0 w-full h-full"
                 src={getNftGradeImageUrl(grade)}
