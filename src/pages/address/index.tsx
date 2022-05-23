@@ -4,8 +4,26 @@ import { Injected } from 'config/connected/InjectedConnect'
 import { isEmpty } from 'lodash'
 import { useRouter } from 'next/router'
 
+const ConnectMetamaskButton = () => {
+  const { activate } = useWeb3React()
+
+  const connectMetamask = () => {
+    activate(Injected)
+  }
+
+  return (
+    <button
+      onClick={connectMetamask}
+      type="button"
+      className="bg-cyan-700 p-3 rounded-md"
+    >
+      Connect Wallet
+    </button>
+  )
+}
+
 export default function AddressPage() {
-  const { account, activate } = useWeb3React()
+  const { account } = useWeb3React()
   const router = useRouter()
 
   useEffect(() => {
@@ -16,20 +34,10 @@ export default function AddressPage() {
     }
   }, [account])
 
-  const connectMetamask = () => {
-    activate(Injected)
-  }
-
   if (!account) {
     return (
-      <div className="">
-        <button
-          onClick={connectMetamask}
-          type="button"
-          className="bg-cyan-700 p-2 rounded-md"
-        >
-          Connect Wallet
-        </button>
+      <div className="flex justify-center px-6 mt-8 ">
+        <ConnectMetamaskButton />
       </div>
     )
   } else {
