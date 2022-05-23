@@ -9,8 +9,8 @@ const Button = (props: any) => {
       <Image
         src={image}
         alt="logo"
-        width={20}
-        height={20}
+        width={16}
+        height={16}
         layout="fixed"
       />
       <div className="ml-2">Add</div>
@@ -20,7 +20,7 @@ const Button = (props: any) => {
 
 export default function SocialButton() {
   return (
-    <div className="flex flex-row gap-x-4 py-2 px-4 mt-4">
+    <div className="flex flex-row gap-x-4 py-2 px-4 mt-3">
       <Button image={'/twitter-logo.svg'} />
       <Button image={'/github_logo.svg'} />
       <Button image={'/mail-logo.svg'} />

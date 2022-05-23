@@ -14,9 +14,7 @@ export const Address = ({ address, shortLink = true }: Props) => {
   return (
     <div className="flex items-center w-full h-full text-xs font-medium text-gray-400 dark:text-txt-primary bg-light-primary dark:bg-primary md:text-sm">
       <Link href={`/address/${address}`}>
-        <a target="_blank" rel="noreferrer" className="line-clamp-1">
-          {addressStr}
-        </a>
+        {addressStr}
       </Link>
     </div>
   )

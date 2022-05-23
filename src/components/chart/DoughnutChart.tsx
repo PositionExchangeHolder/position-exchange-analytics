@@ -4,6 +4,7 @@ import { useState } from 'react'
 
 export function DoughnutChart({ data, total }: DataDoughnutChart) {
   const [metricValue, setMetricValue] = useState(total)
+  
   const CenteredMetric = ({
     centerX,
     centerY,
@@ -27,6 +28,7 @@ export function DoughnutChart({ data, total }: DataDoughnutChart) {
       </text>
     )
   }
+  
   return (
     <div className="w-full h-full">
       <ResponsivePie
