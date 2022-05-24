@@ -1,27 +1,31 @@
 /* eslint-disable @next/next/no-img-element */
 import { Popover, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
-import { ChevronDownIcon } from '@heroicons/react/solid'
 import { PopoverType, resources } from 'common/header/header.type'
 import Link from 'next/link'
 import { Fragment } from 'react'
 import ButtonConnectMetamask from '../wallet/ButtonConnectMetamask'
 import { navigations } from './config'
 
-function classNames(...classes: any) {
-  return classes.filter(Boolean).join(' ')
-}
+// function classNames(...classes: any) {
+//   return classes.filter(Boolean).join(' ')
+// }
 
-type NavigationItemProps  = {
+type NavigationItemProps = {
   href: string
   name: string
   disable?: boolean
   onClick?: any
 }
 
-const NavigationItem = ({ href, name, disable, onClick }: NavigationItemProps) => {
+const NavigationItem = ({
+  href,
+  name,
+  disable,
+  onClick,
+}: NavigationItemProps) => {
   return (
-    <div className="py-2 px-4 text-base font-medium text-txt-light-txt-primary dark:text-txt-primary hover:bg-light-primary-hv dark:hover:bg-mineShaft-30 rounded-md">
+    <div className="py-2 text-base font-medium text-txt-light-txt-primary dark:text-txt-primary hover:bg-light-primary-hv dark:hover:bg-mineShaft-30 rounded-md md:px-0  lg:px-2 xl:px-4">
       <Link href={href}>
         <button
           disabled={disable}
@@ -58,18 +62,16 @@ export default function HeaderLayout() {
               </Popover.Button>
             </div>
             <Popover.Group as="nav" className="hidden space-x-10 md:flex">
-              {
-                navigations.map(nav => (
-                  <NavigationItem
-                    key={nav.href}
-                    href={nav.href}
-                    name={nav.name}
-                    disable={nav.disable}
-                  />
-                ))
-              }
+              {navigations.map((nav) => (
+                <NavigationItem
+                  key={nav.href}
+                  href={nav.href}
+                  name={nav.name}
+                  disable={nav.disable}
+                />
+              ))}
 
-              <Popover className="relative">
+              {/* <Popover className="relative">
                 {({ open, close }: PopoverType) => (
                   <>
                     <Popover.Button
@@ -124,7 +126,7 @@ export default function HeaderLayout() {
                     </Transition>
                   </>
                 )}
-              </Popover>
+              </Popover> */}
             </Popover.Group>
           </div>
           {/* <div className="hidden lg:w-full  md:flex flex-row justify-end items-center  ">
@@ -174,24 +176,22 @@ export default function HeaderLayout() {
                   </div>
                 </div> */}
 
-                <div className="py-4 px-5 mt-4 w-full bg-white dark:bg-primary rounded-sm ring-1 ring-neutral-300  drop-shadow-[0_1px_2px_#F1F1F1] dark:drop-shadow-[0_1px_1px_#1B2431]">
+                <div className="py-4 px-5 mt-4 w-full bg-white dark:bg-primary rounded-sm ">
                   <ButtonConnectMetamask />
                 </div>
               </div>
               <div className="py-6 px-5 space-y-6">
                 <div className="grid grid-cols-2 gap-x-8 gap-y-4">
-                  {
-                    navigations.map(nav => (
-                      <NavigationItem
-                        key={nav.href}
-                        onClick={close}
-                        href={nav.href}
-                        name={nav.name}
-                        disable={nav.disable}
-                      />
-                    ))
-                  }
-                  
+                  {navigations.map((nav) => (
+                    <NavigationItem
+                      key={nav.href}
+                      onClick={close}
+                      href={nav.href}
+                      name={nav.name}
+                      disable={nav.disable}
+                    />
+                  ))}
+
                   {resources.map((item) => (
                     <Link key={item.name} href={item.href}>
                       <a
