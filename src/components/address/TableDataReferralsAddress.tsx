@@ -1,5 +1,5 @@
 import TransactionTable from '@/components/transactionTable/TransactionTable'
-import { makeStyles } from '@material-ui/core/styles'
+// import { makeStyles } from '@material-ui/core/styles'
 import { Pagination } from '@material-ui/lab'
 import { getReferralAddress } from 'api/address/address.api'
 import {
@@ -58,14 +58,16 @@ export default function TableDataReferralsAddress({ referrerId }: Props) {
   const handleChange = (e: any, p: number) => {
     setCurrentPages(p)
   }
-  const useStyles = makeStyles(() => ({
-    ul: {
-      '& .MuiPaginationItem-root': {
-        color: 'white',
-      },
-    },
-  }))
-  const classes = useStyles()
+  
+  // FIXME: https://stackoverflow.com/questions/69547756/mui-makestyles-cannot-read-properties-of-undefined
+  // const useStyles = makeStyles(() => ({
+  //   ul: {
+  //     '& .MuiPaginationItem-root': {
+  //       color: 'white',
+  //     },
+  //   },
+  // }))
+  // const classes = useStyles()
 
   return (
     <div>
@@ -79,7 +81,7 @@ export default function TableDataReferralsAddress({ referrerId }: Props) {
       <div className="flex justify-center items-center mt-6">
         <Pagination
           disabled={isEmpty(dataReferralAddress)}
-          classes={{ ul: classes.ul }}
+          // classes={{ ul: classes.ul }}
           color="primary"
           count={count}
           size="large"

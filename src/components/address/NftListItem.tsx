@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
+// import { makeStyles } from '@material-ui/core/styles'
 import { Pagination } from '@material-ui/lab'
 import { getNftGradeImageUrl } from 'helper/nft/getNftImageUrl'
 import { isEmpty } from 'lodash'
@@ -13,14 +13,15 @@ type Props = {
 }
 
 export default function NftListItem({ address }: Props) {
-  const useStyles = makeStyles(() => ({
-    ul: {
-      '& .MuiPaginationItem-root': {
-        color: 'white',
-      },
-    },
-  }))
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // const useStyles = makeStyles(() => ({
+  //   ul: {
+  //     '& .MuiPaginationItem-root': {
+  //       color: 'white',
+  //     },
+  //   },
+  // }))
+  // const classes = useStyles()
+  
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [totalPage, setTotalPage] = useState<number>(1)
   const [currentPages, setCurrentPages] = useState<number>(1)
@@ -29,7 +30,6 @@ export default function NftListItem({ address }: Props) {
   const handleChange = (e: any, p: number) => {
     setCurrentPages(p)
   }
-  const classes = useStyles()
   const count = Math.ceil(totalPage / PER_PAGE)
 
   useEffect(() => {
@@ -87,7 +87,7 @@ export default function NftListItem({ address }: Props) {
       <div className="flex justify-center items-center mb-6">
         <Pagination
           disabled={isEmpty(nftList)}
-          classes={{ ul: classes.ul }}
+          // classes={{ ul: classes.ul }}
           color="primary"
           count={count}
           size="large"

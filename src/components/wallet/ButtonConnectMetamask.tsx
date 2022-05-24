@@ -4,7 +4,7 @@ import { ChevronDownIcon } from '@heroicons/react/solid'
 import { useWeb3React } from '@web3-react/core'
 import { Injected } from 'config/connected/InjectedConnect'
 import React, { Fragment, useCallback } from 'react'
-import { IconCoinbase, IconMetamask, IconWalletConnect } from './IconWallet'
+import { IconMetamask } from './IconWallet'
 
 export default function ButtonConnectMetamask() {
   const { active, activate, deactivate, account } = useWeb3React()
@@ -21,16 +21,16 @@ export default function ButtonConnectMetamask() {
       icon: IconMetamask,
       action: onConnectMetaMaskWallet,
     },
-    {
-      name: 'WalletConnect',
-      icon: IconWalletConnect,
-      action: onConnectMetaMaskWallet,
-    },
-    {
-      name: 'Coinbase Wallet',
-      icon: IconCoinbase,
-      action: onConnectMetaMaskWallet,
-    },
+    // {
+    //   name: 'WalletConnect',
+    //   icon: IconWalletConnect,
+    //   action: onConnectMetaMaskWallet,
+    // },
+    // {
+    //   name: 'Coinbase Wallet',
+    //   icon: IconCoinbase,
+    //   action: onConnectMetaMaskWallet,
+    // },
   ]
 
   return (
@@ -76,13 +76,14 @@ export default function ButtonConnectMetamask() {
               leaveFrom="opacity-100 translate-y-0"
               leaveTo="opacity-0 translate-y-1"
             >
-              <Popover.Panel className="absolute z-10 px-4 mt-3 w-full max-w-sm  sm:px-0 md:-left-[20%] md:w-screen  md:-translate-x-1/2">
-                <div className="overflow-hidden rounded-lg ring-1 ring-white/5  shadow-md  drop-shadow-[0_1px_2px_#1B2431]   ">
-                  <div className="relative  gap-8 p-7 bg-primary ">
+              <Popover.Panel className="absolute z-10 px-4 mt-3 w-full max-w-sm sm:px-0 md:-left-[20%] md:w-screen md:-translate-x-1/2">
+                <div className="overflow-hidden rounded-lg ring-1 ring-white/5 shadow-md drop-shadow-[0_1px_2px_#1B2431]">
+                  <div className="relative gap-8 p-4 bg-primary">
                     {buttonsConnectWallet.map((item) => {
                       const onClickBtnWallet = () => {
                         item.action(), close()
                       }
+                      
                       return (
                         <button
                           onClick={onClickBtnWallet}
