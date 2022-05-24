@@ -11,6 +11,7 @@ type StakingItemProps = {
   name: string
   stakingBalance: string
   pendingReward: string
+  isMatchingAccount?: boolean
 }
 
 const StakingItem = ({
@@ -18,6 +19,7 @@ const StakingItem = ({
   name,
   stakingBalance,
   pendingReward,
+  isMatchingAccount
 }: StakingItemProps) => {
   return (
     <div key={id} className="inline-block px-3">
@@ -31,21 +33,25 @@ const StakingItem = ({
         <p className="mt-2 text-sm font-medium text-center text-txt-light-txt-primary dark:text-txt-primary lg:text-lg">
           Earned: {convertBigNumberToNumber(pendingReward, 4)}
         </p>
-        <div className=" flex gap-x-2 justify-center mt-4">
-          <button
-            type="button"
-            className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-white bg-neutral-800 hover:bg-neutral-700 rounded-lg"
-          >
-            Unstake
-          </button>
+        {
+          isMatchingAccount && (
+            <div className="flex gap-x-2 justify-center mt-4">
+              <button
+                type="button"
+                className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-white bg-neutral-800 hover:bg-neutral-700 rounded-lg"
+              >
+                Unstake
+              </button>
 
-          <button
-            type="button"
-            className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-white bg-neutral-800 hover:bg-neutral-700 rounded-lg"
-          >
-            Harvest
-          </button>
-        </div>
+              <button
+                type="button"
+                className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-white bg-neutral-800 hover:bg-neutral-700 rounded-lg"
+              >
+                Harvest
+              </button>
+            </div>
+          )
+        }
       </div>
     </div>
   )
@@ -54,11 +60,13 @@ const StakingItem = ({
 type StakingListItemProps = {
   stakingPoolBalances: StakingPoolBalances | undefined
   nftPoolBalance: NftPoolBalance | undefined
+  isMatchingAccount?: boolean
 }
 
 export default function StakingListItem({
   stakingPoolBalances,
   nftPoolBalance,
+  isMatchingAccount
 }: StakingListItemProps) {
   return (
     <div className="flex flex-col m-auto mt-12 bg-secondary rounded-md">

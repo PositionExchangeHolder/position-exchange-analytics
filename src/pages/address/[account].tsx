@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import { useWeb3React } from '@web3-react/core'
 import BalanceWallet from '@/components/address/BalanceWallet'
 import { AddressPnL } from '@/components/address/PnL'
-import SocialButton from '@/components/address/SocialButton'
+import SocialInfo from '@/components/address/SocialInfo'
 import StakingListItem from '@/components/address/StakingListItem'
 import TableDataReferralsAddress from '@/components/address/TableDataReferralsAddress'
 import {
@@ -24,10 +25,12 @@ import { convertBigNumberToNumber } from 'utils/number'
 
 export default function Account() {
   const router = useRouter()
-  const account: string = (router?.query?.account as string) || ''
+  const { account: accountWeb3 } = useWeb3React()
+  const account = router?.query?.account as string || ''
+  const isMatchingAccount = accountWeb3?.toLowerCase() === account.toLowerCase()
+  
   const [balance, setBalance] = useState<DataBalancerResponse>()
-  const [realizedPnlAndTradingData, setRealizedPnlAndTradingData] =
-    useState<RealizedPnlAndTradingData>()
+  const [realizedPnlAndTradingData, setRealizedPnlAndTradingData] = useState<RealizedPnlAndTradingData>()
 
   const totalWallet = convertBigNumberToNumber(
     balance?.totalPosiBalance?.walletBalance || 0
@@ -87,7 +90,7 @@ export default function Account() {
           <div className="py-2 px-4 mt-4 bg-primary rounded-[30px] ring-1 ring-white/5 shadow-md drop-shadow-[0_1px_2px_#1B2431]">
             <BscscanLinkButton hash={account} type={BscscanType.ADDRESS} />
           </div>
-          <SocialButton />
+          <SocialInfo isMatchingAccount={isMatchingAccount} />
         </div>
       </div>
       
@@ -101,6 +104,7 @@ export default function Account() {
       <StakingListItem
         stakingPoolBalances={balance?.stakingPoolBalances}
         nftPoolBalance={balance?.nftPoolBalance}
+        isMatchingAccount={isMatchingAccount}
       />
 
       {/* <NftListItem address={account} /> */}

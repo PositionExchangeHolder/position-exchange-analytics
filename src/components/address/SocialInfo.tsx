@@ -18,12 +18,22 @@ const Button = (props: any) => {
   )
 }
 
-export default function SocialButton() {
+interface Props {
+  isMatchingAccount: boolean
+}
+
+export default function SocialButton({ isMatchingAccount }: Props) {
+  if (isMatchingAccount) {
+    return (
+      <div className="flex flex-row gap-x-4 py-2 px-4 mt-3">
+        <Button image={'/twitter-logo.svg'} />
+        <Button image={'/github_logo.svg'} />
+        <Button image={'/mail-logo.svg'} />
+      </div>
+    )
+  }
+  
   return (
-    <div className="flex flex-row gap-x-4 py-2 px-4 mt-3">
-      <Button image={'/twitter-logo.svg'} />
-      <Button image={'/github_logo.svg'} />
-      <Button image={'/mail-logo.svg'} />
-    </div>
+    <></>
   )
 }
