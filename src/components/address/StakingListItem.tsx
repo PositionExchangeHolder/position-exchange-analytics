@@ -85,6 +85,7 @@ export default function StakingListItem({
                 name={'NFT Pool ' + nftPoolBalance.pool.toUpperCase()}
                 stakingBalance={nftPoolBalance.stakingBalance}
                 pendingReward={nftPoolBalance.pendingReward}
+                isMatchingAccount={isMatchingAccount}
               />
             )}
 
@@ -96,6 +97,7 @@ export default function StakingListItem({
                   name={item.name}
                   stakingBalance={item.stakingBalance}
                   pendingReward={item.pendingReward}
+                  isMatchingAccount={isMatchingAccount}
                 />
               )
             }
