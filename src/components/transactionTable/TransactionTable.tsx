@@ -41,7 +41,7 @@ export default function TransactionTable({
         <p className="text-sm font-medium text-txt-light-txt-primary dark:text-txt-primary lg:text-base">
           {titleTable}
         </p>
-        <div className="grid flex-wrap grid-cols-3 gap-x-4  mt-4 md:flex md:flex-row">
+        <div className="grid flex-wrap grid-cols-3 gap-x-4 mt-4 md:flex md:flex-row">
           {
             listFilterTransaction
               && listFilterTransaction?.map((itemFilter) => {

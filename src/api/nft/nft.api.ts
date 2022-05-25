@@ -125,24 +125,42 @@ export const getListNftDayData = async () => {
 export const getNftsOfAddress = async (
   address: string,
   skip = 0,
-  first = 8
+  first = 8,
+  orderBy = 'id',
+  orderDirection = 'asc'
 ) => {
   const response = await client.query({
     query: gql`
-      query Owner($ownerId: ID!, $skip: Int) {
+      query Nft(
+        $ownerId: ID!,
+        $skip: Int,
+        $first: Int,
+        $orderBy: PositionNFT_orderBy,
+        $orderDirection: OrderDirection
+      ) {
         owner(id: $ownerId) {
-          totalNfts
-          nft(skip: $skip, first: $first) {
+          nft(
+            skip: $skip,
+            first: $first,
+            orderBy: $orderBy,
+            orderDirection: $orderDirection
+          ) {
             id
             grade
+            amount
+            lockedDays
+            createdTime
           }
+          totalNfts
         }
       }
     `,
     variables: {
       ownerId: address,
       skip,
-      first
+      first,
+      orderBy,
+      orderDirection
     },
     context: {
       endpointName: 'nft'

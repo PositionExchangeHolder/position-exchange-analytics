@@ -42,7 +42,7 @@ export default function AddressPage() {
     )
   } else {
     return (
-      <div className="relative px-6 mt-10 w-full md:mt-16 xl:px-0">
+      <div className="relative px-6 mt-6 w-full md:mt-16 xl:px-0">
 
       </div>
     )

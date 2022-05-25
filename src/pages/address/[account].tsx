@@ -22,6 +22,7 @@ import { isEmpty } from 'lodash'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { convertBigNumberToNumber } from 'utils/number'
+import NftListItem from '@/components/address/NftListItem'
 
 export default function Account() {
   const router = useRouter()
@@ -107,7 +108,7 @@ export default function Account() {
         isMatchingAccount={isMatchingAccount}
       />
 
-      {/* <NftListItem address={account} /> */}
+      <NftListItem address={account} />
 
       {/* Referral Table */}
       <div className="pt-16">
