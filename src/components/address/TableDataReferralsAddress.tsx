@@ -8,8 +8,8 @@ import {
 } from 'api/address/address.api.type'
 import { isEmpty } from 'lodash'
 import React, { useEffect, useState } from 'react'
+import { AddressReferralQueryOrderBy } from 'store/address/addressSlice'
 import { useAppSelector } from 'store/hooks'
-import { ReferralsRankerOrderBySelector } from 'store/referral/referralSlice'
 import getPageCount from 'utils/getPageCount'
 import { columnsReferralAddress } from '../transactionTable/columnsReferralAddress'
 
@@ -25,7 +25,7 @@ export default function TableDataReferralsAddress({ referrerId }: Props) {
   const [currentPages, setCurrentPages] = useState<number>(1)
   const [dataReferralAddress, setDataReferralAddress] = useState<RecordsRefAddress[]>([])
   
-  const orderBy = useAppSelector(ReferralsRankerOrderBySelector)
+  const orderBy = useAppSelector(AddressReferralQueryOrderBy)
 
   const handleChange = (e: any, p: number) => {
     setCurrentPages(p)
@@ -44,10 +44,10 @@ export default function TableDataReferralsAddress({ referrerId }: Props) {
       setIsLoading(true)
 
       const dataReferral: ReferralAddressResponse = await getReferralAddress({
-        orderBy: 'updatedTimestamp',
         referrerId,
+        first: PER_PAGE,
         skip: (currentPages - 1) * PER_PAGE,
-        first: PER_PAGE
+        orderBy: orderBy
       })
       setDataReferralAddress(dataReferral?.data?.referrer?.recordsRef)
       setTotalPage(Number(dataReferral?.data?.referrer?.totalReferrals) || 1)

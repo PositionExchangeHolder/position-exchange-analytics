@@ -18,13 +18,13 @@ export default function CustomHeaderTableTransaction({ columns }: Props) {
     <>
       {columns?.map((column, index) => {
         const onClickFilter = async () => {
-          if (column?.name === 'Commissions Earned') return
-          if (column?.sortable === true) {
+          if (column?.sortable) {
             await dispatch(
               getFilterActionTransactionTable(column?.name as string)
             )
           }
         }
+        
         return (
           <div
             className="pl-[20px]"
@@ -40,24 +40,26 @@ export default function CustomHeaderTableTransaction({ columns }: Props) {
               >
                 {column.name}
               </p>
-              {column?.sortable && (
-                <div
-                  onClick={onClickFilter}
-                  className={`w-4 h-4 text-[#6987FF] ml-2 ${
-                    column?.sortable && 'cursor-pointer'
-                  } ${
-                    column.name === 'Total Referrals'
-                      ? orderBy === 'totalReferrals'
+              {
+                column?.sortable && (
+                  <div
+                    onClick={onClickFilter}
+                    className={`w-4 h-4 text-[#6987FF] ml-2 ${
+                      column?.sortable && 'cursor-pointer'
+                    } ${
+                      column.name === 'Total Referrals'
+                        ? orderBy === 'totalReferrals'
+                          ? 'opacity-100'
+                          : 'opacity-50'
+                        : orderBy === 'totalReferralCommissions'
                         ? 'opacity-100'
                         : 'opacity-50'
-                      : orderBy === 'totalReferralCommissions'
-                      ? 'opacity-100'
-                      : 'opacity-50'
-                  }`}
-                >
-                  <ArrowDownIcon />
-                </div>
-              )}
+                    }`}
+                  >
+                    <ArrowDownIcon />
+                  </div>
+                )
+              }
             </div>
           </div>
         )

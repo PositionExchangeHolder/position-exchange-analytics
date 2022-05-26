@@ -34,15 +34,7 @@ export type TotalPosiBalance = {
 //referralAddress address
 
 export type queryGetReferralAddressRequest = {
-  orderBy:
-    | 'id'
-    | 'user'
-    | 'referrer'
-    | 'refTxHash'
-    | 'totalCommissionsEarnedForReferrer'
-    | 'createdBlockNumber'
-    | 'createdTimestamp'
-    | 'updatedTimestamp'
+  orderBy: string
   referrerId: string
   skip: number
   first: number

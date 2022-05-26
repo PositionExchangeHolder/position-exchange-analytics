@@ -9,29 +9,30 @@ import {
 import ToolTip from '../common/ToolTip'
 import RowData from './RowData'
 import { Address } from '../common/Address'
+import { nftActivitiesTableTitle } from 'helper/tableTransaction/config'
 
 export const columnsActivities: TableColumn<ItemTranSaction>[] = [
   {
-    name: 'Transaction',
+    name: nftActivitiesTableTitle.transaction,
     cell: (row) => (
       <BscscanLinkButton hash={row?.txHash} type={BscscanType.TX_HASH} />
     ),
     width: '270px',
   },
   {
-    name: 'Action',
+    name: nftActivitiesTableTitle.action,
     width: '170px',
     cell: (row) => <RowData data={row.action} />,
   },
   {
-    name: 'From',
+    name: nftActivitiesTableTitle.from,
     cell: (row) => (
       <Address address={row?.from.id} />
     ),
     width: '270px',
   },
   {
-    name: 'To',
+    name: nftActivitiesTableTitle.to,
     cell: (row) => (
       <Address address={row?.to.id} />
     ),
@@ -39,7 +40,7 @@ export const columnsActivities: TableColumn<ItemTranSaction>[] = [
   },
 
   {
-    name: 'Time',
+    name: nftActivitiesTableTitle.time,
     width: '170px',
     cell: (row) => (
       <RowData>

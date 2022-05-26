@@ -1,4 +1,5 @@
 import { TopReferralRecord } from 'api/referral/referral.api.type'
+import { referralTableTitle } from 'helper/tableTransaction/config'
 import React from 'react'
 import { TableColumn } from 'react-data-table-component'
 import { convertTimestampToDate, getLastSeen } from 'utils/date'
@@ -19,7 +20,7 @@ export const renderIconRanking = (index: number) => {
 
 export const columnsReferral: TableColumn<TopReferralRecord>[] = [
   {
-    name: 'Rank',
+    name: referralTableTitle.rank,
     cell: (row, index) => {
       return (
         <>
@@ -30,20 +31,20 @@ export const columnsReferral: TableColumn<TopReferralRecord>[] = [
     width: '100px',
   },
   {
-    name: 'Address',
+    name: referralTableTitle.address,
     width: '440px',
     cell: (row) => (
       <Address address={row?.id} shortLink={false} />
     ),
   },
   {
-    name: 'Total Referrals',
+    name: referralTableTitle.totalReferrals,
     cell: (row) => <RowData data={row.totalReferrals} />,
     width: '170px',
     sortable: true,
   },
   {
-    name: 'Total Commissions',
+    name: referralTableTitle.totalCommissions,
     cell: (row) => (
       <RowData
         data={
@@ -57,7 +58,7 @@ export const columnsReferral: TableColumn<TopReferralRecord>[] = [
   },
 
   {
-    name: 'Last Updated',
+    name: referralTableTitle.lastUpdated,
     width: '230px',
     cell: (row) => (
       <RowData>

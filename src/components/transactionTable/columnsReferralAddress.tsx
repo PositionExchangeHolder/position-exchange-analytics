@@ -4,6 +4,7 @@ import {
   BscscanLinkButton,
   BscscanType,
 } from 'components/common/BscscanLinkButton'
+import { addressReferralTableTitle } from 'helper/tableTransaction/config'
 import React from 'react'
 import { TableColumn } from 'react-data-table-component'
 import { convertTimestampToDate, getLastSeen } from 'utils/date'
@@ -14,21 +15,21 @@ import RowData from './RowData'
 
 export const columnsReferralAddress: TableColumn<RecordsRefAddress>[] = [
   {
-    name: 'Transaction',
+    name: addressReferralTableTitle.transaction,
     width: '160px',
     cell: (row) => (
       <BscscanLinkButton hash={row.refTxHash} type={BscscanType.TX_HASH} />
     ),
   },
   {
-    name: 'Address',
+    name: addressReferralTableTitle.address,
     width: '440px',
     cell: (row) => (
       <Address address={row.user} shortLink={false} />
     ),
   },
   {
-    name: 'Commissions Earned',
+    name: addressReferralTableTitle.commissionEarned,
     cell: (row) => (
       <RowData
         data={
@@ -43,7 +44,7 @@ export const columnsReferralAddress: TableColumn<RecordsRefAddress>[] = [
   },
 
   {
-    name: 'Last Updated',
+    name: addressReferralTableTitle.lastUpdated,
     width: '230px',
     cell: (row) => (
       <RowData>
@@ -52,5 +53,6 @@ export const columnsReferralAddress: TableColumn<RecordsRefAddress>[] = [
         </ToolTip>
       </RowData>
     ),
+    sortable: true
   },
 ]

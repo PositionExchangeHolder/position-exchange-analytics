@@ -10,10 +10,11 @@ import { getLastSeen, convertTimestampToDate } from 'utils/date'
 import { Address } from '../common/Address'
 import ToolTip from '../common/ToolTip'
 import RowData from './RowData'
+import { nftTransactionTableTitle } from 'helper/tableTransaction/config'
 
 export const columnsTransaction: TableColumn<ItemTranSaction>[] = [
   {
-    name: 'Transaction',
+    name: nftTransactionTableTitle.transaction,
     cell: (row) => (
       <BscscanLinkButton hash={row?.txHash} type={BscscanType.TX_HASH} />
     ),
@@ -21,27 +22,27 @@ export const columnsTransaction: TableColumn<ItemTranSaction>[] = [
     hide: 10,
   },
   {
-    name: 'Action',
+    name: nftTransactionTableTitle.action,
     selector: (row) => row?.action,
     width: '170px',
     cell: (row) => <RowData data={row.action} />,
   },
   {
-    name: 'From',
+    name: nftTransactionTableTitle.from,
     cell: (row) => (
       <Address address={row?.from.id} />
     ),
     width: '220px',
   },
   {
-    name: 'To',
+    name: nftTransactionTableTitle.to,
     cell: (row) => (
       <Address address={row?.to.id} />
     ),
     width: '220px',
   },
   {
-    name: 'NFT ID',
+    name: nftTransactionTableTitle.nftId,
     cell: (row) => (
       <RowData>
         <Link href={`/nft/${row?.nft?.id}`}>
@@ -53,7 +54,7 @@ export const columnsTransaction: TableColumn<ItemTranSaction>[] = [
     width: '120px',
   },
   {
-    name: 'Grade',
+    name: nftTransactionTableTitle.grade,
     cell: (row) => (
       <RowData>
         <Link href={`/nft/grade/${row?.grade}`}>
@@ -65,7 +66,7 @@ export const columnsTransaction: TableColumn<ItemTranSaction>[] = [
     sortable: false,
   },
   {
-    name: 'Time',
+    name: nftTransactionTableTitle.time,
     width: '200px',
     sortable: false,
     cell: (row) => (

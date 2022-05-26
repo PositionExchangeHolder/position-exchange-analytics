@@ -1,3 +1,4 @@
+import { addressNftTableTitle } from 'helper/tableTransaction/config'
 import Link from 'next/link'
 import React from 'react'
 import { TableColumn } from 'react-data-table-component'
@@ -9,7 +10,7 @@ import RowData from './RowData'
 
 export const ColumnsNftAddress: TableColumn<any>[] = [
   {
-    name: 'ID',
+    name: addressNftTableTitle.id,
     width: '140px',
     cell: (row) => (
       <RowData>
@@ -21,14 +22,14 @@ export const ColumnsNftAddress: TableColumn<any>[] = [
     sortable: true
   },
   {
-    name: 'Grade',
-    width: '140px',
+    name: addressNftTableTitle.grade,
+    width: '120px',
     cell: (row) => <RowData data={row.grade} />,
     sortable: true
   },
   {
-    name: 'Amount',
-    width: '140px',
+    name: addressNftTableTitle.amount,
+    width: '160px',
     cell: (row) => (
       <RowData
         data={convertBigNumberToStringNumber(row.amount) + ' POSI'}
@@ -37,7 +38,7 @@ export const ColumnsNftAddress: TableColumn<any>[] = [
     sortable: true
   },
   {
-    name: 'Decompose',
+    name: addressNftTableTitle.decompose,
     width: '140px',
     cell: (row) => (
       <RowData>
@@ -48,7 +49,7 @@ export const ColumnsNftAddress: TableColumn<any>[] = [
     )
   },
   // {
-  //   name: 'Status',
+  //   name: addressNftTableTitle.status,
   //   width: '140px',
   //   cell: () => (
   //     <RowData
@@ -57,7 +58,7 @@ export const ColumnsNftAddress: TableColumn<any>[] = [
   //   )
   // },
   {
-    name: 'Created At',
+    name: addressNftTableTitle.createdAt,
     width: '180px',
     cell: (row) => (
       <RowData>
@@ -69,7 +70,7 @@ export const ColumnsNftAddress: TableColumn<any>[] = [
     sortable: true
   },
   {
-    name: 'Last Updated',
+    name: addressNftTableTitle.lastUpdated,
     width: '180px',
     cell: (row) => (
       <RowData>

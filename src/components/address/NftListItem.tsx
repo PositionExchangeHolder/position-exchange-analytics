@@ -6,6 +6,8 @@ import { getNftsOfAddress } from 'api/nft/nft.api'
 import TransactionTable from '../transactionTable'
 import { ColumnsNftAddress } from '../transactionTable/ColumnsNftAddress'
 import getPageCount from 'utils/getPageCount'
+import { useAppSelector } from 'store/hooks'
+import { AddressNftQueryOrderBy } from 'store/address/addressSlice'
 
 const PER_PAGE = 8
 
@@ -26,8 +28,10 @@ export default function NftListItem({ address }: Props) {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [totalPage, setTotalPage] = useState<number>(1)
   const [currentPages, setCurrentPages] = useState<number>(1)
-  const [nftList, setNftList] = useState<any>([])
   
+  const [nftList, setNftList] = useState<any>([])
+  const orderBy = useAppSelector(AddressNftQueryOrderBy)
+
   const handleChange = (e: any, p: number) => {
     setCurrentPages(p)
   }
@@ -37,7 +41,7 @@ export default function NftListItem({ address }: Props) {
     if (address) {
       getNfts()
     }
-  }, [address, currentPages])
+  }, [address, currentPages, orderBy])
 
   const getNfts = async () => {
     try {
@@ -49,7 +53,8 @@ export default function NftListItem({ address }: Props) {
       const nftList = await getNftsOfAddress(
         address.toLowerCase(),
         (currentPages - 1) * PER_PAGE,
-        PER_PAGE
+        PER_PAGE,
+        orderBy
       )
       setNftList(nftList)
       setTotalPage(nftList.totalNfts)
