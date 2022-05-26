@@ -110,7 +110,7 @@ export default function Account() {
       {/* Staking  */}
       <StakingListItem
         stakingPoolBalances={balance?.stakingPoolBalances}
-        nftPoolBalance={balance?.nftPoolBalance}
+        nftPoolBalances={balance?.nftPoolBalances}
         isMatchingAccount={isMatchingAccount}
       />
 

@@ -5,23 +5,23 @@ export type BalancerResponse = {
 }
 
 export type DataBalancerResponse = {
-  nftPoolBalance: NftPoolBalance
-  stakingPoolBalances: StakingPoolBalances
+  nftPoolBalances: NftPoolBalance[]
+  stakingPoolBalances: StakingPool[]
   totalPosiBalance: TotalPosiBalance
 }
 
 export type NftPoolBalance = {
-  pendingReward: string
-  pool: string
+  pid: string | number
+  name: string
   stakingBalance: string
+  pendingReward: string
 }
 
-export type StakingPoolBalances = stakingPoolBalancesItem[]
-export type stakingPoolBalancesItem = {
-  name: string
-  pendingReward: string
+export type StakingPool = {
   pid: number
+  name: string
   stakingBalance: string
+  pendingReward: string
 }
 
 export type TotalPosiBalance = {
