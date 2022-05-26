@@ -10,6 +10,7 @@ import { isEmpty } from 'lodash'
 import React, { useEffect, useState } from 'react'
 import { useAppSelector } from 'store/hooks'
 import { ReferralsRankerOrderBySelector } from 'store/referral/referralSlice'
+import getPageCount from 'utils/getPageCount'
 import { columnsReferralAddress } from '../transactionTable/columnsReferralAddress'
 
 const PER_PAGE = 10
@@ -22,12 +23,14 @@ export default function TableDataReferralsAddress({ referrerId }: Props) {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [totalPage, setTotalPage] = useState<number>(1)
   const [currentPages, setCurrentPages] = useState<number>(1)
-
-  const [dataReferralAddress, setDataReferralAddress] = useState<
-    RecordsRefAddress[]
-  >([])
-
+  const [dataReferralAddress, setDataReferralAddress] = useState<RecordsRefAddress[]>([])
+  
   const orderBy = useAppSelector(ReferralsRankerOrderBySelector)
+
+  const handleChange = (e: any, p: number) => {
+    setCurrentPages(p)
+  }
+  const count = getPageCount(totalPage, PER_PAGE)
 
   useEffect(() => {
     if (isEmpty(referrerId)) return
@@ -44,6 +47,7 @@ export default function TableDataReferralsAddress({ referrerId }: Props) {
         orderBy: 'updatedTimestamp',
         referrerId,
         skip: (currentPages - 1) * PER_PAGE,
+        first: PER_PAGE
       })
       setDataReferralAddress(dataReferral?.data?.referrer?.recordsRef)
       setTotalPage(+dataReferral?.data?.referrer?.totalReferrals)
@@ -53,12 +57,6 @@ export default function TableDataReferralsAddress({ referrerId }: Props) {
     }
   }
 
-  const count = Math.ceil(totalPage / PER_PAGE)
-
-  const handleChange = (e: any, p: number) => {
-    setCurrentPages(p)
-  }
-  
   // FIXME: https://stackoverflow.com/questions/69547756/mui-makestyles-cannot-read-properties-of-undefined
   // const useStyles = makeStyles(() => ({
   //   ul: {

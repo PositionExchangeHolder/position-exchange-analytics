@@ -71,5 +71,5 @@ export const canDecompose = (
   lockedDays: number | string
 ): boolean => {
   const decomposeDateTimestamp = Number(createdTime) + Number(lockedDays) * DAY_IN_SECONDS
-  return now() > decomposeDateTimestamp
+  return Math.round(now() / 1000) > decomposeDateTimestamp
 }

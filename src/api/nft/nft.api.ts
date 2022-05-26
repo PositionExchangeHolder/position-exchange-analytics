@@ -127,7 +127,7 @@ export const getNftsOfAddress = async (
   skip = 0,
   first = 8,
   orderBy = 'id',
-  orderDirection = 'asc'
+  orderDirection = 'desc'
 ) => {
   const response = await client.query({
     query: gql`
@@ -150,6 +150,7 @@ export const getNftsOfAddress = async (
             amount
             lockedDays
             createdTime
+            updatedTimestamp
           }
           totalNfts
         }

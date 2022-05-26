@@ -5,8 +5,9 @@ import { isEmpty } from 'lodash'
 import { getNftsOfAddress } from 'api/nft/nft.api'
 import TransactionTable from '../transactionTable'
 import { ColumnsNftAddress } from '../transactionTable/ColumnsNftAddress'
+import getPageCount from 'utils/getPageCount'
 
-const PER_PAGE = 6
+const PER_PAGE = 8
 
 type Props = {
   address: string
@@ -30,7 +31,7 @@ export default function NftListItem({ address }: Props) {
   const handleChange = (e: any, p: number) => {
     setCurrentPages(p)
   }
-  const count = Math.ceil(totalPage / PER_PAGE)
+  const count = getPageCount(totalPage, PER_PAGE)
 
   useEffect(() => {
     if (address) {
@@ -47,7 +48,8 @@ export default function NftListItem({ address }: Props) {
   
       const nftList = await getNftsOfAddress(
         address.toLowerCase(),
-        (currentPages - 1) * PER_PAGE
+        (currentPages - 1) * PER_PAGE,
+        PER_PAGE
       )
       setNftList(nftList)
       setTotalPage(nftList.totalNfts)
@@ -61,7 +63,7 @@ export default function NftListItem({ address }: Props) {
     <div className="flex flex-col m-auto mt-12 rounded-md">
       <TransactionTable
         transactions={nftList?.nft || []}
-        titleTable="NFTs (Wallet + Staking)"
+        titleTable={`NFTs`} 
         isLoading={isLoading}
         columns={ColumnsNftAddress}
         showCustomHeader

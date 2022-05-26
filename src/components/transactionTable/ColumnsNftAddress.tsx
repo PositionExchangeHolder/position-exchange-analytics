@@ -2,7 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 import { TableColumn } from 'react-data-table-component'
 import { convertTimestampToDate, getLastSeen } from 'utils/date'
-import { canDecompose } from 'utils/nft'
+import { canDecompose, getDecomposeDate } from 'utils/nft'
 import { convertBigNumberToStringNumber } from 'utils/number'
 import ToolTip from '../common/ToolTip'
 import RowData from './RowData'
@@ -40,27 +40,41 @@ export const ColumnsNftAddress: TableColumn<any>[] = [
     name: 'Decompose',
     width: '140px',
     cell: (row) => (
-      <RowData
-        data={canDecompose(row.createdTime, row.lockedDays).toString()}
-      />
+      <RowData>
+        <ToolTip toolTipText={getDecomposeDate(row.createdTime, row.lockedDays)}>
+          {canDecompose(row.createdTime, row.lockedDays).toString()}
+        </ToolTip>
+      </RowData>
     )
   },
-  {
-    name: 'Status',
-    width: '140px',
-    cell: () => (
-      <RowData
-        data={'Holding'}
-      />
-    )
-  },
+  // {
+  //   name: 'Status',
+  //   width: '140px',
+  //   cell: () => (
+  //     <RowData
+  //       data={'Holding'}
+  //     />
+  //   )
+  // },
   {
     name: 'Created At',
-    width: '230px',
+    width: '180px',
     cell: (row) => (
       <RowData>
         <ToolTip toolTipText={convertTimestampToDate(row.createdTime)}>
           {getLastSeen(row.createdTime)}
+        </ToolTip>
+      </RowData>
+    ),
+    sortable: true
+  },
+  {
+    name: 'Last Updated',
+    width: '180px',
+    cell: (row) => (
+      <RowData>
+        <ToolTip toolTipText={convertTimestampToDate(row.updatedTimestamp)}>
+          {getLastSeen(row.updatedTimestamp)}
         </ToolTip>
       </RowData>
     ),

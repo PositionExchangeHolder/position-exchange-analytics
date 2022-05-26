@@ -22,6 +22,7 @@ export const getReferralAddress = async ({
   orderBy = 'updatedTimestamp',
   referrerId,
   skip = 0,
+  first = 10
 }: queryGetReferralAddressRequest) => {
   const response: ReferralAddressResponse = await client.query({
     query: gql`
@@ -59,7 +60,7 @@ export const getReferralAddress = async ({
     variables: {
       referrerId,
       skip,
-      first: 10,
+      first,
       orderBy,
       orderDirection: 'desc',
     },
