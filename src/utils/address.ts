@@ -1,4 +1,5 @@
 import web3 from 'web3'
+import web3C from './web3'
 
 const ADDRESS_LABELS: any = {
   '0x0000000000000000000000000000000000000000': 'Null Address (0x000...000)',
@@ -29,10 +30,15 @@ const ADDRESS_LABELS: any = {
   '0x05e5b3cd263c4cd40cfa74b5e221dbede60c632e': 'Marketplace',
 }
 
+export const getAddressLabel = (address: string): string | undefined => {
+  return ADDRESS_LABELS[address]
+}
+
 export const isAddress = (address: string): boolean => {
   return web3.utils.isAddress(address)
 }
 
-export const getAddressLabel = (address: string): string | undefined => {
-  return ADDRESS_LABELS[address]
+export const isContractAddress = async (address: string): Promise<boolean> => {
+  const bytecode = await web3C.eth.getCode(address)
+  return bytecode !== '0x'
 }

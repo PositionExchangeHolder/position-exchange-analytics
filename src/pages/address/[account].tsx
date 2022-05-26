@@ -24,14 +24,17 @@ import { useRouter } from 'next/router'
 import { convertBigNumberToNumber } from 'utils/number'
 import NftListItem from '@/components/address/NftListItem'
 import HeadSEO from '@/components/layout/HeadSEO'
+import { isContractAddress } from 'utils/address'
 
 export default function Account() {
   const router = useRouter()
   const { account: accountWeb3 } = useWeb3React()
   const account = router?.query?.account as string || ''
+
   const isMatchingAccount = accountWeb3?.toLowerCase() === account.toLowerCase()
   
   const [balance, setBalance] = useState<DataBalancerResponse>()
+  const [isContract, setIsContract] = useState<boolean>(false)
   const [realizedPnlAndTradingData, setRealizedPnlAndTradingData] = useState<RealizedPnlAndTradingData>()
 
   const totalWallet = convertBigNumberToNumber(
@@ -62,8 +65,14 @@ export default function Account() {
         setRealizedPnlAndTradingData(data)
       }
 
+      const checkIsContract = async () => {
+        const result = await isContractAddress(account)
+        setIsContract(result)
+      }
+
       fetchAddressBalance()
       fetchRealizedPnlAndTradingData()
+      checkIsContract()
     } catch (error) {}
   }, [account])
 
@@ -95,7 +104,11 @@ export default function Account() {
             )
           }
           <div className="py-2 px-4 mt-4 bg-primary rounded-[30px] ring-1 ring-white/5 shadow-md drop-shadow-[0_1px_2px_#1B2431]">
-            <BscscanLinkButton hash={account} type={BscscanType.ADDRESS} />
+            <BscscanLinkButton
+              hash={account}
+              type={BscscanType.ADDRESS}
+              isContractAddress={isContract}
+            />
           </div>
           <SocialInfo isMatchingAccount={isMatchingAccount} />
         </div>
