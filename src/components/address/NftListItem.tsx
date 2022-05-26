@@ -69,7 +69,7 @@ export default function NftListItem({ address }: Props) {
         showCustomHeader
       />
       {
-        !isEmpty(nftList) && (
+        !isEmpty(nftList?.nft) && (
           <div className="flex justify-center items-center mb-6 mt-6">
             <Pagination
               classes={{ ul: classes.ul }}
