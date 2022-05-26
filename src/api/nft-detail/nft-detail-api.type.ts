@@ -1,6 +1,7 @@
 import { ActiveTransaction } from 'api/nft/nft.api.type'
 
 type PositionNFT = {
+  totalTransactions: string | number
   transactions: ItemTransactionActivities[]
 }
 export type DataActivitiesNftDetail = {
@@ -39,6 +40,7 @@ export type OrderBy =
 ////
 export type GetListActivitiesNftRequestParam = {
   positionNftId: string
+  skip?: number
   first?: number
   orderBy?: OrderBy
   orderDirection?: OrderDirection

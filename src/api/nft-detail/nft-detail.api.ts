@@ -7,8 +7,9 @@ import {
 } from './nft-detail-api.type'
 
 export const getListActivitiesNft = async ({
-  first = 10,
   positionNftId,
+  skip = 0,
+  first = 10,
   orderBy = 'createdTimestamp',
   orderDirection = 'desc',
 }: GetListActivitiesNftRequestParam) => {
@@ -16,12 +17,15 @@ export const getListActivitiesNft = async ({
     query: gql`
       query PositionNFT(
         $positionNftId: ID!
+        $skip: Int
         $first: Int
         $orderBy: Transaction_orderBy
         $orderDirection: OrderDirection
       ) {
         positionNFT(id: $positionNftId) {
+          totalTransactions
           transactions(
+            skip: $skip
             first: $first
             orderBy: $orderBy
             orderDirection: $orderDirection
@@ -41,8 +45,9 @@ export const getListActivitiesNft = async ({
       }
     `,
     variables: {
-      first,
       positionNftId,
+      skip,
+      first,
       orderBy,
       orderDirection 
     },

@@ -2,7 +2,8 @@
 import { Address } from '@/components/common/Address'
 import HeadSEO from '@/components/layout/HeadSEO'
 import { NotFoundNft } from '@/components/nft/NotFoundNft'
-import Pagination from '@/components/pagination'
+import { Pagination } from '@material-ui/lab'
+import { makeStyles } from '@material-ui/core/styles'
 import { columnsActivities } from '@/components/transactionTable/columnsActivities'
 import TransactionTable from '@/components/transactionTable/TransactionTable'
 import {
@@ -26,33 +27,57 @@ import {
   getNftMiningPower,
 } from 'utils/nft'
 import { convertBigNumberToStringNumber } from 'utils/number'
+import getPageCount from 'utils/getPageCount'
 
 type Props = {
   positionNFT: PositionNFTInfo
 }
 
+const PER_PAGE = 10
+
 export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
+  const useStyles = makeStyles(() => ({
+    ul: {
+      '& .MuiPaginationItem-root': {
+        color: 'white',
+      },
+    },
+  }))
+  const classes = useStyles()
+
   const [dataTransaction, setDataTransaction] = useState<ItemTransactionActivities[]>([])
   const [currentFilter, setCurrentFilter] = useState<FilterTransaction>('All')
-  const [skipPage, setSkipPage] = useState<number>(0)
   const [isLoading, setLoading] = React.useState(false)
+  const [totalPage, setTotalPage] = useState<number>(1)
+  const [skipPage, setSkipPage] = useState<number>(0)
+  const [currentPages, setCurrentPages] = useState<number>(1)
 
   const router = useRouter()
-
   const nftId: string = (router?.query?.nft_id as string) || ''
+
+  const count = getPageCount(totalPage, PER_PAGE)
+  const handleChange = (e: any, p: number) => {
+    setCurrentPages(p)
+  }
+
   useEffect(() => {
     const fetchDataActivities = async () => {
       if (isLoading) return
       setLoading(true)
 
-      const activitiesResponse = await getListActivitiesNft({ positionNftId: nftId })
+      const activitiesResponse = await getListActivitiesNft({
+        positionNftId: nftId,
+        skip: (currentPages - 1) * PER_PAGE,
+        first: PER_PAGE
+      })
       const { positionNFT } = activitiesResponse.data
       setLoading(false)
 
       setDataTransaction(positionNFT?.transactions)
+      setTotalPage(Number(positionNFT?.totalTransactions))
     }
     fetchDataActivities()
-  }, [currentFilter, skipPage, nftId])
+  }, [currentFilter, skipPage, nftId, currentPages])
 
   // set filter and reset entries transaction
   const onSetCurrentFilter = useCallback((filter: any) => {
@@ -137,11 +162,22 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
           columns={columnsActivities}
           isLoading={isLoading}
         />
-        <Pagination
-          currentItem={skipPage}
-          setNextItem={setSkipPage}
-          skip={10}
-        />
+        {
+          count > 1 && (
+            <div className="flex justify-center items-center mb-6 mt-6">
+              <Pagination
+                classes={{ ul: classes.ul }}
+                color="primary"
+                count={count}
+                size="large"
+                page={currentPages}
+                variant="outlined"
+                shape="rounded"
+                onChange={handleChange}
+              />
+            </div>
+          )
+        }
       </div>
     </div>
   )
