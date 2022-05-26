@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Address } from '@/components/common/Address'
+import HeadSEO from '@/components/layout/HeadSEO'
 import { NotFoundNft } from '@/components/nft/NotFoundNft'
 import Pagination from '@/components/pagination'
 import { columnsActivities } from '@/components/transactionTable/columnsActivities'
@@ -79,6 +80,10 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
 
   return (
     <div>
+      <HeadSEO
+        title={`Position NFT | ${nftId}`}
+        description={`Position NFT | ${nftId}`}
+      />
       <section>
         <div className="py-16 mx-auto max-w-screen-xl">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-0 lg:gap-12 xl:grid-cols-3">

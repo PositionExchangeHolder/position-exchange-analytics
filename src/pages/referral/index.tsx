@@ -1,4 +1,5 @@
 import TableDataReferralsRanker from '@/components/referral/TableDataReferralsRanker'
+import HeadSEO from '@/components/layout/HeadSEO'
 import TotalReferrals from '@/components/referral/TotalReferrals'
 import { getToTalReferralResponse } from 'api/referral/referral.api'
 import {
@@ -35,11 +36,17 @@ export default function Referral() {
   }
 
   return (
-    <div className="relative  px-6  mt-10  w-full   md:mt-16  xl:px-0">
-      <TotalReferrals toTalReferral={toTalReferral} />
-      <div className="pt-16">
-        <TableDataReferralsRanker />
+    <>
+      <HeadSEO
+        title='Position Referral'
+        description='Position Referral'
+      />
+      <div className="relative px-6 mt-10 w-full md:mt-16 xl:px-0">
+        <TotalReferrals toTalReferral={toTalReferral} />
+        <div className="pt-16">
+          <TableDataReferralsRanker />
+        </div>
       </div>
-    </div>
+    </>
   )
 }

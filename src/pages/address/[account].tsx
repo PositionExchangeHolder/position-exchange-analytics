@@ -23,6 +23,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { convertBigNumberToNumber } from 'utils/number'
 import NftListItem from '@/components/address/NftListItem'
+import HeadSEO from '@/components/layout/HeadSEO'
 
 export default function Account() {
   const router = useRouter()
@@ -68,6 +69,11 @@ export default function Account() {
 
   return (
     <main className="relative px-6 mt-8 w-full bg-light-primary dark:bg-primary md:mt-16 xl:px-0">
+      <HeadSEO
+        title={`Position Address | ${account}`}
+        description={`Position Address | ${account}`}
+      />
+      
       {/* Address information */}
       <div className="flex justify-center">
         <div className="flex flex-col items-center">

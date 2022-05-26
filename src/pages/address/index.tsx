@@ -3,6 +3,7 @@ import { useWeb3React } from '@web3-react/core'
 import { Injected } from 'config/connected/InjectedConnect'
 import { isEmpty } from 'lodash'
 import { useRouter } from 'next/router'
+import HeadSEO from '@/components/layout/HeadSEO'
 
 const ConnectMetamaskButton = () => {
   const { activate } = useWeb3React()
@@ -36,9 +37,15 @@ export default function AddressPage() {
 
   if (!account) {
     return (
-      <div className="flex justify-center px-6 mt-8 ">
-        <ConnectMetamaskButton />
-      </div>
+      <>
+        <HeadSEO
+          title={`Position Address`}
+          description={`Position Address`}
+        />
+        <div className="flex justify-center px-6 mt-8 ">
+          <ConnectMetamaskButton />
+        </div>
+      </>
     )
   } else {
     return (

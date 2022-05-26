@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 import { DoughnutChart } from '@/components/chart/DoughnutChart'
+import HeadSEO from '@/components/layout/HeadSEO'
 import Pagination from '@/components/pagination'
 import TransactionTable from '@/components/transactionTable/TransactionTable'
 import {
@@ -75,12 +76,16 @@ export default function Index({ positionNFTs, nftStatistic }: Props) {
   }, [currentFilter, skipPage, grade])
 
   return (
-    <main className="relative px-6 mt-10 w-full  bg-light-primary  dark:bg-primary md:mt-16  xl:px-0">
+    <main className="relative px-6 mt-10 w-full bg-light-primary dark:bg-primary md:mt-16 xl:px-0">
+      <HeadSEO
+        title={`Position NFT | Grade ${grade}`}
+        description={`Position NFT | Grade ${grade}`}
+      />
       <section>
-        <div className="mx-auto  max-w-screen-xl ">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-0 lg:gap-12 xl:grid-cols-4 ">
+        <div className="mx-auto max-w-screen-xl">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-0 lg:gap-12 xl:grid-cols-4">
             <div>
-              <div className="relative h-96 rounded-lg  xl:col-span-2">
+              <div className="relative h-96 rounded-lg xl:col-span-2">
                 <img
                   className="object-contain absolute inset-0 w-full h-full"
                   src={getNftGradeImageUrl(grade)}
@@ -89,8 +94,8 @@ export default function Index({ positionNFTs, nftStatistic }: Props) {
                 />
               </div>
             </div>
-            <div className="mt-4  ">
-              <p className="text-xl font-medium text-txt-light-txt-primary dark:text-txt-catskill-white ">
+            <div className="mt-4">
+              <p className="text-xl font-medium text-txt-light-txt-primary dark:text-txt-catskill-white">
                 Grade: {grade}
               </p>
               <p className="mt-6 text-xs dark:font-medium dark:text-txt-sub-text-color md:mt-12 md:text-sm">
@@ -99,12 +104,12 @@ export default function Index({ positionNFTs, nftStatistic }: Props) {
               <p className="mt-4 text-xs dark:font-medium dark:text-txt-sub-text-color md:mt-12 md:text-sm">
                 Total Burned: {dataCurrentInfoNft.totalBurned}
               </p>
-              <p className="mt-4  text-xs font-medium text-txt-light-secondary dark:text-txt-sub-text-color md:mt-8 md:text-sm">
+              <p className="mt-4 text-xs font-medium text-txt-light-secondary dark:text-txt-sub-text-color md:mt-8 md:text-sm">
                 @SoftSkillNFT
               </p>
             </div>
             <div className="px-6 w-full h-80 md:mt-10 lg:mt-0 xl:col-span-2">
-              <div className="mt-4  w-full h-80 sm:h-80 md:mt-0 md:w-80 lg:w-full lg:h-96  ">
+              <div className="mt-4 w-full h-80 sm:h-80 md:mt-0 md:w-80 lg:w-full lg:h-96">
                 <DoughnutChart
                   data={dataDoughnutChart.data}
                   total={dataDoughnutChart.total}

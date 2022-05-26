@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import LineChart from '@/components/chart/LineChart'
+import HeadSEO from '@/components/layout/HeadSEO'
 import CurrentValueLock from '@/components/nft/CurrentValueLock'
 import ItemNft from '@/components/nft/ItemNft'
 import Pagination from '@/components/pagination'
@@ -66,6 +67,10 @@ export default function Index({ nftStatistic, nftDayDatas }: Props) {
   
   return (
     <main className="relative px-6 mt-10 w-full bg-light-primary dark:bg-primary md:mt-16 xl:px-0">
+      <HeadSEO
+        title='Position NFT'
+        description='Position NFT'
+      />
       <div className="grid grid-cols-1 gap-x-6 md:grid-cols-2">
         <CurrentValueLock nftStatistic={nftStatistic} />
         <div className="mt-8 h-72 rounded-md xs:h-full md:mt-0">
