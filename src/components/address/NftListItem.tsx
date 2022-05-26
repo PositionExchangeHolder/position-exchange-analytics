@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-// import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import { Pagination } from '@material-ui/lab'
 import { isEmpty } from 'lodash'
 import { getNftsOfAddress } from 'api/nft/nft.api'
@@ -14,14 +14,14 @@ type Props = {
 }
 
 export default function NftListItem({ address }: Props) {
-  // const useStyles = makeStyles(() => ({
-  //   ul: {
-  //     '& .MuiPaginationItem-root': {
-  //       color: 'white',
-  //     },
-  //   },
-  // }))
-  // const classes = useStyles()
+  const useStyles = makeStyles(() => ({
+    ul: {
+      '& .MuiPaginationItem-root': {
+        color: 'white',
+      },
+    },
+  }))
+  const classes = useStyles()
   
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [totalPage, setTotalPage] = useState<number>(1)
@@ -68,19 +68,22 @@ export default function NftListItem({ address }: Props) {
         columns={ColumnsNftAddress}
         showCustomHeader
       />
-      <div className="flex justify-center items-center mb-6 mt-6">
-        <Pagination
-          disabled={isEmpty(nftList)}
-          // classes={{ ul: classes.ul }}
-          color="primary"
-          count={count}
-          size="large"
-          page={currentPages}
-          variant="outlined"
-          shape="rounded"
-          onChange={handleChange}
-        />
-      </div>
+      {
+        !isEmpty(nftList) && (
+          <div className="flex justify-center items-center mb-6 mt-6">
+            <Pagination
+              classes={{ ul: classes.ul }}
+              color="primary"
+              count={count}
+              size="large"
+              page={currentPages}
+              variant="outlined"
+              shape="rounded"
+              onChange={handleChange}
+            />
+          </div>
+        )
+      }
     </div>
   )
 }

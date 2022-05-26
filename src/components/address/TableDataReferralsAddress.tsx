@@ -1,5 +1,5 @@
 import TransactionTable from '@/components/transactionTable/TransactionTable'
-// import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import { Pagination } from '@material-ui/lab'
 import { getReferralAddress } from 'api/address/address.api'
 import {
@@ -50,22 +50,21 @@ export default function TableDataReferralsAddress({ referrerId }: Props) {
         first: PER_PAGE
       })
       setDataReferralAddress(dataReferral?.data?.referrer?.recordsRef)
-      setTotalPage(+dataReferral?.data?.referrer?.totalReferrals)
+      setTotalPage(Number(dataReferral?.data?.referrer?.totalReferrals) || 1)
     } catch (error) {
     } finally {
       setIsLoading(false)
     }
   }
 
-  // FIXME: https://stackoverflow.com/questions/69547756/mui-makestyles-cannot-read-properties-of-undefined
-  // const useStyles = makeStyles(() => ({
-  //   ul: {
-  //     '& .MuiPaginationItem-root': {
-  //       color: 'white',
-  //     },
-  //   },
-  // }))
-  // const classes = useStyles()
+  const useStyles = makeStyles(() => ({
+    ul: {
+      '& .MuiPaginationItem-root': {
+        color: 'white',
+      },
+    },
+  }))
+  const classes = useStyles()
 
   return (
     <div>
@@ -76,19 +75,22 @@ export default function TableDataReferralsAddress({ referrerId }: Props) {
         columns={columnsReferralAddress}
         showCustomHeader
       />
-      <div className="flex justify-center items-center mt-6">
-        <Pagination
-          disabled={isEmpty(dataReferralAddress)}
-          // classes={{ ul: classes.ul }}
-          color="primary"
-          count={count}
-          size="large"
-          page={currentPages}
-          variant="outlined"
-          shape="rounded"
-          onChange={handleChange}
-        />
-      </div>
+      {
+        !isEmpty(dataReferralAddress) && (
+          <div className="flex justify-center items-center mt-6">
+            <Pagination
+              classes={{ ul: classes.ul }}
+              color="primary"
+              count={count}
+              size="large"
+              page={currentPages}
+              variant="outlined"
+              shape="rounded"
+              onChange={handleChange}
+            />
+          </div>
+        )
+      }
     </div>
   )
 }
