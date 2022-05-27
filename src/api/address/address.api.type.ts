@@ -74,3 +74,16 @@ export type RealizedPnlAndTradingData = {
   createdTimestamp: string
   updatedTimestamp: string
 }
+
+export type AccountInfo = {
+  address: string
+  active: boolean
+  created_at: number
+  updated_at: number
+  name?: string
+  image?: string
+  email?: string
+  github?: string
+  twitter?: string
+  ref?: string
+}

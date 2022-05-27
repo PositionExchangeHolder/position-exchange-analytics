@@ -5,6 +5,7 @@ import { DataLineChartNft } from 'helper/nft/transformDataLineChart'
 import { BALANCER_ENDPOINT, POSITION_API } from 'utils/constants'
 import { convertBigNumberToNumber } from 'utils/number'
 import {
+  AccountInfo,
   BalancerResponse,
   queryGetReferralAddressRequest,
   RealizedPnlAndTradingData,
@@ -90,6 +91,18 @@ export const getRealizedPnlAndTradingDataOfAddress = async (
   }
 
   return realizedPnlAndTradingData
+}
+
+export const getAccountInfo = async (
+  address: string
+): Promise<AccountInfo | undefined> => {
+  const res = await axios.get(`${POSITION_API}/v1/account/info/${address.toLowerCase()}`)
+
+  if (res.status === 200 && res.data.success) {
+    return res.data.data
+  }
+
+  return undefined
 }
 
 export const fakeDataLineChart: DataLineChartNft = {
