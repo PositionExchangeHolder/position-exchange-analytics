@@ -24,6 +24,10 @@ export const getLastSeen = (timestamp: number | string): string => {
   )
 }
 
-export const getJoinedDate = (timestamp: number | string): string => {
+export const getJoinedDate = (timestamp: number | string | undefined): string => {
+  if (!timestamp) {
+    return ''
+  }
+  
   return format(new Date(Number(timestamp) * 1000), 'MMM yyyy')
 }

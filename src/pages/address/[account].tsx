@@ -104,7 +104,7 @@ export default function Account() {
               <>
                 <AddressPnL realizedPnl={Number(realizedPnlAndTradingData?.realizedPnl)} />
                 <span className="pt-1 text-sm text-gray-400">
-                  Joined {getJoinedDate(realizedPnlAndTradingData?.createdTimestamp as string)}
+                  Joined {getJoinedDate(realizedPnlAndTradingData?.createdTimestamp)}
                 </span>
               </>
             )
