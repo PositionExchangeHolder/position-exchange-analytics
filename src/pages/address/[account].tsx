@@ -101,12 +101,14 @@ export default function Account() {
           </span>
           {
             Number(realizedPnlAndTradingData?.realizedPnl) !== 0  && (
-              <>
-                <AddressPnL realizedPnl={Number(realizedPnlAndTradingData?.realizedPnl)} />
-                <span className="pt-1 text-sm text-gray-400">
-                  Joined {getJoinedDate(realizedPnlAndTradingData?.createdTimestamp)}
-                </span>
-              </>
+              <AddressPnL realizedPnl={Number(realizedPnlAndTradingData?.realizedPnl)} />
+            )
+          }
+          {
+            realizedPnlAndTradingData?.createdTimestamp && (
+              <span className="pt-1 text-sm text-gray-400">
+                Joined {getJoinedDate(realizedPnlAndTradingData?.createdTimestamp)}
+              </span>
             )
           }
           <div className="py-2 px-4 mt-3 bg-primary rounded-[30px] ring-1 ring-white/5 shadow-md drop-shadow-[0_1px_2px_#1B2431]">
