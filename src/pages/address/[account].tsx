@@ -25,6 +25,7 @@ import { convertBigNumberToNumber } from 'utils/number'
 import NftListItem from '@/components/address/NftListItem'
 import HeadSEO from '@/components/layout/HeadSEO'
 import { isContractAddress } from 'utils/address'
+import { getJoinedDate } from 'utils/date'
 
 export default function Account() {
   const router = useRouter()
@@ -100,10 +101,15 @@ export default function Account() {
           </span>
           {
             Number(realizedPnlAndTradingData?.realizedPnl) !== 0  && (
-              <AddressPnL realizedPnl={Number(realizedPnlAndTradingData?.realizedPnl)} />
+              <>
+                <AddressPnL realizedPnl={Number(realizedPnlAndTradingData?.realizedPnl)} />
+                <span className="pt-1 text-sm text-gray-400">
+                  Joined {getJoinedDate(realizedPnlAndTradingData?.createdTimestamp as string)}
+                </span>
+              </>
             )
           }
-          <div className="py-2 px-4 mt-4 bg-primary rounded-[30px] ring-1 ring-white/5 shadow-md drop-shadow-[0_1px_2px_#1B2431]">
+          <div className="py-2 px-4 mt-3 bg-primary rounded-[30px] ring-1 ring-white/5 shadow-md drop-shadow-[0_1px_2px_#1B2431]">
             <BscscanLinkButton
               hash={account}
               type={BscscanType.ADDRESS}

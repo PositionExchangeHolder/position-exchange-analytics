@@ -23,3 +23,7 @@ export const getLastSeen = (timestamp: number | string): string => {
     { addSuffix: true }
   )
 }
+
+export const getJoinedDate = (timestamp: number | string): string => {
+  return format(new Date(Number(timestamp) * 1000), 'MMM yyyy')
+}
