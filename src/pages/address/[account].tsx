@@ -75,6 +75,7 @@ export default function Account() {
       <StakingListItem
         stakingPoolBalances={balance?.stakingPoolBalances}
         nftPoolBalances={balance?.nftPoolBalances}
+        vaultBalances={balance?.vaultBalances}
         isMatchingAccount={isMatchingAccount}
       />
 

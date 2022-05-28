@@ -7,6 +7,7 @@ export type BalancerResponse = {
 export type DataBalancerResponse = {
   nftPoolBalances: NftPoolBalance[]
   stakingPoolBalances: StakingPool[]
+  vaultBalances: StakingPool[]
   totalPosiBalance: TotalPosiBalance
 }
 

@@ -59,12 +59,14 @@ const StakingItem = ({
 type StakingListItemProps = {
   stakingPoolBalances: StakingPool[] | undefined
   nftPoolBalances: NftPoolBalance[] | undefined
+  vaultBalances: StakingPool[] | undefined
   isMatchingAccount?: boolean
 }
 
 export default function StakingListItem({
   stakingPoolBalances,
   nftPoolBalances,
+  vaultBalances,
   isMatchingAccount
 }: StakingListItemProps
 ) {
@@ -99,6 +101,21 @@ export default function StakingListItem({
                     name={pool.name}
                     stakingBalance={pool.stakingBalance}
                     pendingReward={pool.pendingReward}
+                    isMatchingAccount={isMatchingAccount}
+                  />
+                )
+            ))
+          }
+
+          {
+            vaultBalances?.map(vault => (
+              isValidStakingPool(vault.stakingBalance, vault.pendingReward)
+                && (
+                  <StakingItem
+                    key={vault.pid}
+                    name={vault.name}
+                    stakingBalance={vault.stakingBalance}
+                    pendingReward={vault.pendingReward}
                     isMatchingAccount={isMatchingAccount}
                   />
                 )
