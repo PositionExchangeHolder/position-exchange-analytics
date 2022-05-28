@@ -14,7 +14,7 @@ export default function BalanceWallet({ totalPosiBalance, dataDoughnutWalletChar
       <div className="grid-cols-3 gap-x-12 mt-12 w-full md:grid">
         <div className="group flex flex-col col-span-1 gap-y-4 justify-center items-center py-12 h-32 bg-secondary rounded-md">
           <p>
-            TOTAL BALANCES
+            TOTAL POSI BALANCES
           </p>
           <p className="text-xs font-medium text-txt-white md:font-bold lg:text-xl">
             {convertBigNumberToStringNumber(totalPosiBalance?.total || 0)} POSI
