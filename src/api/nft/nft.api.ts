@@ -5,6 +5,7 @@ import {
   ListDataIntDayDateResponse,
   ListNftStatisticResponse,
   ListTranSactionResponse,
+  TopTenNftHolderElement,
 } from './nft.api.type'
 
 export const getListTransaction = async ({ skip, action }: QueryNft) => {
@@ -169,4 +170,35 @@ export const getNftsOfAddress = async (
   })
 
   return response.data.owner
+}
+
+export const getTopTenNftHolder = async (): Promise<TopTenNftHolderElement[]> => {
+  const res = await client.query({
+    query: gql`
+      query Owners(
+        $first: Int,
+        $orderBy: Owner_orderBy,
+        $orderDirection: OrderDirection
+      ) {
+        owners(
+          first: $first,
+          orderBy: $orderBy,
+          orderDirection: $orderDirection
+        ) {
+          id
+          totalNfts
+        }
+      }
+    `,
+    variables: {
+      first: 10,
+      orderBy: 'totalNfts',
+      orderDirection: 'desc'
+    },
+    context: {
+      endpointName: 'nft'
+    }
+  })
+
+  return res.data.owners
 }

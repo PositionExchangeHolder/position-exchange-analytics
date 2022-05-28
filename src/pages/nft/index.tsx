@@ -3,6 +3,7 @@ import LineChart from '@/components/chart/LineChart'
 import HeadSEO from '@/components/layout/HeadSEO'
 import CurrentValueLock from '@/components/nft/CurrentValueLock'
 import ItemNft from '@/components/nft/ItemNft'
+// import TopTenNftHolder from '@/components/nft/TopTenNftHolder'
 import Pagination from '@/components/pagination'
 import TransactionTable from '@/components/transactionTable/TransactionTable'
 import {
@@ -79,6 +80,8 @@ export default function Index({ nftStatistic, nftDayDatas }: Props) {
           </div>
         </div>
       </div>
+
+      {/* <TopTenNftHolder totalNfts={Number(nftStatistic.totalNftsMinted)} /> */}
 
       <div className="grid gap-8 mt-12 sm:grid-cols-2 sm:mt-16 lg:grid-cols-3">
         {dataNft?.map((itemNft, index) => {

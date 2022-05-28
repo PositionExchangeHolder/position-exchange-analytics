@@ -100,3 +100,8 @@ export type DataIntDayDate = {
 export type ListDataIntDayDateResponse = {
   data: DataIntDayDate
 }
+
+export type TopTenNftHolderElement = {
+  id: string
+  totalNfts: string
+}
