@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Address } from '@/components/common/Address'
 import HeadSEO from '@/components/layout/HeadSEO'
@@ -45,7 +47,9 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
   }))
   const classes = useStyles()
 
-  const [dataTransaction, setDataTransaction] = useState<ItemTransactionActivities[]>([])
+  const [dataTransaction, setDataTransaction] = useState<
+    ItemTransactionActivities[]
+  >([])
   const [currentFilter, setCurrentFilter] = useState<FilterTransaction>('All')
   const [isLoading, setLoading] = React.useState(false)
   const [totalPage, setTotalPage] = useState<number>(1)
@@ -68,7 +72,7 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
       const activitiesResponse = await getListActivitiesNft({
         positionNftId: nftId,
         skip: (currentPages - 1) * PER_PAGE,
-        first: PER_PAGE
+        first: PER_PAGE,
       })
       const { positionNFT } = activitiesResponse.data
       setLoading(false)
@@ -86,9 +90,7 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
   }, [])
 
   if (!positionNFTDetail) {
-    return (
-      <NotFoundNft nftId={nftId} />
-    )
+    return <NotFoundNft nftId={nftId} />
   }
 
   const {
@@ -121,7 +123,11 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
               />
             </div>
             <div className="px-6 mt-6 md:mt-0 xl:col-span-2">
-              <h2 className={`text-lg font-bold sm:text-2xl dark:text-txt-primary text-txt-light-txt-primary ${burned && 'line-through'}`}>
+              <h2
+                className={`text-lg font-bold sm:text-2xl dark:text-txt-primary text-txt-light-txt-primary ${
+                  burned && 'line-through'
+                }`}
+              >
                 #{nftId}
               </h2>
               <p className="mt-4 text-base text-txt-light-txt-primary dark:text-txt-sub-text-color">
@@ -155,29 +161,25 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
       </section>
       <div className="mt-0 sm:mt-8">
         <TransactionTable
-          setCurrentFilter={onSetCurrentFilter}
-          currentFilter={currentFilter}
           transactions={dataTransaction}
           titleTable={'ACTIVITIES'}
           columns={columnsActivities}
           isLoading={isLoading}
         />
-        {
-          count > 1 && (
-            <div className="flex justify-center items-center mb-6 mt-6">
-              <Pagination
-                classes={{ ul: classes.ul }}
-                color="primary"
-                count={count}
-                size="large"
-                page={currentPages}
-                variant="outlined"
-                shape="rounded"
-                onChange={handleChange}
-              />
-            </div>
-          )
-        }
+        {count > 1 && (
+          <div className="flex justify-center items-center my-6">
+            <Pagination
+              classes={{ ul: classes.ul }}
+              color="primary"
+              count={count}
+              size="large"
+              page={currentPages}
+              variant="outlined"
+              shape="rounded"
+              onChange={handleChange}
+            />
+          </div>
+        )}
       </div>
     </div>
   )

@@ -23,8 +23,10 @@ export default function TableDataReferralsAddress({ referrerId }: Props) {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [totalPage, setTotalPage] = useState<number>(1)
   const [currentPages, setCurrentPages] = useState<number>(1)
-  const [dataReferralAddress, setDataReferralAddress] = useState<RecordsRefAddress[]>([])
-  
+  const [dataReferralAddress, setDataReferralAddress] = useState<
+    RecordsRefAddress[]
+  >([])
+
   const orderBy = useAppSelector(AddressReferralQueryOrderBy)
 
   const handleChange = (e: any, p: number) => {
@@ -47,7 +49,7 @@ export default function TableDataReferralsAddress({ referrerId }: Props) {
         referrerId,
         first: PER_PAGE,
         skip: (currentPages - 1) * PER_PAGE,
-        orderBy: orderBy
+        orderBy: orderBy,
       })
       setDataReferralAddress(dataReferral?.data?.referrer?.recordsRef)
       setTotalPage(Number(dataReferral?.data?.referrer?.totalReferrals) || 1)
@@ -73,24 +75,21 @@ export default function TableDataReferralsAddress({ referrerId }: Props) {
         titleTable={'REFERRALS'}
         isLoading={isLoading}
         columns={columnsReferralAddress}
-        showCustomHeader
       />
-      {
-        !isEmpty(dataReferralAddress) && (
-          <div className="flex justify-center items-center mt-6">
-            <Pagination
-              classes={{ ul: classes.ul }}
-              color="primary"
-              count={count}
-              size="large"
-              page={currentPages}
-              variant="outlined"
-              shape="rounded"
-              onChange={handleChange}
-            />
-          </div>
-        )
-      }
+      {!isEmpty(dataReferralAddress) && (
+        <div className="flex justify-center items-center mt-6">
+          <Pagination
+            classes={{ ul: classes.ul }}
+            color="primary"
+            count={count}
+            size="large"
+            page={currentPages}
+            variant="outlined"
+            shape="rounded"
+            onChange={handleChange}
+          />
+        </div>
+      )}
     </div>
   )
 }

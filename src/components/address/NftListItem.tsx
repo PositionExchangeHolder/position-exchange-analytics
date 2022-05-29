@@ -24,11 +24,11 @@ export default function NftListItem({ address }: Props) {
     },
   }))
   const classes = useStyles()
-  
+
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [totalPage, setTotalPage] = useState<number>(1)
   const [currentPages, setCurrentPages] = useState<number>(1)
-  
+
   const [nftList, setNftList] = useState<any>([])
   const orderBy = useAppSelector(AddressNftQueryOrderBy)
 
@@ -49,7 +49,7 @@ export default function NftListItem({ address }: Props) {
         return
       }
       setIsLoading(true)
-  
+
       const nftList = await getNftsOfAddress(
         address.toLowerCase(),
         (currentPages - 1) * PER_PAGE,
@@ -65,30 +65,27 @@ export default function NftListItem({ address }: Props) {
   }
 
   return (
-    <div className="flex flex-col m-auto mt-12 rounded-md">
+    <div className="flex flex-col m-auto rounded-md">
       <TransactionTable
         transactions={nftList?.nft || []}
-        titleTable={`NFTs`} 
+        titleTable={`NFTs`}
         isLoading={isLoading}
         columns={ColumnsNftAddress}
-        showCustomHeader
       />
-      {
-        !isEmpty(nftList?.nft) && (
-          <div className="flex justify-center items-center mb-6 mt-6">
-            <Pagination
-              classes={{ ul: classes.ul }}
-              color="primary"
-              count={count}
-              size="large"
-              page={currentPages}
-              variant="outlined"
-              shape="rounded"
-              onChange={handleChange}
-            />
-          </div>
-        )
-      }
+      {!isEmpty(nftList?.nft) && (
+        <div className="flex justify-center items-center my-6">
+          <Pagination
+            classes={{ ul: classes.ul }}
+            color="primary"
+            count={count}
+            size="large"
+            page={currentPages}
+            variant="outlined"
+            shape="rounded"
+            onChange={handleChange}
+          />
+        </div>
+      )}
     </div>
   )
 }
