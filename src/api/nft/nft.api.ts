@@ -18,7 +18,7 @@ export const getListTransaction = async ({ skip, action }: QueryNft) => {
       action,
     }
   }
-  
+
   const response: ListTranSactionResponse = await client.query({
     query: gql`
       query transactions($skip: Int, $first: Int, $where: Transaction_filter) {
@@ -58,7 +58,7 @@ export const getListTransaction = async ({ skip, action }: QueryNft) => {
       endpointName: 'nft',
     },
   })
-  
+
   return response
 }
 
@@ -97,7 +97,7 @@ export const getListNftStatistic = async () => {
       endpointName: 'nft',
     },
   })
-  
+
   return response
 }
 
@@ -133,17 +133,17 @@ export const getNftsOfAddress = async (
   const response = await client.query({
     query: gql`
       query Nft(
-        $ownerId: ID!,
-        $skip: Int,
-        $first: Int,
-        $orderBy: PositionNFT_orderBy,
+        $ownerId: ID!
+        $skip: Int
+        $first: Int
+        $orderBy: PositionNFT_orderBy
         $orderDirection: OrderDirection
       ) {
         owner(id: $ownerId) {
           nft(
-            skip: $skip,
-            first: $first,
-            orderBy: $orderBy,
+            skip: $skip
+            first: $first
+            orderBy: $orderBy
             orderDirection: $orderDirection
           ) {
             id
@@ -162,27 +162,29 @@ export const getNftsOfAddress = async (
       skip,
       first,
       orderBy,
-      orderDirection
+      orderDirection,
     },
     context: {
-      endpointName: 'nft'
-    }
+      endpointName: 'nft',
+    },
   })
 
   return response.data.owner
 }
 
-export const getTopTenNftHolder = async (): Promise<TopTenNftHolderElement[]> => {
+export const getTopTenNftHolder = async (): Promise<
+  TopTenNftHolderElement[]
+> => {
   const res = await client.query({
     query: gql`
       query Owners(
-        $first: Int,
-        $orderBy: Owner_orderBy,
+        $first: Int
+        $orderBy: Owner_orderBy
         $orderDirection: OrderDirection
       ) {
         owners(
-          first: $first,
-          orderBy: $orderBy,
+          first: $first
+          orderBy: $orderBy
           orderDirection: $orderDirection
         ) {
           id
@@ -193,11 +195,11 @@ export const getTopTenNftHolder = async (): Promise<TopTenNftHolderElement[]> =>
     variables: {
       first: 10,
       orderBy: 'totalNfts',
-      orderDirection: 'desc'
+      orderDirection: 'desc',
     },
     context: {
-      endpointName: 'nft'
-    }
+      endpointName: 'nft',
+    },
   })
 
   return res.data.owners

@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Pagination } from '@material-ui/lab'
-import { isEmpty } from 'lodash'
 import { getNftsOfAddress } from 'api/nft/nft.api'
+import { isEmpty } from 'lodash'
+import React, { useEffect, useState } from 'react'
+import { SortOrder } from 'react-data-table-component'
+import getPageCount from 'utils/getPageCount'
 import TransactionTable from '../transactionTable'
 import { ColumnsNftAddress } from '../transactionTable/ColumnsNftAddress'
-import getPageCount from 'utils/getPageCount'
-import { useAppSelector } from 'store/hooks'
-import { AddressNftQueryOrderBy } from 'store/address/addressSlice'
 
 const PER_PAGE = 8
 
@@ -28,9 +27,10 @@ export default function NftListItem({ address }: Props) {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [totalPage, setTotalPage] = useState<number>(1)
   const [currentPages, setCurrentPages] = useState<number>(1)
+  const [orderBy, setOrderBy] = useState<string>('id')
+  const [orderDirection, setOrderDirection] = useState<string>('asc')
 
   const [nftList, setNftList] = useState<any>([])
-  const orderBy = useAppSelector(AddressNftQueryOrderBy)
 
   const handleChange = (e: any, p: number) => {
     setCurrentPages(p)
@@ -41,7 +41,7 @@ export default function NftListItem({ address }: Props) {
     if (address) {
       getNfts()
     }
-  }, [address, currentPages, orderBy])
+  }, [address, currentPages, orderBy, orderDirection])
 
   const getNfts = async () => {
     try {
@@ -54,7 +54,8 @@ export default function NftListItem({ address }: Props) {
         address.toLowerCase(),
         (currentPages - 1) * PER_PAGE,
         PER_PAGE,
-        orderBy
+        orderBy,
+        orderDirection
       )
       setNftList(nftList)
       setTotalPage(nftList.totalNfts)
@@ -63,14 +64,20 @@ export default function NftListItem({ address }: Props) {
       setIsLoading(false)
     }
   }
+  const handleSort = (column: any, sortDirection: SortOrder) => {
+    setOrderBy(column.sortField)
+    setOrderDirection(sortDirection)
+    setCurrentPages(1)
+  }
 
   return (
-    <div className="flex flex-col m-auto rounded-md">
+    <div className="">
       <TransactionTable
         transactions={nftList?.nft || []}
         titleTable={`NFTs`}
         isLoading={isLoading}
         columns={ColumnsNftAddress}
+        onSort={handleSort}
       />
       {!isEmpty(nftList?.nft) && (
         <div className="flex justify-center items-center my-6">

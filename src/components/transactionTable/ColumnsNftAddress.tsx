@@ -20,12 +20,14 @@ export const ColumnsNftAddress: TableColumn<any>[] = [
       </RowData>
     ),
     sortable: true,
+    sortField: 'id',
   },
   {
     name: addressNftTableTitle.grade,
     width: '80px',
     cell: (row) => <RowData data={row.grade} />,
     sortable: true,
+    sortField: 'grade',
   },
   {
     name: addressNftTableTitle.amount,
@@ -34,6 +36,7 @@ export const ColumnsNftAddress: TableColumn<any>[] = [
       <RowData data={convertBigNumberToStringNumber(row.amount) + ' POSI'} />
     ),
     sortable: true,
+    sortField: 'amount',
   },
   {
     name: addressNftTableTitle.decompose,
@@ -47,6 +50,7 @@ export const ColumnsNftAddress: TableColumn<any>[] = [
         </ToolTip>
       </RowData>
     ),
+    sortField: 'lockedDays',
   },
   // {
   //   name: addressNftTableTitle.status,
@@ -68,6 +72,7 @@ export const ColumnsNftAddress: TableColumn<any>[] = [
       </RowData>
     ),
     sortable: true,
+    sortField: 'createdTime',
   },
   {
     name: addressNftTableTitle.lastUpdated,
@@ -80,5 +85,6 @@ export const ColumnsNftAddress: TableColumn<any>[] = [
       </RowData>
     ),
     sortable: true,
+    sortField: 'updatedTimestamp',
   },
 ]

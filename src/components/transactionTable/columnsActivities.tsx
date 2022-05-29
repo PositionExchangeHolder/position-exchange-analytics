@@ -26,16 +26,12 @@ export const columnsActivities: TableColumn<ItemTranSaction>[] = [
   },
   {
     name: nftActivitiesTableTitle.from,
-    cell: (row) => (
-      <Address address={row?.from.id} />
-    ),
+    cell: (row) => <Address address={row?.from.id} />,
     width: '270px',
   },
   {
     name: nftActivitiesTableTitle.to,
-    cell: (row) => (
-      <Address address={row?.to.id} />
-    ),
+    cell: (row) => <Address address={row?.to.id} />,
     width: '270px',
   },
 
@@ -45,7 +41,7 @@ export const columnsActivities: TableColumn<ItemTranSaction>[] = [
     cell: (row) => (
       <RowData>
         <ToolTip toolTipText={convertTimestampToDate(row?.createdTimestamp)}>
-          {getLastSeen(+row?.createdTimestamp)} 
+          {getLastSeen(+row?.createdTimestamp)}
         </ToolTip>
       </RowData>
     ),

@@ -105,3 +105,5 @@ export type TopTenNftHolderElement = {
   id: string
   totalNfts: string
 }
+
+// export type

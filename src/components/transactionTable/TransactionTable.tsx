@@ -12,6 +12,7 @@ type Props = {
   columns?: TableColumn<ItemTranSaction | any>[]
   isLoading: boolean
   customFilterHeader?: ReactNode
+  onSort?: (selectedColumn: TableColumn<T>, sortDirection: SortOrder) => void
 }
 
 export default function TransactionTable({
@@ -20,6 +21,7 @@ export default function TransactionTable({
   columns = columnsTransaction,
   isLoading,
   customFilterHeader,
+  onSort,
 }: Props) {
   return (
     <div>
@@ -47,6 +49,7 @@ export default function TransactionTable({
             )
           }
           noTableHead={false}
+          onSort={onSort}
         />
 
         <div className="w-full border-b border-waterloo" />
