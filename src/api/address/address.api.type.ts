@@ -39,6 +39,7 @@ export type queryGetReferralAddressRequest = {
   referrerId: string
   skip: number
   first: number
+  orderDirection: string
 }
 
 export type ReferralAddressResponse = {

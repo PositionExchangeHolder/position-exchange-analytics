@@ -8,6 +8,7 @@ import {
 } from 'api/address/address.api.type'
 import { isEmpty } from 'lodash'
 import React, { useEffect, useState } from 'react'
+import { SortOrder } from 'react-data-table-component'
 import { AddressReferralQueryOrderBy } from 'store/address/addressSlice'
 import { useAppSelector } from 'store/hooks'
 import getPageCount from 'utils/getPageCount'
@@ -27,7 +28,10 @@ export default function TableDataReferralsAddress({ referrerId }: Props) {
     RecordsRefAddress[]
   >([])
 
-  const orderBy = useAppSelector(AddressReferralQueryOrderBy)
+  const [orderBy, setOrderBy] = useState<string>('id')
+  const [orderDirection, setOrderDirection] = useState<string>('desc')
+
+  // const orderBy = useAppSelector(AddressReferralQueryOrderBy)
 
   const handleChange = (e: any, p: number) => {
     setCurrentPages(p)
@@ -37,7 +41,7 @@ export default function TableDataReferralsAddress({ referrerId }: Props) {
   useEffect(() => {
     if (isEmpty(referrerId)) return
     initialFetchData()
-  }, [orderBy, referrerId, currentPages])
+  }, [orderBy, referrerId, currentPages, orderDirection])
 
   const initialFetchData = async () => {
     try {
@@ -49,7 +53,8 @@ export default function TableDataReferralsAddress({ referrerId }: Props) {
         referrerId,
         first: PER_PAGE,
         skip: (currentPages - 1) * PER_PAGE,
-        orderBy: orderBy,
+        orderBy,
+        orderDirection,
       })
       setDataReferralAddress(dataReferral?.data?.referrer?.recordsRef)
       setTotalPage(Number(dataReferral?.data?.referrer?.totalReferrals) || 1)
@@ -58,7 +63,11 @@ export default function TableDataReferralsAddress({ referrerId }: Props) {
       setIsLoading(false)
     }
   }
-
+  const handleSort = (column: any, sortDirection: SortOrder) => {
+    setOrderBy(column.sortField)
+    setOrderDirection(sortDirection)
+    setCurrentPages(1)
+  }
   const useStyles = makeStyles(() => ({
     ul: {
       '& .MuiPaginationItem-root': {
@@ -75,6 +84,7 @@ export default function TableDataReferralsAddress({ referrerId }: Props) {
         titleTable={'REFERRALS'}
         isLoading={isLoading}
         columns={columnsReferralAddress}
+        onSort={handleSort}
       />
       {!isEmpty(dataReferralAddress) && (
         <div className="flex justify-center items-center mt-6">

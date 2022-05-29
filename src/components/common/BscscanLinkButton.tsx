@@ -20,7 +20,7 @@ export function BscscanLinkButton({
   hash,
   type,
   shortLink = true,
-  isContractAddress = false
+  isContractAddress = false,
 }: Props) {
   let endpoint
   switch (type) {
@@ -43,8 +43,7 @@ export function BscscanLinkButton({
           {isContractAddress && '📄 '}
           {type === BscscanType.ADDRESS
             ? getAddressLabel(hash) || hashFormatter(hash, shortLink)
-            : hashFormatter(hash, shortLink)
-          }
+            : hashFormatter(hash, shortLink)}
         </a>
       </Link>
     </div>
