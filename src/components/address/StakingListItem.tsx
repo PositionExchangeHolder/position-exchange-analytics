@@ -1,8 +1,5 @@
-import {
-  NftPoolBalance,
-  StakingPool
-} from 'api/address/address.api.type'
 import React from 'react'
+import { StakingPool } from 'types/api/address'
 import { convertBigNumberToNumber } from 'utils/number'
 import { isValidStakingPool } from 'utils/pool'
 
@@ -58,7 +55,7 @@ const StakingItem = ({
 
 type StakingListItemProps = {
   stakingPoolBalances: StakingPool[] | undefined
-  nftPoolBalances: NftPoolBalance[] | undefined
+  nftPoolBalances: StakingPool[] | undefined
   vaultBalances: StakingPool[] | undefined
   isMatchingAccount?: boolean
 }

@@ -1,9 +1,5 @@
 // APIs
-export const POSITION_API =
-  process.env.POSITION_API
-  || 'https://position-token-api.vercel.app/api'
-export const PRICE_ENDPOINT = `${POSITION_API}/v1/prices`
-export const BALANCER_ENDPOINT = `${POSITION_API}/v1/address`
+export const POSITION_API = process.env.POSITION_API || 'https://position-token-api.vercel.app/api'
 
 // Subgraphs
 export const SUBGRAPH = {
