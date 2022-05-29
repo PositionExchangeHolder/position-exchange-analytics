@@ -34,7 +34,7 @@ export default function TransactionTable({
   isLoading,
   showCustomHeader,
 }: Props) {
-  // const headerWidth = getWidthHeader<TopReferralRecord>(columns)
+  // const headerWidth = getWidthHeader<TopReferral>(columns)
   return (
     <div>
       <div className="pt-3 pb-2 pl-6 w-full bg-light-primary dark:bg-secondary border dark:border-0 border-b dark:border-b-gray-400">

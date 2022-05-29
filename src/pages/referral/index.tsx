@@ -1,17 +1,14 @@
 import TableDataReferralsRanker from '@/components/referral/TableDataReferralsRanker'
 import HeadSEO from '@/components/layout/HeadSEO'
 import TotalReferrals from '@/components/referral/TotalReferrals'
-import { getToTalReferralResponse } from 'api/referral/referral.api'
-import {
-  PositionReferral,
-  ToTalReferralResponse,
-} from 'api/referral/referral.api.type'
 import React, { useEffect, useState } from 'react'
 import { useAppSelector } from 'store/hooks'
 import { ReferralsRankerOrderBySelector } from 'store/referral/referralSlice'
+import { getReferralStatistics } from 'api/referral/statistics'
+import { ReferralStatistics } from 'types/api/referral'
 
 export default function Referral() {
-  const [toTalReferral, setToTalReferral] = useState<PositionReferral>()
+  const [referralStatistics, setReferralStatistics] = useState<ReferralStatistics>()
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const orderBy = useAppSelector(ReferralsRankerOrderBySelector)
 
@@ -23,12 +20,8 @@ export default function Referral() {
     try {
       if (isLoading) return
       setIsLoading(true)
-      const onGetToTalReferralResponse = getToTalReferralResponse({})
-      const dataReferralResponse: [ToTalReferralResponse] = await Promise.all([
-        onGetToTalReferralResponse,
-      ]).then((result) => result)
-      const [dataPositionReferral] = dataReferralResponse
-      setToTalReferral(dataPositionReferral.data.positionReferral)
+      const statistics = await getReferralStatistics()
+      setReferralStatistics(statistics)
     } catch (error) {
     } finally {
       setIsLoading(false)
@@ -42,7 +35,7 @@ export default function Referral() {
         description='Position Referral'
       />
       <div className="relative px-6 mt-10 w-full md:mt-16 xl:px-0">
-        <TotalReferrals toTalReferral={toTalReferral} />
+        <TotalReferrals toTalReferral={referralStatistics} />
         <div className="pt-16">
           <TableDataReferralsRanker />
         </div>

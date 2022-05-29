@@ -1,3 +1,8 @@
+export type ReferralStatistics = {
+  totalReferralCommissions: string
+  totalReferrals: string
+}
+
 export type ReferralRecord = {
   id: string
   refTxHash: string
@@ -16,4 +21,12 @@ export type ReferralAddress = {
   recordsRef: ReferralRecord[]
   totalReferralCommissions: string
   totalReferrals: string
+}
+
+export type TopReferral = {
+  id: string
+  totalReferralCommissions: string
+  totalReferrals: string
+  createdTimestamp: string
+  updatedTimestamp: string
 }

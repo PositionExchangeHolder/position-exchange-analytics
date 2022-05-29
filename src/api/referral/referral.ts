@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 import client from 'api/apolloInstance'
-import { ReferralAddress } from 'types/api/referral'
+import { ReferralAddress, TopReferral } from 'types/api/referral'
 
 export const getReferralAddress = async ({
   referrerId,
@@ -62,6 +62,46 @@ export const getReferralAddress = async ({
     })
 
     return res.data?.referrer
+  } catch (error) {
+    return undefined
+  }
+}
+
+export const getTopReferral = async ({
+  orderBy = 'totalReferrals'
+}): Promise<TopReferral | undefined> => {
+  try {
+    const res = await client.query({
+      query: gql`
+        query Referrers(
+          $orderBy: Referrer_orderBy
+          $orderDirection: OrderDirection
+          $first: Int
+        ) {
+          referrers(
+            orderBy: $orderBy
+            orderDirection: $orderDirection
+            first: $first
+          ) {
+            id
+            totalReferrals
+            totalReferralCommissions
+            createdTimestamp
+            updatedTimestamp
+          }
+        }
+      `,
+      variables: {
+        first: 10,
+        orderBy: orderBy,
+        orderDirection: 'desc'
+      },
+      context: {
+        endpointName: 'referral'
+      }
+    })
+
+    return res.data?.referrers
   } catch (error) {
     return undefined
   }

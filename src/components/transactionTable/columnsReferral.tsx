@@ -1,7 +1,7 @@
-import { TopReferralRecord } from 'api/referral/referral.api.type'
 import { referralTableTitle } from 'helper/tableTransaction/config'
 import React from 'react'
 import { TableColumn } from 'react-data-table-component'
+import { TopReferral } from 'types/api/referral'
 import { convertTimestampToDate, getLastSeen } from 'utils/date'
 import { convertBigNumberToStringNumber } from 'utils/number'
 import { Address } from '../common/Address'
@@ -18,7 +18,7 @@ export const renderIconRanking = (index: number) => {
   )
 }
 
-export const columnsReferral: TableColumn<TopReferralRecord>[] = [
+export const columnsReferral: TableColumn<TopReferral>[] = [
   {
     name: referralTableTitle.rank,
     cell: (row, index) => {
