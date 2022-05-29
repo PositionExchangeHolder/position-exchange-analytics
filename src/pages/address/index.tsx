@@ -16,7 +16,7 @@ const ConnectMetamaskButton = () => {
     <button
       onClick={connectMetamask}
       type="button"
-      className="bg-cyan-700 p-3 rounded-md"
+      className="p-3 bg-cyan-700 rounded-md"
     >
       Connect Wallet
     </button>
@@ -37,21 +37,14 @@ export default function AddressPage() {
 
   if (!account) {
     return (
-      <>
-        <HeadSEO
-          title={`Position Address`}
-          description={`Position Address`}
-        />
+      <div className="h-[calc(100vh-35rem)] bg-red-300 md:h-[calc(100vh-30rem)] ">
+        <HeadSEO title={`Position Address`} description={`Position Address`} />
         <div className="flex justify-center px-6 mt-8 ">
           <ConnectMetamaskButton />
         </div>
-      </>
-    )
-  } else {
-    return (
-      <div className="relative px-6 mt-6 w-full md:mt-16 xl:px-0">
-
       </div>
     )
+  } else {
+    return <div className="relative px-6 mt-6 w-full md:mt-16 xl:px-0"></div>
   }
 }

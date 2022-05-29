@@ -1,7 +1,11 @@
 import { ArrowDownIcon } from '@heroicons/react/outline'
 import { ItemTranSaction } from 'api/nft/nft.api.type'
 import React, { ReactNode } from 'react'
-import DataTable, { createTheme, TableColumn } from 'react-data-table-component'
+import DataTable, {
+  createTheme,
+  SortOrder,
+  TableColumn,
+} from 'react-data-table-component'
 import { customStylesTransactionTable } from 'styles/customStylesTransactionTable'
 import Loading from '../loading/Loading'
 import { columnsTransaction } from './columnsTransaction'
@@ -12,7 +16,7 @@ type Props = {
   columns?: TableColumn<ItemTranSaction | any>[]
   isLoading: boolean
   customFilterHeader?: ReactNode
-  onSort?: (selectedColumn: TableColumn<T>, sortDirection: SortOrder) => void
+  onSort?: (selectedColumn: TableColumn<any>, sortDirection: SortOrder) => void
 }
 
 export default function TransactionTable({

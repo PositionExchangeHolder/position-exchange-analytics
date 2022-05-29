@@ -9,8 +9,6 @@ import {
 import { isEmpty } from 'lodash'
 import React, { useEffect, useState } from 'react'
 import { SortOrder } from 'react-data-table-component'
-import { AddressReferralQueryOrderBy } from 'store/address/addressSlice'
-import { useAppSelector } from 'store/hooks'
 import getPageCount from 'utils/getPageCount'
 import { columnsReferralAddress } from '../transactionTable/columnsReferralAddress'
 
