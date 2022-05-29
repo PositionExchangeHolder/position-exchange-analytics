@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import { RecordsRefAddress } from 'api/address/address.api.type'
 import {
   BscscanLinkButton,
   BscscanType,
@@ -7,13 +6,14 @@ import {
 import { addressReferralTableTitle } from 'helper/tableTransaction/config'
 import React from 'react'
 import { TableColumn } from 'react-data-table-component'
+import { ReferralRecord } from 'types/api/referral'
 import { convertTimestampToDate, getLastSeen } from 'utils/date'
 import { convertBigNumberToStringNumber } from 'utils/number'
 import { Address } from '../common/Address'
 import ToolTip from '../common/ToolTip'
 import RowData from './RowData'
 
-export const columnsReferralAddress: TableColumn<RecordsRefAddress>[] = [
+export const columnsReferralAddress: TableColumn<ReferralRecord>[] = [
   {
     name: addressReferralTableTitle.transaction,
     width: '160px',

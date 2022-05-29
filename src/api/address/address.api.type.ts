@@ -32,40 +32,6 @@ export type TotalPosiBalance = {
   walletBalance: string
 }
 
-//referralAddress address
-
-export type queryGetReferralAddressRequest = {
-  orderBy: string
-  referrerId: string
-  skip: number
-  first: number
-}
-
-export type ReferralAddressResponse = {
-  data: DataReferrersAddress
-}
-
-export type DataReferrersAddress = {
-  referrer: {
-    id: string
-    recordsRef: RecordsRefAddress[]
-    totalReferralCommissions: string
-    totalReferrals: string
-  }
-}
-export type RecordsRefAddress = {
-  id: string
-  refTxHash: string
-  totalCommissionsEarnedForReferrer: string
-  updatedTimestamp: string
-  createdTimestamp: string
-  user: string
-  referrer: {
-    totalReferrals: string
-    totalReferralCommissions: string
-  }
-}
-
 export type RealizedPnlAndTradingData = {
   realizedPnl: number
   totalTokensBuy: string
