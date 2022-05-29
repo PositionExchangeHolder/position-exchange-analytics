@@ -4,14 +4,11 @@ import {
   createHttpLink,
   InMemoryCache,
 } from '@apollo/client'
-import {
-  SUBGRAPH_POSITION_NFT,
-  SUBGRAPH_POSITION_REFERRAL
-} from 'utils/constants'
+import { SUBGRAPH } from 'utils/constants'
 
 //Declare your endpoints
-const nft = createHttpLink({ uri: SUBGRAPH_POSITION_NFT })
-const referral = createHttpLink({ uri: SUBGRAPH_POSITION_REFERRAL })
+const nft = createHttpLink({ uri: SUBGRAPH.NFT })
+const referral = createHttpLink({ uri: SUBGRAPH.REFERRAL })
 
 const client = new ApolloClient({
   cache: new InMemoryCache({ addTypename: false }),
