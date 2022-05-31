@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import { Pagination } from '@material-ui/lab'
 import { isEmpty } from 'lodash'
 import TransactionTable from '../transactionTable'
 import { ColumnsNftAddress } from '../transactionTable/ColumnsNftAddress'
 import getPageCount from 'utils/getPageCount'
 import { getNftsOfAddress } from 'api/nft/nft'
 import { SortOrder } from 'react-data-table-component'
+import WrappedPagination from '../common/WrappedPagination'
 
 const PER_PAGE = 8
 
@@ -15,15 +14,6 @@ type Props = {
 }
 
 export default function NftListItem({ address }: Props) {
-  const useStyles = makeStyles(() => ({
-    ul: {
-      '& .MuiPaginationItem-root': {
-        color: 'white',
-      },
-    },
-  }))
-  const classes = useStyles()
-
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [totalPage, setTotalPage] = useState<number>(1)
   const [currentPages, setCurrentPages] = useState<number>(1)
@@ -81,14 +71,9 @@ export default function NftListItem({ address }: Props) {
       />
       {!isEmpty(nftList?.nft) && (
         <div className="flex justify-center items-center my-6">
-          <Pagination
-            classes={{ ul: classes.ul }}
-            color="primary"
+          <WrappedPagination
             count={count}
-            size="large"
             page={currentPages}
-            variant="outlined"
-            shape="rounded"
             onChange={handleChange}
           />
         </div>

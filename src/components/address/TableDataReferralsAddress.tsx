@@ -1,6 +1,4 @@
 import TransactionTable from '@/components/transactionTable/TransactionTable'
-import { makeStyles } from '@material-ui/core/styles'
-import { Pagination } from '@material-ui/lab'
 import { getReferralAddress } from 'api/referral/referral'
 import { isEmpty } from 'lodash'
 import React, { useEffect, useState } from 'react'
@@ -8,6 +6,7 @@ import {  ReferralRecord } from 'types/api/referral'
 import { SortOrder } from 'react-data-table-component'
 import getPageCount from 'utils/getPageCount'
 import { columnsReferralAddress } from '../transactionTable/columnsReferralAddress'
+import WrappedPagination from '../common/WrappedPagination'
 
 const PER_PAGE = 10
 
@@ -61,14 +60,6 @@ export default function TableDataReferralsAddress({ referrerId }: Props) {
     setOrderDirection(sortDirection)
     setCurrentPages(1)
   }
-  const useStyles = makeStyles(() => ({
-    ul: {
-      '& .MuiPaginationItem-root': {
-        color: 'white',
-      },
-    },
-  }))
-  const classes = useStyles()
 
   return (
     <div>
@@ -81,14 +72,9 @@ export default function TableDataReferralsAddress({ referrerId }: Props) {
       />
       {!isEmpty(dataReferralAddress) && (
         <div className="flex justify-center items-center mt-6">
-          <Pagination
-            classes={{ ul: classes.ul }}
-            color="primary"
+          <WrappedPagination
             count={count}
-            size="large"
             page={currentPages}
-            variant="outlined"
-            shape="rounded"
             onChange={handleChange}
           />
         </div>

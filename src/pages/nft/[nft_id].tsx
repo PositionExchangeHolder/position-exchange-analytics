@@ -3,8 +3,6 @@
 import { Address } from '@/components/common/Address'
 import HeadSEO from '@/components/layout/HeadSEO'
 import { NotFoundNft } from '@/components/nft/NotFoundNft'
-import { Pagination } from '@material-ui/lab'
-import { makeStyles } from '@material-ui/core/styles'
 import { columnsActivities } from '@/components/transactionTable/columnsActivities'
 import TransactionTable from '@/components/transactionTable/TransactionTable'
 import { getNftGradeImageUrl } from 'helper/nft/getNftImageUrl'
@@ -20,6 +18,7 @@ import { convertBigNumberToStringNumber } from 'utils/number'
 import getPageCount from 'utils/getPageCount'
 import { getActivitiesOfNft, getNftDetail } from 'api/nft/nft'
 import { NftDetail, NftTransaction } from 'types/api/nft'
+import WrappedPagination from '@/components/common/WrappedPagination'
 
 type Props = {
   positionNFT: NftDetail
@@ -28,15 +27,6 @@ type Props = {
 const PER_PAGE = 10
 
 export default function NftDetailPage({ positionNFT: positionNFTDetail }: Props) {
-  const useStyles = makeStyles(() => ({
-    ul: {
-      '& .MuiPaginationItem-root': {
-        color: 'white',
-      },
-    },
-  }))
-  const classes = useStyles()
-
   const [dataTransaction, setDataTransaction] = useState<NftTransaction[] | undefined>([])
   const [isLoading, setLoading] = React.useState(false)
   const [totalPage, setTotalPage] = useState<number>(1)
@@ -147,14 +137,9 @@ export default function NftDetailPage({ positionNFT: positionNFTDetail }: Props)
         />
         {count > 1 && (
           <div className="flex justify-center items-center my-6">
-            <Pagination
-              classes={{ ul: classes.ul }}
-              color="primary"
+            <WrappedPagination
               count={count}
-              size="large"
               page={currentPages}
-              variant="outlined"
-              shape="rounded"
               onChange={handleChange}
             />
           </div>
