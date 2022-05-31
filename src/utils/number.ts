@@ -48,3 +48,10 @@ export const convertBigNumberToNumber = (
 ): number => {
   return Number(new BigNumber(num).div(1e18).toFixed(digits))
 }
+
+export const toGwei = (
+  num: number | string,
+  digits = 2
+) => {
+  return Number(new BigNumber(num).div(1e9)).toFixed(digits)
+}

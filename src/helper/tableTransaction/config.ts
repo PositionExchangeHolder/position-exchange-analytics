@@ -40,3 +40,13 @@ export const addressReferralTableTitle = {
   commissionEarned: 'Commissions Earned', // sortable
   lastUpdated: 'Last Updated' // sortable
 }
+
+export const compoundTransactionTableTitle = {
+  transaction: 'Transaction',
+  type: 'Type',
+  compounder: 'Compounder',
+  reward: 'Reward',
+  gasLimit: 'Gas Limit',
+  gasPrice: 'Gas Price',
+  createdAt: 'Created At'
+}

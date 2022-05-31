@@ -17,9 +17,9 @@ export type Compounder = {
 }
 
 export type VaultStatistics = {
-  totalCompoundTransactions: string
-  totalRewardPaidForCompounder: string
-  totalUniqueCompounders: string
-  updatedTimestamp: string
-  createdTimestamp: string
+  totalCompoundTransactions: string | number
+  totalRewardPaidForCompounder?: string| number
+  totalUniqueCompounders: string| number
+  updatedTimestamp?: string
+  createdTimestamp?: string
 }

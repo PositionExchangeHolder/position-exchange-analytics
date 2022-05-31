@@ -1,20 +1,28 @@
-import HeadSEO from '@/components/layout/HeadSEO'
-import { getCompoundTransactions } from 'api/vault/transactions'
 import React, { useEffect, useState } from 'react'
-import { CompoundTransaction } from 'types/api/vault'
+import HeadSEO from '@/components/layout/HeadSEO'
+import CompoundTransactions from '@/components/page/vault/CompoundTransactions'
+import { VaultStatistics } from 'types/api/vault'
+import { getVaultSatistics } from 'api/vault/statistics'
+import VaultStatisticsComponent from '@/components/page/vault/VaultStatistics'
 
 export default function Index() {
-  const [compoundTxs, setCompoundTxs] = useState<CompoundTransaction[]>()
+  const [vaultStatistics, setVaultStatistics] = useState<VaultStatistics>({
+    totalCompoundTransactions: 0,
+    totalUniqueCompounders: 0
+  })
   
   useEffect(() => {
-    const fetchCompoundTransactions = async () => {
-      const txs = await getCompoundTransactions({})
-      setCompoundTxs(txs)
+    const fetchVaultStatistics = async () => {
+      const statistics = await getVaultSatistics()
+
+      if (statistics) {
+        setVaultStatistics(statistics)
+      }
     }
 
-    fetchCompoundTransactions()
+    fetchVaultStatistics()
   }, [])
-  console.log(compoundTxs)
+
   
   return (
     <>
@@ -22,8 +30,14 @@ export default function Index() {
         title='Position Vaults'
         description='Position Vaults'
       />
-      <div>
-        Vault
+      <div className="relative px-6 mt-8 w-full md:mt-10 xl:px-0">
+        <VaultStatisticsComponent statistics={vaultStatistics} />
+
+        <div className="pt-16">
+          <CompoundTransactions
+            totalTransactions={vaultStatistics.totalCompoundTransactions}
+          />
+        </div>
       </div>
     </>
   )
