@@ -1,4 +1,4 @@
-import { ItemNftStatistic } from 'api/nft/nft.api.type'
+import { NftStatistics } from 'types/api/nft'
 
 export type TypeItemNft = {
   currentValue: number
@@ -8,7 +8,7 @@ export type TypeItemNft = {
   imageUrl?: string
 }
 
-export const getDataGrade = (data: ItemNftStatistic) => {
+export const getDataGrade = (data: NftStatistics) => {
   const {
     totalGrade1Minted,
     totalGrade2Minted,
@@ -41,7 +41,7 @@ export const getDataGrade = (data: ItemNftStatistic) => {
   }
 }
 
-export const transferDataTotalNft = (data: ItemNftStatistic) => {
+export const transferDataTotalNft = (data: NftStatistics) => {
   const itemGrade = (
     totalMinted: string,
     totalBurned: string,
@@ -54,6 +54,7 @@ export const transferDataTotalNft = (data: ItemNftStatistic) => {
       grade,
     } as any
   }
+
   const {
     totalGrade1Minted,
     totalGrade2Minted,

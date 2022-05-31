@@ -1,7 +1,6 @@
 import React from 'react'
 import { TableColumn } from 'react-data-table-component'
 import { convertTimestampToDate, getLastSeen } from 'utils/date'
-import { ItemTranSaction } from 'api/nft/nft.api.type'
 import {
   BscscanLinkButton,
   BscscanType,
@@ -10,8 +9,9 @@ import ToolTip from '../common/ToolTip'
 import RowData from './RowData'
 import { Address } from '../common/Address'
 import { nftActivitiesTableTitle } from 'helper/tableTransaction/config'
+import { NftTransaction } from 'types/api/nft'
 
-export const columnsActivities: TableColumn<ItemTranSaction>[] = [
+export const columnsActivities: TableColumn<NftTransaction>[] = [
   {
     name: nftActivitiesTableTitle.transaction,
     cell: (row) => (

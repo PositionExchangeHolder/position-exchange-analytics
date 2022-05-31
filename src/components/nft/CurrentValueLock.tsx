@@ -1,6 +1,5 @@
-import { ItemNftStatistic } from 'api/nft/nft.api.type'
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAppSelector } from 'store/hooks'
 import { convertBigNumberToStringNumber, percentage } from 'utils/number'
 import ValueNftInfo from './ValueNftInfo'
@@ -10,22 +9,22 @@ import {
   formatMoney,
   getPosiBusdPrice,
 } from 'utils/price'
+import { NftStatistics } from 'types/api/nft'
+import { getNftStatistics } from 'api/nft/statistics'
 
-type Props = {
-  nftStatistic: ItemNftStatistic
-}
-
-export default function CurrentValueLock({ nftStatistic }: Props) {
-  const {
-    totalNftsMinted,
-    totalNftsBurned,
-    totalNftsStaking,
-    totalUniqueMiners,
-    currentTokenLocked,
-    totalTokenLocked,
-  } = nftStatistic
+export default function CurrentValueLock() {
+  const [nftStatistics, setNftStatistics] = useState<NftStatistics | undefined>()
   const { prices } = useAppSelector(selectPrice)
   const busdPrice = getPosiBusdPrice(prices)
+
+  useEffect(() => {
+    const fetchNftStatistics = async () => {
+      const statistics = await getNftStatistics()
+      setNftStatistics(statistics)
+    }
+
+    fetchNftStatistics()
+  }, [])
 
   return (
     <div className="px-4 pt-4 w-full dark:bg-secondary rounded-md border dark:border-0 lg:px-6">
@@ -35,8 +34,8 @@ export default function CurrentValueLock({ nftStatistic }: Props) {
 
       <p className="mt-4 text-xs font-medium text-txt-light-txt-primary dark:text-txt-white lg:text-lg">
         {`
-          ${convertBigNumberToStringNumber(currentTokenLocked, 2)} POSI
-          ~${formatMoney(calculateWorthOfToken(currentTokenLocked, busdPrice))}
+          ${convertBigNumberToStringNumber(nftStatistics?.currentTokenLocked || 0, 2)} POSI
+          ~${formatMoney(calculateWorthOfToken(nftStatistics?.currentTokenLocked || 0, busdPrice))}
         `}
       </p>
       <div className="flex flex-row items-center mt-5">
@@ -50,15 +49,18 @@ export default function CurrentValueLock({ nftStatistic }: Props) {
         <p className="ml-3 text-xs font-medium text-red-500 dark:text-txt-secondary lg:text-base">
           {`
             Circulating Supply: 
-            ${percentage(currentTokenLocked, totalTokenLocked).toFixed(2)}%
+            ${percentage(
+              nftStatistics?.currentTokenLocked || 0,
+              nftStatistics?.totalTokenLocked || 0
+            ).toFixed(2)}%
           `}
         </p>
       </div>
       <ValueNftInfo
-        totalNftsMinted={totalNftsMinted}
-        totalNftsBurned={totalNftsBurned}
-        totalNftsStaking={totalNftsStaking}
-        totalUniqueMiners={totalUniqueMiners}
+        totalNftsMinted={nftStatistics?.totalNftsMinted || '0'}
+        totalNftsBurned={nftStatistics?.totalNftsBurned || '0'}
+        totalNftsStaking={nftStatistics?.totalNftsStaking || '0'}
+        totalUniqueMiners={nftStatistics?.totalUniqueMiners || '0'}
       />
     </div>
   )

@@ -3,12 +3,6 @@ import { useWeb3React } from '@web3-react/core'
 import BalanceWallet from '@/components/address/BalanceWallet'
 import StakingListItem from '@/components/address/StakingListItem'
 import TableDataReferralsAddress from '@/components/address/TableDataReferralsAddress'
-import {
-  getUserInfoBalance,
-} from 'api/address/address.api'
-import {
-  DataBalancerResponse,
-} from 'api/address/address.api.type'
 import { transformDataWalletDoughnutChart } from 'helper/nft/transformDataWalletDoughnutChart'
 import { isEmpty } from 'lodash'
 import { useRouter } from 'next/router'
@@ -16,6 +10,9 @@ import { convertBigNumberToNumber } from 'utils/number'
 import NftListItem from '@/components/address/NftListItem'
 import HeadSEO from '@/components/layout/HeadSEO'
 import AccountInfo from '@/components/address/AccountInfo'
+import { AccountPosiBalances } from 'types/api/address'
+import { getAddressBalances } from 'api/address/balance'
+import { isAddress } from 'utils/address'
 
 export default function Account() {
   const router = useRouter()
@@ -23,7 +20,7 @@ export default function Account() {
   const account = router?.query?.account as string || ''
   const isMatchingAccount = accountWeb3?.toLowerCase() === account.toLowerCase()
   
-  const [balance, setBalance] = useState<DataBalancerResponse>()
+  const [balance, setBalance] = useState<AccountPosiBalances>()
   
   const totalWallet = convertBigNumberToNumber(
     balance?.totalPosiBalance?.walletBalance || 0
@@ -42,9 +39,9 @@ export default function Account() {
 
   useEffect(() => {
     try {
-      if (isEmpty(account)) return
+      if (isEmpty(account) || !isAddress(account)) return
       const fetchAddressBalance = async () => {
-        const data: DataBalancerResponse = await getUserInfoBalance(account)
+        const data = await getAddressBalances(account)
         setBalance(data)
       }
 

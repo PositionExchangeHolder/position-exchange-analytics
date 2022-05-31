@@ -1,5 +1,5 @@
-import { PositionReferral } from 'api/referral/referral.api.type'
 import React from 'react'
+import { ReferralStatistics } from 'types/api/referral'
 import {
   commasNumberFormat,
   convertBigNumberToStringNumber,
@@ -8,7 +8,7 @@ import {
 export default function TotalReferrals({
   toTalReferral,
 }: {
-  toTalReferral: PositionReferral | undefined
+  toTalReferral: ReferralStatistics | undefined
 }) {
   return (
     <div className="py-0 w-full  border  dark:border-0 md:py-2 md:dark:bg-secondary ">

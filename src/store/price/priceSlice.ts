@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { RootState } from 'store/store'
-import { PRICE_ENDPOINT } from 'utils/constants'
+import { POSITION_API } from 'utils/constants'
 import { DataPriceResponse, initialStatePrice } from './priceSlice.type'
 
 export const getPrice = createAsyncThunk('prices/getPrice', async () => {
-  const response: DataPriceResponse = await axios.get(PRICE_ENDPOINT)
+  const response: DataPriceResponse = await axios.get(`${POSITION_API}/v1/prices`)
   return response.data
 })
 

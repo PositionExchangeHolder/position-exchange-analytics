@@ -1,6 +1,6 @@
 import React from 'react'
+import { TotalPosiBalance } from 'types/api/address'
 import { convertBigNumberToStringNumber } from 'utils/number'
-import { TotalPosiBalance } from 'api/address/address.api.type'
 import { DoughnutChart } from '../chart/DoughnutChart'
 
 type Props = {

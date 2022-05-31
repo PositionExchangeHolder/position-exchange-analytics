@@ -39,6 +39,10 @@ export const isAddress = (address: string): boolean => {
 }
 
 export const isContractAddress = async (address: string): Promise<boolean> => {
+  if (!isAddress(address)) {
+    return false
+  }
+  
   const bytecode = await web3C.eth.getCode(address)
   return bytecode !== '0x'
 }

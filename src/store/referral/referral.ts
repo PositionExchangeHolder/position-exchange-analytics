@@ -1,5 +1,4 @@
-import { TopDataReferrers } from 'api/referral/referral.api.type'
-export const initialReferralsRanker: TopDataReferrers = {
+export const initialReferralsRanker = {
   topReferralsRanker: [],
   orderBy: 'totalReferrals',
 }

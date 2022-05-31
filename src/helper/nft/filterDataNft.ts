@@ -1,11 +1,11 @@
-import { ItemNftStatistic } from 'api/nft/nft.api.type'
 import { isEmpty } from 'lodash'
+import { NftStatistics } from 'types/api/nft'
 
 export type CurrentInfoNft = {
   totalMinted: number
   totalBurned: number
 }
-const getCurrentInfoNft = (data: ItemNftStatistic, grade: number | string) => {
+const getCurrentInfoNft = (data: NftStatistics, grade: number | string) => {
   const patternMinted = `${grade}Minted`
   const patternBurned = `${grade}Burned`
 

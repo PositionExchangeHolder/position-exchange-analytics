@@ -1,15 +1,12 @@
 import TransactionTable from '@/components/transactionTable/TransactionTable'
 import { makeStyles } from '@material-ui/core/styles'
 import { Pagination } from '@material-ui/lab'
-import { getReferralAddress } from 'api/address/address.api'
-import {
-  RecordsRefAddress,
-  ReferralAddressResponse,
-} from 'api/address/address.api.type'
+import { getReferralAddress } from 'api/referral/referral'
 import { isEmpty } from 'lodash'
 import React, { useEffect, useState } from 'react'
 import { AddressReferralQueryOrderBy } from 'store/address/addressSlice'
 import { useAppSelector } from 'store/hooks'
+import {  ReferralRecord } from 'types/api/referral'
 import getPageCount from 'utils/getPageCount'
 import { columnsReferralAddress } from '../transactionTable/columnsReferralAddress'
 
@@ -23,7 +20,7 @@ export default function TableDataReferralsAddress({ referrerId }: Props) {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [totalPage, setTotalPage] = useState<number>(1)
   const [currentPages, setCurrentPages] = useState<number>(1)
-  const [dataReferralAddress, setDataReferralAddress] = useState<RecordsRefAddress[]>([])
+  const [dataReferralAddress, setDataReferralAddress] = useState<ReferralRecord[] | undefined>([])
   
   const orderBy = useAppSelector(AddressReferralQueryOrderBy)
 
@@ -43,14 +40,14 @@ export default function TableDataReferralsAddress({ referrerId }: Props) {
 
       setIsLoading(true)
 
-      const dataReferral: ReferralAddressResponse = await getReferralAddress({
+      const dataReferral = await getReferralAddress({
         referrerId,
         first: PER_PAGE,
         skip: (currentPages - 1) * PER_PAGE,
         orderBy: orderBy
       })
-      setDataReferralAddress(dataReferral?.data?.referrer?.recordsRef)
-      setTotalPage(Number(dataReferral?.data?.referrer?.totalReferrals) || 1)
+      setDataReferralAddress(dataReferral?.recordsRef)
+      setTotalPage(Number(dataReferral?.totalReferrals) || 1)
     } catch (error) {
     } finally {
       setIsLoading(false)

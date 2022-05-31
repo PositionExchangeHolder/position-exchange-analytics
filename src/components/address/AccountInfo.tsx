@@ -1,8 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
-import { getAccountInfo, getRealizedPnlAndTradingDataOfAddress } from 'api/address/address.api'
-import { AccountInfo, RealizedPnlAndTradingData } from 'api/address/address.api.type'
+import { getRealizedPnlAndTradingDataOfAddress } from 'api/address/balance'
+import { getAccountInfo } from 'api/address/info'
 import React, { useEffect, useState } from 'react'
-import { isContractAddress } from 'utils/address'
+import { AccountInfo, RealizedPnlAndTradingData } from 'types/api/address'
+import { isAddress, isContractAddress } from 'utils/address'
 import { getJoinedDate } from 'utils/date'
 import { BscscanLinkButton, BscscanType } from '../common/BscscanLinkButton'
 import { AddressPnL } from './PnL'
@@ -19,10 +20,10 @@ const AccountInfo = ({ account, isMatchingAccount }: Props) => {
   const [isContract, setIsContract] = useState<boolean>(false)
   
   useEffect(() => {
-    if (account === '') {
+    if (account === '' || !isAddress(account)) {
       return
     }
-    
+
     const fetchRealizedPnlAndTradingData = async () => {
       const data = await getRealizedPnlAndTradingDataOfAddress(account)
       setRealizedPnlAndTradingData(data)
@@ -54,7 +55,11 @@ const AccountInfo = ({ account, isMatchingAccount }: Props) => {
           />
         </div>
         <span className="mt-4 text-2xl">
-          {accountInfo?.name || 'Unnamed'}
+          {
+            !isAddress(account)
+              ? 'Invalid Address'
+              : accountInfo?.name || 'Unnamed'
+          }
         </span>
         {
           Number(realizedPnlAndTradingData?.realizedPnl) !== 0  && (

@@ -1,7 +1,6 @@
 import { columnsReferral } from '@/components/transactionTable/columnsReferral'
 import TransactionTable from '@/components/transactionTable/TransactionTable'
-import { getTopReferralResponse } from 'api/referral/referral.api'
-import { TopReferralResponse } from 'api/referral/referral.api.type'
+import { getTopReferral } from 'api/referral/referral'
 import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from 'store/hooks'
 import {
@@ -25,12 +24,8 @@ export default function TableDataReferralsRanker() {
     try {
       if (isLoading) return
       setIsLoading(true)
-      const onGetTopReferralResponse = getTopReferralResponse({ orderBy })
-      const dataReferralResponse: [TopReferralResponse] = await Promise.all([
-        onGetTopReferralResponse,
-      ]).then((result) => result)
-      const [dataReferral] = dataReferralResponse
-      dispatch(setDataTopReferralsRanker(dataReferral.data.referrers))
+      const topReferral = await getTopReferral({ orderBy })
+      dispatch(setDataTopReferralsRanker(topReferral))
     } catch (error) {
     } finally {
       setIsLoading(false)

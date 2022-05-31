@@ -1,12 +1,12 @@
 import React from 'react'
 import { ArrowDownIcon } from '@heroicons/react/outline'
-import { ItemTranSaction } from 'api/nft/nft.api.type'
 import { isArray } from 'lodash'
 import DataTable, { createTheme, TableColumn } from 'react-data-table-component'
 import { customStylesTransactionTable } from 'styles/customStylesTransactionTable'
 import Loading from '../loading/Loading'
 import { columnsTransaction } from './columnsTransaction'
 import CustomHeaderTableTransaction from './CustomHeaderTableTransaction'
+import { NftTransaction } from 'types/api/nft'
 
 type ItemFilter = {
   name: string
@@ -19,7 +19,7 @@ type Props = {
   currentFilter?: string
   setCurrentFilter?: (filter: string) => void
   listFilterTransaction?: ItemFilter[]
-  columns?: TableColumn<ItemTranSaction | any>[]
+  columns?: TableColumn<NftTransaction | any>[]
   isLoading: boolean
   showCustomHeader?: boolean
 }
@@ -34,7 +34,7 @@ export default function TransactionTable({
   isLoading,
   showCustomHeader,
 }: Props) {
-  // const headerWidth = getWidthHeader<TopReferralRecord>(columns)
+  // const headerWidth = getWidthHeader<TopReferral>(columns)
   return (
     <div>
       <div className="pt-3 pb-2 pl-6 w-full bg-light-primary dark:bg-secondary border dark:border-0 border-b dark:border-b-gray-400">

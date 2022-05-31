@@ -1,4 +1,4 @@
-import { getTopTenNftHolder } from 'api/nft/nft.api'
+import { getTopNftHolder } from 'api/nft/leaderboard'
 import React, { useEffect, useState } from 'react'
 import { getAddressLabel } from 'utils/address'
 import { hashFormatter } from 'utils/string'
@@ -9,12 +9,12 @@ type Props = {
   totalNfts: number
 }
 
-const TopTenNftHolder = ({ totalNfts }: Props) => {
+const TopNftHolder = ({ totalNfts }: Props) => {
   const [topHolder, setTopHolder] = useState<any[]>()
   
   useEffect(() => {
     const fetchTopTenHolder = async () => {
-      const top = await getTopTenNftHolder()
+      const top = await getTopNftHolder() || []
 
       const data: any[] = []
       top.forEach((e) => {
@@ -54,4 +54,4 @@ const TopTenNftHolder = ({ totalNfts }: Props) => {
   )
 }
 
-export default TopTenNftHolder
+export default TopNftHolder

@@ -4,56 +4,71 @@ import { DoughnutChart } from '@/components/chart/DoughnutChart'
 import HeadSEO from '@/components/layout/HeadSEO'
 import Pagination from '@/components/pagination'
 import TransactionTable from '@/components/transactionTable/TransactionTable'
-import {
-  getListNftGrade,
-  getListTransactionNftGrade,
-} from 'api/nft-grade/nft-grade.api'
-import {
-  ItemNftGrade,
-  ItemTransactionNftGrade,
-  ListDataGradeResponse,
-  ListDataTransactionGradeResponse,
-} from 'api/nft-grade/nft-grade.api.type'
-import { getListNftStatistic } from 'api/nft/nft.api'
-import {
-  FilterTransaction,
-  ItemNftStatistic,
-  ListNftStatisticResponse,
-} from 'api/nft/nft.api.type'
+import { getNftStatistics } from 'api/nft/statistics'
+import { getNftTransactions } from 'api/nft/transactions'
 import {
   listFilterTransactionNftGrade,
-  PropSSRNftGrade,
 } from 'common/nft/nft-gradle.type'
 import { CurrentInfoNft, getCurrentInfoNft } from 'helper/nft/filterDataNft'
 import { getNftGradeImageUrl } from 'helper/nft/getNftImageUrl'
 import { transformDataDoughnutChart } from 'helper/nft/transformDataDoughnutChart'
 import { useRouter } from 'next/router'
 import React, { useCallback, useEffect, useState } from 'react'
+import { FilterTransaction, NftStatistics, NftTransaction } from 'types/api/nft'
 
-type Props = {
-  positionNFTs: ItemNftGrade[]
-  nftStatistic: ItemNftStatistic
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default function Index({ positionNFTs, nftStatistic }: Props) {
+export default function Index() {
+  // shit code
+  const [nftStatistics, setNftStatistics] = useState<NftStatistics>({
+    id: '1',
+    totalTransactions: '1',
+    totalNftsMinted: '1',
+    totalNftsBurned: '1',
+    totalNftsStaking: '1',
+    totalTokenLocked: '1',
+    currentTokenLocked: '1',
+    totalUniqueMiners: '1',
+    totalGrade1Minted: '1',
+    totalGrade2Minted: '1',
+    totalGrade3Minted: '1',
+    totalGrade4Minted: '1',
+    totalGrade5Minted: '1',
+    totalGrade6Minted: '1',
+    totalGrade1Burned: '1',
+    totalGrade2Burned: '1',
+    totalGrade3Burned: '1',
+    totalGrade4Burned: '1',
+    totalGrade5Burned: '1',
+    totalGrade6Burned: '1',
+    createdBlockNumber: '1',
+    createdTimestamp: '1',
+    updatedTimestamp: '1'
+  })  
   const [currentFilter, setCurrentFilter] = useState<FilterTransaction>('All')
   const [skipPage, setSkipPage] = useState<number>(0)
   const router = useRouter()
   const grade: string = (router?.query?.slug as string) || ''
-  const [dataTransaction, setDataTransaction] = useState<
-    ItemTransactionNftGrade[]
-  >([])
+  const [dataTransaction, setDataTransaction] = useState<NftTransaction[] | undefined>([])
   const [isLoading, setLoading] = React.useState(false)
 
-  const dataDoughnutChart = transformDataDoughnutChart(nftStatistic, grade)
+  useEffect(() => {
+    const fetchNftStatistics = async () => {
+      const statistics = await getNftStatistics()
+      if (statistics) {
+        setNftStatistics(statistics)
+      }
+    }
+
+    fetchNftStatistics()
+  }, [])
+
+  const dataDoughnutChart = transformDataDoughnutChart(nftStatistics)
   // set filter and reset entries transaction
   const onSetCurrentFilter = useCallback((filter: any) => {
     setSkipPage(0)
     setCurrentFilter(filter)
   }, [])
   const dataCurrentInfoNft: CurrentInfoNft = getCurrentInfoNft(
-    nftStatistic,
+    nftStatistics,
     grade
   )
 
@@ -61,15 +76,13 @@ export default function Index({ positionNFTs, nftStatistic }: Props) {
     const fetchDataTransaction = async () => {
       if (isLoading) return
       setLoading(true)
-      const transactionsResponse: ListDataTransactionGradeResponse =
-        await getListTransactionNftGrade({
-          grade,
-          action: currentFilter,
-          skip: skipPage,
-        })
+      const transactions = await getNftTransactions({
+        grade,
+        action: currentFilter,
+        skip: skipPage,
+      })
       setLoading(false)
 
-      const { transactions } = transactionsResponse.data
       setDataTransaction(transactions)
     }
     fetchDataTransaction()
@@ -104,9 +117,6 @@ export default function Index({ positionNFTs, nftStatistic }: Props) {
               <p className="mt-4 text-xs dark:font-medium dark:text-txt-sub-text-color md:mt-12 md:text-sm">
                 Total Burned: {dataCurrentInfoNft.totalBurned}
               </p>
-              <p className="mt-4 text-xs font-medium text-txt-light-secondary dark:text-txt-sub-text-color md:mt-8 md:text-sm">
-                @SoftSkillNFT
-              </p>
             </div>
             <div className="px-6 w-full h-80 md:mt-10 lg:mt-0 xl:col-span-2">
               <div className="mt-4 w-full h-80 sm:h-80 md:mt-0 md:w-80 lg:w-full lg:h-96">
@@ -136,29 +146,4 @@ export default function Index({ positionNFTs, nftStatistic }: Props) {
       </div>
     </main>
   )
-}
-
-export async function getServerSideProps({ query }: PropSSRNftGrade) {
-  const grade = query.slug
-  const onGetListNftStatistic = getListNftStatistic()
-
-  const onGetListNftGrade = getListNftGrade({
-    grade,
-  })
-
-  const gradeData: [ListDataGradeResponse, ListNftStatisticResponse] =
-    await Promise.all([onGetListNftGrade, onGetListNftStatistic]).then(
-      (result) => result
-    )
-  const [nftGradeResponse, nftStatisticResponse] = gradeData
-
-  const { positionNFTs } = nftGradeResponse.data
-  const { nftStatistic } = nftStatisticResponse.data
-  //
-  return {
-    props: {
-      positionNFTs,
-      nftStatistic,
-    },
-  }
 }
