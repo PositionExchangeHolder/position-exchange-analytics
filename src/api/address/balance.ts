@@ -12,7 +12,7 @@ export const getAddressBalances = async (
       `${POSITION_API}/v1/address/${address}`
     )
     
-    return response?.data?.data.data
+    return response.data?.data
   } catch (error) {
     return undefined
   }

@@ -2,6 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { DoughnutChart } from '@/components/chart/DoughnutChart'
 import HeadSEO from '@/components/layout/HeadSEO'
+import FilterTransactionTable from '@/components/nft/FilterTransactionTable'
 import Pagination from '@/components/pagination'
 import TransactionTable from '@/components/transactionTable/TransactionTable'
 import { getNftStatistics } from 'api/nft/statistics'
@@ -133,10 +134,14 @@ export default function Index() {
         <TransactionTable
           transactions={dataTransaction}
           titleTable={'Transactions'}
-          setCurrentFilter={onSetCurrentFilter}
-          currentFilter={currentFilter}
-          listFilterTransaction={listFilterTransactionNftGrade}
           isLoading={isLoading}
+          customFilterHeader={() => (
+            <FilterTransactionTable
+              currentFilter={currentFilter}
+              listFilterTransaction={listFilterTransactionNftGrade}
+              setCurrentFilter={onSetCurrentFilter}
+            />
+          )}
         />
         <Pagination
           currentItem={skipPage}

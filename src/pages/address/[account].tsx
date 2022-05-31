@@ -17,7 +17,7 @@ import { isAddress } from 'utils/address'
 export default function Account() {
   const router = useRouter()
   const { account: accountWeb3 } = useWeb3React()
-  const account = router?.query?.account as string || ''
+  const account = (router?.query?.account as string) || ''
   const isMatchingAccount = accountWeb3?.toLowerCase() === account.toLowerCase()
   
   const [balance, setBalance] = useState<AccountPosiBalances>()
@@ -38,15 +38,15 @@ export default function Account() {
   })
 
   useEffect(() => {
-    try {
-      if (isEmpty(account) || !isAddress(account)) return
-      const fetchAddressBalance = async () => {
-        const data = await getAddressBalances(account)
+    if (isEmpty(account) || !isAddress(account)) return
+    const fetchAddressBalance = async () => {
+      const data = await getAddressBalances(account)
+      if (data) {
         setBalance(data)
       }
+    }
 
-      fetchAddressBalance()
-    } catch (error) {}
+    fetchAddressBalance()
   }, [account])
 
   return (
@@ -55,19 +55,23 @@ export default function Account() {
         title={`Position Address | ${account}`}
         description={`Position Address | ${account}`}
       />
-      
+
       {/* Address information */}
-      <AccountInfo
-        account={account}
-        isMatchingAccount={isMatchingAccount}
-      />
-      
+      <AccountInfo account={account} isMatchingAccount={isMatchingAccount} />
+
       {/* Address Token Balance */}
-      <BalanceWallet
-        totalPosiBalance={balance?.totalPosiBalance}
-        dataDoughnutWalletChart={dataDoughnutWalletChart}
-      />
-      
+      <div className=" grid-rows-2 mt-12 lg:grid lg:grid-cols-3 lg:grid-rows-none lg:gap-x-12 lg:mt-16">
+        <div className="col-span-1 lg:row-span-1">
+          <BalanceWallet
+            totalPosiBalance={balance?.totalPosiBalance}
+            dataDoughnutWalletChart={dataDoughnutWalletChart}
+          />
+        </div>
+        <div className="relative row-span-1 mt-12  lg:col-span-2 lg:mt-0 h-a">
+          <NftListItem address={account} />
+        </div>
+      </div>
+
       {/* Staking  */}
       <StakingListItem
         stakingPoolBalances={balance?.stakingPoolBalances}
@@ -75,8 +79,6 @@ export default function Account() {
         vaultBalances={balance?.vaultBalances}
         isMatchingAccount={isMatchingAccount}
       />
-
-      <NftListItem address={account} />
 
       {/* Referral Table */}
       <div className="pt-16">

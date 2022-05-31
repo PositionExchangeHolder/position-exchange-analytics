@@ -16,17 +16,20 @@ import RowData from './RowData'
 export const columnsReferralAddress: TableColumn<ReferralRecord>[] = [
   {
     name: addressReferralTableTitle.transaction,
-    width: '160px',
+    width: '460px',
     cell: (row) => (
-      <BscscanLinkButton hash={row.refTxHash} type={BscscanType.TX_HASH} />
+      <BscscanLinkButton
+        hash={row.refTxHash}
+        type={BscscanType.TX_HASH}
+        shortLink={false}
+      />
     ),
+    style: { paddingRight: 30 },
   },
   {
     name: addressReferralTableTitle.address,
     width: '440px',
-    cell: (row) => (
-      <Address address={row.user} shortLink={false} />
-    ),
+    cell: (row) => <Address address={row.user} shortLink={false} />,
   },
   {
     name: addressReferralTableTitle.commissionEarned,
@@ -39,13 +42,14 @@ export const columnsReferralAddress: TableColumn<ReferralRecord>[] = [
         }
       />
     ),
-    width: '250px',
+    width: '200px',
     sortable: true,
+    sortField: 'totalCommissionsEarnedForReferrer',
   },
 
   {
     name: addressReferralTableTitle.lastUpdated,
-    width: '230px',
+    width: '150px',
     cell: (row) => (
       <RowData>
         <ToolTip toolTipText={convertTimestampToDate(row.createdTimestamp)}>
@@ -53,6 +57,7 @@ export const columnsReferralAddress: TableColumn<ReferralRecord>[] = [
         </ToolTip>
       </RowData>
     ),
-    sortable: true
+    sortable: true,
+    sortField: 'updatedTimestamp',
   },
 ]

@@ -1,6 +1,8 @@
 import StoreProvider from '@/components/app/StoreProvider'
 import ContainerLayout from '@/components/layout/ContainerLayout'
 import HeaderLayout from '@/components/layout/HeaderLayout'
+import Footer from '@/components/layout/Footer'
+
 import { ExternalProvider, Web3Provider } from '@ethersproject/providers'
 import { Web3ReactProvider } from '@web3-react/core'
 import { ThemeProvider } from 'next-themes'
@@ -45,12 +47,13 @@ function MyApp({ Component, pageProps }: AppProps) {
                 content="width=device-width, initial-scale=1"
               />
             </Head>
-            <div className="pb-20 w-full">
+            <div className="w-full">
               <HeaderLayout />
               <ContainerLayout>
                 {progress && <TopBarProgress />}
                 <Component {...pageProps} />
               </ContainerLayout>
+              <Footer />
             </div>
           </div>
         </ThemeProvider>

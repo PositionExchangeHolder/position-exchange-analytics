@@ -3,7 +3,8 @@ import LineChart from '@/components/chart/LineChart'
 import HeadSEO from '@/components/layout/HeadSEO'
 import CurrentValueLock from '@/components/nft/CurrentValueLock'
 import GradeStatistics from '@/components/nft/GradeStatistics'
-// import TopNftHolder from '@/components/nft/TopNftHolder'
+import FilterTransactionTable from '@/components/nft/FilterTransactionTable'
+// import TopTenNftHolder from '@/components/nft/TopTenNftHolder'
 import Pagination from '@/components/pagination'
 import TransactionTable from '@/components/transactionTable/TransactionTable'
 import { getNftDayData } from 'api/nft/dayData'
@@ -90,10 +91,7 @@ export default function Index({ nftDayDatas }: Props) {
   
   return (
     <main className="relative px-6 mt-10 w-full bg-light-primary dark:bg-primary md:mt-16 xl:px-0">
-      <HeadSEO
-        title='Position NFT'
-        description='Position NFT'
-      />
+      <HeadSEO title="Position NFT" description="Position NFT" />
       <div className="grid grid-cols-1 gap-x-6 md:grid-cols-2">
         <CurrentValueLock />
         <div className="mt-8 h-72 rounded-md xs:h-full md:mt-0">
@@ -108,12 +106,16 @@ export default function Index({ nftDayDatas }: Props) {
       <GradeStatistics gradeStatistics={gradeStatistics} />
       <div className="mt-10 sm:mt-16">
         <TransactionTable
-          setCurrentFilter={onSetCurrentFilter}
-          currentFilter={currentFilter}
           transactions={dataTransaction}
           titleTable={'TRANSACTIONS'}
-          listFilterTransaction={listFilterTransaction}
           isLoading={isLoading}
+          customFilterHeader={() => (
+            <FilterTransactionTable
+              currentFilter={currentFilter}
+              listFilterTransaction={listFilterTransaction}
+              setCurrentFilter={onSetCurrentFilter}
+            />
+          )}
         />
         <Pagination
           currentItem={skipPage}

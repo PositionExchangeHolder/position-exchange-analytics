@@ -11,7 +11,7 @@ import RowData from './RowData'
 export const ColumnsNftAddress: TableColumn<any>[] = [
   {
     name: addressNftTableTitle.id,
-    width: '140px',
+    width: '120px',
     cell: (row) => (
       <RowData>
         <Link href={`/nft/${row.id}`}>
@@ -19,34 +19,38 @@ export const ColumnsNftAddress: TableColumn<any>[] = [
         </Link>
       </RowData>
     ),
-    sortable: true
+    sortable: true,
+    sortField: 'id',
   },
   {
     name: addressNftTableTitle.grade,
-    width: '120px',
+    width: '80px',
     cell: (row) => <RowData data={row.grade} />,
-    sortable: true
+    sortable: true,
+    sortField: 'grade',
   },
   {
     name: addressNftTableTitle.amount,
     width: '160px',
     cell: (row) => (
-      <RowData
-        data={convertBigNumberToStringNumber(row.amount) + ' POSI'}
-      />
+      <RowData data={convertBigNumberToStringNumber(row.amount) + ' POSI'} />
     ),
-    sortable: true
+    sortable: true,
+    sortField: 'amount',
   },
   {
     name: addressNftTableTitle.decompose,
-    width: '140px',
+    width: '100px',
     cell: (row) => (
       <RowData>
-        <ToolTip toolTipText={getDecomposeDate(row.createdTime, row.lockedDays)}>
+        <ToolTip
+          toolTipText={getDecomposeDate(row.createdTime, row.lockedDays)}
+        >
           {canDecompose(row.createdTime, row.lockedDays).toString()}
         </ToolTip>
       </RowData>
-    )
+    ),
+    sortField: 'lockedDays',
   },
   // {
   //   name: addressNftTableTitle.status,
@@ -67,7 +71,8 @@ export const ColumnsNftAddress: TableColumn<any>[] = [
         </ToolTip>
       </RowData>
     ),
-    sortable: true
+    sortable: true,
+    sortField: 'createdTime',
   },
   {
     name: addressNftTableTitle.lastUpdated,
@@ -79,6 +84,7 @@ export const ColumnsNftAddress: TableColumn<any>[] = [
         </ToolTip>
       </RowData>
     ),
-    sortable: true
+    sortable: true,
+    sortField: 'updatedTimestamp',
   },
 ]

@@ -38,7 +38,6 @@ export default function TableDataReferralsRanker() {
       titleTable={'LEADERBOARD'}
       isLoading={isLoading}
       columns={columnsReferral}
-      showCustomHeader
     />
   )
 }

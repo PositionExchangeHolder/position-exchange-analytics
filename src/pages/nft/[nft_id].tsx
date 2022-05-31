@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Address } from '@/components/common/Address'
 import HeadSEO from '@/components/layout/HeadSEO'
@@ -8,7 +9,7 @@ import { columnsActivities } from '@/components/transactionTable/columnsActiviti
 import TransactionTable from '@/components/transactionTable/TransactionTable'
 import { getNftGradeImageUrl } from 'helper/nft/getNftImageUrl'
 import { useRouter } from 'next/router'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { getLastSeen } from 'utils/date'
 import {
   getDecomposeDate,
@@ -18,7 +19,7 @@ import {
 import { convertBigNumberToStringNumber } from 'utils/number'
 import getPageCount from 'utils/getPageCount'
 import { getActivitiesOfNft, getNftDetail } from 'api/nft/nft'
-import { FilterTransaction, NftDetail, NftTransaction } from 'types/api/nft'
+import { NftDetail, NftTransaction } from 'types/api/nft'
 
 type Props = {
   positionNFT: NftDetail
@@ -37,10 +38,8 @@ export default function NftDetailPage({ positionNFT: positionNFTDetail }: Props)
   const classes = useStyles()
 
   const [dataTransaction, setDataTransaction] = useState<NftTransaction[] | undefined>([])
-  const [currentFilter, setCurrentFilter] = useState<FilterTransaction>('All')
   const [isLoading, setLoading] = React.useState(false)
   const [totalPage, setTotalPage] = useState<number>(1)
-  const [skipPage, setSkipPage] = useState<number>(0)
   const [currentPages, setCurrentPages] = useState<number>(1)
 
   const router = useRouter()
@@ -59,7 +58,7 @@ export default function NftDetailPage({ positionNFT: positionNFTDetail }: Props)
       const nft = await getActivitiesOfNft({
         nftId,
         skip: (currentPages - 1) * PER_PAGE,
-        first: PER_PAGE
+        first: PER_PAGE,
       })
       setLoading(false)
 
@@ -67,18 +66,10 @@ export default function NftDetailPage({ positionNFT: positionNFTDetail }: Props)
       setTotalPage(Number(nft?.totalTransactions))
     }
     fetchDataActivities()
-  }, [currentFilter, skipPage, nftId, currentPages])
-
-  // set filter and reset entries transaction
-  const onSetCurrentFilter = useCallback((filter: any) => {
-    setSkipPage(0)
-    setCurrentFilter(filter)
-  }, [])
+  }, [nftId, currentPages])
 
   if (!positionNFTDetail) {
-    return (
-      <NotFoundNft nftId={nftId} />
-    )
+    return <NotFoundNft nftId={nftId} />
   }
 
   const {
@@ -111,7 +102,11 @@ export default function NftDetailPage({ positionNFT: positionNFTDetail }: Props)
               />
             </div>
             <div className="px-6 mt-6 md:mt-0 xl:col-span-2">
-              <h2 className={`text-lg font-bold sm:text-2xl dark:text-txt-primary text-txt-light-txt-primary ${burned && 'line-through'}`}>
+              <h2
+                className={`text-lg font-bold sm:text-2xl dark:text-txt-primary text-txt-light-txt-primary ${
+                  burned && 'line-through'
+                }`}
+              >
                 #{nftId}
               </h2>
               <p className="mt-4 text-base text-txt-light-txt-primary dark:text-txt-sub-text-color">
@@ -145,29 +140,25 @@ export default function NftDetailPage({ positionNFT: positionNFTDetail }: Props)
       </section>
       <div className="mt-0 sm:mt-8">
         <TransactionTable
-          setCurrentFilter={onSetCurrentFilter}
-          currentFilter={currentFilter}
           transactions={dataTransaction}
           titleTable={'ACTIVITIES'}
           columns={columnsActivities}
           isLoading={isLoading}
         />
-        {
-          count > 1 && (
-            <div className="flex justify-center items-center mb-6 mt-6">
-              <Pagination
-                classes={{ ul: classes.ul }}
-                color="primary"
-                count={count}
-                size="large"
-                page={currentPages}
-                variant="outlined"
-                shape="rounded"
-                onChange={handleChange}
-              />
-            </div>
-          )
-        }
+        {count > 1 && (
+          <div className="flex justify-center items-center my-6">
+            <Pagination
+              classes={{ ul: classes.ul }}
+              color="primary"
+              count={count}
+              size="large"
+              page={currentPages}
+              variant="outlined"
+              shape="rounded"
+              onChange={handleChange}
+            />
+          </div>
+        )}
       </div>
     </div>
   )
