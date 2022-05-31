@@ -29,5 +29,5 @@ export const getJoinedDate = (timestamp: number | string | undefined): string =>
     return ''
   }
   
-  return format(new Date(Number(timestamp) * 1000), 'MMM yyyy')
+  return format(new Date(Number(timestamp) * 1000), 'MMM dd, yyyy')
 }

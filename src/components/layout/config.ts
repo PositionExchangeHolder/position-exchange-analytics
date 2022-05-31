@@ -26,7 +26,7 @@ export const navigations: NavigationItem[] = [
   },
   {
     name: 'Vault',
-    href: 'vault'
+    href: '/vault'
   },
   {
     name: 'Address',
