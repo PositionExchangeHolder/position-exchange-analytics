@@ -1,6 +1,5 @@
 import React from 'react'
 import Link from 'next/link'
-import { ItemTranSaction } from 'api/nft/nft.api.type'
 import {
   BscscanLinkButton,
   BscscanType,
@@ -11,8 +10,9 @@ import { Address } from '../common/Address'
 import ToolTip from '../common/ToolTip'
 import RowData from './RowData'
 import { nftTransactionTableTitle } from 'helper/tableTransaction/config'
+import { NftTransaction } from 'types/api/nft'
 
-export const columnsTransaction: TableColumn<ItemTranSaction>[] = [
+export const columnsTransaction: TableColumn<NftTransaction>[] = [
   {
     name: nftTransactionTableTitle.transaction,
     cell: (row) => (

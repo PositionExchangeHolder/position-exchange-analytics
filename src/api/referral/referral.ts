@@ -57,7 +57,7 @@ export const getReferralAddress = async ({
         orderDirection
       },
       context: {
-        endpointName: 'referral',
+        endpoint: 'referral'
       }
     })
 
@@ -97,7 +97,7 @@ export const getTopReferral = async ({
         orderDirection: 'desc'
       },
       context: {
-        endpointName: 'referral'
+        endpoint: 'referral'
       }
     })
 

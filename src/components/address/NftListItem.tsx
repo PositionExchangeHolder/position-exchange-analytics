@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Pagination } from '@material-ui/lab'
 import { isEmpty } from 'lodash'
-import { getNftsOfAddress } from 'api/nft/nft.api'
 import TransactionTable from '../transactionTable'
 import { ColumnsNftAddress } from '../transactionTable/ColumnsNftAddress'
 import getPageCount from 'utils/getPageCount'
 import { useAppSelector } from 'store/hooks'
 import { AddressNftQueryOrderBy } from 'store/address/addressSlice'
+import { getNftsOfAddress } from 'api/nft/nft'
 
 const PER_PAGE = 8
 

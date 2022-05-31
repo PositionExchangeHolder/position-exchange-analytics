@@ -1,4 +1,4 @@
-import { FilterTransaction } from 'api/nft/nft.api.type'
+import { FilterTransaction } from 'types/api/nft'
 
 export type PropSSRNftGrade = {
   query: QueryNftGrade

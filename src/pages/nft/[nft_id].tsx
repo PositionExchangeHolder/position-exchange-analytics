@@ -6,17 +6,6 @@ import { Pagination } from '@material-ui/lab'
 import { makeStyles } from '@material-ui/core/styles'
 import { columnsActivities } from '@/components/transactionTable/columnsActivities'
 import TransactionTable from '@/components/transactionTable/TransactionTable'
-import {
-  ItemTransactionActivities,
-  NftDetailResponse,
-  PositionNFTInfo,
-  PropSSRNftDetail,
-} from 'api/nft-detail/nft-detail-api.type'
-import {
-  getListActivitiesNft,
-  getNftDetail,
-} from 'api/nft-detail/nft-detail.api'
-import { FilterTransaction } from 'api/nft/nft.api.type'
 import { getNftGradeImageUrl } from 'helper/nft/getNftImageUrl'
 import { useRouter } from 'next/router'
 import React, { useCallback, useEffect, useState } from 'react'
@@ -28,14 +17,16 @@ import {
 } from 'utils/nft'
 import { convertBigNumberToStringNumber } from 'utils/number'
 import getPageCount from 'utils/getPageCount'
+import { getActivitiesOfNft, getNftDetail } from 'api/nft/nft'
+import { FilterTransaction, NftDetail, NftTransaction } from 'types/api/nft'
 
 type Props = {
-  positionNFT: PositionNFTInfo
+  positionNFT: NftDetail
 }
 
 const PER_PAGE = 10
 
-export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
+export default function NftDetailPage({ positionNFT: positionNFTDetail }: Props) {
   const useStyles = makeStyles(() => ({
     ul: {
       '& .MuiPaginationItem-root': {
@@ -45,7 +36,7 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
   }))
   const classes = useStyles()
 
-  const [dataTransaction, setDataTransaction] = useState<ItemTransactionActivities[]>([])
+  const [dataTransaction, setDataTransaction] = useState<NftTransaction[] | undefined>([])
   const [currentFilter, setCurrentFilter] = useState<FilterTransaction>('All')
   const [isLoading, setLoading] = React.useState(false)
   const [totalPage, setTotalPage] = useState<number>(1)
@@ -65,16 +56,15 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
       if (isLoading) return
       setLoading(true)
 
-      const activitiesResponse = await getListActivitiesNft({
-        positionNftId: nftId,
+      const nft = await getActivitiesOfNft({
+        nftId,
         skip: (currentPages - 1) * PER_PAGE,
         first: PER_PAGE
       })
-      const { positionNFT } = activitiesResponse.data
       setLoading(false)
 
-      setDataTransaction(positionNFT?.transactions)
-      setTotalPage(Number(positionNFT?.totalTransactions))
+      setDataTransaction(nft?.transactions)
+      setTotalPage(Number(nft?.totalTransactions))
     }
     fetchDataActivities()
   }, [currentFilter, skipPage, nftId, currentPages])
@@ -183,14 +173,15 @@ export default function NftDetail({ positionNFT: positionNFTDetail }: Props) {
   )
 }
 
+type PropSSRNftDetail = {
+  query: {
+    nft_id: string
+  }
+}
+
 export async function getServerSideProps({ query }: PropSSRNftDetail) {
   const { nft_id } = query
-  const onGetNftDetailResponse = getNftDetail({ positionNftId: nft_id })
-  const nftData: [NftDetailResponse] = await Promise.all([
-    onGetNftDetailResponse,
-  ]).then((result) => result)
-  const [nftDetailResponse] = nftData
-  const { positionNFT } = nftDetailResponse.data
+  const positionNFT = await getNftDetail({ id: nft_id })
 
   return {
     props: {

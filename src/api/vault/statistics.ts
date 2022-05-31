@@ -17,7 +17,6 @@ export const getVaultSatistics = async (): Promise<VaultStatistics | undefined> 
     
     return res.data?.data.positionVault
   } catch (error) {
-    console.log(error)
     return undefined
   }
 }

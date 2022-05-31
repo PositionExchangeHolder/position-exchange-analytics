@@ -1,13 +1,13 @@
 import { ArrowDownIcon } from '@heroicons/react/outline'
-import { ItemTranSaction } from 'api/nft/nft.api.type'
 import { getFilterActionTransactionTable } from 'helper/tableTransaction/getWidthHeader'
 import React from 'react'
 import { TableColumn } from 'react-data-table-component'
 import { useAppDispatch, useAppSelector } from 'store/hooks'
 import { ReferralsRankerOrderBySelector } from 'store/referral/referralSlice'
+import { NftTransaction } from 'types/api/nft'
 
 type Props = {
-  columns?: TableColumn<ItemTranSaction | any>[]
+  columns?: TableColumn<NftTransaction | any>[]
 }
 
 export default function CustomHeaderTableTransaction({ columns }: Props) {

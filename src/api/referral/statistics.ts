@@ -17,7 +17,7 @@ export const getReferralStatistics = async (): Promise<ReferralStatistics | unde
         positionReferralId: '1'
       },
       context: {
-        endpointName: 'referral'
+        endpoint: 'referral'
       }
     })
 

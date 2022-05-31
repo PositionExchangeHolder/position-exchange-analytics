@@ -35,7 +35,6 @@ export const getTopCompounder = async ({
 
     return result
   } catch (error) {
-    console.log(error)
     return undefined
   }
 }

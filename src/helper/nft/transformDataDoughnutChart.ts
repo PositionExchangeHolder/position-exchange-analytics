@@ -1,4 +1,4 @@
-import { ItemNftStatistic } from 'api/nft/nft.api.type'
+import { NftStatistics } from 'types/api/nft'
 import { getDataGrade } from './transferDataTotalNft'
 
 export type TypeItemNft = {
@@ -19,10 +19,7 @@ export type DataDoughnutChart = {
   total: number
 }
 
-export const transformDataDoughnutChart = (
-  dataNftStatistic: ItemNftStatistic,
-  grade: string
-) => {
+export const transformDataDoughnutChart = (dataNftStatistic: NftStatistics) => {
   const {
     totalGrade1Minted,
     totalGrade2Minted,

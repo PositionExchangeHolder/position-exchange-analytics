@@ -15,10 +15,10 @@ const client = new ApolloClient({
   ssrMode: true,
   addTypename: false,
   link: ApolloLink.split(
-    (operation) => operation.getContext().endpointName === 'nft',
+    (operation) => operation.getContext().endpoint === 'nft',
     nft,
     ApolloLink.split(
-      (operation) => operation.getContext().endpointName === 'referral',
+      (operation) => operation.getContext().endpoint === 'referral',
       referral // <= apollo will send to this if clientName is "link2"
     )
   ),
