@@ -37,12 +37,15 @@ export default function AddressPage() {
 
   if (!account) {
     return (
-      <div className="h-[calc(100vh-35rem)] bg-red-300 md:h-[calc(100vh-30rem)] ">
-        <HeadSEO title={`Position Address`} description={`Position Address`} />
+      <>
+        <HeadSEO
+          title='Position Address'
+          description='Position Address'
+        />
         <div className="flex justify-center px-6 mt-8 ">
           <ConnectMetamaskButton />
         </div>
-      </div>
+      </>
     )
   } else {
     return <div className="relative px-6 mt-6 w-full md:mt-16 xl:px-0"></div>
