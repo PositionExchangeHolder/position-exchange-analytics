@@ -5,7 +5,7 @@ import { CompoundTransaction } from 'types/api/vault'
 import { convertTimestampToDate } from 'utils/date'
 import {
   // convertBigNumberToStringNumber,
-  toGwei
+  toGwei,
 } from 'utils/number'
 import { Address } from '../common/Address'
 import { BscscanLinkButton, BscscanType } from '../common/BscscanLinkButton'
@@ -18,21 +18,17 @@ export const columnsCompoundTransactions: TableColumn<CompoundTransaction>[] = [
       <BscscanLinkButton hash={row?.id} type={BscscanType.TX_HASH} />
     ),
     width: '160px',
-    hide: 10
+    hide: 10,
   },
   {
     name: compoundTransactionTableTitle.type,
-    cell: (row) => (
-      <RowData data={'BUSD'} />
-    ),
-    width: '100px'
+    cell: () => <RowData data={'BUSD'} />,
+    width: '100px',
   },
   {
     name: compoundTransactionTableTitle.compounder,
-    cell: (row) => (
-      <Address address={row?.sender} />
-    ),
-    width: '160px'
+    cell: (row) => <Address address={row?.sender} />,
+    width: '160px',
   },
   // {
   //   name: compoundTransactionTableTitle.reward,
@@ -43,23 +39,19 @@ export const columnsCompoundTransactions: TableColumn<CompoundTransaction>[] = [
   // },
   {
     name: compoundTransactionTableTitle.gasLimit,
-    cell: (row) => (
-      <RowData data={Number(row?.gasLimit).toLocaleString()} />
-    ),
-    width: '120px'
+    cell: (row) => <RowData data={Number(row?.gasLimit).toLocaleString()} />,
+    width: '120px',
   },
   {
     name: compoundTransactionTableTitle.gasPrice,
-    cell: (row) => (
-      <RowData data={`${toGwei(row?.gasPrice)} Gwei`} />
-    ),
-    width: '120px'
+    cell: (row) => <RowData data={`${toGwei(row?.gasPrice)} Gwei`} />,
+    width: '120px',
   },
   {
     name: compoundTransactionTableTitle.createdAt,
     cell: (row) => (
       <RowData data={convertTimestampToDate(row?.createdTimestamp)} />
     ),
-    width: '160px'
-  }
+    width: '160px',
+  },
 ]
