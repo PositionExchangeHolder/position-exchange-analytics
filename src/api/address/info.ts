@@ -5,11 +5,15 @@ import { POSITION_API } from 'utils/constants'
 export const getAccountInfo = async (
   address: string
 ): Promise<AccountInfo | undefined> => {
-  const res = await axios.get(`${POSITION_API}/v1/account/info/${address.toLowerCase()}`)
+  try {
+    const res = await axios.get(`${POSITION_API}/v1/account/info/${address.toLowerCase()}`)
 
-  if (res.status === 200 && res.data.success) {
-    return res.data.data
+    if (res.status === 200 && res.data.success) {
+      return res.data.data
+    }
+
+    return undefined
+  } catch (error) {
+    return undefined
   }
-
-  return undefined
 }

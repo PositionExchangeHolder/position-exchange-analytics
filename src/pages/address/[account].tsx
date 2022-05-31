@@ -12,6 +12,7 @@ import HeadSEO from '@/components/layout/HeadSEO'
 import AccountInfo from '@/components/address/AccountInfo'
 import { AccountPosiBalances } from 'types/api/address'
 import { getAddressBalances } from 'api/address/balance'
+import { isAddress } from 'utils/address'
 
 export default function Account() {
   const router = useRouter()
@@ -38,7 +39,7 @@ export default function Account() {
 
   useEffect(() => {
     try {
-      if (isEmpty(account)) return
+      if (isEmpty(account) || !isAddress(account)) return
       const fetchAddressBalance = async () => {
         const data = await getAddressBalances(account)
         setBalance(data)

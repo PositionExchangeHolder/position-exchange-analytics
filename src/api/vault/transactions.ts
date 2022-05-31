@@ -7,6 +7,11 @@ export const getCompoundTransactions = async ({
   first = 10,
   orderBy = 'createdTimestamp',
   orderDirection = 'desc'
+}: {
+  skip?: number
+  first?: number
+  orderBy?: string
+  orderDirection?: string
 }): Promise<CompoundTransaction[] | undefined> => {
   try {
     const query = `
