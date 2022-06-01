@@ -6,6 +6,7 @@ import { SortOrder } from 'react-data-table-component'
 import WrappedPagination from '@/components/common/WrappedPagination'
 import TransactionTable from '@/components/transactionTable'
 import { ColumnsNftAddress } from '@/components/transactionTable/ColumnsNftAddress'
+import { getPostionExchangeUrl } from 'utils/url'
 
 const PER_PAGE = 8
 
@@ -68,6 +69,7 @@ export default function NftListItem({ address }: Props) {
         isLoading={isLoading}
         columns={ColumnsNftAddress}
         onSort={handleSort}
+        noDataReferralLink={getPostionExchangeUrl('nfts')}
       />
       {!isEmpty(nftList?.nft) && (
         <div className="flex justify-center items-center my-6">

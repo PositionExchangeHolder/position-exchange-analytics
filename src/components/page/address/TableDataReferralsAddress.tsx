@@ -7,6 +7,7 @@ import { SortOrder } from 'react-data-table-component'
 import getPageCount from 'utils/getPageCount'
 import WrappedPagination from '@/components/common/WrappedPagination'
 import { columnsReferralAddress } from '@/components/transactionTable/columnsReferralAddress'
+import { getPostionExchangeUrl } from 'utils/url'
 
 const PER_PAGE = 10
 
@@ -69,6 +70,7 @@ export default function TableDataReferralsAddress({ referrerId }: Props) {
         isLoading={isLoading}
         columns={columnsReferralAddress}
         onSort={handleSort}
+        noDataReferralLink={getPostionExchangeUrl('referral')}
       />
       {!isEmpty(dataReferralAddress) && (
         <div className="flex justify-center items-center mt-6">

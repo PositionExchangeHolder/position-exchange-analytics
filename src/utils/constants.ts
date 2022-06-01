@@ -20,5 +20,7 @@ export const SUBGRAPH = {
 }
 
 export const BSC_SCAN_URL = 'https://bscscan.com'
+export const POSITION_EXCHANGE_URL = 'https://app.position.exchange'
+export const POSITION_EXCHANGE_REF_CODE = ''
 
 export const DAY_IN_SECONDS = 86400
