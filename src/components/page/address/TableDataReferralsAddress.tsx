@@ -21,7 +21,7 @@ export default function TableDataReferralsAddress({ referrerId }: Props) {
   const [currentPages, setCurrentPages] = useState<number>(1)
   const [dataReferralAddress, setDataReferralAddress] = useState<ReferralRecord[] | undefined>([])
 
-  const [orderBy, setOrderBy] = useState<string>('id')
+  const [orderBy, setOrderBy] = useState<string>('updatedTimestamp')
   const [orderDirection, setOrderDirection] = useState<string>('desc')
 
   // const orderBy = useAppSelector(AddressReferralQueryOrderBy)
