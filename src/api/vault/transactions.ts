@@ -23,6 +23,7 @@ export const getCompoundTransactions = async ({
           orderDirection: ${orderDirection}
         ) {
           id
+          type
           reward
           sender {
             id

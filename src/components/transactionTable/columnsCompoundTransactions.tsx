@@ -21,6 +21,11 @@ export const columnsCompoundTransactions: TableColumn<CompoundTransaction>[] = [
     hide: 10,
   },
   {
+    name: compoundTransactionTableTitle.type,
+    cell: (row) => <RowData data={row?.type} />,
+    width: '100px',
+  },
+  {
     name: compoundTransactionTableTitle.compounder,
     cell: (row) => <Address address={row?.sender} />,
     width: '160px',

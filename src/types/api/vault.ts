@@ -1,5 +1,6 @@
 export type CompoundTransaction = {
   id: string // txHash
+  type: string
   reward: string
   sender: string
   gasLimit: string
