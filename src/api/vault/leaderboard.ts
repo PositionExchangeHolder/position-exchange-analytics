@@ -20,8 +20,6 @@ export const getTopCompounder = async ({
           id
           totalCompoundTransactions
           totalRewardEarned
-          createdTimestamp
-          updatedTimestamp
         }
       }
     `

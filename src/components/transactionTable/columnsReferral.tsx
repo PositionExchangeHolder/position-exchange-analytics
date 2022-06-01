@@ -8,26 +8,12 @@ import { Address } from '../common/Address'
 import ToolTip from '../common/ToolTip'
 import RowData from './RowData'
 
-export const renderIconRanking = (index: number) => {
-  return (
-    <div className="w-8 h-8">
-      <div className="flex justify-center items-center w-full h-full text-xs text-gray-400 dark:text-txt-primary bg-light-primary dark:bg-primary md:text-sm">
-        {index + 1}
-      </div>
-    </div>
-  )
-}
-
 export const columnsReferral: TableColumn<TopReferral>[] = [
   {
     name: referralTableTitle.rank,
-    cell: (row, index) => {
-      return (
-        <>
-          {renderIconRanking(index)}
-        </>
-      )
-    },
+    cell: (row, index) => (
+      <RowData data={(index + 1).toString()} />
+    ),
     width: '100px',
   },
   {

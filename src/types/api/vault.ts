@@ -12,9 +12,9 @@ export type CompoundTransaction = {
 export type Compounder = {
   id: string // address
   totalCompoundTransactions: string
-  totalRewardEarned: string
-  createdTimestamp: string
-  updatedTimestamp: string
+  totalRewardEarned?: string
+  createdTimestamp?: string
+  updatedTimestamp?: string
 }
 
 export type VaultStatistics = {
@@ -23,4 +23,8 @@ export type VaultStatistics = {
   totalUniqueCompounders: string| number
   updatedTimestamp?: string
   createdTimestamp?: string
+}
+
+export type GasPrice = {
+  gasPrice: string
 }

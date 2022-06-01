@@ -34,7 +34,7 @@ export default function Referral() {
         title='Position Referral'
         description='Position Referral'
       />
-      <div className="relative px-6 mt-10 w-full md:mt-16 xl:px-0">
+      <div className="relative px-6 mt-8 w-full md:mt-10 xl:px-0">
         <TotalReferrals toTalReferral={referralStatistics} />
         <div className="pt-16">
           <TableDataReferralsRanker />
