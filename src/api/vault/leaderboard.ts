@@ -25,7 +25,7 @@ export const getTopCompounder = async ({
         }
       }
     `
-    const res = await axios.post(SUBGRAPH.VAULTS.BUSD, { query })
+    const res = await axios.post(SUBGRAPH.VAULTS, { query })
     const result: Compounder[] = res.data?.data.compounders.map((e: any) => {
       return {
         ...e,

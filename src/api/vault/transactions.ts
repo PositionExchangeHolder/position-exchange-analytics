@@ -34,7 +34,7 @@ export const getCompoundTransactions = async ({
         }
       }
     `
-    const res = await axios.post(SUBGRAPH.VAULTS.BUSD, { query })
+    const res = await axios.post(SUBGRAPH.VAULTS, { query })
     const txs: CompoundTransaction[] = res.data
       ?.data.compoundTransactions.map((e: any) => {
         return {

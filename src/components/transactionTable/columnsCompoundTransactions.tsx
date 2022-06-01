@@ -21,11 +21,6 @@ export const columnsCompoundTransactions: TableColumn<CompoundTransaction>[] = [
     hide: 10,
   },
   {
-    name: compoundTransactionTableTitle.type,
-    cell: () => <RowData data={'BUSD'} />,
-    width: '100px',
-  },
-  {
     name: compoundTransactionTableTitle.compounder,
     cell: (row) => <Address address={row?.sender} />,
     width: '160px',
@@ -38,13 +33,13 @@ export const columnsCompoundTransactions: TableColumn<CompoundTransaction>[] = [
   //   width: '120px'
   // },
   {
-    name: compoundTransactionTableTitle.gasLimit,
-    cell: (row) => <RowData data={Number(row?.gasLimit).toLocaleString()} />,
+    name: compoundTransactionTableTitle.gasPrice,
+    cell: (row) => <RowData data={`${toGwei(row?.gasPrice)} Gwei`} />,
     width: '120px',
   },
   {
-    name: compoundTransactionTableTitle.gasPrice,
-    cell: (row) => <RowData data={`${toGwei(row?.gasPrice)} Gwei`} />,
+    name: compoundTransactionTableTitle.gasLimit,
+    cell: (row) => <RowData data={Number(row?.gasLimit).toLocaleString()} />,
     width: '120px',
   },
   {

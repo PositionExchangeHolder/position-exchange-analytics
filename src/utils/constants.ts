@@ -6,10 +6,7 @@ export const SUBGRAPH = {
   TOKEN: process.env.SUBGRAPH_POSITION_TOKEN || 'https://api.thegraph.com/subgraphs/name/gafranslotteria/position-token',
   NFT: process.env.SUBGRAPH_POSITION_NFT || 'https://api.thegraph.com/subgraphs/name/gafranslotteria/position-nft',
   REFERRAL: process.env.SUBGRAPH_POSITION_REFERRAL || 'https://api.thegraph.com/subgraphs/name/gafranslotteria/position-referral',
-  VAULTS: {
-    BUSD: process.env.SUBGRAPH_POSITION_VAULT_BUSD || 'https://api.thegraph.com/subgraphs/name/gafranslotteria/position-busd-vault',
-    BNB: process.env.SUBGRAPH_POSITION_VAULT_BNB || 'https://api.thegraph.com/subgraphs/name/gafranslotteria/position-bnb-vault'
-  },
+  VAULTS: process.env.SUBGRAPH_POSITION_VAULT || 'https://api.thegraph.com/subgraphs/name/gafranslotteria/position-vaults',
   BONDS: {
     _1: process.env.SUBGRAPH_POSITION_BOND_01 || 'https://api.thegraph.com/subgraphs/name/gafranslotteria/position-bond-01',
     _2: process.env.SUBGRAPH_POSITION_BOND_02 || 'https://api.thegraph.com/subgraphs/name/gafranslotteria/position-bond-02',

@@ -15,7 +15,7 @@ export const getVaultSatistics = async (): Promise<VaultStatistics | undefined> 
         }
       }
     `
-    const res = await axios.post(SUBGRAPH.VAULTS.BUSD, { query })
+    const res = await axios.post(SUBGRAPH.VAULTS, { query })
     
     return res.data?.data.positionVault
   } catch (error) {
