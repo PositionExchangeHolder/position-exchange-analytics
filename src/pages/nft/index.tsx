@@ -3,26 +3,18 @@ import LineChart from '@/components/chart/LineChart'
 import HeadSEO from '@/components/layout/HeadSEO'
 import CurrentValueLock from '@/components/page/nft/CurrentValueLock'
 import GradeStatistics from '@/components/page/nft/GradeStatistics'
-import FilterTransactionTable from '@/components/page/nft/FilterTransactionTable'
+import NftTransactionTable from '@/components/page/nft/NftTransactionTable'
 // import TopTenNftHolder from '@/components/nft/TopTenNftHolder'
-import Pagination from '@/components/pagination'
-import TransactionTable from '@/components/transactionTable/TransactionTable'
 import { getNftDayData } from 'api/nft/dayData'
 import { getNftStatistics } from 'api/nft/statistics'
-import { getNftTransactions } from 'api/nft/transactions'
-import { listFilterTransaction } from 'common/nft/nft.type'
 import { transferDataTotalNft } from 'helper/nft/transferDataTotalNft'
 import { transformDataLineChartNft } from 'helper/nft/transformDataLineChart'
-import React, { useCallback, useEffect, useState } from 'react'
-import { FilterTransaction, NftDayData, NftStatistics, NftTransaction } from 'types/api/nft'
+import React, { useEffect, useState } from 'react'
+import { NftDayData, NftStatistics } from 'types/api/nft'
 
-type Props = {
-  transactions: NftTransaction[]
-  nftDayDatas: NftDayData[]
-}
-
-export default function Index({ nftDayDatas }: Props) {
+export default function Index() {
   // shit code
+  const [nftDayDatas, setNftDayDatas] = useState<NftDayData[]>([])
   const [nftStatistics, setNftStatistics] = useState<NftStatistics>({
     id: '1',
     totalTransactions: '1',
@@ -51,32 +43,6 @@ export default function Index({ nftDayDatas }: Props) {
   const gradeStatistics = transferDataTotalNft(nftStatistics)
 
   const dataNftLineChart = transformDataLineChartNft(nftDayDatas)
-  const [currentFilter, setCurrentFilter] = useState<FilterTransaction>('All')
-  const [skipPage, setSkipPage] = useState<number>(0)
-  const [dataTransaction, setDataTransaction] = useState<NftTransaction[] | undefined>([])
-  const [isLoading, setLoading] = React.useState(false)
-
-
-  // set filter and reset entries transaction
-  const onSetCurrentFilter = useCallback((filter: any) => {
-    setSkipPage(0)
-    setCurrentFilter(filter)
-  }, [])
-
-  useEffect(() => {
-    const fetchDataTransaction = async () => {
-      if (isLoading) return
-      setLoading(true)
-      const transactions =
-        await getNftTransactions({
-          action: currentFilter,
-          skip: skipPage,
-        })
-      setLoading(false)
-      setDataTransaction(transactions)
-    }
-    fetchDataTransaction()
-  }, [currentFilter, skipPage])
 
   useEffect(() => {
     const fetchNftStatistics = async () => {
@@ -86,7 +52,13 @@ export default function Index({ nftDayDatas }: Props) {
       }
     }
 
+    const fetchNftDatas = async () => {
+      const data = await getNftDayData()
+      setNftDayDatas(data)
+    }
+
     fetchNftStatistics()
+    fetchNftDatas()
   }, [])
   
   return (
@@ -105,40 +77,8 @@ export default function Index({ nftDayDatas }: Props) {
 
       <GradeStatistics gradeStatistics={gradeStatistics} />
       <div className="mt-10 sm:mt-16">
-        <TransactionTable
-          transactions={dataTransaction}
-          titleTable={'TRANSACTIONS'}
-          isLoading={isLoading}
-          customFilterHeader={() => (
-            <FilterTransactionTable
-              currentFilter={currentFilter}
-              listFilterTransaction={listFilterTransaction}
-              setCurrentFilter={onSetCurrentFilter}
-            />
-          )}
-        />
-        <Pagination
-          currentItem={skipPage}
-          setNextItem={setSkipPage}
-          skip={10}
-        />
+        <NftTransactionTable />
       </div>
     </main>
   )
-}
-
-export async function getServerSideProps() {
-  const onGetNftDayDatas = getNftDayData()
-  
-  const data = await Promise.all([
-    onGetNftDayDatas
-  ]).then(result => result)
-  
-  const [nftDayDatas] = data
-  
-  return {
-    props: {
-      nftDayDatas
-    },
-  }
 }
