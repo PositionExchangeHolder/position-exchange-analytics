@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import LineChart from '@/components/chart/LineChart'
 import HeadSEO from '@/components/layout/HeadSEO'
-import CurrentValueLock from '@/components/nft/CurrentValueLock'
-import GradeStatistics from '@/components/nft/GradeStatistics'
-import FilterTransactionTable from '@/components/nft/FilterTransactionTable'
+import CurrentValueLock from '@/components/page/nft/CurrentValueLock'
+import GradeStatistics from '@/components/page/nft/GradeStatistics'
+import FilterTransactionTable from '@/components/page/nft/FilterTransactionTable'
 // import TopTenNftHolder from '@/components/nft/TopTenNftHolder'
 import Pagination from '@/components/pagination'
 import TransactionTable from '@/components/transactionTable/TransactionTable'

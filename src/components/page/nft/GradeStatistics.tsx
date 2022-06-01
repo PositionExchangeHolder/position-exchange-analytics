@@ -1,7 +1,7 @@
+import Loading from '@/components/loading/Loading'
 import { TypeItemNft } from 'helper/nft/transferDataTotalNft'
 import Link from 'next/link'
 import React from 'react'
-import Loading from '../loading/Loading'
 import ItemNft from './ItemNft'
 
 type Props = {

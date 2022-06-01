@@ -1,7 +1,7 @@
+import { DoughnutChart } from '@/components/chart/DoughnutChart'
 import React from 'react'
 import { TotalPosiBalance } from 'types/api/address'
 import { convertBigNumberToStringNumber } from 'utils/number'
-import { DoughnutChart } from '../chart/DoughnutChart'
 
 type Props = {
   totalPosiBalance: TotalPosiBalance | undefined

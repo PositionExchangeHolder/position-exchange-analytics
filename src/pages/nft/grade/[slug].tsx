@@ -2,7 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { DoughnutChart } from '@/components/chart/DoughnutChart'
 import HeadSEO from '@/components/layout/HeadSEO'
-import FilterTransactionTable from '@/components/nft/FilterTransactionTable'
+import FilterTransactionTable from '@/components/page/nft/FilterTransactionTable'
 import Pagination from '@/components/pagination'
 import TransactionTable from '@/components/transactionTable/TransactionTable'
 import { getNftStatistics } from 'api/nft/statistics'

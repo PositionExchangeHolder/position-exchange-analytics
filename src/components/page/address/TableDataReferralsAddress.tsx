@@ -5,8 +5,8 @@ import React, { useEffect, useState } from 'react'
 import {  ReferralRecord } from 'types/api/referral'
 import { SortOrder } from 'react-data-table-component'
 import getPageCount from 'utils/getPageCount'
-import { columnsReferralAddress } from '../transactionTable/columnsReferralAddress'
-import WrappedPagination from '../common/WrappedPagination'
+import WrappedPagination from '@/components/common/WrappedPagination'
+import { columnsReferral } from '@/components/transactionTable/columnsReferral'
 
 const PER_PAGE = 10
 
@@ -67,7 +67,7 @@ export default function TableDataReferralsAddress({ referrerId }: Props) {
         transactions={dataReferralAddress || []}
         titleTable={'REFERRALS'}
         isLoading={isLoading}
-        columns={columnsReferralAddress}
+        columns={columnsReferral}
         onSort={handleSort}
       />
       {!isEmpty(dataReferralAddress) && (

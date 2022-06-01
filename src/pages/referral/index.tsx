@@ -1,6 +1,6 @@
-import TableDataReferralsRanker from '@/components/referral/TableDataReferralsRanker'
+import TableDataReferralsRanker from '@/components/page/referral/TableDataReferralsRanker'
 import HeadSEO from '@/components/layout/HeadSEO'
-import TotalReferrals from '@/components/referral/TotalReferrals'
+import TotalReferrals from '@/components/page/referral/TotalReferrals'
 import React, { useEffect, useState } from 'react'
 import { useAppSelector } from 'store/hooks'
 import { ReferralsRankerOrderBySelector } from 'store/referral/referralSlice'

@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
+import { BscscanLinkButton, BscscanType } from '@/components/common/BscscanLinkButton'
 import { getRealizedPnlAndTradingDataOfAddress } from 'api/address/balance'
 import { getAccountInfo } from 'api/address/info'
 import React, { useEffect, useState } from 'react'
 import { AccountInfo, RealizedPnlAndTradingData } from 'types/api/address'
 import { isAddress, isContractAddress } from 'utils/address'
 import { getJoinedDate } from 'utils/date'
-import { BscscanLinkButton, BscscanType } from '../common/BscscanLinkButton'
 import { AddressPnL } from './PnL'
 import SocialButton from './SocialInfo'
 

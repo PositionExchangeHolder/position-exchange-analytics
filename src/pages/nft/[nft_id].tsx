@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Address } from '@/components/common/Address'
 import HeadSEO from '@/components/layout/HeadSEO'
-import { NotFoundNft } from '@/components/nft/NotFoundNft'
+import { NotFoundNft } from '@/components/page/nft/NotFoundNft'
 import { columnsActivities } from '@/components/transactionTable/columnsActivities'
 import TransactionTable from '@/components/transactionTable/TransactionTable'
 import { getNftGradeImageUrl } from 'helper/nft/getNftImageUrl'

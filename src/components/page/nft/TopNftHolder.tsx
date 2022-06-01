@@ -1,9 +1,9 @@
+import { DoughnutChart } from '@/components/chart/DoughnutChart'
+import Loading from '@/components/loading/Loading'
 import { getTopNftHolder } from 'api/nft/leaderboard'
 import React, { useEffect, useState } from 'react'
 import { getAddressLabel } from 'utils/address'
 import { hashFormatter } from 'utils/string'
-import { DoughnutChart } from '../chart/DoughnutChart'
-import Loading from '../loading/Loading'
 
 type Props = {
   totalNfts: number

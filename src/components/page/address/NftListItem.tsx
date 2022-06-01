@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { isEmpty } from 'lodash'
-import TransactionTable from '../transactionTable'
-import { ColumnsNftAddress } from '../transactionTable/ColumnsNftAddress'
 import getPageCount from 'utils/getPageCount'
 import { getNftsOfAddress } from 'api/nft/nft'
 import { SortOrder } from 'react-data-table-component'
-import WrappedPagination from '../common/WrappedPagination'
+import WrappedPagination from '@/components/common/WrappedPagination'
+import TransactionTable from '@/components/transactionTable'
+import { ColumnsNftAddress } from '@/components/transactionTable/ColumnsNftAddress'
 
 const PER_PAGE = 8
 
