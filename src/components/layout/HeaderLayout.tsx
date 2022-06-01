@@ -48,11 +48,13 @@ export default function HeaderLayout() {
           <div className="flex justify-between items-center py-2 w-full md:justify-start md:space-x-10">
             <div className="flex justify-start lg:w-12">
               <Link href="/">
-                <img
-                  className="w-auto h-8 sm:h-10"
-                  src="/vectary.svg"
-                  alt="Home Page"
-                />
+                <button title="Home">
+                  <img
+                    className="w-auto h-8 sm:h-10"
+                    src="/vectary.svg"
+                    alt="Home Page"
+                  />
+                </button>
               </Link>
             </div>
             <div className="-my-2 -mr-2 md:hidden">
