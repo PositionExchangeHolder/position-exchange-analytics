@@ -24,6 +24,7 @@ export const getNftTransactions = async ({
   }
   if (grade) {
     filter.where = {
+      ...filter.where,
       grade
     }
   }
