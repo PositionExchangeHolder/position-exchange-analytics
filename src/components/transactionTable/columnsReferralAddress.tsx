@@ -16,19 +16,17 @@ import RowData from './RowData'
 export const columnsReferralAddress: TableColumn<ReferralRecord>[] = [
   {
     name: addressReferralTableTitle.transaction,
-    width: '460px',
+    width: '180px',
     cell: (row) => (
       <BscscanLinkButton
         hash={row.refTxHash}
         type={BscscanType.TX_HASH}
-        shortLink={false}
       />
     ),
-    style: { paddingRight: 30 },
   },
   {
     name: addressReferralTableTitle.address,
-    width: '440px',
+    width: '400px',
     cell: (row) => <Address address={row.user} shortLink={false} />,
   },
   {
