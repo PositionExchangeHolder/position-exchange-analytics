@@ -28,3 +28,8 @@ export type VaultStatistics = {
 export type GasPrice = {
   gasPrice: string
 }
+
+export type GasPrices = {
+  busd: GasPrice[]
+  bnb: GasPrice[]
+}

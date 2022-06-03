@@ -66,7 +66,7 @@ export default function Index() {
       <HeadSEO title="Position NFT" description="Position NFT" />
       <div className="grid grid-cols-1 gap-x-6 md:grid-cols-2">
         <CurrentValueLock />
-        <div className="mt-8 h-72 rounded-md xs:h-full md:mt-0">
+        <div className="mt-8 h-72 rounded-md xs:mt-0 md:mt-0">
           <div className="w-full h-full rounded-md">
             <LineChart data={dataNftLineChart} />
           </div>
