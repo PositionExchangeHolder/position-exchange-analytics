@@ -83,7 +83,7 @@ const GasPriceStatistics = () => {
           ? <Loading />
           : <LineChart
               data={dataChart}
-              title={{ text: 'Gas Price of last 15 transactions' }}
+              title={{ text: 'Gas Price used last 15 compound transactions' }}
             />
       }
     </>
