@@ -60,14 +60,14 @@ export default function Account() {
       <AccountInfo account={account} isMatchingAccount={isMatchingAccount} />
 
       {/* Address Token Balance */}
-      <div className=" grid-rows-2 mt-12 lg:grid lg:grid-cols-3 lg:grid-rows-none lg:gap-x-12 lg:mt-16">
+      <div className="grid-rows-2 mt-12 lg:grid lg:grid-cols-3 lg:grid-rows-none lg:gap-x-12 lg:mt-16">
         <div className="col-span-1 lg:row-span-1">
           <BalanceWallet
             totalPosiBalance={balance?.totalPosiBalance}
             dataDoughnutWalletChart={dataDoughnutWalletChart}
           />
         </div>
-        <div className="relative row-span-1 mt-12  lg:col-span-2 lg:mt-0 h-a">
+        <div className="relative row-span-1 mt-12 lg:col-span-2 lg:mt-0 h-a">
           <NftListItem address={account} />
         </div>
       </div>

@@ -2,13 +2,14 @@ import { compoundTransactionTableTitle } from 'helper/tableTransaction/config'
 import React from 'react'
 import { TableColumn } from 'react-data-table-component'
 import { CompoundTransaction } from 'types/api/vault'
-import { convertTimestampToDate } from 'utils/date'
+import { convertTimestampToDate, getLastSeen } from 'utils/date'
 import {
   // convertBigNumberToStringNumber,
   toGwei,
 } from 'utils/number'
 import { Address } from '../common/Address'
 import { BscscanLinkButton, BscscanType } from '../common/BscscanLinkButton'
+import ToolTip from '../common/ToolTip'
 import RowData from './RowData'
 
 export const columnsCompoundTransactions: TableColumn<CompoundTransaction>[] = [
@@ -17,7 +18,7 @@ export const columnsCompoundTransactions: TableColumn<CompoundTransaction>[] = [
     cell: (row) => (
       <BscscanLinkButton hash={row?.id} type={BscscanType.TX_HASH} />
     ),
-    width: '160px',
+    width: '140px',
     hide: 10,
   },
   {
@@ -28,7 +29,7 @@ export const columnsCompoundTransactions: TableColumn<CompoundTransaction>[] = [
   {
     name: compoundTransactionTableTitle.compounder,
     cell: (row) => <Address address={row?.sender} />,
-    width: '160px',
+    width: '140px',
   },
   // {
   //   name: compoundTransactionTableTitle.reward,
@@ -40,17 +41,21 @@ export const columnsCompoundTransactions: TableColumn<CompoundTransaction>[] = [
   {
     name: compoundTransactionTableTitle.gasPrice,
     cell: (row) => <RowData data={`${toGwei(row?.gasPrice)} Gwei`} />,
-    width: '120px',
+    width: '110px',
   },
   {
     name: compoundTransactionTableTitle.gasLimit,
     cell: (row) => <RowData data={Number(row?.gasLimit).toLocaleString()} />,
-    width: '120px',
+    width: '100px',
   },
   {
     name: compoundTransactionTableTitle.createdAt,
     cell: (row) => (
-      <RowData data={convertTimestampToDate(row?.createdTimestamp)} />
+      <RowData>
+        <ToolTip toolTipText={convertTimestampToDate(row?.createdTimestamp)}>
+          {getLastSeen(row?.createdTimestamp)}
+        </ToolTip>
+      </RowData>
     ),
     width: '160px',
   },

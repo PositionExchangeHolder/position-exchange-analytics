@@ -1,4 +1,5 @@
 import React from 'react'
+import { convertBigNumberToStringNumber } from 'utils/number'
 
 type Props = {
   statistics: {
@@ -21,6 +22,11 @@ const VaultStatistics = ({ statistics }: Props) => {
       </p>
       <p className="mt-2">
         Total Compounder: {statistics.totalUniqueCompounders}
+      </p>
+      <p className="mt-2">
+        Total Reward: {
+          convertBigNumberToStringNumber(statistics.totalRewardPaidForCompounder || 0, 0)
+        } POSI
       </p>
       <p className="mt-2">
         Highest Gas Price: 1661 Gwei

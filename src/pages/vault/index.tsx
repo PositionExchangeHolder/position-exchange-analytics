@@ -5,6 +5,7 @@ import { VaultStatistics } from 'types/api/vault'
 import { getVaultSatistics } from 'api/vault/statistics'
 import VaultStatisticsComponent from '@/components/page/vault/VaultStatistics'
 import GasPriceStatistics from '@/components/page/vault/GasPriceStatistics'
+import TopCompounder from '@/components/page/vault/TopCompounder'
 
 export default function Index() {
   const [vaultStatistics, setVaultStatistics] = useState<VaultStatistics>({
@@ -37,10 +38,15 @@ export default function Index() {
         </div>
       </div>
 
-      <div className="pt-16">
-        <CompoundTransactions
-          totalTransactions={vaultStatistics.totalCompoundTransactions}
-        />
+      <div className="grid-rows-2 mt-12 lg:grid lg:grid-cols-3 lg:grid-rows-none lg:gap-x-12 lg:mt-16">
+        <div className="relative row-span-1 mt-12 lg:col-span-2 lg:mt-0 h-a">
+          <CompoundTransactions
+              totalTransactions={vaultStatistics.totalCompoundTransactions}
+            />
+        </div>
+        <div className="col-span-1 lg:row-span-1">
+          <TopCompounder />
+        </div>
       </div>
     </main>
   )

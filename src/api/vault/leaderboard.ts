@@ -5,7 +5,7 @@ import { SUBGRAPH } from 'utils/constants'
 export const getTopCompounder = async ({
   skip = 0,
   first = 10,
-  orderBy = 'totalRewardEarned',
+  orderBy = 'totalCompoundTransactions',
   orderDirection = 'desc'
 }): Promise<Compounder[] | undefined> => {
   try {

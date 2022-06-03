@@ -6,7 +6,7 @@ import { CompoundTransaction } from 'types/api/vault'
 import getPageCount from 'utils/getPageCount'
 import WrappedPagination from '@/components/common/WrappedPagination'
 
-const PER_PAGE = 8
+const PER_PAGE = 9
 
 type Props = {
   totalTransactions: number | string

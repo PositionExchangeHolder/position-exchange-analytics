@@ -50,7 +50,7 @@ export const columnsReferralAddress: TableColumn<ReferralRecord>[] = [
     width: '150px',
     cell: (row) => (
       <RowData>
-        <ToolTip toolTipText={convertTimestampToDate(row.createdTimestamp)}>
+        <ToolTip toolTipText={convertTimestampToDate(row.updatedTimestamp)}>
           {getLastSeen(row.updatedTimestamp)}
         </ToolTip>
       </RowData>
