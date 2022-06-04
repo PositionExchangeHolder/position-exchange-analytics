@@ -17,7 +17,7 @@ const columns: TableColumn<Compounder>[] = [
   {
     name: 'Address',
     cell: (row) => <Address address={row?.id} />,
-    width: '140px',
+    width: '150px',
   },
   {
     name: 'Compounds',

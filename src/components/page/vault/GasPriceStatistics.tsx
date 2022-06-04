@@ -6,6 +6,8 @@ import React, { useEffect, useState } from 'react'
 import { GasPrice, GasPrices } from 'types/api/vault'
 import { toGwei } from 'utils/number'
 
+const NUMBER_OF_TXS = 20
+
 const getGasPriceReserveValue = (
   gasPirce: GasPrice[]
 ): number[] => {
@@ -64,7 +66,9 @@ const GasPriceStatistics = () => {
   
   useEffect(() => {
     const fetchGasPrices = async () => {
-      const res = await getLatestGasPrices({})
+      const res = await getLatestGasPrices({
+        first: NUMBER_OF_TXS
+      })
       getHighestAndLowestGasPrice()
       if (res) {
         setGasPrices(res)
@@ -83,7 +87,7 @@ const GasPriceStatistics = () => {
           ? <Loading />
           : <LineChart
               data={dataChart}
-              title={{ text: 'Gas Price used last 15 compound transactions' }}
+              title={{ text: `Gas Price used the last ${NUMBER_OF_TXS} compound transactions of each vault` }}
             />
       }
     </>
