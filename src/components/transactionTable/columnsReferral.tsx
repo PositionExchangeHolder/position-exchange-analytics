@@ -28,6 +28,7 @@ export const columnsReferral: TableColumn<TopReferral>[] = [
     cell: (row) => <RowData data={row.totalReferrals} />,
     width: '170px',
     sortable: true,
+    sortField: 'totalReferrals'
   },
   {
     name: referralTableTitle.totalCommissions,
@@ -41,6 +42,7 @@ export const columnsReferral: TableColumn<TopReferral>[] = [
     ),
     width: '250px',
     sortable: true,
+    sortField: 'totalReferralCommissions'
   },
 
   {
@@ -48,10 +50,12 @@ export const columnsReferral: TableColumn<TopReferral>[] = [
     width: '230px',
     cell: (row) => (
       <RowData>
-        <ToolTip toolTipText={convertTimestampToDate(row?.createdTimestamp)}>
-          {getLastSeen(+row?.createdTimestamp)}
+        <ToolTip toolTipText={convertTimestampToDate(row?.updatedTimestamp)}>
+          {getLastSeen(+row?.updatedTimestamp)}
         </ToolTip>
       </RowData>
     ),
+    sortable: true,
+    sortField: 'updatedTimestamp'
   },
 ]

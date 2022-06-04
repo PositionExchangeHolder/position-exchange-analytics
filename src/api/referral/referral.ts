@@ -68,7 +68,8 @@ export const getReferralAddress = async ({
 }
 
 export const getTopReferral = async ({
-  orderBy = 'totalReferrals'
+  orderBy = 'totalReferrals',
+  orderDirection = 'desc'
 }): Promise<TopReferral | undefined> => {
   try {
     const res = await client.query({
@@ -94,7 +95,7 @@ export const getTopReferral = async ({
       variables: {
         first: 10,
         orderBy: orderBy,
-        orderDirection: 'desc'
+        orderDirection
       },
       context: {
         endpoint: 'referral'
