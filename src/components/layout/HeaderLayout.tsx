@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { Popover, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
-import { PopoverType, resources } from 'common/header/header.type'
+import { PopoverType } from 'common/header/header.type'
 import Link from 'next/link'
 import { Fragment } from 'react'
 import ButtonConnectMetamask from '../wallet/ButtonConnectMetamask'
@@ -192,17 +192,6 @@ export default function HeaderLayout() {
                       name={nav.name}
                       disable={nav.disable}
                     />
-                  ))}
-
-                  {resources.map((item) => (
-                    <Link key={item.name} href={item.href}>
-                      <a
-                        onClick={close}
-                        className="py-2 px-4 text-base font-medium text-txt-light-txt-primary dark:text-txt-primary hover:bg-mineShaft-30 active:bg-mineShaft-30 rounded-md"
-                      >
-                        {item.name}
-                      </a>
-                    </Link>
                   ))}
                 </div>
               </div>
