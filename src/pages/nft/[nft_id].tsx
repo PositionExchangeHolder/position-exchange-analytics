@@ -83,7 +83,10 @@ export default function NftDetailPage({ positionNFT: positionNFTDetail }: Props)
       <section>
         <div className="py-16 mx-auto max-w-screen-xl">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-0 lg:gap-12 xl:grid-cols-3">
-            <div className="relative h-96 rounded-lg">
+            <div
+              className="relative h-96 rounded-lg bg-no-repeat bg-center"
+              style={{ backgroundImage: `url(${'/loader.gif'})`, backgroundSize: '30%' }}
+            >
               <img
                 className="object-contain absolute inset-0 w-full h-full"
                 src={getNftGradeImageUrl(grade)}

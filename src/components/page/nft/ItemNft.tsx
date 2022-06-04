@@ -1,6 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 import { getNftGradeImageUrl } from 'helper/nft/getNftImageUrl'
 import { TypeItemNft } from 'helper/nft/transferDataTotalNft'
-import Image from 'next/image'
 import React from 'react'
 import { commasNumberFormat } from 'utils/number'
 
@@ -26,13 +26,16 @@ export default function ItemNft({ item }: Props) {
           </p>
         </div>
       </div>
-      <Image
-        src={getNftGradeImageUrl(item.grade)}
-        alt="logo"
-        width={90}
-        height={120}
-        layout="fixed"
-      />
+      <div
+        className='w-20 h-28 bg-no-repeat bg-center'
+        style={{ backgroundImage: `url(${'/loader.gif'})`, backgroundSize: '50%' }}
+      >
+        <img
+          src={getNftGradeImageUrl(item.grade)}
+          alt={`Grade ${item.grade}`}
+          loading="lazy"
+        />
+      </div>
     </div>
   )
 }
