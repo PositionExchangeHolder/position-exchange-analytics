@@ -42,7 +42,7 @@ export default function TransactionTable({
     <div>
       <div className="pt-3 pb-2 pl-6 w-full bg-light-primary dark:bg-secondary border dark:border-0 border-b dark:border-b-gray-400">
         <p className="pb-3 text-sm font-medium text-txt-light-txt-primary dark:text-txt-primary lg:text-base">
-          {titleTable}
+          {titleTable.toUpperCase()}
         </p>
         {typeof customFilterHeader === 'function' && customFilterHeader()}
       </div>
@@ -59,7 +59,7 @@ export default function TransactionTable({
           noDataComponent={
             isLoading ? null : (
               <div className="flex justify-center items-center py-8 w-full">
-                <p className="mr-3">
+                <p className="mr-3 mt-3.5">
                   No Data
                 </p>
                 {

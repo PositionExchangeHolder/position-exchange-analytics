@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import BalanceWallet from '@/components/page/address/BalanceWallet'
-import StakingListItem from '@/components/page/address/StakingListItem'
 import TableDataReferralsAddress from '@/components/page/address/TableDataReferralsAddress'
 import { transformDataWalletDoughnutChart } from 'helper/nft/transformDataWalletDoughnutChart'
 import { isEmpty } from 'lodash'
@@ -13,6 +12,7 @@ import AccountInfo from '@/components/page/address/AccountInfo'
 import { AccountPosiBalances } from 'types/api/address'
 import { getAddressBalances } from 'api/address/balance'
 import { isAddress } from 'utils/address'
+import TableStaking from '@/components/page/address/TableStaking'
 
 export default function Account() {
   const router = useRouter()
@@ -73,12 +73,12 @@ export default function Account() {
       </div>
 
       {/* Staking  */}
-      <StakingListItem
-        stakingPoolBalances={balance?.stakingPoolBalances}
-        nftPoolBalances={balance?.nftPoolBalances}
-        vaultBalances={balance?.vaultBalances}
-        isMatchingAccount={isMatchingAccount}
-      />
+      <div className="pt-16">
+        <TableStaking
+          balances={balance}
+          isMatchingAccount={isMatchingAccount}
+        />
+      </div>
 
       {/* Referral Table */}
       <div className="pt-16">
