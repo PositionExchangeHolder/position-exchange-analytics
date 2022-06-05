@@ -2,7 +2,7 @@ import React from 'react'
 import { TableColumn } from 'react-data-table-component'
 import { StakingPool } from 'types/api/address'
 import { convertBigNumberToStringNumber } from 'utils/number'
-import Button from '../common/Button'
+// import Button from '../common/Button'
 import RowData from './RowData'
 
 export const columnsStakingAddress: TableColumn<StakingPool>[] = [
