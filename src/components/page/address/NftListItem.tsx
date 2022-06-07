@@ -19,7 +19,7 @@ export default function NftListItem({ address }: Props) {
   const [totalPage, setTotalPage] = useState<number>(1)
   const [currentPages, setCurrentPages] = useState<number>(1)
   const [orderBy, setOrderBy] = useState<string>('id')
-  const [orderDirection, setOrderDirection] = useState<string>('asc')
+  const [orderDirection, setOrderDirection] = useState<string>('desc')
 
   const [nftList, setNftList] = useState<any>([])
 

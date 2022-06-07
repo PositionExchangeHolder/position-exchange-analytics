@@ -128,6 +128,7 @@ export const getNftsOfAddress = async (
               orderDirection: $orderDirection
             ) {
               id
+              status
               grade
               amount
               lockedDays
