@@ -6,6 +6,7 @@ import { isEmpty } from 'lodash'
 import React, { useEffect, useState } from 'react'
 import { SortOrder } from 'react-data-table-component'
 import { SwapTransaction } from 'types/api/address'
+import { isAddress } from 'utils/address'
 import getPageCount from 'utils/getPageCount'
 import { getPostionExchangeUrl } from 'utils/url'
 
@@ -51,7 +52,7 @@ const Activities = ({ address }: Props) => {
       }
     }
     
-    if (address) {
+    if (isAddress(address)) {
       getActivities()
     }
   }, [address, currentPages, orderBy, orderDirection])

@@ -3,7 +3,6 @@ import { useWeb3React } from '@web3-react/core'
 import BalanceWallet from '@/components/page/address/BalanceWallet'
 import TableDataReferralsAddress from '@/components/page/address/TableDataReferralsAddress'
 import { transformDataWalletDoughnutChart } from 'helper/nft/transformDataWalletDoughnutChart'
-import { isEmpty } from 'lodash'
 import { useRouter } from 'next/router'
 import { convertBigNumberToNumber } from 'utils/number'
 import NftListItem from '@/components/page/address/NftListItem'
@@ -14,6 +13,7 @@ import { getAddressBalances } from 'api/address/balance'
 import { isAddress } from 'utils/address'
 import TableStaking from '@/components/page/address/TableStaking'
 import Activities from '@/components/page/address/Activities'
+import AccountStatistics from '@/components/page/address/AccountStatistics'
 
 export default function Account() {
   const router = useRouter()
@@ -39,7 +39,7 @@ export default function Account() {
   })
 
   useEffect(() => {
-    if (isEmpty(account) || !isAddress(account)) return
+    if (!isAddress(account)) return
     const fetchAddressBalance = async () => {
       const data = await getAddressBalances(account)
       if (data) {
@@ -51,7 +51,7 @@ export default function Account() {
   }, [account])
 
   return (
-    <main className="relative px-6 mt-8 w-full bg-light-primary dark:bg-primary md:mt-16 xl:px-0">
+    <main className="relative px-6 mt-8 w-full bg-light-primary dark:bg-primary md:mt-12 xl:px-0">
       <HeadSEO
         title={`Position Address | ${account}`}
         description={`Position Address | ${account}`}
@@ -61,12 +61,16 @@ export default function Account() {
       <AccountInfo account={account} isMatchingAccount={isMatchingAccount} />
 
       {/* Address Token Balance */}
-      <div className="grid-rows-2 mt-12 lg:grid lg:grid-cols-3 lg:grid-rows-none lg:gap-x-12 lg:mt-16">
+      <div className="grid-rows-2 mt-12 lg:grid lg:grid-cols-3 lg:grid-rows-none lg:gap-x-12 lg:mt-12">
         <div className="col-span-1 lg:row-span-1">
           <BalanceWallet
             totalPosiBalance={balance?.totalPosiBalance}
             dataDoughnutWalletChart={dataDoughnutWalletChart}
           />
+
+          <div className="mt-6">
+            <AccountStatistics address={account} />
+          </div>
         </div>
         <div className="relative row-span-1 mt-12 lg:col-span-2 lg:mt-0 h-a">
           <Activities address={account} />
@@ -74,7 +78,7 @@ export default function Account() {
       </div>
 
       {/* Staking  */}
-      <div className="grid-rows-2 mt-12 lg:grid lg:grid-cols-3 lg:grid-rows-none lg:gap-x-12 lg:mt-16">
+      <div className="grid-rows-2 mt-12 lg:grid lg:grid-cols-3 lg:grid-rows-none lg:gap-x-12 lg:mt-12">
         <div className="col-span-1 lg:row-span-1">
           <TableStaking
             balances={balance}

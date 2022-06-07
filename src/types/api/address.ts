@@ -51,3 +51,11 @@ export type SwapTransaction = {
   market: string
   createdTimestamp: string
 }
+
+export type AddressStatistics = {
+  totalTokensBuy: string
+  totalTokensSell: string
+  totalVolumeInBUSD: string
+  totalTransactions: string
+  totalSwapTransactions: string
+}

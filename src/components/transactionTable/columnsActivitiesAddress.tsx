@@ -24,7 +24,7 @@ export const columnsActivitiesAddress: TableColumn<SwapTransaction>[] = [
     width: '80px',
     cell: (row) => (
       <RowData>
-        <span className={row.action === 'Buy' ? 'text-emerald-500': 'text-red-500'}>
+        <span className={row.action === 'Buy' ? 'text-green-500': 'text-red-500'}>
           {row.action}
         </span>
       </RowData>
@@ -55,7 +55,7 @@ export const columnsActivitiesAddress: TableColumn<SwapTransaction>[] = [
     width: '100px',
     cell: (row) => (
       <RowData>
-        <span className={Number(row.amountBusd) > 0 ? 'text-emerald-500': 'text-red-500'}>
+        <span className={Number(row.amountBusd) > 0 ? 'text-green-500': 'text-red-500'}>
           {formatMoney(convertBigNumberToNumber(row.amountBusd))}
         </span>
       </RowData>
