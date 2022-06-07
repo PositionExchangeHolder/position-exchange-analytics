@@ -6,11 +6,11 @@ import { convertBigNumberToStringNumber } from 'utils/number'
 import RowData from './RowData'
 
 export const columnsStakingAddress: TableColumn<StakingPool>[] = [
-  {
-    name: 'Pid',
-    cell: (row) => <RowData data={(row.pid).toString()} />,
-    width: '60px',
-  },
+  // {
+  //   name: 'Pid',
+  //   cell: (row) => <RowData data={(row.pid).toString()} />,
+  //   width: '60px',
+  // },
   {
     name: 'Pool',
     cell: (row) => <RowData data={row.name} />,
@@ -25,7 +25,7 @@ export const columnsStakingAddress: TableColumn<StakingPool>[] = [
         }
       />
     ),
-    width: '140px',
+    width: '120px',
   },
   {
     name: 'Earned',
@@ -36,7 +36,7 @@ export const columnsStakingAddress: TableColumn<StakingPool>[] = [
         }
       />
     ),
-    width: '140px',
+    width: '120px',
   },
   // {
   //   name: 'Actions',

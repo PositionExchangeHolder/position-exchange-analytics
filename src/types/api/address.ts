@@ -41,3 +41,13 @@ export type TotalPosiBalance = {
   pendingBalance: string
   total: string
 }
+
+export type SwapTransaction = {
+  id: string
+  amountPosi: string
+  amountQuote: string
+  amountBusd: string
+  action: string
+  market: string
+  createdTimestamp: string
+}

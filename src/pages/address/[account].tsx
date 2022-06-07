@@ -13,6 +13,7 @@ import { AccountPosiBalances } from 'types/api/address'
 import { getAddressBalances } from 'api/address/balance'
 import { isAddress } from 'utils/address'
 import TableStaking from '@/components/page/address/TableStaking'
+import Activities from '@/components/page/address/Activities'
 
 export default function Account() {
   const router = useRouter()
@@ -68,16 +69,21 @@ export default function Account() {
           />
         </div>
         <div className="relative row-span-1 mt-12 lg:col-span-2 lg:mt-0 h-a">
-          <NftListItem address={account} />
+          <Activities address={account} />
         </div>
       </div>
 
       {/* Staking  */}
-      <div className="pt-16">
-        <TableStaking
-          balances={balance}
-          isMatchingAccount={isMatchingAccount}
-        />
+      <div className="grid-rows-2 mt-12 lg:grid lg:grid-cols-3 lg:grid-rows-none lg:gap-x-12 lg:mt-16">
+        <div className="col-span-1 lg:row-span-1">
+          <TableStaking
+            balances={balance}
+            isMatchingAccount={isMatchingAccount}
+          />
+        </div>
+        <div className="relative row-span-1 mt-12 lg:col-span-2 lg:mt-0 h-a">
+          <NftListItem address={account} />
+        </div>
       </div>
 
       {/* Referral Table */}
