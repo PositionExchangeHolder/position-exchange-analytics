@@ -3,7 +3,7 @@ import { getAddressStatistics } from 'api/address/statistics'
 import React, { useEffect, useState } from 'react'
 import { AddressStatistics } from 'types/api/address'
 import { isAddress } from 'utils/address'
-import { convertBigNumberToNumber, convertBigNumberToStringNumber } from 'utils/number'
+import { convertBigNumberToNumber } from 'utils/number'
 import { formatMoney } from 'utils/price'
 
 type Props = {
